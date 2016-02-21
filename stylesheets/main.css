@@ -1,0 +1,179 @@
+/* line 7, ../sass/main.scss */
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+
+/* line 13, ../sass/main.scss */
+body {
+  background: #1f1f1f;
+}
+
+/* line 18, ../sass/main.scss */
+.container {
+  width: 80%;
+  height: 100%;
+  margin-top: 30px;
+}
+
+/* line 24, ../sass/main.scss */
+.row {
+  height: 100%;
+}
+
+/* line 29, ../sass/main.scss */
+.block-outer {
+  color: #fff;
+  margin-bottom: 30px;
+}
+
+/* line 34, ../sass/main.scss */
+.block-outer-1,
+.block-outer-2,
+.block-outer-3 {
+  height: 290px;
+}
+
+/* line 40, ../sass/main.scss */
+.block-inner {
+  width: 90%;
+  position: absolute;
+  background: #3d3d3d;
+  -moz-transition: top, 1.5s, ease-in;
+  -o-transition: top, 1.5s, ease-in;
+  -webkit-transition: top, 1.5s, ease-in;
+  transition: top, 1.5s, ease-in;
+}
+/* line 45, ../sass/main.scss */
+.block-inner:hover {
+  background: #4f4f4f;
+}
+/* line 48, ../sass/main.scss */
+.block-inner.gotop {
+  z-index: 1;
+  top: 1000%;
+}
+/* line 52, ../sass/main.scss */
+.block-inner.active {
+  z-index: 5;
+  left: 5%;
+  background: #4f4f4f;
+}
+
+/* line 59, ../sass/main.scss */
+.block-inner-1 {
+  height: 100%;
+  top: 0;
+}
+
+/* line 64, ../sass/main.scss */
+.block-inner-2 {
+  height: 130px;
+  margin-bottom: 30px;
+}
+
+/* line 69, ../sass/main.scss */
+.block-inner-3 {
+  height: 100%;
+  width: 95%;
+  top: 0;
+}
+
+/* line 75, ../sass/main.scss */
+.block-inner-top {
+  top: 0;
+}
+
+/* line 79, ../sass/main.scss */
+.block-inner-bottom {
+  top: 160px;
+}
+
+/* line 83, ../sass/main.scss */
+.block-header {
+  height: 30px;
+  width: 100%;
+  border-bottom: 1px #000000 dotted;
+  line-height: 30px;
+  padding-left: 5px;
+}
+
+/* line 91, ../sass/main.scss */
+.block-body {
+  height: calc(100% - 30px);
+  height: -webkit-calc(100% - 30px);
+  width: 100%;
+}
+
+/* line 97, ../sass/main.scss */
+.block-thumb {
+  height: 100%;
+  width: 100%;
+}
+
+/* line 103, ../sass/main.scss */
+#block-detail {
+  height: 90%;
+  width: 80%;
+  left: 10%;
+  position: fixed;
+  top: -1000%;
+  color: #fff;
+  background: #3d3d3d;
+  -moz-transition: all, 1.5s, ease-in, 1s;
+  -o-transition: all, 1.5s, ease-in, 1s;
+  -webkit-transition: all, 1.5s, ease-in, 1s;
+  transition: all, 1.5s, ease-in, 1s;
+}
+/* line 112, ../sass/main.scss */
+#block-detail.active {
+  top: 5%;
+}
+
+/* line 117, ../sass/main.scss */
+#block-detail > .block-body > div {
+  position: relative;
+  padding: 15px;
+}
+
+/* line 122, ../sass/main.scss */
+#block-detail-chart {
+  width: 70%;
+  height: 50%;
+  float: left;
+}
+
+/* line 128, ../sass/main.scss */
+#block-detail-right {
+  width: 25%;
+  height: 50%;
+  float: right;
+}
+
+/* line 134, ../sass/main.scss */
+#block-detail-bottom {
+  width: 100%;
+  height: 50%;
+  float: left;
+}
+
+/* line 139, ../sass/main.scss */
+#block-subChart-left, #block-subChart-right {
+  width: 50%;
+  height: 100%;
+  float: left;
+  padding: 0 20px 0 20px;
+}
+
+/* line 146, ../sass/main.scss */
+#block-clock > .block-body {
+  font-size: 32px;
+  line-height: 85px;
+}
+
+/* line 152, ../sass/main.scss */
+#block-chart-status {
+  width: 100%;
+  height: 100%;
+}

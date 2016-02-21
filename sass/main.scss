@@ -1,0 +1,155 @@
+@import "compass/css3";
+$backgroundColor:#1f1f1f;
+$blockColor:#3d3d3d;
+$blockHoverColor:#4f4f4f;
+$fontColor:#fff;
+//修改頁面元素
+html,
+body {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    background: $backgroundColor;
+}
+
+//覆寫bootstrap
+.container {
+    width: 80%;
+    height: 100%;
+    margin-top: 30px;
+}
+
+.row {
+    height: 100%;
+}
+
+//block
+.block-outer {
+    color: $fontColor;
+    margin-bottom: 30px;
+}
+
+.block-outer-1,
+.block-outer-2,
+.block-outer-3 {
+    height: 290px;
+}
+
+.block-inner {
+    width: 90%;
+    position: absolute;
+    background: $blockColor;
+    @include transition(top, 1.5s, ease-in);
+    &:hover {
+        background: $blockHoverColor;
+    }
+    &.gotop {
+        z-index: 1;
+        top: 1000%;
+    }
+    &.active {
+        z-index: 5;
+        left: 5%;
+        background: $blockHoverColor;
+    }
+}
+
+.block-inner-1 {
+    height: 100%;
+    top: 0;
+}
+
+.block-inner-2 {
+    height: 130px;
+    margin-bottom: 30px;
+}
+
+.block-inner-3 {
+    height: 100%;
+    width: 95%;
+    top: 0;
+}
+
+.block-inner-top {
+    top: 0;
+}
+
+.block-inner-bottom {
+    top: 160px;
+}
+
+.block-header {
+    height: 30px;
+    width: 100%;
+    border-bottom: 1px #000000 dotted;
+    line-height: 30px;
+    padding-left: 5px;
+}
+
+.block-body {
+    height: calc(100% - 30px);
+    height: -webkit-calc(100% - 30px);
+    width: 100%;
+}
+
+.block-thumb {
+    height: 100%;
+    width: 100%;
+}
+
+//block-detail
+#block-detail {
+    height: 90%;
+    width: 80%;
+    left: 10%;
+    position: fixed;
+    top: -1000%;
+    color: $fontColor;
+    background: $blockColor;
+    @include transition(all, 1.5s, ease-in, 1s);
+    &.active {
+        top: 5%;
+    }
+}
+
+#block-detail>.block-body>div {
+    position: relative;
+    padding:15px;
+}
+
+#block-detail-chart {
+    width: 70%;
+    height: 50%;
+    float: left;
+}
+
+#block-detail-right {
+    width: 25%;
+    height: 50%;
+    float: right;
+}
+
+#block-detail-bottom {
+    width: 100%;
+    height: 50%;
+    float: left;
+}
+#block-subChart-left,#block-subChart-right{
+    width:50%;
+    height:100%;
+    float: left;
+    padding:0 20px 0 20px;
+}
+//clock
+#block-clock>.block-body {
+    font-size: 32px;
+    line-height: 85px;
+}
+
+//status
+#block-chart-status {
+    width: 100%;
+    height: 100%;
+}
