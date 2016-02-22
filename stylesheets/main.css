@@ -133,46 +133,87 @@ body {
 
 /* line 117, ../sass/main.scss */
 #block-detail > .block-body > div {
-  position: relative;
   padding: 15px;
 }
 
-/* line 122, ../sass/main.scss */
-#block-detail-chart {
-  width: 70%;
-  height: 50%;
-  float: left;
+/* line 121, ../sass/main.scss */
+.title {
+  left: 5px;
+  position: absolute;
 }
 
-/* line 128, ../sass/main.scss */
+/* line 126, ../sass/main.scss */
+.back {
+  right: 5px;
+  position: absolute;
+  cursor: pointer;
+}
+
+/* line 131, ../sass/main.scss */
+#block-detail-chart,
+#block-subChart-left {
+  -moz-transition: all, 1s, ease-in, 0.5s;
+  -o-transition: all, 1s, ease-in, 0.5s;
+  -webkit-transition: all, 1s, ease-in, 0.5s;
+  transition: all, 1s, ease-in, 0.5s;
+}
+
+/* line 135, ../sass/main.scss */
+#block-detail-chart {
+  width: 50%;
+  height: 50%;
+  left: 0;
+  top: 50%;
+  position: absolute;
+}
+/* line 141, ../sass/main.scss */
+#block-detail-chart.active {
+  width: 70%;
+  top: 30px;
+}
+
+/* line 147, ../sass/main.scss */
 #block-detail-right {
   width: 25%;
   height: 50%;
-  float: right;
+  right: 0;
+  top: 30px;
+  position: absolute;
 }
 
-/* line 134, ../sass/main.scss */
-#block-detail-bottom {
-  width: 100%;
-  height: 50%;
-  float: left;
-}
-
-/* line 139, ../sass/main.scss */
-#block-subChart-left, #block-subChart-right {
+/* line 155, ../sass/main.scss */
+#block-subChart-left,
+#block-subChart-right {
   width: 50%;
-  height: 100%;
-  float: left;
+  height: 50%;
   padding: 0 20px 0 20px;
+  position: absolute;
 }
 
-/* line 146, ../sass/main.scss */
+/* line 163, ../sass/main.scss */
+#block-subChart-left {
+  left: 0;
+  top: 50%;
+}
+/* line 166, ../sass/main.scss */
+#block-subChart-left.active {
+  width: 70%;
+  top: 30px;
+}
+
+/* line 172, ../sass/main.scss */
+#block-subChart-right {
+  right: 0;
+  top: 50%;
+}
+
+/* line 177, ../sass/main.scss */
 #block-clock > .block-body {
   font-size: 32px;
   line-height: 85px;
 }
 
-/* line 152, ../sass/main.scss */
+/* line 183, ../sass/main.scss */
 #block-chart-status {
   width: 100%;
   height: 100%;

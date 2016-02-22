@@ -1,5 +1,5 @@
 //TODO:參數增加data傳入
-function setChart(ChartName, targetId) {
+function setChart(ChartName, targetId, xAxisData) {
     //肌力變化-公斤
     if (ChartName == "1rm") {
         $('#' + targetId).highcharts({
@@ -19,7 +19,7 @@ function setChart(ChartName, targetId) {
                 }
             },
             xAxis: {
-                categories: ['第一週', '第二週', '第三週', '第四週', '第五週', '第六週', '第七週', '第八週']
+                type: 'datetime'
             },
             yAxis: {
                 title: {
@@ -36,10 +36,26 @@ function setChart(ChartName, targetId) {
             },
             series: [{
                 name: 'SELF',
-                data: [82, 87, 94, 100, 106, 112, 119, 124]
+                data: [
+                    [Date.UTC(2016, 1, 16), 82],
+                    [Date.UTC(2016, 1, 17), 87],
+                    [Date.UTC(2016, 1, 18), 94],
+                    [Date.UTC(2016, 1, 19), 100],
+                    [Date.UTC(2016, 1, 20), 106],
+                    [Date.UTC(2016, 1, 21), 112],
+                    [Date.UTC(2016, 1, 22), 119]
+                ]
             }, {
                 name: 'AVERAGE',
-                data: [75, 80, 88, 92, 97, 102, 107, 110]
+                data: [
+                    [Date.UTC(2016, 1, 16), 75],
+                    [Date.UTC(2016, 1, 17), 80],
+                    [Date.UTC(2016, 1, 18), 88],
+                    [Date.UTC(2016, 1, 19), 92],
+                    [Date.UTC(2016, 1, 20), 97],
+                    [Date.UTC(2016, 1, 21), 102],
+                    [Date.UTC(2016, 1, 22), 107]
+                ]
             }],
             credits: {
                 enabled: false
@@ -62,7 +78,7 @@ function setChart(ChartName, targetId) {
                 }
             },
             xAxis: {
-                categories: ['第一週', '第二週', '第三週', '第四週', '第五週', '第六週', '第七週', '第八週']
+                type:'datetime'
             },
             yAxis: {
                 title: {
@@ -79,10 +95,22 @@ function setChart(ChartName, targetId) {
             },
             series: [{
                 name: 'SELF',
-                data: [0, 2, 3, 5, 8, 10, 12, 14]
+                data: [[Date.UTC(2016, 1, 16), 0],
+                    [Date.UTC(2016, 1, 17), 2],
+                    [Date.UTC(2016, 1, 18), 3],
+                    [Date.UTC(2016, 1, 19), 5],
+                    [Date.UTC(2016, 1, 20), 8],
+                    [Date.UTC(2016, 1, 21), 10],
+                    [Date.UTC(2016, 1, 22), 12]]
             }, {
                 name: 'AVERAGE',
-                data: [0, 2, 3, 4, 6, 8, 9, 12]
+                data: [[Date.UTC(2016, 1, 16), 0],
+                    [Date.UTC(2016, 1, 17), 2],
+                    [Date.UTC(2016, 1, 18), 3],
+                    [Date.UTC(2016, 1, 19), 4],
+                    [Date.UTC(2016, 1, 20), 6],
+                    [Date.UTC(2016, 1, 21), 8],
+                    [Date.UTC(2016, 1, 22), 9]]
             }],
             credits: {
                 enabled: false
@@ -152,7 +180,7 @@ function setChart(ChartName, targetId) {
                 }
             },
             xAxis: {
-                categories: ['第一週', '第二週', '第三週', '第四週', '第五週', '第六週', '第七週', '第八週']
+                type: 'datetime'
             },
             yAxis: {
                 title: {
@@ -169,7 +197,22 @@ function setChart(ChartName, targetId) {
             },
             series: [{
                 name: 'SELF',
-                data: [54, 57, 60, 62, 64, 68, 71, 74]
+                data: [[Date.UTC(2016, 1, 16), 54],
+                    [Date.UTC(2016, 1, 17), 57],
+                    [Date.UTC(2016, 1, 18), 60],
+                    [Date.UTC(2016, 1, 19), 62],
+                    [Date.UTC(2016, 1, 20), 64],
+                    [Date.UTC(2016, 1, 21), 68],
+                    [Date.UTC(2016, 1, 22), 71]]
+            },{
+                name: 'AVERAGE',
+                data:[[Date.UTC(2016, 1, 16), 57],
+                    [Date.UTC(2016, 1, 17), 59],
+                    [Date.UTC(2016, 1, 18), 62],
+                    [Date.UTC(2016, 1, 19), 63],
+                    [Date.UTC(2016, 1, 20), 64],
+                    [Date.UTC(2016, 1, 21), 66],
+                    [Date.UTC(2016, 1, 22), 69]]
             }],
             credits: {
                 enabled: false
@@ -192,7 +235,7 @@ function setChart(ChartName, targetId) {
                 }
             },
             xAxis: {
-                categories: ['第一週', '第二週', '第三週', '第四週', '第五週', '第六週', '第七週', '第八週']
+                type: 'datetime'
             },
             yAxis: {
                 title: {
@@ -209,7 +252,22 @@ function setChart(ChartName, targetId) {
             },
             series: [{
                 name: 'SELF',
-                data: [0, 2, 3, 5, 6, 8, 10, 11]
+                data: [[Date.UTC(2016, 1, 16), 0],
+                    [Date.UTC(2016, 1, 17), 2],
+                    [Date.UTC(2016, 1, 18), 3],
+                    [Date.UTC(2016, 1, 19), 5],
+                    [Date.UTC(2016, 1, 20), 6],
+                    [Date.UTC(2016, 1, 21), 8],
+                    [Date.UTC(2016, 1, 22), 10]]
+            },{
+                name: 'AVERAGE',
+                data: [[Date.UTC(2016, 1, 16), 0],
+                    [Date.UTC(2016, 1, 17), 3],
+                    [Date.UTC(2016, 1, 18), 5],
+                    [Date.UTC(2016, 1, 19), 6],
+                    [Date.UTC(2016, 1, 20), 7],
+                    [Date.UTC(2016, 1, 21), 9],
+                    [Date.UTC(2016, 1, 22), 11]]
             }],
             credits: {
                 enabled: false
@@ -288,7 +346,7 @@ function setChart(ChartName, targetId) {
                 }
             },
             xAxis: {
-                categories: ['第一週', '第二週', '第三週', '第四週', '第五週', '第六週', '第七週', '第八週']
+                type: 'datetime'
             },
             yAxis: {
                 title: {
@@ -350,8 +408,23 @@ function setChart(ChartName, targetId) {
                 valueSuffix: '%'
             },
             series: [{
-                name: '體脂率',
-                data: [30, 26, 23, 19, 13, 11, 9, 7]
+                name: 'SELF',
+                data: [[Date.UTC(2016, 1, 16), 30],
+                    [Date.UTC(2016, 1, 17), 26],
+                    [Date.UTC(2016, 1, 18), 23],
+                    [Date.UTC(2016, 1, 19), 19],
+                    [Date.UTC(2016, 1, 20), 13],
+                    [Date.UTC(2016, 1, 21), 11],
+                    [Date.UTC(2016, 1, 22), 9]]
+            },{
+                name: 'AVERAGE',
+                data: [[Date.UTC(2016, 1, 16), 26],
+                    [Date.UTC(2016, 1, 17), 25],
+                    [Date.UTC(2016, 1, 18), 23],
+                    [Date.UTC(2016, 1, 19), 22],
+                    [Date.UTC(2016, 1, 20), 21],
+                    [Date.UTC(2016, 1, 21), 19],
+                    [Date.UTC(2016, 1, 22), 17]]
             }],
             credits: {
                 enabled: false
@@ -374,7 +447,7 @@ function setChart(ChartName, targetId) {
                 }
             },
             xAxis: {
-                categories: ['第一週', '第二週', '第三週', '第四週', '第五週', '第六週', '第七週', '第八週']
+                type: 'datetime'
             },
             yAxis: {
                 title: {
@@ -390,8 +463,23 @@ function setChart(ChartName, targetId) {
                 valueSuffix: '%'
             },
             series: [{
-                name: '體脂率',
-                data: [0, 2, 3, 5, 6, 8, 10, 11]
+                name: 'SELF',
+                data: [[Date.UTC(2016, 1, 16), 0],
+                    [Date.UTC(2016, 1, 17), 2],
+                    [Date.UTC(2016, 1, 18), 3],
+                    [Date.UTC(2016, 1, 19), 5],
+                    [Date.UTC(2016, 1, 20), 6],
+                    [Date.UTC(2016, 1, 21), 8],
+                    [Date.UTC(2016, 1, 22), 10]]
+            },{
+                name: 'AVERAGE',
+                data: [[Date.UTC(2016, 1, 16), 0],
+                    [Date.UTC(2016, 1, 17), 1],
+                    [Date.UTC(2016, 1, 18), 2],
+                    [Date.UTC(2016, 1, 19), 3],
+                    [Date.UTC(2016, 1, 20), 5],
+                    [Date.UTC(2016, 1, 21), 6],
+                    [Date.UTC(2016, 1, 22), 7]]
             }],
             credits: {
                 enabled: false
@@ -497,7 +585,7 @@ function setChart(ChartName, targetId) {
                 enabled: false
             },
             xAxis: {
-                categories: ['第一週', '第二週', '第三週', '第四週', '第五週', '第六週', '第七週', '第八週']
+                type: 'datetime'
             },
             yAxis: {
                 title: {
@@ -514,7 +602,13 @@ function setChart(ChartName, targetId) {
             },
             series: [{
                 name: 'SELF',
-                data: [82, 87, 94, 100, 106, 112, 119, 124]
+                data: [[Date.UTC(2016, 1, 16), 82],
+                    [Date.UTC(2016, 1, 17), 87],
+                    [Date.UTC(2016, 1, 18), 94],
+                    [Date.UTC(2016, 1, 19), 100],
+                    [Date.UTC(2016, 1, 20), 106],
+                    [Date.UTC(2016, 1, 21), 112],
+                    [Date.UTC(2016, 1, 22), 119]]
             }],
             credits: {
                 enabled: false
@@ -532,7 +626,7 @@ function setChart(ChartName, targetId) {
                 enabled: false
             },
             xAxis: {
-                categories: ['第一週', '第二週', '第三週', '第四週', '第五週', '第六週', '第七週', '第八週']
+                type: 'datetime'
             },
             yAxis: {
                 title: {
@@ -549,7 +643,13 @@ function setChart(ChartName, targetId) {
             },
             series: [{
                 name: 'SELF',
-                data: [54, 60, 65, 80, 94, 102, 112, 125]
+                data: [[Date.UTC(2016, 1, 16), 54],
+                    [Date.UTC(2016, 1, 17), 60],
+                    [Date.UTC(2016, 1, 18), 65],
+                    [Date.UTC(2016, 1, 19), 80],
+                    [Date.UTC(2016, 1, 20), 94],
+                    [Date.UTC(2016, 1, 21), 102],
+                    [Date.UTC(2016, 1, 22), 112]]
             }],
             credits: {
                 enabled: false
@@ -567,7 +667,7 @@ function setChart(ChartName, targetId) {
                 enabled: false
             },
             xAxis: {
-                categories: ['第一週', '第二週', '第三週', '第四週', '第五週', '第六週', '第七週', '第八週'],
+                type: 'datetime',
                 labels: {
                     enabled: false
                 }
@@ -587,7 +687,13 @@ function setChart(ChartName, targetId) {
             },
             series: [{
                 name: '體脂率',
-                data: [22.4, 21.9, 21.5, 21.1, 20.8, 20.6, 20.2, 19.9]
+                data: [[Date.UTC(2016, 1, 16), 22.4],
+                    [Date.UTC(2016, 1, 17), 21.9],
+                    [Date.UTC(2016, 1, 18), 21.5],
+                    [Date.UTC(2016, 1, 19), 21.1],
+                    [Date.UTC(2016, 1, 20), 20.8],
+                    [Date.UTC(2016, 1, 21), 20.6],
+                    [Date.UTC(2016, 1, 22), 20.2]]
             }],
             credits: {
                 enabled: false

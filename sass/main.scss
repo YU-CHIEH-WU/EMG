@@ -115,32 +115,63 @@ body {
 }
 
 #block-detail>.block-body>div {
-    position: relative;
-    padding:15px;
+    padding: 15px;
 }
 
+.title {
+    left: 5px;
+    position: absolute;
+}
+
+.back {
+    right: 5px;
+    position: absolute;
+    cursor: pointer;
+}
+#block-detail-chart,
+#block-subChart-left{   
+    @include transition(all,1s,ease-in,0.5s);
+}
 #block-detail-chart {
-    width: 70%;
+    width: 50%;
     height: 50%;
-    float: left;
+    left: 0;
+    top: 50%;
+    position: absolute;
+    &.active {
+        width:70%;
+        top:30px;
+    }
 }
 
 #block-detail-right {
     width: 25%;
     height: 50%;
-    float: right;
+    right: 0;
+    top: 30px;
+    position: absolute;
 }
 
-#block-detail-bottom {
-    width: 100%;
+#block-subChart-left,
+#block-subChart-right {
+    width: 50%;
     height: 50%;
-    float: left;
+    padding: 0 20px 0 20px;
+    position: absolute;
 }
-#block-subChart-left,#block-subChart-right{
-    width:50%;
-    height:100%;
-    float: left;
-    padding:0 20px 0 20px;
+
+#block-subChart-left {
+    left: 0;
+    top: 50%;
+    &.active {
+        width:70%;
+        top: 30px;
+    }
+}
+
+#block-subChart-right {
+    right: 0;
+    top:50%;
 }
 //clock
 #block-clock>.block-body {
