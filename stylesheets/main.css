@@ -20,32 +20,23 @@ body {
 /* line 24, ../sass/main.scss */
 .row {
   width: 100%;
-  height: 140%;
-  overflow: hidden;
+  height: 100%;
 }
 
 /* line 30, ../sass/main.scss */
-.scrollable {
-  width: calc(100% + 15px);
-  width: -webkit-calc(100% + 15px);
-  height: 100%;
-  overflow: scroll;
-}
-
-/* line 38, ../sass/main.scss */
 .block-outer {
   color: #fff;
   margin-bottom: 30px;
 }
 
-/* line 43, ../sass/main.scss */
+/* line 35, ../sass/main.scss */
 .block-outer-1,
 .block-outer-2,
 .block-outer-3 {
   height: 290px;
 }
 
-/* line 49, ../sass/main.scss */
+/* line 41, ../sass/main.scss */
 .block-inner {
   width: 90%;
   position: absolute;
@@ -54,57 +45,71 @@ body {
   -o-transition: all, 1s, ease-in;
   -webkit-transition: all, 1s, ease-in;
   transition: all, 1s, ease-in;
+  -moz-border-radius: 1.5%;
+  -webkit-border-radius: 1.5%;
+  border-radius: 1.5%;
 }
-/* line 54, ../sass/main.scss */
+/* line 47, ../sass/main.scss */
 .block-inner:hover {
   background: #4f4f4f;
 }
-/* line 57, ../sass/main.scss */
+/* line 49, ../sass/main.scss */
+.block-inner:hover.clickable {
+  cursor: pointer;
+  background-image: url("https://cdn1.iconfinder.com/data/icons/hawcons/32/698956-icon-111-search-128.png");
+  background-repeat: no-repeat;
+  background-position: center;
+}
+/* line 56, ../sass/main.scss */
 .block-inner.gotop {
   z-index: 1;
   top: 1000%;
 }
-/* line 61, ../sass/main.scss */
+/* line 60, ../sass/main.scss */
 .block-inner.active {
   z-index: 5;
   left: 5%;
   background: #4f4f4f;
 }
-/* line 66, ../sass/main.scss */
+/* line 65, ../sass/main.scss */
+.block-inner.ontop {
+  display: none;
+}
+/* line 68, ../sass/main.scss */
 .block-inner.opacity {
-  opacity: 0.5;
+  opacity: 0.6;
 }
 
-/* line 71, ../sass/main.scss */
+/* line 73, ../sass/main.scss */
 .block-inner-1 {
   height: 100%;
   top: 0;
 }
 
-/* line 76, ../sass/main.scss */
+/* line 79, ../sass/main.scss */
 .block-inner-2 {
   height: 130px;
   margin-bottom: 30px;
 }
 
-/* line 81, ../sass/main.scss */
+/* line 84, ../sass/main.scss */
 .block-inner-3 {
   height: 100%;
   width: 95%;
   top: 0;
 }
 
-/* line 87, ../sass/main.scss */
+/* line 90, ../sass/main.scss */
 .block-inner-top {
   top: 0;
 }
 
-/* line 91, ../sass/main.scss */
+/* line 94, ../sass/main.scss */
 .block-inner-bottom {
   top: 160px;
 }
 
-/* line 95, ../sass/main.scss */
+/* line 98, ../sass/main.scss */
 .block-header {
   height: 30px;
   width: 100%;
@@ -113,21 +118,21 @@ body {
   padding-left: 5px;
 }
 
-/* line 103, ../sass/main.scss */
+/* line 106, ../sass/main.scss */
 .block-body {
   height: calc(100% - 30px);
   height: -webkit-calc(100% - 30px);
   width: 100%;
 }
 
-/* line 109, ../sass/main.scss */
+/* line 112, ../sass/main.scss */
 .block-thumb {
   height: 100%;
   width: 100%;
 }
 
-/* line 115, ../sass/main.scss */
-#block-detail {
+/* line 118, ../sass/main.scss */
+.block-detail {
   height: 90%;
   width: 80%;
   left: 10%;
@@ -140,30 +145,30 @@ body {
   -webkit-transition: all, 1.5s, ease-in, 1s;
   transition: all, 1.5s, ease-in, 1s;
 }
-/* line 124, ../sass/main.scss */
-#block-detail.active {
+/* line 130, ../sass/main.scss */
+.block-detail.active {
   top: 5%;
 }
 
-/* line 129, ../sass/main.scss */
-#block-detail > .block-body > div {
+/* line 135, ../sass/main.scss */
+.block-detail > .block-body > div {
   padding: 15px;
 }
 
-/* line 133, ../sass/main.scss */
+/* line 139, ../sass/main.scss */
 .title {
   left: 5px;
   position: absolute;
 }
 
-/* line 138, ../sass/main.scss */
+/* line 144, ../sass/main.scss */
 .back {
   right: 5px;
   position: absolute;
   cursor: pointer;
 }
 
-/* line 144, ../sass/main.scss */
+/* line 150, ../sass/main.scss */
 #block-detail-chart,
 #block-subChart-left {
   -moz-transition: all, 1s, ease-in, 0.5s;
@@ -172,21 +177,16 @@ body {
   transition: all, 1s, ease-in, 0.5s;
 }
 
-/* line 149, ../sass/main.scss */
+/* line 158, ../sass/main.scss */
 #block-detail-chart {
-  width: 50%;
+  width: 70%;
   height: 50%;
   left: 0;
-  top: 50%;
+  top: 30px;
   position: absolute;
 }
-/* line 155, ../sass/main.scss */
-#block-detail-chart.active {
-  width: 70%;
-  top: 30px;
-}
 
-/* line 161, ../sass/main.scss */
+/* line 166, ../sass/main.scss */
 #block-detail-right {
   width: 25%;
   height: 50%;
@@ -195,24 +195,18 @@ body {
   position: absolute;
 }
 
-/* line 169, ../sass/main.scss */
+/* line 174, ../sass/main.scss */
 #block-subChart-left,
 #block-subChart-right {
   width: 50%;
   height: 50%;
-  padding: 0 20px 0 20px;
   position: absolute;
 }
 
-/* line 177, ../sass/main.scss */
+/* line 181, ../sass/main.scss */
 #block-subChart-left {
   left: 0;
   top: 50%;
-}
-/* line 180, ../sass/main.scss */
-#block-subChart-left.active {
-  width: 70%;
-  top: 30px;
 }
 
 /* line 186, ../sass/main.scss */
@@ -231,4 +225,126 @@ body {
 #block-chart-status {
   width: 100%;
   height: 100%;
+}
+
+/* line 204, ../sass/main.scss */
+.progress-bar-theme {
+  background-color: #2b908f;
+}
+
+/* line 208, ../sass/main.scss */
+.progress-title {
+  margin-top: 1.5%;
+  font-size: 20px;
+  text-align: center;
+}
+
+/* line 214, ../sass/main.scss */
+.block-progress {
+  width: 100%;
+  height: 100%;
+  padding-top: 50px;
+}
+
+/* line 221, ../sass/main.scss */
+.block-progress span.pull-right {
+  padding-right: 5px;
+}
+
+/* line 227, ../sass/main.scss */
+.block-user-photo {
+  width: 100px;
+  height: 100%;
+  padding: 15px;
+  float: left;
+}
+
+/* line 234, ../sass/main.scss */
+.user-photo {
+  width: 65px;
+  height: 65px;
+  border-radius: 50%;
+  position: relative;
+}
+
+/* line 241, ../sass/main.scss */
+.block-user-info {
+  width: calc(100% - 200px);
+  width: -webkit-calc(100% - 100px);
+  height: 100%;
+  float: left;
+}
+
+/* line 248, ../sass/main.scss */
+.user-name {
+  width: 100%;
+  height: 50%;
+  text-align: left;
+  line-height: 50px;
+  color: #fff;
+  font-size: 24px;
+  float: left;
+}
+
+/* line 258, ../sass/main.scss */
+.user-group {
+  width: 50%;
+  height: 50%;
+  float: left;
+}
+
+/* line 264, ../sass/main.scss */
+.user-nav {
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+}
+/* line 268, ../sass/main.scss */
+.user-nav li {
+  list-style-type: none;
+  height: 50px;
+  width: 50%;
+  float: left;
+}
+/* line 273, ../sass/main.scss */
+.user-nav li a {
+  height: 100%;
+  width: 100%;
+  line-height: 50px;
+  display: block;
+  text-decoration: none;
+  color: #fff;
+}
+
+/* line 284, ../sass/main.scss */
+.block-user-rank {
+  width: 50%;
+  height: 50%;
+  float: left;
+  line-height: 50px;
+  text-align: center;
+}
+
+/* line 291, ../sass/main.scss */
+.icon-red {
+  color: #ff0000;
+}
+
+/* line 295, ../sass/main.scss */
+.rank-info {
+  width: 70%;
+  height: 100%;
+  float: left;
+  line-height: 90px;
+  font-size: 30px;
+  text-align: center;
+}
+
+/* line 304, ../sass/main.scss */
+.rank-detail a {
+  line-height: 90px;
+  font-size: 20px;
+  text-align: center;
+  text-decoration: none;
+  color: #fff;
 }

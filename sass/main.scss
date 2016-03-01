@@ -23,18 +23,10 @@ body {
 
 .row {
     width: 100%;
-    height: 140%;
-    overflow: hidden;
-}
-
-.scrollable {
-    width: calc(100% + 15px);
-    width: -webkit-calc(100% + 15px);
     height: 100%;
-    overflow: scroll;
 }
 
-//block
+//首頁block
 .block-outer {
     color: $fontColor;
     margin-bottom: 30px;
@@ -51,8 +43,15 @@ body {
     position: absolute;
     background: $blockColor;
     @include transition(all, 1s, ease-in);
+    @include border-radius(1.5%);
     &:hover {
         background: $blockHoverColor;
+        &.clickable {
+            cursor: pointer;
+            background-image: url('https://cdn1.iconfinder.com/data/icons/hawcons/32/698956-icon-111-search-128.png');
+            background-repeat: no-repeat;
+            background-position: center;
+        }
     }
     &.gotop {
         z-index: 1;
@@ -63,14 +62,18 @@ body {
         left: 5%;
         background: $blockHoverColor;
     }
+    &.ontop {
+        display: none;
+    }
     &.opacity {
-        opacity: (0.5);
+        opacity: (0.6);
     }
 }
 
 .block-inner-1 {
     height: 100%;
     top: 0;
+    &:hover {}
 }
 
 .block-inner-2 {
@@ -111,8 +114,8 @@ body {
     width: 100%;
 }
 
-//block-detail
-#block-detail {
+//詳細block
+.block-detail {
     height: 90%;
     width: 80%;
     left: 10%;
@@ -120,13 +123,16 @@ body {
     top: -1000%;
     color: $fontColor;
     background: $blockColor;
-    @include transition(all, 1.5s, ease-in, 1s);
+    @include transition(all,
+    1.5s,
+    ease-in,
+    1s);
     &.active {
         top: 5%;
     }
 }
 
-#block-detail>.block-body>div {
+.block-detail>.block-body>div {
     padding: 15px;
 }
 
@@ -143,19 +149,18 @@ body {
 
 #block-detail-chart,
 #block-subChart-left {
-    @include transition(all, 1s, ease-in, 0.5s);
+    @include transition(all,
+    1s,
+    ease-in,
+    0.5s);
 }
 
 #block-detail-chart {
-    width: 50%;
+    width: 70%;
     height: 50%;
     left: 0;
-    top: 50%;
+    top: 30px;
     position: absolute;
-    &.active {
-        width: 70%;
-        top: 30px;
-    }
 }
 
 #block-detail-right {
@@ -170,17 +175,12 @@ body {
 #block-subChart-right {
     width: 50%;
     height: 50%;
-    padding: 0 20px 0 20px;
     position: absolute;
 }
 
 #block-subChart-left {
     left: 0;
     top: 50%;
-    &.active {
-        width: 70%;
-        top: 30px;
-    }
 }
 
 #block-subChart-right {
@@ -198,4 +198,115 @@ body {
 #block-chart-status {
     width: 100%;
     height: 100%;
+}
+
+//progressbar
+.progress-bar-theme {
+    background-color: rgb(43, 144, 143);
+}
+
+.progress-title {
+    margin-top: 1.5%;
+    font-size: 20px;
+    text-align: center;
+}
+
+.block-progress {
+    width: 100%;
+    height: 100%;
+    padding-top: 50px;
+}
+
+.block-progress span {
+    &.pull-right {
+        padding-right: 5px;
+    }
+}
+
+//user
+.block-user-photo {
+    width: 100px;
+    height: 100%;
+    padding: 15px;
+    float: left;
+}
+
+.user-photo {
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    position: relative;
+}
+
+.block-user-info {
+    width: calc(100% - 200px);
+    width: -webkit-calc(100% - 100px);
+    height: 100%;
+    float: left;
+}
+
+.user-name {
+    width: 100%;
+    height: 50%;
+    text-align: left;
+    line-height: 50px;
+    color: $fontColor;
+    font-size: 24px;
+    float: left;
+}
+
+.user-group {
+    width: 50%;
+    height: 50%;
+    float: left;
+}
+
+.user-nav {
+    display: inline-block;
+    width:100%;
+    height:100%;
+    li {
+        list-style-type: none;
+        height: 50px;
+            width:50%;
+        float: left;
+        a {
+            height:100%;
+            width:100%;
+            line-height: 50px;
+            display: block;
+            text-decoration: none;
+            color: $fontColor;
+        }
+    }
+}
+
+.block-user-rank {
+    width: 50%;
+    height: 50%;
+    float: left;
+    line-height: 50px;
+    text-align: center;
+}
+.icon-red{
+    color:#ff0000;
+}
+//rank
+.rank-info{
+    width:70%;
+    height:100%;
+    float:left;
+    line-height:90px;
+    font-size:30px;
+    text-align:center;
+}
+.rank-detail{
+    a{
+        line-height:90px;
+        font-size:20px;
+        text-align:center;
+        text-decoration:none;
+        color:$fontColor;
+
+    }
 }

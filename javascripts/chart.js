@@ -11,7 +11,7 @@ function setChart(ChartName, targetId, xAxisData) {
                 x: -20 //center
             },
             subtitle: {
-                text: '1RM(單次最大出力)為評估最大肌力的指標'
+                text: '1RM為評估最大肌力的指標'
             },
             legend: {
                 borderWidth: 0,
@@ -28,8 +28,8 @@ function setChart(ChartName, targetId, xAxisData) {
                 title: {
                     text: null
                 },
-                labels:{
-                    format:'{value}KG'
+                labels: {
+                    format: '{value}KG'
                 },
                 plotLines: [{
                     value: 0,
@@ -83,8 +83,8 @@ function setChart(ChartName, targetId, xAxisData) {
                 title: {
                     text: null
                 },
-                labels:{
-                    format:'{value}%'
+                labels: {
+                    format: '{value}%'
                 },
                 plotLines: [{
                     value: 0,
@@ -144,7 +144,8 @@ function setChart(ChartName, targetId, xAxisData) {
             plotOptions: {
                 bar: {
                     dataLabels: {
-                        enabled: true
+                        enabled: true,
+                        format:'{point.y}KG'
                     }
                 }
             },
@@ -170,6 +171,9 @@ function setChart(ChartName, targetId, xAxisData) {
                 text: '肌耐力變化-公斤',
                 x: -20 //center
             },
+            subtitle: {
+                text: '15RM為評估肌耐力的指標'
+            },
             legend: {
                 borderWidth: 0,
                 itemDistance: 50,
@@ -185,8 +189,8 @@ function setChart(ChartName, targetId, xAxisData) {
                 title: {
                     text: null
                 },
-                labels:{
-                    format:'{value}KG'
+                labels: {
+                    format: '{value}KG'
                 },
                 plotLines: [{
                     value: 0,
@@ -240,8 +244,8 @@ function setChart(ChartName, targetId, xAxisData) {
                 title: {
                     text: null
                 },
-                labels:{
-                    format:'{value}%'
+                labels: {
+                    format: '{value}%'
                 },
                 plotLines: [{
                     value: 0,
@@ -301,7 +305,8 @@ function setChart(ChartName, targetId, xAxisData) {
             plotOptions: {
                 bar: {
                     dataLabels: {
-                        enabled: true
+                        enabled: true,
+                        format:'{point.y}KG'
                     }
                 }
             },
@@ -508,12 +513,13 @@ function setChart(ChartName, targetId, xAxisData) {
                 }
             },
             tooltip: {
-                valueSuffix: 'KG'
+                valueSuffix: '%'
             },
             plotOptions: {
                 bar: {
                     dataLabels: {
-                        enabled: true
+                        enabled: true,
+                        format:'{point.y}%'
                     }
                 }
             },
@@ -523,6 +529,54 @@ function setChart(ChartName, targetId, xAxisData) {
             series: [{
                 name: '體脂變化率',
                 data: [4, 2, 1, 0]
+            }]
+        });
+    }
+    //訓練動作累計時數
+    if (ChartName == "growWays") {
+        $('#' + targetId).highcharts({
+            chart: {
+                type: 'bar'
+            },
+            title: {
+                text: '部位訓練之累計時數'
+            },
+            legend:{
+                enabled:false
+            },
+            xAxis: {
+                categories: ['啞鈴集中彎舉', '啞鈴斜板彎舉', '引體向上', '槓鈴站立彎舉'],
+                title: {
+                    text: null
+                }
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: null,
+                    align: 'high'
+                },
+                labels: {
+                    overflow: 'justify'
+                }
+            },
+            tooltip: {
+                valueSuffix: 'Hours'
+            },
+            plotOptions: {
+                bar: {
+                    dataLabels: {
+                        enabled: true,
+                        format:'{point.y}Hours'
+                    }
+                }
+            },
+            credits: {
+                enabled: false
+            },
+            series: [{
+                name: 'SELF',
+                data: [10, 4, 2, 0]
             }]
         });
     }
@@ -633,7 +687,54 @@ function setChart(ChartName, targetId, xAxisData) {
         })
     }
     //訓練成效-成效評估
-    if (ChartName == "result") {}
+    if (ChartName == "result") {
+        //$('#'+targetId).html('<div class="progress-title"><p>本次訓練成效</p></div><div class="block-progress"><div class="progress progress-striped active"><div class="progress-bar progress-bar-theme" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 82%"><span class="pull-right">82%</span></div></div></div>')
+        $('#' + targetId).highcharts({
+            chart: {
+                type: 'bar'
+            },
+            title: {
+                text: '訓練成效之綜合指標'
+            },
+            xAxis: {
+                categories: ['訓練成效', '成就達成率', '預估肌肉成長'],
+                title: {
+                    text: null
+                }
+            },
+            legend:{
+                enabled:false
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: null,
+                    align: 'high'
+                },
+                labels: {
+                    overflow: 'justify'
+                }
+            },
+            tooltip: {
+                valueSuffix: '%'
+            },
+            plotOptions: {
+                bar: {
+                    dataLabels: {
+                        enabled: true,
+                        format:'{point.y}%'
+                    }
+                }
+            },
+            credits: {
+                enabled: false
+            },
+            series: [{
+                name: 'SELF',
+                data: [78, 32, 3]
+            }]
+        });
+    }
     //個人素質
     if (ChartName == "status") {
         $('#' + targetId).highcharts({
@@ -678,11 +779,11 @@ function setChart(ChartName, targetId, xAxisData) {
             }
         });
     }
-    //肌力縮圖
-    if (ChartName == "1rmThumb") {
+    //肌肉訓練
+    if (ChartName == "training") {
         $('#' + targetId).highcharts({
             chart: {
-                type: 'spline'
+                type: 'column'
             },
             title: {
                 text: null,
@@ -692,14 +793,14 @@ function setChart(ChartName, targetId, xAxisData) {
                 enabled: false
             },
             xAxis: {
-                type: 'datetime'
+                categories: ['2/17', '2/19', '2/20', '2/22', '2/23', '2/25']
             },
             yAxis: {
                 title: {
                     text: null
                 },
-                labels:{
-                    format:'{value}KG'
+                labels: {
+                    format: '{value}%'
                 },
                 plotLines: [{
                     value: 0,
@@ -708,7 +809,7 @@ function setChart(ChartName, targetId, xAxisData) {
                 }]
             },
             tooltip: {
-                valueSuffix: 'KG'
+                valueSuffix: '%'
             },
             plotOptions: {
                 spline: {
@@ -718,15 +819,15 @@ function setChart(ChartName, targetId, xAxisData) {
             },
             series: [{
                 name: 'SELF',
-                data: [82, 87, 94, 100, 106, 112]
+                data: [66, 82, 71, 60, 0, 84]
             }],
-            credits: {
-                enabled: false
-            }
+                credits: {
+                    enabled: false
+                }
         });
     }
-    //肌耐力縮圖
-    if (ChartName == "15rmThumb") {
+    //肌肉成長
+    if (ChartName == "grow") {
         $('#' + targetId).highcharts({
             chart: {
                 type: 'spline'
@@ -745,8 +846,8 @@ function setChart(ChartName, targetId, xAxisData) {
                 title: {
                     text: null
                 },
-                labels:{
-                    format:'{value}KG'
+                labels: {
+                    format: '{value}%'
                 },
                 plotLines: [{
                     value: 0,
@@ -755,7 +856,7 @@ function setChart(ChartName, targetId, xAxisData) {
                 }]
             },
             tooltip: {
-                valueSuffix: 'KG'
+                valueSuffix: '%'
             },
             plotOptions: {
                 spline: {
@@ -765,7 +866,7 @@ function setChart(ChartName, targetId, xAxisData) {
             },
             series: [{
                 name: 'SELF',
-                data: [54, 60, 65, 80, 94, 102, 112]
+                data: [23, 28, 32, 38, 42, 49, 55]
             }],
             credits: {
                 enabled: false
