@@ -19,7 +19,7 @@ $(function() {
             leftChartName = clickBlock.data('leftchartname');
             rightChartName = clickBlock.data('rightchartname');
             showTabs = clickBlock.data('showtabs');
-            //移動方塊
+            //移動方塊 TODO:fadeout
             if (!$('.block-inner').hasClass('ontop')) {
                 $('.block-inner').addClass('gotop');
                 $('#block-detail-1').addClass('active');
@@ -43,6 +43,8 @@ $(function() {
     $('.user-nav').find('a').on('click', function(e) {
             e.stopPropagation();
             src = $(this).data('src');
+            title = $(this).data('title');
+            $('#block-detail-2').find('.block-header').find('.title').html(title);
             $('#block-detail-iframe').attr('src', src);
             if (!$('.block-inner').hasClass('ontop')) {
                 $('.block-inner').addClass('gotop');
@@ -63,12 +65,12 @@ $(function() {
                     $('.block-inner').removeClass('gotop');
                     //清除標題與圖表
                     if (clickId == 'block-detail-1') {
-                            $('#block-detail-1').find('.title').html('');
-                            $('#block-detail-chart').highcharts().destroy();
-                            $('#block-subChart-left').highcharts().destroy();
-                            $('#block-subChart-right').highcharts().destroy();
-                        }
-                    if(clickId=='block-detail-2'){
+                        $('#block-detail-1').find('.title').html('');
+                        $('#block-detail-chart').highcharts().destroy();
+                        $('#block-subChart-left').highcharts().destroy();
+                        $('#block-subChart-right').highcharts().destroy();
+                    }
+                    if (clickId == 'block-detail-2') {
 
                     }
                 }, 50)
