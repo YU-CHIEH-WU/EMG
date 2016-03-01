@@ -106,46 +106,46 @@ $(function() {
             type = $(this).data('type')
                 //公斤與百分比切換
             if (type == 'kg') {
-                if (mainChartData == '1rmGrow') {
-                    mainChartData = '1rm';
+                if (mainChartName == '1rmGrow') {
+                    mainChartName = '1rm';
                 }
-                if (mainChartData == '15rmGrow') {
-                    mainChartData = '15rm';
+                if (mainChartName == '15rmGrow') {
+                    mainChartName = '15rm';
                 }
-                if (leftChartData == '1rmGrow') {
-                    leftChartData = '1rm';
+                if (leftChartName == '1rmGrow') {
+                    leftChartName = '1rm';
                 }
-                if (leftChartData == '15rmGrow') {
-                    leftChartData = '15rm';
+                if (leftChartName == '15rmGrow') {
+                    leftChartName = '15rm';
                 }
-                if (rightChartData == '1rmGrow') {
-                    rightChartData = '1rm';
+                if (rightChartName == '1rmGrow') {
+                    rightChartName = '1rm';
                 }
-                if (rightChartData == '15rmGrow') {
-                    rightChartData = '15rm';
+                if (rightChartName == '15rmGrow') {
+                    rightChartName = '15rm';
                 }
             }
             if (type == 'precent') {
-                if (mainChartData == '1rm') {
-                    mainChartData = '1rmGrow';
+                if (mainChartName == '1rm') {
+                    mainChartName = '1rmGrow';
                 }
-                if (mainChartData == '15rm') {
-                    mainChartData = '15rmGrow';
+                if (mainChartName == '15rm') {
+                    mainChartName = '15rmGrow';
                 }
-                if (leftChartData == '1rm') {
-                    leftChartData = '1rmGrow';
+                if (leftChartName == '1rm') {
+                    leftChartName = '1rmGrow';
                 }
-                if (leftChartData == '15rm') {
-                    leftChartData = '15rmGrow';
+                if (leftChartName == '15rm') {
+                    leftChartName = '15rmGrow';
                 }
-                if (rightChartData == '1rm') {
-                    rightChartData = '1rmGrow';
+                if (rightChartName == '1rm') {
+                    rightChartName = '1rmGrow';
                 }
-                if (rightChartData == '15rm') {
-                    rightChartData = '15rmGrow';
+                if (rightChartName == '15rm') {
+                    rightChartName = '15rmGrow';
                 }
             }
-            setDetailCharts(chartTitle, mainChartData, leftChartData, rightChartData)
+            setDetailCharts(chartTitle, mainChartName, leftChartName, rightChartName)
             prevType = type;
         })
         //設定圖表
