@@ -3,6 +3,9 @@ function setChart(ChartName, targetId, xAxisData) {
     //肌力變化-公斤
     if (ChartName == "1rm") {
         $('#' + targetId).highcharts({
+            chart: {
+                type: 'spline'
+            },
             title: {
                 text: '肌力變化-公斤',
                 x: -20 //center
@@ -25,6 +28,9 @@ function setChart(ChartName, targetId, xAxisData) {
                 title: {
                     text: null
                 },
+                labels:{
+                    format:'{value}KG'
+                },
                 plotLines: [{
                     value: 0,
                     width: 1,
@@ -34,28 +40,18 @@ function setChart(ChartName, targetId, xAxisData) {
             tooltip: {
                 valueSuffix: 'KG'
             },
+            plotOptions: {
+                spline: {
+                    pointInterval: 86400000, // one hour
+                    pointStart: Date.UTC(2016, 1, 17)
+                }
+            },
             series: [{
                 name: 'SELF',
-                data: [
-                    [Date.UTC(2016, 1, 16), 82],
-                    [Date.UTC(2016, 1, 17), 87],
-                    [Date.UTC(2016, 1, 18), 94],
-                    [Date.UTC(2016, 1, 19), 100],
-                    [Date.UTC(2016, 1, 20), 106],
-                    [Date.UTC(2016, 1, 21), 112],
-                    [Date.UTC(2016, 1, 22), 119]
-                ]
+                data: [82, 87, 94, 100, 106, 112, 119]
             }, {
                 name: 'AVERAGE',
-                data: [
-                    [Date.UTC(2016, 1, 16), 75],
-                    [Date.UTC(2016, 1, 17), 80],
-                    [Date.UTC(2016, 1, 18), 88],
-                    [Date.UTC(2016, 1, 19), 92],
-                    [Date.UTC(2016, 1, 20), 97],
-                    [Date.UTC(2016, 1, 21), 102],
-                    [Date.UTC(2016, 1, 22), 107]
-                ]
+                data: [75, 80, 88, 92, 97, 102, 107]
             }],
             credits: {
                 enabled: false
@@ -65,6 +61,9 @@ function setChart(ChartName, targetId, xAxisData) {
     //肌力變化-百分比
     if (ChartName == "1rmGrow") {
         $('#' + targetId).highcharts({
+            chart: {
+                type: 'spline'
+            },
             title: {
                 text: '肌力變化-百分比',
                 x: -20 //center
@@ -78,11 +77,14 @@ function setChart(ChartName, targetId, xAxisData) {
                 }
             },
             xAxis: {
-                type:'datetime'
+                type: 'datetime'
             },
             yAxis: {
                 title: {
                     text: null
+                },
+                labels:{
+                    format:'{value}%'
                 },
                 plotLines: [{
                     value: 0,
@@ -93,24 +95,18 @@ function setChart(ChartName, targetId, xAxisData) {
             tooltip: {
                 valueSuffix: '%'
             },
+            plotOptions: {
+                spline: {
+                    pointInterval: 86400000, // one hour
+                    pointStart: Date.UTC(2016, 1, 17)
+                }
+            },
             series: [{
                 name: 'SELF',
-                data: [[Date.UTC(2016, 1, 16), 0],
-                    [Date.UTC(2016, 1, 17), 2],
-                    [Date.UTC(2016, 1, 18), 3],
-                    [Date.UTC(2016, 1, 19), 5],
-                    [Date.UTC(2016, 1, 20), 8],
-                    [Date.UTC(2016, 1, 21), 10],
-                    [Date.UTC(2016, 1, 22), 12]]
+                data: [0, 2, 3, 5, 8, 10, 12]
             }, {
                 name: 'AVERAGE',
-                data: [[Date.UTC(2016, 1, 16), 0],
-                    [Date.UTC(2016, 1, 17), 2],
-                    [Date.UTC(2016, 1, 18), 3],
-                    [Date.UTC(2016, 1, 19), 4],
-                    [Date.UTC(2016, 1, 20), 6],
-                    [Date.UTC(2016, 1, 21), 8],
-                    [Date.UTC(2016, 1, 22), 9]]
+                data: [0, 2, 3, 4, 6, 8, 9]
             }],
             credits: {
                 enabled: false
@@ -167,6 +163,9 @@ function setChart(ChartName, targetId, xAxisData) {
     //肌耐力變化-公斤
     if (ChartName == "15rm") {
         $('#' + targetId).highcharts({
+            chart: {
+                type: 'spline'
+            },
             title: {
                 text: '肌耐力變化-公斤',
                 x: -20 //center
@@ -186,6 +185,9 @@ function setChart(ChartName, targetId, xAxisData) {
                 title: {
                     text: null
                 },
+                labels:{
+                    format:'{value}KG'
+                },
                 plotLines: [{
                     value: 0,
                     width: 1,
@@ -195,24 +197,18 @@ function setChart(ChartName, targetId, xAxisData) {
             tooltip: {
                 valueSuffix: 'KG'
             },
+            plotOptions: {
+                spline: {
+                    pointInterval: 86400000, // one hour
+                    pointStart: Date.UTC(2016, 1, 17)
+                }
+            },
             series: [{
                 name: 'SELF',
-                data: [[Date.UTC(2016, 1, 16), 54],
-                    [Date.UTC(2016, 1, 17), 57],
-                    [Date.UTC(2016, 1, 18), 60],
-                    [Date.UTC(2016, 1, 19), 62],
-                    [Date.UTC(2016, 1, 20), 64],
-                    [Date.UTC(2016, 1, 21), 68],
-                    [Date.UTC(2016, 1, 22), 71]]
-            },{
+                data: [54, 57, 60, 62, 64, 68, 71]
+            }, {
                 name: 'AVERAGE',
-                data:[[Date.UTC(2016, 1, 16), 57],
-                    [Date.UTC(2016, 1, 17), 59],
-                    [Date.UTC(2016, 1, 18), 62],
-                    [Date.UTC(2016, 1, 19), 63],
-                    [Date.UTC(2016, 1, 20), 64],
-                    [Date.UTC(2016, 1, 21), 66],
-                    [Date.UTC(2016, 1, 22), 69]]
+                data: [57, 59, 62, 63, 64, 66, 69]
             }],
             credits: {
                 enabled: false
@@ -222,6 +218,9 @@ function setChart(ChartName, targetId, xAxisData) {
     //肌耐力變化-百分比
     if (ChartName == "15rmGrow") {
         $('#' + targetId).highcharts({
+            chart: {
+                type: 'spline'
+            },
             title: {
                 text: '肌耐力變化-百分比',
                 x: -20 //center
@@ -241,6 +240,9 @@ function setChart(ChartName, targetId, xAxisData) {
                 title: {
                     text: null
                 },
+                labels:{
+                    format:'{value}%'
+                },
                 plotLines: [{
                     value: 0,
                     width: 1,
@@ -250,24 +252,18 @@ function setChart(ChartName, targetId, xAxisData) {
             tooltip: {
                 valueSuffix: '%'
             },
+            plotOptions: {
+                spline: {
+                    pointInterval: 86400000, // one hour
+                    pointStart: Date.UTC(2016, 1, 17)
+                }
+            },
             series: [{
                 name: 'SELF',
-                data: [[Date.UTC(2016, 1, 16), 0],
-                    [Date.UTC(2016, 1, 17), 2],
-                    [Date.UTC(2016, 1, 18), 3],
-                    [Date.UTC(2016, 1, 19), 5],
-                    [Date.UTC(2016, 1, 20), 6],
-                    [Date.UTC(2016, 1, 21), 8],
-                    [Date.UTC(2016, 1, 22), 10]]
-            },{
+                data: [0, 2, 3, 5, 6, 8, 10]
+            }, {
                 name: 'AVERAGE',
-                data: [[Date.UTC(2016, 1, 16), 0],
-                    [Date.UTC(2016, 1, 17), 3],
-                    [Date.UTC(2016, 1, 18), 5],
-                    [Date.UTC(2016, 1, 19), 6],
-                    [Date.UTC(2016, 1, 20), 7],
-                    [Date.UTC(2016, 1, 21), 9],
-                    [Date.UTC(2016, 1, 22), 11]]
+                data: [0, 3, 5, 6, 7, 9, 11]
             }],
             credits: {
                 enabled: false
@@ -333,6 +329,9 @@ function setChart(ChartName, targetId, xAxisData) {
             }
         }
         $('#' + targetId).highcharts({
+            chart: {
+                type: 'spline'
+            },
             title: {
                 text: '體脂變化-原始百分比',
                 x: -20 //center
@@ -351,6 +350,9 @@ function setChart(ChartName, targetId, xAxisData) {
             yAxis: {
                 title: {
                     text: null
+                },
+                labels: {
+                    format: '{value}%'
                 },
                 plotBands: [{ // lean
                     from: standard.leanStart,
@@ -407,24 +409,18 @@ function setChart(ChartName, targetId, xAxisData) {
             tooltip: {
                 valueSuffix: '%'
             },
+            plotOptions: {
+                spline: {
+                    pointInterval: 86400000, // one hour
+                    pointStart: Date.UTC(2016, 1, 17)
+                }
+            },
             series: [{
                 name: 'SELF',
-                data: [[Date.UTC(2016, 1, 16), 30],
-                    [Date.UTC(2016, 1, 17), 26],
-                    [Date.UTC(2016, 1, 18), 23],
-                    [Date.UTC(2016, 1, 19), 19],
-                    [Date.UTC(2016, 1, 20), 13],
-                    [Date.UTC(2016, 1, 21), 11],
-                    [Date.UTC(2016, 1, 22), 9]]
-            },{
+                data: [30, 26, 23, 19, 13, 11, 9]
+            }, {
                 name: 'AVERAGE',
-                data: [[Date.UTC(2016, 1, 16), 26],
-                    [Date.UTC(2016, 1, 17), 25],
-                    [Date.UTC(2016, 1, 18), 23],
-                    [Date.UTC(2016, 1, 19), 22],
-                    [Date.UTC(2016, 1, 20), 21],
-                    [Date.UTC(2016, 1, 21), 19],
-                    [Date.UTC(2016, 1, 22), 17]]
+                data: [26, 25, 23, 22, 21, 19, 17]
             }],
             credits: {
                 enabled: false
@@ -434,6 +430,9 @@ function setChart(ChartName, targetId, xAxisData) {
     //體脂變化-變化百分比
     if (ChartName == "bodyfatGrow") {
         $('#' + targetId).highcharts({
+            chart: {
+                type: 'spline'
+            },
             title: {
                 text: '體脂變化-變化百分比',
                 x: -20 //center
@@ -453,6 +452,9 @@ function setChart(ChartName, targetId, xAxisData) {
                 title: {
                     text: null
                 },
+                labels: {
+                    format: '{value}%'
+                },
                 plotLines: [{
                     value: 0,
                     width: 1,
@@ -462,24 +464,18 @@ function setChart(ChartName, targetId, xAxisData) {
             tooltip: {
                 valueSuffix: '%'
             },
+            plotOptions: {
+                spline: {
+                    pointInterval: 86400000, // one hour
+                    pointStart: Date.UTC(2016, 1, 17)
+                }
+            },
             series: [{
                 name: 'SELF',
-                data: [[Date.UTC(2016, 1, 16), 0],
-                    [Date.UTC(2016, 1, 17), 2],
-                    [Date.UTC(2016, 1, 18), 3],
-                    [Date.UTC(2016, 1, 19), 5],
-                    [Date.UTC(2016, 1, 20), 6],
-                    [Date.UTC(2016, 1, 21), 8],
-                    [Date.UTC(2016, 1, 22), 10]]
-            },{
+                data: [0, 2, 3, 5, 6, 8, 10]
+            }, {
                 name: 'AVERAGE',
-                data: [[Date.UTC(2016, 1, 16), 0],
-                    [Date.UTC(2016, 1, 17), 1],
-                    [Date.UTC(2016, 1, 18), 2],
-                    [Date.UTC(2016, 1, 19), 3],
-                    [Date.UTC(2016, 1, 20), 5],
-                    [Date.UTC(2016, 1, 21), 6],
-                    [Date.UTC(2016, 1, 22), 7]]
+                data: [0, 1, 2, 3, 5, 6, 7]
             }],
             credits: {
                 enabled: false
@@ -530,6 +526,114 @@ function setChart(ChartName, targetId, xAxisData) {
             }]
         });
     }
+    //訓練成效-肌肉疲勞
+    if (ChartName == "fatigue") {
+        $('#' + targetId).highcharts({
+            chart: {
+                tpye: 'areaspline'
+            },
+            title: {
+                text: '肌肉疲勞'
+            },
+            tooltip: {
+                valueSuffix: '%'
+            },
+            xAxis: {
+                categories: ['1-1', '1-2', '1-3', '1-4', '1-5', '1-6', '1-7', '1-8', '2-1', '2-2', '2-3', '2-4', '2-5', '2-6', '2-7', '2-8', '3-1', '3-2', '3-3', '3-4', '3-5', '3-6', '3-7', '3-8']
+            },
+            yAxis: {
+                title: {
+                    text: null
+                },
+                min: 0,
+                max: 100,
+                tickInterval: 20,
+                labels: {
+                    format: '{value}%'
+                }
+            },
+            legend: {
+                enabled: false
+            },
+            plotOptions: {
+                area: {
+                    marker: {
+                        enabled: false,
+                        symbol: 'circle',
+                        radius: 2,
+                        states: {
+                            hover: {
+                                enabled: true
+                            }
+                        }
+                    }
+                }
+            },
+            series: [{
+                type: 'area',
+                name: 'SELF',
+                data: [0, 8, 12, 15, 21, 28, 32, 45, 54, 60, 68, 73, 80, 84, 86, 90, 92, 94, 95, 97, 98, 100, 100, 100]
+            }],
+            credits: {
+                enabled: false
+            }
+        })
+    }
+    //訓練成效-出力百分比
+    if (ChartName == "pmvc") {
+        $('#' + targetId).highcharts({
+            chart: {
+                tpye: 'spline'
+            },
+            title: {
+                text: '肌肉出力百分比'
+            },
+            tooltip: {
+                valueSuffix: '%'
+            },
+            xAxis: {
+                categories: ['1-1', '1-2', '1-3', '1-4', '1-5', '1-6', '1-7', '1-8', '2-1', '2-2', '2-3', '2-4', '2-5', '2-6', '2-7', '2-8', '3-1', '3-2', '3-3', '3-4', '3-5', '3-6', '3-7', '3-8']
+            },
+            yAxis: {
+                title: {
+                    text: null
+                },
+                min: 0,
+                max: 100,
+                tickInterval: 20,
+                labels: {
+                    format: '{value}%'
+                }
+            },
+            legend: {
+                enabled: false
+            },
+            plotOptions: {
+                area: {
+                    marker: {
+                        enabled: false,
+                        symbol: 'circle',
+                        radius: 2,
+                        states: {
+                            hover: {
+                                enabled: true
+                            }
+                        }
+                    }
+                }
+            },
+            series: [{
+                type: 'spline',
+                name: 'SELF',
+                data: [65, 72, 80, 80, 79, 82, 78, 81, 75, 73, 78, 82, 80, 84, 86, 78, 75, 72, 80, 71, 75, 71, 69, 68]
+            }],
+            credits: {
+                enabled: false
+            }
+        })
+    }
+    //訓練成效-成效評估
+    if (ChartName == "result") {}
     //個人素質
     if (ChartName == "status") {
         $('#' + targetId).highcharts({
@@ -577,6 +681,9 @@ function setChart(ChartName, targetId, xAxisData) {
     //肌力縮圖
     if (ChartName == "1rmThumb") {
         $('#' + targetId).highcharts({
+            chart: {
+                type: 'spline'
+            },
             title: {
                 text: null,
                 x: -20 //center
@@ -591,6 +698,9 @@ function setChart(ChartName, targetId, xAxisData) {
                 title: {
                     text: null
                 },
+                labels:{
+                    format:'{value}KG'
+                },
                 plotLines: [{
                     value: 0,
                     width: 1,
@@ -600,15 +710,15 @@ function setChart(ChartName, targetId, xAxisData) {
             tooltip: {
                 valueSuffix: 'KG'
             },
+            plotOptions: {
+                spline: {
+                    pointInterval: 86400000, // one hour
+                    pointStart: Date.UTC(2016, 1, 17)
+                }
+            },
             series: [{
                 name: 'SELF',
-                data: [[Date.UTC(2016, 1, 16), 82],
-                    [Date.UTC(2016, 1, 17), 87],
-                    [Date.UTC(2016, 1, 18), 94],
-                    [Date.UTC(2016, 1, 19), 100],
-                    [Date.UTC(2016, 1, 20), 106],
-                    [Date.UTC(2016, 1, 21), 112],
-                    [Date.UTC(2016, 1, 22), 119]]
+                data: [82, 87, 94, 100, 106, 112]
             }],
             credits: {
                 enabled: false
@@ -618,6 +728,9 @@ function setChart(ChartName, targetId, xAxisData) {
     //肌耐力縮圖
     if (ChartName == "15rmThumb") {
         $('#' + targetId).highcharts({
+            chart: {
+                type: 'spline'
+            },
             title: {
                 text: null,
                 x: -20 //center
@@ -632,6 +745,9 @@ function setChart(ChartName, targetId, xAxisData) {
                 title: {
                     text: null
                 },
+                labels:{
+                    format:'{value}KG'
+                },
                 plotLines: [{
                     value: 0,
                     width: 1,
@@ -641,15 +757,15 @@ function setChart(ChartName, targetId, xAxisData) {
             tooltip: {
                 valueSuffix: 'KG'
             },
+            plotOptions: {
+                spline: {
+                    pointInterval: 86400000, // one hour
+                    pointStart: Date.UTC(2016, 1, 17)
+                }
+            },
             series: [{
                 name: 'SELF',
-                data: [[Date.UTC(2016, 1, 16), 54],
-                    [Date.UTC(2016, 1, 17), 60],
-                    [Date.UTC(2016, 1, 18), 65],
-                    [Date.UTC(2016, 1, 19), 80],
-                    [Date.UTC(2016, 1, 20), 94],
-                    [Date.UTC(2016, 1, 21), 102],
-                    [Date.UTC(2016, 1, 22), 112]]
+                data: [54, 60, 65, 80, 94, 102, 112]
             }],
             credits: {
                 enabled: false
@@ -659,6 +775,9 @@ function setChart(ChartName, targetId, xAxisData) {
     //體脂縮圖
     if (ChartName == "bodyfatThumb") {
         $('#' + targetId).highcharts({
+            chart: {
+                type: 'spline'
+            },
             title: {
                 text: null,
                 x: -20 //center
@@ -676,6 +795,9 @@ function setChart(ChartName, targetId, xAxisData) {
                 title: {
                     text: null
                 },
+                labels: {
+                    format: '{value}%'
+                },
                 plotLines: [{
                     value: 0,
                     width: 1,
@@ -685,15 +807,15 @@ function setChart(ChartName, targetId, xAxisData) {
             tooltip: {
                 valueSuffix: '%'
             },
+            plotOptions: {
+                spline: {
+                    pointInterval: 86400000, // one hour
+                    pointStart: Date.UTC(2016, 1, 17)
+                }
+            },
             series: [{
                 name: '體脂率',
-                data: [[Date.UTC(2016, 1, 16), 22.4],
-                    [Date.UTC(2016, 1, 17), 21.9],
-                    [Date.UTC(2016, 1, 18), 21.5],
-                    [Date.UTC(2016, 1, 19), 21.1],
-                    [Date.UTC(2016, 1, 20), 20.8],
-                    [Date.UTC(2016, 1, 21), 20.6],
-                    [Date.UTC(2016, 1, 22), 20.2]]
+                data: [22.4, 21.9, 21.5, 21.1, 20.8, 20.6, 20.2]
             }],
             credits: {
                 enabled: false
@@ -1366,5 +1488,5 @@ function setChart(ChartName, targetId, xAxisData) {
                 enabled: false
             }
         });
-    };
+    }
 }

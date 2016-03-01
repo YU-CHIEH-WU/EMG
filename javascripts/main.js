@@ -1,11 +1,18 @@
 //TODO:chart改為attribute
 $(function() {
+    console.log(Date.UTC(2016,1,23)-Date.UTC(2016,1,22));
     var chartTitle = '';
     var mainChartName = '';
     var leftChartName = '';
     var rightChartName = '';
     var prevType = 'main';
     //點擊首頁方塊顯示詳細方塊
+    $('.block-inner').on('mouseenter',function(){
+        $('.block-inner').not(this).addClass('opacity');
+    })
+    $('.block-inner').on('mouseleave',function(){
+        $('.opacity').removeClass('opacity');
+    })
     $('.block-header,.block-body').click(function(e) {
             //停止氣泡
             e.stopPropagation();
@@ -26,6 +33,14 @@ $(function() {
                         $('#block-detail').addClass('active');
                     }
                 }
+                //是否顯示操作項
+                if(mainChartName!=undefined){
+                    $('.chartTabs').show();
+                }
+                else{
+                    $('.chartTabs').hide();
+                }
+                //加入標題與圖表
                 setDetailCharts(chartTitle, mainChartName, leftChartName, rightChartName)
             }
         })
@@ -39,9 +54,12 @@ $(function() {
         //點擊詳細方塊外圍回首頁
     $('html,body,.back').on('click', function(e) {
             if ($('.block-inner').hasClass('ontop')) {
+                //停止氣泡
                 e.stopPropagation();
+                //移動方塊
                 $('#block-detail').removeClass('active');
                 $('.block-inner').removeClass('gotop');
+                //清除標題與圖表
                 $('#block-detail').find('.title').html('');
                 $('#block-detail-chart').highcharts().destroy();
                 $('#block-subChart-left').highcharts().destroy();
@@ -73,7 +91,7 @@ $(function() {
     //詳細方塊圖表切換
     $('.btn-type').on('click', function() {
         var type = $(this).data('type')
-        console.log(type);
+        //移動圖表方塊
         if (type == 'main') {
             $('#block-detail-chart').addClass('active');
             $('#block-subChart-left').removeClass('active');
@@ -82,6 +100,7 @@ $(function() {
             $('#block-subChart-left').addClass('active');
             $('#block-detail-chart').removeClass('active');
         }
+        //改變圖表長寬
         if (type != prevType) {
             $('#block-detail-chart').highcharts()
                 .setSize($('#block-subChart-left').width(), $('#block-detail-chart').height());
@@ -90,12 +109,13 @@ $(function() {
         }
         prevType = type;
     })
+    //防止有白目把它玩壞
     $('#block-detail-chart').on('transitionend oTransitionEnd webkitTransitionEnd', function() {
-        $('#block-detail-chart').highcharts()
+            $('#block-detail-chart').highcharts()
                 .setSize($('#block-detail-chart').width(), $('#block-detail-chart').height());
             $('#block-subChart-left').highcharts()
                 .setSize($('#block-subChart-left').width(), $('#block-subChart-left').height());
-    })
+        })
         //設定圖表
     function setDetailCharts(chartTitle, mainChartName, leftChartName, rightChartName) {
         if (chartTitle != undefined) {

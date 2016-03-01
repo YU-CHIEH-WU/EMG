@@ -11,88 +11,90 @@
 </head>
 
 <body>
-    <div class="container">
+    <div class="container hideflow">
         <div class="row">
-            <!-- TODO:會員(普通人)平均 排行榜 -->
-            <div class="col-md-3 block-outer block-outer-2">
-                <!-- 會員 -->
-                <div class="block-inner block-inner-2 block-inner-top" id="block-user">
-                    <div class="block-header">會員</div>
-                    <div class="block-body"></div>
-                </div>
-                <!-- 時鐘 -->
-                <div class="block-inner block-inner-2 block-inner-bottom" id="block-clock">
-                    <div class="block-header">時鐘</div>
-                    <div class="block-body text-center"></div>
-                </div>
-            </div>
-            <div class="col-md-3 block-outer block-outer-1">
-                <!-- 課程行事曆&完成率 -->
-                <div class="block-inner block-inner-1" id="block-course">
-                    <div class="block-header">課程行事曆</div>
-                    <div class="block-body">
-                        <div id="block-chart-course"></div>
+            <div class="scroller">
+                <!-- TODO:會員(普通人)平均 排行榜 -->
+                <div class="col-md-3 block-outer block-outer-2">
+                    <!-- 會員 -->
+                    <div class="block-inner block-inner-2 block-inner-top" id="block-user">
+                        <div class="block-header">會員</div>
+                        <div class="block-body"></div>
+                    </div>
+                    <!-- 時鐘 -->
+                    <div class="block-inner block-inner-2 block-inner-bottom" id="block-clock">
+                        <div class="block-header">時鐘</div>
+                        <div class="block-body text-center"></div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-3 block-outer block-outer-1">
-                <!-- 個人素質 -->
-                <div class="block-inner block-inner-1" id="block-status">
-                    <div class="block-header">個人素質</div>
-                    <div class="block-body">
-                        <div id="block-chart-status"></div>
+                <div class="col-md-3 block-outer block-outer-1">
+                    <!-- 課程行事曆&完成率 -->
+                    <div class="block-inner block-inner-1" id="block-course">
+                        <div class="block-header">課程行事曆</div>
+                        <div class="block-body">
+                            <div id="block-chart-course"></div>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-3 block-outer block-outer-1">
-                <!-- 體脂 -->
-                <div class="block-inner block-inner-1" id="block-bodyfat" data-charttitle="體脂率 - 週紀錄" data-mainchartname="bodyfat" data-leftchartname="bodyfatGrow" data-rightchartname="none">
-                    <div class="block-header">體脂</div>
-                    <div class="block-body">
-                        <div class="block-thumb" id="block-bodyfatThumb"></div>
+                <div class="col-md-3 block-outer block-outer-1">
+                    <!-- 個人素質 -->
+                    <div class="block-inner block-inner-1" id="block-status">
+                        <div class="block-header">個人素質</div>
+                        <div class="block-body">
+                            <div id="block-chart-status"></div>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-6 block-outer block-outer-3">
-                <!-- 肌力 -->
-                <div class="block-inner block-inner-3" id="block-1rm" data-charttitle="肌力 - 週紀錄" data-mainchartname="1rm" data-leftchartname="1rmGrow" data-rightchartname="1rmWays">
-                    <div class="block-header">肌力</div>
-                    <div class="block-body">
-                        <div class="block-thumb" id="block-1rmThumb"></div>
+                <div class="col-md-3 block-outer block-outer-1">
+                    <!-- 體脂 -->
+                    <div class="block-inner block-inner-1" id="block-bodyfat" data-charttitle="體脂率 - 週紀錄" data-mainchartname="bodyfat" data-leftchartname="bodyfatGrow" data-rightchartname="none">
+                        <div class="block-header">體脂</div>
+                        <div class="block-body">
+                            <div class="block-thumb" id="block-bodyfatThumb"></div>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-6 block-outer block-outer-3">
-                <!-- 肌耐力 -->
-                <div class="block-inner block-inner-3" id="block-15rm" data-charttitle="肌耐力 - 週紀錄" data-mainchartname="15rm" data-leftchartname="15rmGrow" data-rightchartname="15rmWays">
-                    <div class="block-header">肌耐力</div>
-                    <div class="block-body">
-                        <div class="block-thumb" id="block-15rmThumb"></div>
+                <div class="col-md-6 block-outer block-outer-3">
+                    <!-- 肌力 -->
+                    <div class="block-inner block-inner-3" id="block-1rm" data-charttitle="肌力 - 週紀錄" data-mainchartname="1rm" data-leftchartname="1rmGrow" data-rightchartname="1rmWays">
+                        <div class="block-header">肌力</div>
+                        <div class="block-body">
+                            <div class="block-thumb" id="block-1rmThumb"></div>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-6 block-outer block-outer-3">
-                <!-- 落點分析 -->
-                <div class="block-inner block-inner-3" id="block-dotchart">
-                    <div class="block-header">落點分析</div>
-                    <div class="block-body">
-                        <div class="block-thumb" id="block-dotThumb"></div>
+                <div class="col-md-6 block-outer block-outer-3">
+                    <!-- 肌耐力 -->
+                    <div class="block-inner block-inner-3" id="block-15rm" data-charttitle="肌耐力 - 週紀錄" data-mainchartname="15rm" data-leftchartname="15rmGrow" data-rightchartname="15rmWays">
+                        <div class="block-header">肌耐力</div>
+                        <div class="block-body">
+                            <div class="block-thumb" id="block-15rmThumb"></div>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-3 block-outer block-outer-1">
-                <!-- 訓練成效 -->
-                <div class="block-inner block-inner-1" id="block-result">
-                    <div class="block-header">訓練成效</div>
-                    <div class="block-body">
-                        <div class="block-thumb" id="block-resultThumb"></div>
+                <div class="col-md-6 block-outer block-outer-3">
+                    <!-- 落點分析 -->
+                    <div class="block-inner block-inner-3" id="block-dotchart">
+                        <div class="block-header">落點分析</div>
+                        <div class="block-body">
+                            <div class="block-thumb" id="block-dotThumb"></div>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-3 block-outer block-outer-1">
-                <div class="block-inner block-inner-1">
-                    <div class="block-header"></div>
-                    <div class="block-body"></div>
+                <div class="col-md-3 block-outer block-outer-1">
+                    <!-- 訓練成效 -->
+                    <div class="block-inner block-inner-1" id="block-result" data-charttitle="訓練成效" data-mainchartname="fatigue" data-leftchartname="pmvc">
+                        <div class="block-header">訓練成效</div>
+                        <div class="block-body">
+                            <div class="block-thumb" id="block-resultThumb"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 block-outer block-outer-1">
+                    <div class="block-inner block-inner-1">
+                        <div class="block-header"></div>
+                        <div class="block-body"></div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -104,15 +106,17 @@
             <div class="block-body">
                 <div class="active" id="block-detail-chart"></div>
                 <div id="block-detail-right">
-                    <button type="button" class="btn btn-primary btn-xAxis" data-xaxis="all">總覽</button>
-                    <button type="button" class="btn btn-primary btn-xAxis" data-xaxis="week">週紀錄</button>
-                    <button type="button" class="btn btn-primary btn-xAxis" data-xaxis="month">月紀錄</button>
-                    <button type="button" class="btn btn-primary btn-xAxis" data-xaxis="season">季紀錄</button>
-                    <button type="button" class="btn btn-primary btn-type" data-type="main">公斤</button>
-                    <button type="button" class="btn btn-primary btn-type" data-type="sub">百分比</button>
+                    <div class="chartTabs">
+                        <button type="button" class="btn btn-primary btn-xAxis" data-xaxis="all">總覽</button>
+                        <button type="button" class="btn btn-primary btn-xAxis" data-xaxis="week">週紀錄</button>
+                        <button type="button" class="btn btn-primary btn-xAxis" data-xaxis="month">月紀錄</button>
+                        <button type="button" class="btn btn-primary btn-xAxis" data-xaxis="season">季紀錄</button>
+                        <button type="button" class="btn btn-primary btn-type" data-type="main">公斤</button>
+                        <button type="button" class="btn btn-primary btn-type" data-type="sub">百分比</button>
+                    </div>
                 </div>
-                    <div id="block-subChart-left"></div>
-                    <div id="block-subChart-right"></div>
+                <div id="block-subChart-left"></div>
+                <div id="block-subChart-right"></div>
             </div>
         </div>
     </div>
