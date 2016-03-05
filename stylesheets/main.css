@@ -41,75 +41,67 @@ body {
   width: 90%;
   position: absolute;
   background: #3d3d3d;
-  -moz-transition: all, 1s, ease-in;
-  -o-transition: all, 1s, ease-in;
-  -webkit-transition: all, 1s, ease-in;
-  transition: all, 1s, ease-in;
+  -moz-transition: all, 0.7s, ease-in;
+  -o-transition: all, 0.7s, ease-in;
+  -webkit-transition: all, 0.7s, ease-in;
+  transition: all, 0.7s, ease-in;
   -moz-border-radius: 1.5%;
   -webkit-border-radius: 1.5%;
   border-radius: 1.5%;
 }
 /* line 47, ../sass/main.scss */
-.block-inner:hover {
-  background: #4f4f4f;
-}
-/* line 49, ../sass/main.scss */
-.block-inner:hover.clickable {
-  cursor: pointer;
-  background-image: url("https://cdn1.iconfinder.com/data/icons/hawcons/32/698956-icon-111-search-128.png");
-  background-repeat: no-repeat;
-  background-position: center;
-}
-/* line 56, ../sass/main.scss */
 .block-inner.gotop {
   z-index: 1;
   top: 1000%;
 }
-/* line 60, ../sass/main.scss */
-.block-inner.active {
-  z-index: 5;
-  left: 5%;
-  background: #4f4f4f;
-}
-/* line 65, ../sass/main.scss */
+/* line 51, ../sass/main.scss */
 .block-inner.ontop {
   display: none;
 }
-/* line 68, ../sass/main.scss */
+/* line 54, ../sass/main.scss */
 .block-inner.opacity {
   opacity: 0.6;
 }
 
-/* line 73, ../sass/main.scss */
+/* line 59, ../sass/main.scss */
+.clickable:hover {
+  background: #4f4f4f;
+  cursor: pointer;
+  background-image: url("../images/search.png");
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+/* line 67, ../sass/main.scss */
 .block-inner-1 {
   height: 100%;
   top: 0;
 }
 
-/* line 79, ../sass/main.scss */
+/* line 73, ../sass/main.scss */
 .block-inner-2 {
   height: 130px;
   margin-bottom: 30px;
 }
 
-/* line 84, ../sass/main.scss */
+/* line 78, ../sass/main.scss */
 .block-inner-3 {
   height: 100%;
   width: 95%;
   top: 0;
 }
 
-/* line 90, ../sass/main.scss */
+/* line 84, ../sass/main.scss */
 .block-inner-top {
   top: 0;
 }
 
-/* line 94, ../sass/main.scss */
+/* line 88, ../sass/main.scss */
 .block-inner-bottom {
   top: 160px;
 }
 
-/* line 98, ../sass/main.scss */
+/* line 92, ../sass/main.scss */
 .block-header {
   height: 30px;
   width: 100%;
@@ -118,20 +110,20 @@ body {
   padding-left: 5px;
 }
 
-/* line 106, ../sass/main.scss */
+/* line 100, ../sass/main.scss */
 .block-body {
   height: calc(100% - 30px);
   height: -webkit-calc(100% - 30px);
   width: 100%;
 }
 
-/* line 112, ../sass/main.scss */
+/* line 106, ../sass/main.scss */
 .block-thumb {
   height: 100%;
   width: 100%;
 }
 
-/* line 118, ../sass/main.scss */
+/* line 112, ../sass/main.scss */
 .block-detail {
   height: 90%;
   width: 80%;
@@ -145,40 +137,31 @@ body {
   -webkit-transition: all, 1.5s, ease-in, 1s;
   transition: all, 1.5s, ease-in, 1s;
 }
-/* line 130, ../sass/main.scss */
+/* line 124, ../sass/main.scss */
 .block-detail.active {
   top: 5%;
 }
 
-/* line 135, ../sass/main.scss */
+/* line 129, ../sass/main.scss */
 .block-detail > .block-body > div {
   padding: 15px;
 }
 
-/* line 139, ../sass/main.scss */
+/* line 133, ../sass/main.scss */
 .title {
   left: 5px;
   position: absolute;
 }
 
-/* line 144, ../sass/main.scss */
+/* line 138, ../sass/main.scss */
 .back {
   right: 5px;
   position: absolute;
   cursor: pointer;
 }
 
-/* line 150, ../sass/main.scss */
-#block-detail-chart,
-#block-subChart-left {
-  -moz-transition: all, 1s, ease-in, 0.5s;
-  -o-transition: all, 1s, ease-in, 0.5s;
-  -webkit-transition: all, 1s, ease-in, 0.5s;
-  transition: all, 1s, ease-in, 0.5s;
-}
-
-/* line 158, ../sass/main.scss */
-#block-detail-chart {
+/* line 145, ../sass/main.scss */
+#detail1-main-chart {
   width: 70%;
   height: 50%;
   left: 0;
@@ -186,8 +169,8 @@ body {
   position: absolute;
 }
 
-/* line 166, ../sass/main.scss */
-#block-detail-right {
+/* line 153, ../sass/main.scss */
+#detail1-right-tabs {
   width: 25%;
   height: 50%;
   right: 0;
@@ -195,63 +178,92 @@ body {
   position: absolute;
 }
 
-/* line 174, ../sass/main.scss */
-#block-subChart-left,
-#block-subChart-right {
+/* line 161, ../sass/main.scss */
+#detail1-left-chart,
+#detail1-right-chart {
   width: 50%;
   height: 50%;
   position: absolute;
 }
 
-/* line 181, ../sass/main.scss */
-#block-subChart-left {
+/* line 168, ../sass/main.scss */
+#detail1-left-chart {
   left: 0;
   top: 50%;
 }
 
-/* line 186, ../sass/main.scss */
-#block-subChart-right {
+/* line 173, ../sass/main.scss */
+#detail1-right-chart {
   right: 0;
   top: 50%;
 }
 
-/* line 192, ../sass/main.scss */
-#block-clock > .block-body {
-  font-size: 32px;
-  line-height: 85px;
+/* line 179, ../sass/main.scss */
+#detail2-main-chart {
+  width: 100%;
+  height: 50%;
+  left: 0;
+  top: 30px;
+  position: absolute;
 }
 
-/* line 198, ../sass/main.scss */
+/* line 187, ../sass/main.scss */
+#detail2-left-chart,
+#detail2-right-chart {
+  width: 50%;
+  height: 50%;
+  position: absolute;
+}
+
+/* line 194, ../sass/main.scss */
+#detail2-left-chart {
+  left: 0;
+  top: 50%;
+}
+
+/* line 199, ../sass/main.scss */
+#detail2-right-chart {
+  right: 0;
+  top: 50%;
+}
+
+/* line 205, ../sass/main.scss */
+#detail3-main-iframe {
+  width: 100%;
+  height: 100%;
+}
+
+/* line 211, ../sass/main.scss */
 #block-chart-status {
   width: 100%;
   height: 100%;
 }
 
-/* line 204, ../sass/main.scss */
+/* line 217, ../sass/main.scss */
 .progress-bar-theme {
   background-color: #2b908f;
 }
 
-/* line 208, ../sass/main.scss */
+/* line 221, ../sass/main.scss */
 .progress-title {
   margin-top: 1.5%;
   font-size: 20px;
   text-align: center;
 }
 
-/* line 214, ../sass/main.scss */
+/* line 227, ../sass/main.scss */
 .block-progress {
   width: 100%;
   height: 100%;
   padding-top: 50px;
 }
 
-/* line 221, ../sass/main.scss */
+/* line 234, ../sass/main.scss */
 .block-progress span.pull-right {
   padding-right: 5px;
 }
 
-/* line 227, ../sass/main.scss */
+/* line 240, ../sass/main.scss */
 .block-user-photo {
   width: 100px;
   height: 100%;
@@ -259,7 +271,7 @@ body {
   float: left;
 }
 
-/* line 234, ../sass/main.scss */
+/* line 247, ../sass/main.scss */
 .user-photo {
   width: 65px;
   height: 65px;
@@ -267,7 +279,7 @@ body {
   position: relative;
 }
 
-/* line 241, ../sass/main.scss */
+/* line 254, ../sass/main.scss */
 .block-user-info {
   width: calc(100% - 200px);
   width: -webkit-calc(100% - 100px);
@@ -275,7 +287,7 @@ body {
   float: left;
 }
 
-/* line 248, ../sass/main.scss */
+/* line 261, ../sass/main.scss */
 .user-name {
   width: 100%;
   height: 50%;
@@ -286,27 +298,27 @@ body {
   float: left;
 }
 
-/* line 258, ../sass/main.scss */
+/* line 271, ../sass/main.scss */
 .user-group {
   width: 50%;
   height: 50%;
   float: left;
 }
 
-/* line 264, ../sass/main.scss */
+/* line 277, ../sass/main.scss */
 .user-nav {
   display: inline-block;
   width: 100%;
   height: 100%;
 }
-/* line 268, ../sass/main.scss */
+/* line 281, ../sass/main.scss */
 .user-nav li {
   list-style-type: none;
   height: 50px;
   width: 50%;
   float: left;
 }
-/* line 273, ../sass/main.scss */
+/* line 286, ../sass/main.scss */
 .user-nav li a {
   height: 100%;
   width: 100%;
@@ -316,7 +328,7 @@ body {
   color: #fff;
 }
 
-/* line 284, ../sass/main.scss */
+/* line 297, ../sass/main.scss */
 .block-user-rank {
   width: 50%;
   height: 50%;
@@ -325,12 +337,12 @@ body {
   text-align: center;
 }
 
-/* line 291, ../sass/main.scss */
+/* line 305, ../sass/main.scss */
 .icon-red {
   color: #ff0000;
 }
 
-/* line 295, ../sass/main.scss */
+/* line 310, ../sass/main.scss */
 .rank-info {
   width: 70%;
   height: 100%;
@@ -340,7 +352,7 @@ body {
   text-align: center;
 }
 
-/* line 304, ../sass/main.scss */
+/* line 320, ../sass/main.scss */
 .rank-detail a {
   line-height: 90px;
   font-size: 20px;
