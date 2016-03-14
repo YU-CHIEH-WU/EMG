@@ -67,7 +67,6 @@ body {
     @include border-radius(3%);
     box-shadow: $shadow3;
 }
-
 .block-login-photo {
     width: 100%;
     height: 40%;
@@ -92,7 +91,31 @@ body {
         margin: 8px auto;
     }
 }
-
+.block-login-message{
+    width: 360px;
+    height: 50px;
+    top: 350px;
+    left: calc(50% - 300px);
+    left: -webkit-calc(50% - 180px);
+    position: fixed;
+    z-index: 97;
+    border: 1px #7C7C7C solid;
+    background: rgba(255, 255, 255, 0.2);
+    opacity:0;
+    @include border-radius(3%);
+    @include transition(all, 0.5s, ease-in);
+    box-shadow: $shadow3;
+    color:$fontColor;
+    font-size:20px;
+    line-height:50px;
+    span{
+        width:100%;
+    }
+    &.active{
+    top:410px;
+    opacity:1;
+    }
+}
 #btn-login,
 #btn-register {
     margin-top: 10px;
@@ -432,7 +455,7 @@ body {
     left: 0;
     top: 0;
     bottom: 0;
-    right: -15px;
+    right: -16px;
 }
 
 .block-course-list {
@@ -445,6 +468,9 @@ body {
     }
     &:hover {
         background: $blockHoverColor;
+    }
+    &:last-child{
+        border:none;
     }
 }
 

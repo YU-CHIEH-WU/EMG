@@ -1,60 +1,89 @@
 var app = angular.module('mainApp', ['mainApp']);
 app.controller('mainController', ['$rootScope', function($rootScope) {
     $rootScope.object = {};
-    //登入是否成功
+    // 登入是否成功
     $rootScope.object.loginSuccess = false;
-    //登入後個人資訊
+    // 登入後個人資訊
     $rootScope.object.userName = '';
     $rootScope.object.userPhoto = '';
 }])
 app.controller('loginController', ['$rootScope', '$scope', '$http', function($rootScope, $scope, $http) {
     //判斷是否登入成功
     $rootScope.loginSuccess = false;
-    //登入
+    // 登入等待狀況
+    $scope.loginLoading = false;
+    // 登入狀況說明
+    $scope.loginMessage = "";
+    // 登入按鈕鎖定
+    $scope.loginDisabled = false;
+    // 登入
     $scope.login = function() {
+        $scope.loginLoading = true;
+        $scope.loginMessage = "Loading...";
+        $scope.loginDisabled = false;
+        // 登入api網址
         var loginApi = 'http://163.17.136.197:8080/EMG/api/UserApi/Login';
+        // 帳號密碼
         var loginData = { 'Account': $scope.loginAccount, 'Password': $scope.loginPassword };
         $http.post(loginApi, loginData).then(function(response) {
-            console.log(response);
+            var data = response.data;
+            // 登入成功
+            if (data.checkStr == "") {
+                $rootScope.userName = data.userName;
+                $rootScope.userPhoto = data.userPhoto;
+                $scope.loginLoading = false;
+                $rootScope.loginSuccess = true;
+            }
+            // 登入失敗
+            else {
+                $scope.loginMessage = data.checkStr;
+            }
+            $scope.loginDisabled = false;
         });
-        $rootScope.loginSuccess = true;
-        $rootScope.userName = '姜琇森';
-        $rootScope.userPhoto = 'http://i.imgur.com/VpZ7Nxn.png';
     };
-    //登入後設定首頁圖表
+    $scope.loginTest = function() {
+            $rootScope.userName = "測試";
+            $rootScope.userPhoto = "images/profile.jpg";
+            $scope.loginDisabled = false;
+            $scope.loginLoading = false;
+            $rootScope.loginSuccess = true;
+        }
+        // 登入後設定首頁圖表
     $scope.setIndexCharts = function($event) {
-        //過濾觸發事件
-        var target = angular.element(event.target);
-        if (target.hasClass('block-login-back')) {
-            //隱藏登入block
-            $scope.hideLogin = true;
-            //設定首頁圖表
-            setChart('status', 'block-chart-status');
-            setChart('bodyfatThumb', 'block-bodyfatThumb');
-            setChart('training', 'block-trainingThumb');
-            setChart('grow', 'block-growThumb');
-            setChart('dotThumb', 'block-dotThumb');
-            setChart('resultThumb', 'block-resultThumb');
+        if ($rootScope.loginSuccess) {
+            // 過濾觸發事件
+            var target = angular.element(event.target);
+            if (target.hasClass('block-login-back')) {
+                // 隱藏登入block
+                $scope.hideLogin = true;
+                // 設定首頁圖表
+                setChart('status', 'block-chart-status');
+                setChart('bodyfatThumb', 'block-bodyfatThumb');
+                setChart('training', 'block-trainingThumb');
+                setChart('grow', 'block-growThumb');
+                setChart('dotThumb', 'block-dotThumb');
+                setChart('resultThumb', 'block-resultThumb');
+            };
         };
     };
 }]);
 app.controller('blockController', ['$rootScope', '$scope', '$http', '$timeout', function($rootScope, $scope, $http, $timeout) {
-    //true時隱藏首頁block
+    // true時隱藏首頁block
     $scope.isDetailActive = false;
-    //true時顯示對應detail
+    // true時顯示對應detail
     $scope.detail1Active = false;
     $scope.detail2Active = false;
     $scope.detail3Active = false;
-    //以動畫差隱藏首頁block
+    // 以動畫差隱藏首頁block
     $scope.isOntop = false;
-    //detail1詳細設定
+    // detail1詳細設定
     $scope.detail1Options = {
         'title': '',
         'chart1': '',
         'chart2': '',
         'chart3': ''
     };
-    //detail2詳細設定
+    // detail2詳細設定
     $scope.detail2Options = {
         'title': '',
         'chart1': '',
@@ -62,13 +91,13 @@ app.controller('blockController', ['$rootScope', '$scope', '$http', '$timeout', 
         'chart3': '',
         'chart4': ''
     };
-    //detail3詳細設定
+    // detail3詳細設定
     $scope.detail3Options = {
         title: '',
         'src': ''
     };
     this.prevType = '';
-    //顯示detail1BLock
+    // 顯示detail1BLock
     $scope.showDetail1 = function(setting) {
         var title = $scope.detail1Options.title;
         var chart1 = $scope.detail1Options.chart1;
@@ -86,14 +115,14 @@ app.controller('blockController', ['$rootScope', '$scope', '$http', '$timeout', 
             chart2 = 'pmvc';
             chart3 = 'growWays';
         };
-        //設定detail1圖表
+        // 設定detail1圖表
         setChart(chart1, 'detail1-main-chart');
         setChart(chart2, 'detail1-left-chart');
         setChart(chart3, 'detail1-right-chart');
         $scope.detail1Active = true;
         $scope.isDetailActive = true;
     };
-    //切換公斤與百分比圖表
+    // 切換公斤與百分比圖表
     $scope.switchType = function(type) {
             if (type != this.prevType) {
                 if (type == 'kg') {
@@ -145,25 +174,26 @@ app.controller('blockController', ['$rootScope', '$scope', '$http', '$timeout', 
             }
 
         }
-        //顯示detail3Block
+        // 顯示detail3Block
     $scope.showDetail3 = function(setting) {
-        var title = $scope.detail3Options.title;
-        var src = $scope.detail3Options.src;
+        var title = '';
+        var src = '';
         if (setting == 'cog') {
             title = 'TEST';
             src = 'test.html';
-            console.log($scope.detail3Options);
         };
+        $scope.detail3Options.title = title;
+        $scope.detail3Options.src = src;
         $scope.detail3Active = true;
         $scope.isDetailActive = true;
     };
-    //防止動畫重複觸發
+    // 防止動畫重複觸發
     $scope.setOntop = function() {
         if ($scope.isDetailActive && !$scope.isOntop) {
             $scope.isOntop = true;
         };
     };
-    //顯示首頁
+    // 顯示首頁
     $scope.showIndex = function() {
         $scope.detail1Active = false;
         $scope.detail2Active = false;
@@ -172,7 +202,7 @@ app.controller('blockController', ['$rootScope', '$scope', '$http', '$timeout', 
         $timeout(function() { $scope.isDetailActive = false }, 50);
     };
 }]);
-//偵測TransitionEnd
+// 偵測TransitionEnd
 app.directive('whenTransitionEnd', [
     '$parse',
     function($parse) {
