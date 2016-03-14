@@ -1,42 +1,146 @@
-/* line 7, ../sass/main.scss */
+/* line 13, ../sass/main.scss */
 html,
 body {
   width: 100%;
   height: 100%;
 }
 
-/* line 13, ../sass/main.scss */
+/* line 19, ../sass/main.scss */
 body {
   background: #1f1f1f;
 }
 
-/* line 18, ../sass/main.scss */
+/* line 24, ../sass/main.scss */
 .container {
   width: 80%;
   height: 100%;
-  margin-top: 30px;
 }
 
-/* line 24, ../sass/main.scss */
+/* line 29, ../sass/main.scss */
 .row {
   width: 100%;
   height: 100%;
+  margin-top: 30px;
+}
+/* line 33, ../sass/main.scss */
+.row.filter {
+  filter: blur(10px);
+  -webkit-filter: blur(10px);
 }
 
-/* line 30, ../sass/main.scss */
+/* line 39, ../sass/main.scss */
+.form-control {
+  margin: 5px;
+}
+
+/* line 44, ../sass/main.scss */
+.block-login-back {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  z-index: 98;
+  background-color: rgba(31, 31, 31, 0.3);
+  -moz-transition: all, 0.2s, ease-in;
+  -o-transition: all, 0.2s, ease-in;
+  -webkit-transition: all, 0.2s, ease-in;
+  transition: all, 0.2s, ease-in;
+}
+/* line 51, ../sass/main.scss */
+.block-login-back.success {
+  opacity: 0;
+  top: -1000%;
+}
+
+/* line 57, ../sass/main.scss */
+.block-login-front {
+  width: 360px;
+  height: 300px;
+  top: 100px;
+  left: calc(50% - 300px);
+  left: -webkit-calc(50% - 180px);
+  position: fixed;
+  z-index: 99;
+  border: 1px #7C7C7C solid;
+  background: rgba(255, 255, 255, 0.2);
+  -moz-border-radius: 3%;
+  -webkit-border-radius: 3%;
+  border-radius: 3%;
+  box-shadow: 0 12px 15px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+}
+
+/* line 71, ../sass/main.scss */
+.block-login-photo {
+  width: 100%;
+  height: 40%;
+}
+
+/* line 76, ../sass/main.scss */
+.login-photo {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  left: calc(50% - 45px);
+  left: -webkit-calc(50% - 45px);
+  top: 30px;
+  position: relative;
+}
+
+/* line 86, ../sass/main.scss */
+.block-login-input {
+  width: 100%;
+  height: 60%;
+  padding: 24px;
+}
+/* line 90, ../sass/main.scss */
+.block-login-input input {
+  width: 80%;
+  margin: 8px auto;
+}
+
+/* line 96, ../sass/main.scss */
+#btn-login,
+#btn-register {
+  margin-top: 10px;
+  margin-left: 12px;
+  background: transparent;
+  color: #fff;
+  font-size: 16px;
+}
+/* line 103, ../sass/main.scss */
+#btn-login:hover,
+#btn-register:hover {
+  color: #fff;
+}
+/* line 106, ../sass/main.scss */
+#btn-login:focus,
+#btn-register:focus {
+  color: #fff;
+}
+
+/* line 111, ../sass/main.scss */
+#btn-login {
+  border: 1px #fff solid;
+}
+
+/* line 115, ../sass/main.scss */
+#btn-register {
+  text-decoration: underline;
+}
+
+/* line 120, ../sass/main.scss */
 .block-outer {
   color: #fff;
   margin-bottom: 30px;
 }
 
-/* line 35, ../sass/main.scss */
+/* line 125, ../sass/main.scss */
 .block-outer-1,
 .block-outer-2,
 .block-outer-3 {
   height: 290px;
 }
 
-/* line 41, ../sass/main.scss */
+/* line 131, ../sass/main.scss */
 .block-inner {
   width: 90%;
   position: absolute;
@@ -49,21 +153,21 @@ body {
   -webkit-border-radius: 1.5%;
   border-radius: 1.5%;
 }
-/* line 47, ../sass/main.scss */
+/* line 137, ../sass/main.scss */
 .block-inner.gotop {
   z-index: 1;
   top: 1000%;
 }
-/* line 51, ../sass/main.scss */
+/* line 141, ../sass/main.scss */
 .block-inner.ontop {
   display: none;
 }
-/* line 54, ../sass/main.scss */
+/* line 144, ../sass/main.scss */
 .block-inner.opacity {
   opacity: 0.6;
 }
 
-/* line 59, ../sass/main.scss */
+/* line 149, ../sass/main.scss */
 .clickable:hover {
   background: #4f4f4f;
   cursor: pointer;
@@ -72,36 +176,36 @@ body {
   background-position: center;
 }
 
-/* line 67, ../sass/main.scss */
+/* line 157, ../sass/main.scss */
 .block-inner-1 {
   height: 100%;
   top: 0;
 }
 
-/* line 73, ../sass/main.scss */
+/* line 163, ../sass/main.scss */
 .block-inner-2 {
   height: 130px;
   margin-bottom: 30px;
 }
 
-/* line 78, ../sass/main.scss */
+/* line 168, ../sass/main.scss */
 .block-inner-3 {
   height: 100%;
   width: 95%;
   top: 0;
 }
 
-/* line 84, ../sass/main.scss */
+/* line 174, ../sass/main.scss */
 .block-inner-top {
   top: 0;
 }
 
-/* line 88, ../sass/main.scss */
+/* line 178, ../sass/main.scss */
 .block-inner-bottom {
   top: 160px;
 }
 
-/* line 92, ../sass/main.scss */
+/* line 182, ../sass/main.scss */
 .block-header {
   height: 30px;
   width: 100%;
@@ -110,20 +214,20 @@ body {
   padding-left: 5px;
 }
 
-/* line 100, ../sass/main.scss */
+/* line 190, ../sass/main.scss */
 .block-body {
   height: calc(100% - 30px);
   height: -webkit-calc(100% - 30px);
   width: 100%;
 }
 
-/* line 106, ../sass/main.scss */
+/* line 196, ../sass/main.scss */
 .block-thumb {
   height: 100%;
   width: 100%;
 }
 
-/* line 112, ../sass/main.scss */
+/* line 202, ../sass/main.scss */
 .block-detail {
   height: 90%;
   width: 80%;
@@ -137,30 +241,30 @@ body {
   -webkit-transition: all, 1.5s, ease-in, 1s;
   transition: all, 1.5s, ease-in, 1s;
 }
-/* line 124, ../sass/main.scss */
+/* line 214, ../sass/main.scss */
 .block-detail.active {
   top: 5%;
 }
 
-/* line 129, ../sass/main.scss */
+/* line 219, ../sass/main.scss */
 .block-detail > .block-body > div {
   padding: 15px;
 }
 
-/* line 133, ../sass/main.scss */
+/* line 223, ../sass/main.scss */
 .title {
   left: 5px;
   position: absolute;
 }
 
-/* line 138, ../sass/main.scss */
+/* line 228, ../sass/main.scss */
 .back {
   right: 5px;
   position: absolute;
   cursor: pointer;
 }
 
-/* line 145, ../sass/main.scss */
+/* line 235, ../sass/main.scss */
 #detail1-main-chart {
   width: 70%;
   height: 50%;
@@ -169,7 +273,7 @@ body {
   position: absolute;
 }
 
-/* line 153, ../sass/main.scss */
+/* line 243, ../sass/main.scss */
 #detail1-right-tabs {
   width: 25%;
   height: 50%;
@@ -178,7 +282,7 @@ body {
   position: absolute;
 }
 
-/* line 161, ../sass/main.scss */
+/* line 251, ../sass/main.scss */
 #detail1-left-chart,
 #detail1-right-chart {
   width: 50%;
@@ -186,84 +290,89 @@ body {
   position: absolute;
 }
 
-/* line 168, ../sass/main.scss */
+/* line 258, ../sass/main.scss */
 #detail1-left-chart {
   left: 0;
   top: 50%;
 }
 
-/* line 173, ../sass/main.scss */
+/* line 263, ../sass/main.scss */
 #detail1-right-chart {
   right: 0;
   top: 50%;
 }
 
-/* line 179, ../sass/main.scss */
-#detail2-main-chart {
-  width: 100%;
-  height: 50%;
-  left: 0;
-  top: 30px;
-  position: absolute;
-}
-
-/* line 187, ../sass/main.scss */
-#detail2-left-chart,
-#detail2-right-chart {
+/* line 269, ../sass/main.scss */
+#detail2-topleft-chart,
+#detail2-topright-chart,
+#detail2-bottomleft-chart,
+#detail2-bottomright-chart {
   width: 50%;
   height: 50%;
   position: absolute;
 }
 
-/* line 194, ../sass/main.scss */
+/* line 278, ../sass/main.scss */
+#detail2-topleft-chart {
+  left: 0;
+  top: 0;
+}
+
+/* line 283, ../sass/main.scss */
+#detail2-right-chart {
+  right: 0;
+  top: 0;
+}
+
+/* line 288, ../sass/main.scss */
 #detail2-left-chart {
   left: 0;
   top: 50%;
 }
 
-/* line 199, ../sass/main.scss */
+/* line 293, ../sass/main.scss */
 #detail2-right-chart {
   right: 0;
   top: 50%;
 }
 
-/* line 205, ../sass/main.scss */
+/* line 299, ../sass/main.scss */
 #detail3-main-iframe {
   width: 100%;
   height: 100%;
 }
 
-/* line 211, ../sass/main.scss */
+/* line 305, ../sass/main.scss */
 #block-chart-status {
   width: 100%;
   height: 100%;
 }
 
-/* line 217, ../sass/main.scss */
+/* line 311, ../sass/main.scss */
 .progress-bar-theme {
   background-color: #2b908f;
 }
 
-/* line 221, ../sass/main.scss */
+/* line 315, ../sass/main.scss */
 .progress-title {
   margin-top: 1.5%;
   font-size: 20px;
   text-align: center;
 }
 
-/* line 227, ../sass/main.scss */
+/* line 321, ../sass/main.scss */
 .block-progress {
   width: 100%;
   height: 100%;
   padding-top: 50px;
 }
 
-/* line 234, ../sass/main.scss */
+/* line 328, ../sass/main.scss */
 .block-progress span.pull-right {
   padding-right: 5px;
 }
 
-/* line 240, ../sass/main.scss */
+/* line 334, ../sass/main.scss */
 .block-user-photo {
   width: 100px;
   height: 100%;
@@ -271,7 +380,7 @@ body {
   float: left;
 }
 
-/* line 247, ../sass/main.scss */
+/* line 341, ../sass/main.scss */
 .user-photo {
   width: 65px;
   height: 65px;
@@ -279,7 +388,7 @@ body {
   position: relative;
 }
 
-/* line 254, ../sass/main.scss */
+/* line 348, ../sass/main.scss */
 .block-user-info {
   width: calc(100% - 200px);
   width: -webkit-calc(100% - 100px);
@@ -287,7 +396,7 @@ body {
   float: left;
 }
 
-/* line 261, ../sass/main.scss */
+/* line 355, ../sass/main.scss */
 .user-name {
   width: 100%;
   height: 50%;
@@ -298,27 +407,27 @@ body {
   float: left;
 }
 
-/* line 271, ../sass/main.scss */
+/* line 365, ../sass/main.scss */
 .user-group {
   width: 50%;
   height: 50%;
   float: left;
 }
 
-/* line 277, ../sass/main.scss */
+/* line 371, ../sass/main.scss */
 .user-nav {
   display: inline-block;
   width: 100%;
   height: 100%;
 }
-/* line 281, ../sass/main.scss */
+/* line 375, ../sass/main.scss */
 .user-nav li {
   list-style-type: none;
   height: 50px;
   width: 50%;
   float: left;
 }
-/* line 286, ../sass/main.scss */
+/* line 380, ../sass/main.scss */
 .user-nav li a {
   height: 100%;
   width: 100%;
@@ -328,7 +437,7 @@ body {
   color: #fff;
 }
 
-/* line 297, ../sass/main.scss */
+/* line 391, ../sass/main.scss */
 .block-user-rank {
   width: 50%;
   height: 50%;
@@ -337,12 +446,12 @@ body {
   text-align: center;
 }
 
-/* line 305, ../sass/main.scss */
+/* line 399, ../sass/main.scss */
 .icon-red {
   color: #ff0000;
 }
 
-/* line 310, ../sass/main.scss */
+/* line 404, ../sass/main.scss */
 .rank-info {
   width: 70%;
   height: 100%;
@@ -352,11 +461,75 @@ body {
   text-align: center;
 }
 
-/* line 320, ../sass/main.scss */
+/* line 414, ../sass/main.scss */
 .rank-detail a {
   line-height: 90px;
   font-size: 20px;
   text-align: center;
   text-decoration: none;
   color: #fff;
+}
+
+/* line 424, ../sass/main.scss */
+#block-course > .block-body {
+  overflow: hidden;
+  position: relative;
+}
+
+/* line 429, ../sass/main.scss */
+.scroller {
+  overflow: auto;
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: -15px;
+}
+
+/* line 438, ../sass/main.scss */
+.block-course-list {
+  width: 100%;
+  height: 60px;
+  padding: 5px;
+  border-bottom: 1px #9f9f9f solid;
+}
+/* line 443, ../sass/main.scss */
+.block-course-list > div {
+  float: left;
+}
+/* line 446, ../sass/main.scss */
+.block-course-list:hover {
+  background: #4f4f4f;
+}
+
+/* line 451, ../sass/main.scss */
+.block-course-thumb {
+  width: 50px;
+  height: 50px;
+  padding: 2px;
+}
+
+/* line 457, ../sass/main.scss */
+.course-thumb {
+  width: 100%;
+  height: 100%;
+}
+
+/* line 462, ../sass/main.scss */
+.block-course-title {
+  width: calc(100% - 50px);
+  width: -webkit-calc(100% - 50px);
+  height: 60%;
+  line-height: 30px;
+  padding-left: 10px;
+}
+
+/* line 470, ../sass/main.scss */
+.block-course-time {
+  width: calc(100% - 50px);
+  width: -webkit-calc(100% - 50px);
+  height: 40%;
+  font-size: 14px;
+  line-height: 20px;
+  padding-left: 10px;
 }

@@ -1,7 +1,33 @@
 //TODO:chart改為attribute
 $(function() {
     var prevType = 'main';
-    //hover首頁方塊調整其他方塊透明度
+    //過濾click
+    $('*').on('click', function(e) {
+            e.stopPropagation();
+            console.log($(this));
+        })
+        //登入
+    $('.block-login-back').on('mouseenter', function() {
+
+        $('.block-login-back').addClass('success');
+        $('.row').removeClass('filter');
+        $('.user-photo').attr('src', 'http://i.imgur.com/VpZ7Nxn.png');
+        $('.user-name').find('p').html('姜琇森');
+    })
+    $('.block-login-back').on('transitionend webkitTransitionEnd oTransitionEnd', function(e) {
+            //過濾觸發事件
+            if ($(e.target).hasClass('block-login-back')) {
+                $('.block-login-back').hide();
+                //首頁方塊圖表縮圖
+                setChart('status', 'block-chart-status');
+                setChart('bodyfatThumb', 'block-bodyfatThumb');
+                setChart('training', 'block-trainingThumb');
+                setChart('grow', 'block-growThumb');
+                setChart('dotThumb', 'block-dotThumb');
+                setChart('resultThumb', 'block-resultThumb');
+            }
+        })
+        //hover首頁方塊調整其他方塊透明度
     $('.clickable').on('mouseenter', function() {
         $('.block-inner').not(this).addClass('opacity');
     })
@@ -9,11 +35,9 @@ $(function() {
             $('.opacity').removeClass('opacity');
         })
         //點擊首頁方塊顯示詳細方塊1
-    $('.clickable').click(function(e) {
-            //停止氣泡
-            e.stopPropagation();
+    $('.hasDetail').click(function() {
             //取得資料
-            clickBlock = $(this);
+            clickBlock = $(this).closest('.block-inner');
             title = clickBlock.data('title');
             mainChartName = clickBlock.data('mainchartname');
             leftChartName = clickBlock.data('leftchartname');
@@ -45,18 +69,15 @@ $(function() {
             $('.ontop').removeClass('ontop');
         }
     })
-    $('.user-nav').find('a').on('click', function(e) {
-            e.stopPropagation();
+    $('.icon-user,.icon-cog').on('click', function() {
             src = $(this).data('src');
             title = $(this).data('title');
             showDetail('#block-detail-3');
             setDetail3(title, src);
         })
         //點擊詳細方塊外圍回首頁
-    $('html,body,.back').on('click', function(e) {
+    $('html,body,.icon-back').on('click', function() {
             if ($('.block-inner').hasClass('ontop')) {
-                //停止氣泡
-                e.stopPropagation();
                 //移動方塊
                 clickId = $('.active').attr('id');
                 $('html, body').scrollTop(0);
@@ -89,16 +110,8 @@ $(function() {
                 $('.ontop').removeClass('ontop');
             }
         })
-    //首頁方塊圖表縮圖
-    setChart('status', 'block-chart-status');
-    setChart('bodyfatThumb', 'block-bodyfatThumb');
-    setChart('training', 'block-trainingThumb');
-    setChart('grow', 'block-growThumb');
-    setChart('dotThumb', 'block-dotThumb');
-    setChart('resultThumb', 'block-resultThumb');
-    //詳細方塊圖表切換
-    $('.btn-type').on('click', function(e) {
-        e.stopPropagation();
+        //詳細方塊圖表切換
+    $('.btn-type').on('click', function() {
         mainChartName = $('#detail1-main-chart').data('chartname');
         leftChartName = $('#detail1-left-chart').data('chartname');
         rightChartName = $('#detail1-right-chart').data('chartname');
