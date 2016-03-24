@@ -1,15 +1,24 @@
 @import "compass/css3";
+
+/* 設定變數 */
+
 $backgroundColor:#1f1f1f;
 $blockColor:#3d3d3d;
 $blockHoverColor:#4f4f4f;
-$fontColor:#fff;
+$fontColor:#FFFFFF;
+$chartColor:#FF9B00;
 $shadow1:0 2px 5px 0 rgba(0, 0, 0, 0.16),
 0 2px 10px 0 rgba(0, 0, 0, 0.12);
 $shadow2:0 8px 17px 0 rgba(0, 0, 0, 0.2),
 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 $shadow3:0 12px 15px 0 rgba(0, 0, 0, 0.24),
 0 17px 50px 0 rgba(0, 0, 0, 0.19);
-//修改頁面元素
+
+/* 設定變數結尾 */
+
+
+/*修改頁面元素 */
+
 html,
 body {
     width: 100%;
@@ -20,7 +29,12 @@ body {
     background: $backgroundColor;
 }
 
-//覆寫bootstrap
+
+/* 修改頁面元素結尾 */
+
+
+/* 覆寫bootstrap */
+
 .container {
     width: 80%;
     height: 100%;
@@ -28,7 +42,7 @@ body {
 
 .row {
     width: 100%;
-    height: 100%;
+    height: 90%;
     margin-top: 30px;
     &.filter {
         filter: blur(10px);
@@ -40,115 +54,20 @@ body {
     margin: 5px;
 }
 
-//登入block
-.block-login-back {
-    width: 100%;
-    height: 100%;
-    position: fixed;
-    z-index: 98;
-    background-color: rgba(31, 31, 31, 0.3);
-    @include transition(all, 0.2s, ease-in);
-    &.success {
-        opacity: 0;
-        top: -1000%;
-    }
+.form-group {
+    margin-bottom: 0px;
 }
 
-.block-login-front {
-    width: 360px;
-    height: 300px;
-    top: 100px;
-    left: calc(50% - 300px);
-    left: -webkit-calc(50% - 180px);
-    position: fixed;
-    z-index: 99;
-    border: 1px #7C7C7C solid;
-    background: rgba(255, 255, 255, 0.2);
-    @include border-radius(3%);
-    box-shadow: $shadow3;
-}
-.block-login-photo {
-    width: 100%;
-    height: 40%;
-}
 
-.login-photo {
-    width: 90px;
-    height: 90px;
-    border-radius: 50%;
-    left: calc(50% - 45px);
-    left: -webkit-calc(50% - 45px);
-    top: 30px;
-    position: relative;
-}
+/* 覆寫bootstrap */
 
-.block-login-input {
-    width: 100%;
-    height: 60%;
-    padding: 24px;
-    input {
-        width: 80%;
-        margin: 8px auto;
-    }
-}
-.block-login-message{
-    width: 360px;
-    height: 50px;
-    top: 350px;
-    left: calc(50% - 300px);
-    left: -webkit-calc(50% - 180px);
-    position: fixed;
-    z-index: 97;
-    border: 1px #7C7C7C solid;
-    background: rgba(255, 255, 255, 0.2);
-    opacity:0;
-    @include border-radius(3%);
-    @include transition(all, 0.5s, ease-in);
-    box-shadow: $shadow3;
-    color:$fontColor;
-    font-size:20px;
-    line-height:50px;
-    span{
-        width:100%;
-    }
-    &.active{
-    top:410px;
-    opacity:1;
-    }
-}
-#btn-login,
-#btn-register {
-    margin-top: 10px;
-    margin-left: 12px;
-    background: rgba(0, 0, 0, 0);
-    color: $fontColor;
-    font-size: 16px;
-    &:hover {
-        color: $fontColor;
-    }
-    &:focus {
-        color: $fontColor;
-    }
-}
 
-#btn-login {
-    border: 1px #fff solid;
-}
+/* 首頁block */
 
-#btn-register {
-    text-decoration: underline;
-}
-
-//首頁block
 .block-outer {
+    height: 290px;
     color: $fontColor;
     margin-bottom: 30px;
-}
-
-.block-outer-1,
-.block-outer-2,
-.block-outer-3 {
-    height: 290px;
 }
 
 .block-inner {
@@ -169,37 +88,32 @@ body {
     }
 }
 
-.clickable:hover {
-    background: $blockHoverColor;
-    cursor: pointer;
-    background-image: url("../images/search.png");
-    background-repeat: no-repeat;
-    background-position: center;
-}
-
 .block-inner-1 {
     height: 100%;
     top: 0;
-    &:hover {}
 }
 
 .block-inner-2 {
-    height: 130px;
-    margin-bottom: 30px;
+    width: 95%;
+    height: 100%;
+    top: 0;
+    &:hover {
+        box-shadow: $shadow3;
+    }
 }
 
 .block-inner-3 {
+    width: 90%;
     height: 100%;
-    width: 95%;
+    left: 5%;
     top: 0;
 }
 
-.block-inner-top {
+.block-inner-4 {
+    width: 92.5%;
+    height: 100%;
+    left: 0;
     top: 0;
-}
-
-.block-inner-bottom {
-    top: 160px;
 }
 
 .block-header {
@@ -221,283 +135,89 @@ body {
     width: 100%;
 }
 
-//詳細block
-.block-detail {
-    height: 90%;
-    width: 80%;
-    left: 10%;
-    position: fixed;
-    top: -1000%;
-    color: $fontColor;
-    background: $blockColor;
-    @include transition(all,
-    1.5s,
-    ease-in,
-    1s);
-    &.active {
-        top: 5%;
+
+/* 首頁block結尾 */
+
+
+/* 會員 */
+
+.block-login-input {
+    width: 100%;
+    height: 80%;
+    padding: 24px;
+    >input {
+        margin: 8px auto;
     }
 }
 
-.block-detail>.block-body>div {
-    padding: 15px;
-}
-
-.title {
-    left: 5px;
-    position: absolute;
-}
-
-.back {
-    right: 5px;
-    position: absolute;
-    cursor: pointer;
-}
-
-//detai1
-#detail1-main-chart {
-    width: 70%;
-    height: 50%;
-    left: 0;
-    top: 30px;
-    position: absolute;
-}
-
-#detail1-right-tabs {
-    width: 25%;
-    height: 50%;
-    right: 0;
-    top: 30px;
-    position: absolute;
-}
-
-#detail1-left-chart,
-#detail1-right-chart {
-    width: 50%;
-    height: 50%;
-    position: absolute;
-}
-
-#detail1-left-chart {
-    left: 0;
-    top: 50%;
-}
-
-#detail1-right-chart {
-    right: 0;
-    top: 50%;
-}
-
-//detail2
-#detail2-topleft-chart,
-#detail2-topright-chart,
-#detail2-bottomleft-chart,
-#detail2-bottomright-chart {
-    width: 50%;
-    height: 50%;
-    position: absolute;
-}
-
-#detail2-topleft-chart {
-    left: 0;
-    top: 0;
-}
-
-#detail2-right-chart {
-    right: 0;
-    top: 0;
-}
-
-#detail2-left-chart {
-    left: 0;
-    top: 50%;
-}
-
-#detail2-right-chart {
-    right: 0;
-    top: 50%;
-}
-
-//detail3
-#detail3-main-iframe {
+.block-register-input {
     width: 100%;
-    height: 100%;
-}
-
-//status
-#block-chart-status {
-    width: 100%;
-    height: 100%;
-}
-
-//progressbar
-.progress-bar-theme {
-    background-color: rgb(43, 144, 143);
-}
-
-.progress-title {
-    margin-top: 1.5%;
-    font-size: 20px;
-    text-align: center;
-}
-
-.block-progress {
-    width: 100%;
-    height: 100%;
-    padding-top: 50px;
-}
-
-.block-progress span {
-    &.pull-right {
-        padding-right: 5px;
-    }
-}
-
-//user
-.block-user-photo {
-    width: 100px;
-    height: 100%;
-    padding: 15px;
-    float: left;
-}
-
-.user-photo {
-    width: 65px;
-    height: 65px;
-    border-radius: 50%;
+    height: 20%;
     position: relative;
+    text-align: right;
 }
 
-.block-user-info {
-    width: calc(100% - 200px);
-    width: -webkit-calc(100% - 100px);
-    height: 100%;
-    float: left;
-}
-
-.user-name {
-    width: 100%;
-    height: 50%;
-    text-align: left;
-    line-height: 50px;
+#btn-login,
+#btn-register,
+#btn-board {
+    background: rgba(0, 0, 0, 0);
     color: $fontColor;
-    font-size: 24px;
-    float: left;
-}
-
-.user-group {
-    width: 50%;
-    height: 50%;
-    float: left;
-}
-
-.user-nav {
-    display: inline-block;
-    width: 100%;
-    height: 100%;
-    li {
-        list-style-type: none;
-        height: 50px;
-        width: 50%;
-        float: left;
-        a {
-            height: 100%;
-            width: 100%;
-            line-height: 50px;
-            display: block;
-            text-decoration: none;
-            color: $fontColor;
-        }
+    &:hover {
+        color: $fontColor;
     }
-}
-
-.block-user-rank {
-    width: 50%;
-    height: 50%;
-    float: left;
-    line-height: 50px;
-    text-align: center;
-}
-
-.icon-red {
-    color: #ff0000;
-}
-
-//rank
-.rank-info {
-    width: 70%;
-    height: 100%;
-    float: left;
-    line-height: 90px;
-    font-size: 30px;
-    text-align: center;
-}
-
-.rank-detail {
-    a {
-        line-height: 90px;
-        font-size: 20px;
-        text-align: center;
-        text-decoration: none;
+    &:focus {
         color: $fontColor;
     }
 }
 
-//course
-#block-course>.block-body {
-    overflow: hidden;
-    position: relative;
+#btn-login {
+    margin-top: 20px;
+    border: 1px #fff solid;
+    width: 80%;
+    font-size: 16px;
 }
 
-.scroller {
-    overflow: auto;
-    position: absolute;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    right: -16px;
+#btn-register {
+    text-decoration: underline;
 }
 
-.block-course-list {
-    width: 100%;
-    height: 60px;
-    padding: 5px;
-    border-bottom: 1px #9f9f9f solid;
-    >div {
-        float: left;
-    }
-    &:hover {
-        background: $blockHoverColor;
-    }
-    &:last-child{
-        border:none;
-    }
-}
-
-.block-course-thumb {
-    width: 50px;
-    height: 50px;
-    padding: 2px;
-}
-
-.course-thumb {
+.block-user {
     width: 100%;
     height: 100%;
+    padding: 15px;
 }
 
-.block-course-title {
-    width: calc(100% - 50px);
-    width: -webkit-calc(100% - 50px);
-    height: 60%;
-    line-height: 30px;
-    padding-left: 10px;
+.user-photo {
+    width: 100%;
+    height: 50%;
+    img {
+        width: 115px;
+        height: 115px;
+        border-radius: 50%;
+        position: relative;
+        margin: 0 auto;
+    }
 }
 
-.block-course-time {
-    width: calc(100% - 50px);
-    width: -webkit-calc(100% - 50px);
-    height: 40%;
-    font-size: 14px;
-    line-height: 20px;
-    padding-left: 10px;
+.user-name {
+    width: 100%;
+    height: 30%;
+    text-align: center;
+    line-height: 69px;
+    color: $fontColor;
+    font-size: 24px;
 }
+
+.user-board {
+    width: 100%;
+    height: 20%;
+}
+
+#btn-board {
+    width: 100%;
+    height: 100%;
+    border: 1px #fff solid;
+}
+
+
+/* 會員結尾 */

@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="mainApp">
+
+<head>
+    <meta charset="UTF-8">
+    <title>FIT ME個人首頁</title>
+    <link rel="stylesheet" href="stylesheets/bootstrap.min.css">
+    <link rel="stylesheet" href="stylesheets/font-awesome.min.css">
+    <link rel="stylesheet" href="stylesheets/screen.css">
+    <link rel="stylesheet" href="stylesheets/board.css">
+</head>
+
+<body>
+    <!-- init放入使用者帳號 -->
+    <div class="container" ng-controller="blockController" ng-init="userAccount='123456'">
+        <div class="row">
+            <!-- 主頁面 -->
+            <div class="col-md-3 col-xs-6 block-outer">
+                <!-- 會員 -->
+                <div ng-class="{gotop:isDetailActive,ontop:isOntop}" when-transition-end="setOntop()" class="block-inner block-inner-1" id="block-user">
+                    <div class="block-header">會員</div>
+                    <div class="block-body">
+                        <div class="block-user">
+                            <div class="block-user-info">
+                                <div class="block-user-photo">
+                                    <img class="user-photo" ng-src="{{userPhoto}}">
+                                </div>
+                                <div class="block-user-name">
+                                    <p class="user-name">{{userName}}</p>
+                                </div>
+                                <div class="block-user-update">
+                                    <p class="user-update">修改個人資料</p>
+                                </div>
+                            </div>
+                            <div class="block-user-group">
+                                <div class="block-user-count">已完成課程：1</div>
+                                <div class="block-user-countDetail">查看課程</div>
+                                <div class="block-user-achieve">已達成成就：5</div>
+                                <div class="block-user-achieveDetail">查看成就</div>
+                            </div>
+                            <div class="block-user-index">
+                                <button type="button" class="btn btn-default" id="btn-index">返回總覽首頁</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-xs-6 block-outer">
+                <!-- 課程行事曆&完成率 -->
+                <div ng-class="{gotop:isDetailActive,ontop:isOntop}" when-transition-end="setOntop()" class="block-inner block-inner-1" id="block-course">
+                    <div class="block-header">課程行事曆</div>
+                    <div class="block-body">
+                        <div class="scroller">
+                            <div class="block-course-list" ng-repeat="course in courseData">
+                                <div class="block-course-thumb"><img ng-src="{{course.thumb}}" class="course-thumb"></div>
+                                <div class="block-course-title">{{course.title}}</div>
+                                <div class="block-course-time">{{course.time}}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-xs-12 block-outer">
+                <!-- 訓練成效 -->
+                <div ng-class="{gotop:isDetailActive,ontop:isOntop}" when-transition-end="setOntop()" class="block-inner block-inner-2 clickable" id="block-training" ng-mouseenter="showMessage('training')" ng-mouseleave="hideMessage('training')">
+                    <div class="block-header">訓練成效</div>
+                    <div class="block-body">
+                        <div class="block-thumb" id="block-trainingThumb" ng-click="showDetail1('training')"></div>
+                    </div>
+                    <div class="block-message" id="training-message" ng-class="{active:hoverTraining}">
+                        <p>這張圖表將你每次訓練時的各項指標加權計算，並以此評估你每次的訓練成效。</p>
+                        <p>點擊圖表可查看詳細資訊</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-xs-12 block-outer">
+                <!-- 肌肉成長 -->
+                <div ng-class="{gotop:isDetailActive,ontop:isOntop}" when-transition-end="setOntop()" class="block-inner block-inner-2 clickable" id="block-grow" ng-mouseenter="showMessage('grow')" ng-mouseleave="hideMessage('grow')">
+                    <div class="block-header">肌肉成長</div>
+                    <div class="block-body">
+                        <div class="block-thumb" id="block-growThumb" ng-click="showDetail1('grow')"></div>
+                    </div>
+                    <div class="block-message" id="grow-message" ng-class="{active:hoverGrow}">
+                        <p>這張圖表將你各項肌肉指標加權計算，並以此評估你的肌肉成長比例。</p>
+                        <p>點擊圖表可查看詳細資訊</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-xs-6 block-outer">
+                <!-- 個人素質 -->
+                <div ng-class="{gotop:isDetailActive,ontop:isOntop}" when-transition-end="setOntop()" class="block-inner block-inner-1" id="block-status">
+                    <div class="block-header">個人素質</div>
+                    <div class="block-body">
+                        <div class="block-thumb" id="block-chart-status"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-xs-6 block-outer">
+                <!-- 體脂 -->
+                <div ng-class="{gotop:isDetailActive,ontop:isOntop}" when-transition-end="setOntop()" class="block-inner block-inner-1" id="block-bodyfat">
+                    <div class="block-header">體脂</div>
+                    <div class="block-body">
+                        <div class="block-thumb" id="block-bodyfatThumb"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 年齡與性別 -->
+        <div class="col-md-4 col-xs-6 block-outer">
+            <div class="block-inner block-inner-4">
+                <div class="block-header">18至23歲的男性也選擇了</div>
+                <div class="block-body"></div>
+            </div>
+        </div>
+        <!-- 運動項目  -->
+        <div class="col-md-4 col-xs-6 block-outer">
+            <div class="block-inner block-inner-4">
+                <div class="block-header">喜歡排球的人也選擇了</div>
+                <div class="block-body"></div>
+            </div>
+        </div>
+        <!-- 訓練部位 -->
+        <div class="col-md-4 col-xs-6 block-outer">
+            <div class="block-inner block-inner-4">
+                <div class="block-header">注重二頭肌的人也選擇了</div>
+                <div class="block-body"></div>
+            </div>
+        </div>
+        <!-- 訓練目標 -->
+        <div class="col-md-4 col-xs-6 block-outer">
+            <div class="block-inner block-inner-4">
+                <div class="block-header">重視肌肉強度的人也選擇了</div>
+                <div class="block-body"></div>
+            </div>
+        </div>
+        <!-- 已完成課程 -->
+        <div class="col-md-4 col-xs-6 block-outer">
+            <div class="block-inner block-inner-4">
+                <div class="block-header">完成了初學者均衡鍛鍊的人也選擇了</div>
+                <div class="block-body"></div>
+            </div>
+        </div>
+        <!-- 關注課程 -->
+        <div class="col-md-4 col-xs-6 block-outer">
+            <div class="block-inner block-inner-4">
+                <div class="block-header">你曾經關注了以下課程</div>
+                <div class="block-body"></div>
+            </div>
+        </div>
+        <div class="block-detail" id="block-detail-1" ng-class="{active:detail1Active}">
+            <div class="prev"></div>
+            <div class="next"></div>
+            <div class="block-header">
+                <sapn class="title">{{detail1Options.title}}</sapn><span class="back" ng-click="showIndex()"><i class="fa fa-times icon-back"></i></span></div>
+            <div class="block-body">
+                <div id="detail1-main-chart"></div>
+                <div id="detail1-right-tabs">
+                    <!--
+                        <button type="button" class="btn btn-primary btn-xAxis" data-xaxis="all">總覽</button>
+                        <button type="button" class="btn btn-primary btn-xAxis" data-xaxis="week">週紀錄</button>
+                        <button type="button" class="btn btn-primary btn-xAxis" data-xaxis="month">月紀錄</button>
+                        <button type="button" class="btn btn-primary btn-xAxis" data-xaxis="season">季紀錄</button>
+                    -->
+                    <button type="button" class="btn btn-primary btn-type" data-type="kg" ng-click="switchType('kg')">公斤</button>
+                    <button type="button" class="btn btn-primary btn-type" data-type="precent" ng-click="switchType(precent)">百分比</button>
+                </div>
+                <div id="detail1-left-chart"></div>
+                <div id="detail1-right-chart"></div>
+            </div>
+        </div>
+        <div class="block-detail" id="block-detail-2" ng-class="{active:detail2Active}">
+            <div class="prev"></div>
+            <div class="next"></div>
+            <div class="block-header">
+                <sapn class="title">{{detail2Options.title}}</sapn><span class="back" ng-click="showIndex()"><i class="fa fa-times icon-back"></i></span>
+            </div>
+            <div class="block-body">
+                <div id="detail2-topleft-chart"></div>
+                <div id="detail2-topright-chart"></div>
+                <div id="detail2-bottomleft-chart"></div>
+                <div id="detail2-bottomright-chart"></div>
+            </div>
+        </div>
+        <div class="block-detail" id="block-detail-3" ng-class="{active:detail3Active}">
+            <div class="prev"></div>
+            <div class="next"></div>
+            <div class="block-header">
+                <sapn class="title">{{detail3Options.title}}</sapn><span class="back" ng-click="showIndex()"><i class="fa fa-times icon-back"></i></span></div>
+            <div class="block-body">
+                <iframe ng-src="{{detail3Options.src}}" frameborder="0" id="detail3-main-iframe"></iframe>
+            </div>
+        </div>
+    </div>
+    </div>
+    <script src="javascripts/jquery-2.2.1.min.js"></script>
+    <script src="javascripts/angular.min.js"></script>
+    <script src="javascripts/angular-animate.min.js"></script>
+    <script src="javascripts/angular-touch.min.js"></script>
+    <script src="javascripts/bootstrap.min.js"></script>
+    <script src="javascripts/highcharts.js"></script>
+    <script src="javascripts/highcharts-more.js"></script>
+    <script src="javascripts/dark-unica.js"></script>
+    <script src="javascripts/board.js"></script>
+    <script src="javascripts/chart.js"></script>
+</body>
+
+</html>

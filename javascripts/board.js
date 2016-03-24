@@ -1,74 +1,54 @@
+$(function() {
+    $('.clickable').on('mouseenter', function() {
+        $('.block-inner').not(this).addClass('opacity');
+    })
+    $('.clickable').on('mouseleave', function() {
+        $('.opacity').removeClass('opacity');
+    })
+})
 var app = angular.module('mainApp', ['mainApp']);
-app.controller('mainController', ['$rootScope', function($rootScope) {
-    $rootScope.object = {};
-    // 登入是否成功
-    $rootScope.object.loginSuccess = false;
-    // 登入後個人資訊
-    $rootScope.object.userName = '';
-    $rootScope.object.userPhoto = '';
-}])
-app.controller('loginController', ['$rootScope', '$scope', '$http', function($rootScope, $scope, $http) {
-    //判斷是否登入成功
-    $rootScope.loginSuccess = false;
-    // 登入等待狀況
-    $scope.loginLoading = false;
-    // 登入狀況說明
-    $scope.loginMessage = "";
-    // 登入按鈕鎖定
-    $scope.loginDisabled = false;
-    // 登入
-    $scope.login = function() {
-        $scope.loginLoading = true;
-        $scope.loginMessage = "Loading...";
-        $scope.loginDisabled = false;
-        // 登入api網址
-        var loginApi = 'http://163.17.136.197:8080/EMG/api/UserApi/Login';
-        // 帳號密碼
-        var loginData = { 'Account': $scope.loginAccount, 'Password': $scope.loginPassword };
-        $http.post(loginApi, loginData).then(function(response) {
-            var data = response.data;
-            // 登入成功
-            if (data.checkStr == "") {
-                $rootScope.userName = data.userName;
-                $rootScope.userPhoto = data.userPhoto;
-                $scope.loginLoading = false;
-                $rootScope.loginSuccess = true;
-            }
-            // 登入失敗
-            else {
-                $scope.loginMessage = data.checkStr;
-            }
-            $scope.loginDisabled = false;
-        });
-    };
-    $scope.loginTest = function() {
-            $rootScope.userName = "測試";
-            $rootScope.userPhoto = "images/profile.jpg";
-            $scope.loginDisabled = false;
-            $scope.loginLoading = false;
-            $rootScope.loginSuccess = true;
-        }
-        // 登入後設定首頁圖表
-    $scope.setIndexCharts = function($event) {
-        if ($rootScope.loginSuccess) {
-            // 過濾觸發事件
-            var target = angular.element(event.target);
-            if (target.hasClass('block-login-back')) {
-                // 隱藏登入block
-                $scope.hideLogin = true;
-                // 設定首頁圖表
-                setChart('status', 'block-chart-status');
-                setChart('bodyfatThumb', 'block-bodyfatThumb');
-                setChart('training', 'block-trainingThumb');
-                setChart('grow', 'block-growThumb');
-                setChart('dotThumb', 'block-dotThumb');
-                setChart('resultThumb', 'block-resultThumb');
-            };
-        };
-    };
-}]);
-app.controller('blockController', ['$rootScope', '$scope', '$http', '$timeout', function($rootScope, $scope, $http, $timeout) {
-    // true時隱藏首頁block
+app.controller('blockController', ['$scope', '$http', '$timeout', function($scope, $http, $timeout) {
+    // 延遲載入使用者帳號並取得使用者資料 
+    $timeout(function() {
+        console.log($scope.userAccount);
+        // API取得使用者資料
+    }, 10);
+    // 登入後使用者個人資料
+    $scope.userName = '使用者';
+    $scope.userPhoto = 'images/profile.jpg';
+    setChart('status', 'block-chart-status');
+    setChart('bodyfatThumb', 'block-bodyfatThumb');
+    setChart('training', 'block-trainingThumb');
+    setChart('grow', 'block-growThumb');
+    setChart('dotThumb', 'block-dotThumb');
+    setChart('resultThumb', 'block-resultThumb');
+    // 行事曆
+    $scope.courseData = [{
+            'thumb': 'images/dumbbell.png',
+            'title': '啞鈴集中彎舉',
+            'time': '3/9 星期三'
+        }, {
+            'thumb': 'images/dumbbell-c.png',
+            'title': '啞鈴斜板彎舉',
+            'time': '3/11 星期五'
+        }, {
+            'thumb': 'images/chin-up.png',
+            'title': '引體向上',
+            'time': '3/13 星期日'
+        }, {
+            'thumb': 'images/dumbbell-c.png',
+            'title': '啞鈴斜板彎舉',
+            'time': '3/15 星期二'
+        }, {
+            'thumb': 'images/dumbbell.png',
+            'title': '啞鈴集中彎舉',
+            'time': '3/17 星期四'
+        }, {
+            'thumb': 'images/chin-up.png',
+            'title': '引體向上',
+            'time': '3/19 星期六'
+        }]
+        // true時隱藏首頁block
     $scope.isDetailActive = false;
     // true時顯示對應detail
     $scope.detail1Active = false;
@@ -76,33 +56,34 @@ app.controller('blockController', ['$rootScope', '$scope', '$http', '$timeout', 
     $scope.detail3Active = false;
     // 以動畫差隱藏首頁block
     $scope.isOntop = false;
-    // detail1詳細設定
-    $scope.detail1Options = {
-        'title': '',
-        'chart1': '',
-        'chart2': '',
-        'chart3': ''
-    };
-    // detail2詳細設定
-    $scope.detail2Options = {
-        'title': '',
-        'chart1': '',
-        'chart2': '',
-        'chart3': '',
-        'chart4': ''
-    };
-    // detail3詳細設定
-    $scope.detail3Options = {
-        title: '',
-        'src': ''
-    };
     this.prevType = '';
+    $scope.hoverTraining = false;
+    $scope.hoverGrow = false;
+    //顯示說明block
+    $scope.showMessage = function(target) {
+        if (target == 'training') {
+            this.trainingMoving = true;
+            $scope.hoverTraining = true;
+        };
+        if (target == 'grow') {
+            this.growMoving = true;
+            $scope.hoverGrow = true;
+        };
+    };
+    $scope.hideMessage = function(target) {
+        if (target == 'training') {
+            $scope.hoverTraining = false;
+        };
+        if (target == 'grow') {
+            $scope.hoverGrow = false;
+        };
+    };
     // 顯示detail1BLock
     $scope.showDetail1 = function(setting) {
-        var title = $scope.detail1Options.title;
-        var chart1 = $scope.detail1Options.chart1;
-        var chart2 = $scope.detail1Options.chart2;
-        var chart3 = $scope.detail1Options.chart3;
+        var title = '';
+        var chart1 = '';
+        var chart2 = '';
+        var chart3 = '';
         if (setting == 'training') {
             title = '訓練成效詳細資訊';
             chart1 = 'fatigue';

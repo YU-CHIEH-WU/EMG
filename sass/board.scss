@@ -1,0 +1,453 @@
+@import "compass/css3";
+
+/* 設定變數 */
+
+$backgroundColor:#1f1f1f;
+$blockColor:#3d3d3d;
+$blockHoverColor:#4f4f4f;
+$fontColor:#FFFFFF;
+$chartColor:#FF9B00;
+$shadow1:0 2px 5px 0 rgba(0, 0, 0, 0.16),
+0 2px 10px 0 rgba(0, 0, 0, 0.12);
+$shadow2:0 8px 17px 0 rgba(0, 0, 0, 0.2),
+0 6px 20px 0 rgba(0, 0, 0, 0.19);
+$shadow3:0 12px 15px 0 rgba(0, 0, 0, 0.24),
+0 17px 50px 0 rgba(0, 0, 0, 0.19);
+
+/* 設定變數結尾 */
+
+
+/* 修改頁面元素 */
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    background: $backgroundColor;
+}
+
+
+/* 修改頁面元素結尾 */
+
+
+/* 覆寫bootstrap */
+
+.container {
+    width: 80%;
+    height: 100%;
+}
+
+.row {
+    width: 100%;
+    height: 90%;
+    margin-top: 30px;
+    &.filter {
+        filter: blur(10px);
+        -webkit-filter: blur(10px);
+    }
+}
+
+
+/* 覆寫bootstrap結尾 */
+
+
+/* 首頁設定 */
+
+.block-outer {
+    height: 290px;
+    color: $fontColor;
+    margin-bottom: 30px;
+}
+
+.block-inner {
+    width: 90%;
+    position: absolute;
+    background: $blockColor;
+    @include transition(all, 0.5s, ease-in);
+    @include border-radius(1.5%);
+    &.gotop {
+        z-index: 1;
+        top: 1000%;
+    }
+    &.ontop {
+        display: none;
+    }
+    &.opacity {
+        // opacity: (0.6);
+    }
+    &.clickable:hover {
+        background: $blockHoverColor;
+        cursor: pointer;
+        background-image: url("../images/search.png");
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+}
+
+.block-inner-1 {
+    height: 100%;
+    top: 0;
+}
+
+.block-inner-2 {
+    width: 95%;
+    height: 100%;
+    top: 0;
+    &:hover {
+        box-shadow: $shadow3;
+    }
+}
+
+.block-inner-3 {
+    width: 90%;
+    height: 100%;
+    left: 5%;
+    top: 0;
+}
+
+.block-inner-4 {
+    width: 92.5%;
+    height: 100%;
+    left: 0;
+    top: 0;
+}
+
+.block-header {
+    height: 30px;
+    width: 100%;
+    border-bottom: 1px #000000 dotted;
+    line-height: 30px;
+    padding-left: 5px;
+}
+
+.block-body {
+    height: calc(100% - 30px);
+    height: -webkit-calc(100% - 30px);
+    width: 100%;
+}
+
+.block-thumb {
+    height: 100%;
+    width: 100%;
+}
+
+
+/*彈出訊息 */
+
+.block-message {
+    height: 160px;
+    width: 240px;
+    padding: 12px;
+    line-height: 30px;
+    background: $blockColor;
+    border: 1px $chartColor solid;
+    top:-75%;
+    position: relative;
+    opacity: 0;
+    z-index:1;
+    cursor:auto;
+    @include transition(all,
+    0.3s,
+    ease-in);
+    &.active {
+        z-index: 10;
+    }
+}
+
+#training-message {
+    left: 0;
+    &.active {
+        left: -60%;
+        opacity: 1;
+    }
+}
+
+#grow-message {
+    left: 50%;
+    &.active {
+        left: 106%;
+        opacity: 1;
+    }
+}
+
+
+/* 彈出訊息結尾 */
+
+
+/* 首頁結尾 */
+
+
+/* 會員 */
+
+.block-user {
+    width: 100%;
+    height: 100%;
+    padding: 15px;
+}
+
+.block-user-info {
+    width: 100%;
+    height: 40%;
+}
+
+.block-user-photo {
+    width: 80px;
+    height: 100%;
+    float: left;
+}
+
+.user-photo {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+}
+
+.block-user-name {
+    width: calc(100% - 80px);
+    height: 60%;
+    line-height: 55px;
+    text-align: center;
+    font-size: 20px;
+    float: left;
+}
+
+.block-user-update {
+    width: calc(100% - 80px);
+    height: 40%;
+    text-align: center;
+    font-size: 14px;
+    float: left;
+}
+
+.block-user-group {
+    width: 100%;
+    height: 40%;
+    >div {
+        height: 50%;
+        float: left;
+        line-height: 30px;
+    }
+}
+
+.block-user-count,
+.block-user-achieve {
+    width: 60%;
+}
+
+.block-user-countDetail,
+.block-user-achieveDetail {
+    width: 40%;
+    text-align: center;
+}
+
+.block-user-index {
+    width: 100%;
+    height: 20%;
+}
+
+#btn-index {
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0);
+    color: $fontColor;
+    &:hover {
+        color: $fontColor;
+    }
+    &:focus {
+        color: $fontColor;
+    }
+}
+
+
+/* 會員結尾 */
+
+
+/* 行事曆 */
+
+#block-course>.block-body {
+    overflow: hidden;
+    position: relative;
+}
+
+.scroller {
+    overflow: auto;
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: -16px;
+}
+
+.block-course-list {
+    width: 100%;
+    height: 60px;
+    padding: 5px;
+    border-bottom: 1px #9f9f9f solid;
+    cursor: pointer;
+    >div {
+        float: left;
+    }
+    &:hover {
+        background: $blockHoverColor;
+    }
+    &:last-child {
+        border: none;
+    }
+}
+
+.block-course-thumb {
+    width: 50px;
+    height: 50px;
+    padding: 2px;
+}
+
+.course-thumb {
+    width: 100%;
+    height: 100%;
+}
+
+.block-course-title {
+    width: calc(100% - 50px);
+    width: -webkit-calc(100% - 50px);
+    height: 60%;
+    line-height: 30px;
+    padding-left: 10px;
+}
+
+.block-course-time {
+    width: calc(100% - 50px);
+    width: -webkit-calc(100% - 50px);
+    height: 40%;
+    font-size: 14px;
+    line-height: 20px;
+    padding-left: 10px;
+}
+
+
+/* 行事曆結尾 */
+
+
+/* 詳細block */
+
+.block-detail {
+    height: 90%;
+    width: 80%;
+    left: 10%;
+    position: fixed;
+    top: -1000%;
+    color: $fontColor;
+    background: $blockColor;
+    @include transition(all,
+    1.5s,
+    ease-in,
+    1s);
+    &.active {
+        top: 5%;
+    }
+}
+
+.block-detail>.block-body>div {
+    padding: 15px;
+}
+
+.title {
+    left: 5px;
+    position: absolute;
+}
+
+.back {
+    right: 5px;
+    position: absolute;
+    cursor: pointer;
+}
+
+
+/* detai1 */
+
+#detail1-main-chart {
+    width: 70%;
+    height: 50%;
+    left: 0;
+    top: 30px;
+    position: absolute;
+}
+
+#detail1-right-tabs {
+    width: 25%;
+    height: 50%;
+    right: 0;
+    top: 30px;
+    position: absolute;
+}
+
+#detail1-left-chart,
+#detail1-right-chart {
+    width: 50%;
+    height: 50%;
+    position: absolute;
+}
+
+#detail1-left-chart {
+    left: 0;
+    top: 50%;
+}
+
+#detail1-right-chart {
+    right: 0;
+    top: 50%;
+}
+
+
+/* detail1結尾 */
+
+
+/* detail2 */
+
+#detail2-topleft-chart,
+#detail2-topright-chart,
+#detail2-bottomleft-chart,
+#detail2-bottomright-chart {
+    width: 50%;
+    height: 50%;
+    position: absolute;
+}
+
+#detail2-topleft-chart {
+    left: 0;
+    top: 0;
+}
+
+#detail2-right-chart {
+    right: 0;
+    top: 0;
+}
+
+#detail2-left-chart {
+    left: 0;
+    top: 50%;
+}
+
+#detail2-right-chart {
+    right: 0;
+    top: 50%;
+}
+
+
+/* detail2結尾 */
+
+
+/* detail3 */
+
+#detail3-main-iframe {
+    width: 100%;
+    height: 100%;
+}
+
+
+/* detail3結尾 */
+
+
+/*詳細block結尾 */
