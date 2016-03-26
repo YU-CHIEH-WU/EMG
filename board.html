@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="mainApp">
+<html lang="en" ng-app="mainApp" ng-controller="blockController">
 
 <head>
     <meta charset="UTF-8">
@@ -10,9 +10,9 @@
     <link rel="stylesheet" href="stylesheets/board.css">
 </head>
 
-<body>
+<body ng-class="{unscroll:isDetailActive}">
     <!-- init放入使用者帳號 -->
-    <div class="container" ng-controller="blockController" ng-init="userAccount='123456'">
+    <div class="container" ng-init="userAccount='123456'">
         <div class="row">
             <!-- 主頁面 -->
             <div class="col-md-3 col-xs-6 block-outer">
@@ -63,9 +63,9 @@
             <div class="col-md-6 col-xs-12 block-outer">
                 <!-- 訓練成效 -->
                 <div ng-class="{gotop:isDetailActive,ontop:isOntop}" when-transition-end="setOntop()" class="block-inner block-inner-2 clickable" id="block-training" ng-mouseenter="showMessage('training')" ng-mouseleave="hideMessage('training')">
-                    <div class="block-header">訓練成效</div>
+                    <div class="block-header"><p class="pull-left">訓練成效</p><button class="btn btn-default btn-saveSVG pull-right" ng-click="shareChart()">分享圖表</button></div>
                     <div class="block-body">
-                        <div class="block-thumb" id="block-trainingThumb" ng-click="showDetail1('training')"></div>
+                        <div class="block-thumb" id="block-training-thumb" ng-click="showDetail1('training')"></div>
                     </div>
                     <div class="block-message" id="training-message" ng-class="{active:hoverTraining}">
                         <p>這張圖表將你每次訓練時的各項指標加權計算，並以此評估你每次的訓練成效。</p>
@@ -78,7 +78,7 @@
                 <div ng-class="{gotop:isDetailActive,ontop:isOntop}" when-transition-end="setOntop()" class="block-inner block-inner-2 clickable" id="block-grow" ng-mouseenter="showMessage('grow')" ng-mouseleave="hideMessage('grow')">
                     <div class="block-header">肌肉成長</div>
                     <div class="block-body">
-                        <div class="block-thumb" id="block-growThumb" ng-click="showDetail1('grow')"></div>
+                        <div class="block-thumb" id="block-grow-thumb" ng-click="showDetail1('grow')"></div>
                     </div>
                     <div class="block-message" id="grow-message" ng-class="{active:hoverGrow}">
                         <p>這張圖表將你各項肌肉指標加權計算，並以此評估你的肌肉成長比例。</p>
@@ -100,53 +100,55 @@
                 <div ng-class="{gotop:isDetailActive,ontop:isOntop}" when-transition-end="setOntop()" class="block-inner block-inner-1" id="block-bodyfat">
                     <div class="block-header">體脂</div>
                     <div class="block-body">
-                        <div class="block-thumb" id="block-bodyfatThumb"></div>
+                        <div class="block-thumb" id="block-bodyfat-thumb"></div>
                     </div>
                 </div>
             </div>
         </div>
         <!-- 年齡與性別 -->
         <div class="col-md-4 col-xs-6 block-outer">
-            <div class="block-inner block-inner-4">
+            <div ng-class="{gotop:isDetailActive,ontop:isOntop}" when-transition-end="setOntop()" class="block-inner block-inner-4">
                 <div class="block-header">18至23歲的男性也選擇了</div>
                 <div class="block-body"></div>
             </div>
         </div>
         <!-- 運動項目  -->
         <div class="col-md-4 col-xs-6 block-outer">
-            <div class="block-inner block-inner-4">
+            <div ng-class="{gotop:isDetailActive,ontop:isOntop}" when-transition-end="setOntop()" class="block-inner block-inner-4">
                 <div class="block-header">喜歡排球的人也選擇了</div>
                 <div class="block-body"></div>
             </div>
         </div>
         <!-- 訓練部位 -->
         <div class="col-md-4 col-xs-6 block-outer">
-            <div class="block-inner block-inner-4">
+            <div ng-class="{gotop:isDetailActive,ontop:isOntop}" when-transition-end="setOntop()" class="block-inner block-inner-4">
                 <div class="block-header">注重二頭肌的人也選擇了</div>
                 <div class="block-body"></div>
             </div>
         </div>
         <!-- 訓練目標 -->
         <div class="col-md-4 col-xs-6 block-outer">
-            <div class="block-inner block-inner-4">
+            <div ng-class="{gotop:isDetailActive,ontop:isOntop}" when-transition-end="setOntop()" class="block-inner block-inner-4">
                 <div class="block-header">重視肌肉強度的人也選擇了</div>
                 <div class="block-body"></div>
             </div>
         </div>
         <!-- 已完成課程 -->
         <div class="col-md-4 col-xs-6 block-outer">
-            <div class="block-inner block-inner-4">
+            <div ng-class="{gotop:isDetailActive,ontop:isOntop}" when-transition-end="setOntop()" class="block-inner block-inner-4">
                 <div class="block-header">完成了初學者均衡鍛鍊的人也選擇了</div>
                 <div class="block-body"></div>
             </div>
         </div>
         <!-- 關注課程 -->
         <div class="col-md-4 col-xs-6 block-outer">
-            <div class="block-inner block-inner-4">
+            <div ng-class="{gotop:isDetailActive,ontop:isOntop}" when-transition-end="setOntop()" class="block-inner block-inner-4">
                 <div class="block-header">你曾經關注了以下課程</div>
                 <div class="block-body"></div>
             </div>
         </div>
+        <!-- 詳細block -->
+        <div class="block-detail-outer" ng-class="{active:isDetailActive}" ng-click="showIndex()"></div>
         <div class="block-detail" id="block-detail-1" ng-class="{active:detail1Active}">
             <div class="prev"></div>
             <div class="next"></div>
@@ -199,6 +201,7 @@
     <script src="javascripts/bootstrap.min.js"></script>
     <script src="javascripts/highcharts.js"></script>
     <script src="javascripts/highcharts-more.js"></script>
+    <script src="javascripts/exporting.js"></script>
     <script src="javascripts/dark-unica.js"></script>
     <script src="javascripts/board.js"></script>
     <script src="javascripts/chart.js"></script>

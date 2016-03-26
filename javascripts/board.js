@@ -17,11 +17,11 @@ app.controller('blockController', ['$scope', '$http', '$timeout', function($scop
     $scope.userName = '使用者';
     $scope.userPhoto = 'images/profile.jpg';
     setChart('status', 'block-chart-status');
-    setChart('bodyfatThumb', 'block-bodyfatThumb');
-    setChart('training', 'block-trainingThumb');
-    setChart('grow', 'block-growThumb');
+    setChart('bodyfatThumb', 'block-bodyfat-thumb');
+    setChart('training', 'block-training-thumb');
+    setChart('grow', 'block-grow-thumb');
     setChart('dotThumb', 'block-dotThumb');
-    setChart('resultThumb', 'block-resultThumb');
+    setChart('resultThumb', 'block-result-thumb');
     // 行事曆
     $scope.courseData = [{
             'thumb': 'images/dumbbell.png',
@@ -78,7 +78,12 @@ app.controller('blockController', ['$scope', '$http', '$timeout', function($scop
             $scope.hoverGrow = false;
         };
     };
-    // 顯示detail1BLock
+    // 分享圖表至Facebook
+    $scope.shareChart = function() {
+            var svg = $('#block-result-thumb').highcharts().getSVG();
+            console.log(svg);
+        }
+        // 顯示detail1BLock
     $scope.showDetail1 = function(setting) {
         var title = '';
         var chart1 = '';

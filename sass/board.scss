@@ -55,7 +55,9 @@ body {
 
 
 /* 首頁設定 */
-
+.unscroll{
+    overflow:hidden;
+}
 .block-outer {
     height: 290px;
     color: $fontColor;
@@ -66,11 +68,11 @@ body {
     width: 90%;
     position: absolute;
     background: $blockColor;
-    @include transition(all, 0.5s, ease-in);
+    @include transition(all, 0.7s, ease-in);
     @include border-radius(1.5%);
     &.gotop {
         z-index: 1;
-        top: 1000%;
+        top: 200%;
     }
     &.ontop {
         display: none;
@@ -253,6 +255,7 @@ body {
     height: 100%;
     background: rgba(0, 0, 0, 0);
     color: $fontColor;
+    font-size:18px;
     &:hover {
         color: $fontColor;
     }
@@ -268,17 +271,15 @@ body {
 /* 行事曆 */
 
 #block-course>.block-body {
-    overflow: hidden;
     position: relative;
 }
 
 .scroller {
-    overflow: auto;
+    overflow: scroll;
     position: absolute;
     left: 0;
     top: 0;
     bottom: 0;
-    right: -16px;
 }
 
 .block-course-list {
@@ -331,7 +332,17 @@ body {
 
 
 /* 詳細block */
-
+.block-detail-outer{
+    height:100%;
+    width:100%;
+    position: fixed;
+    left:0;
+    top:-1000%;
+    @include transition(all,1s,ease-in,1s);
+    &.active{
+        top:0;
+    }
+}
 .block-detail {
     height: 90%;
     width: 80%;
@@ -341,7 +352,7 @@ body {
     color: $fontColor;
     background: $blockColor;
     @include transition(all,
-    1.5s,
+    1s,
     ease-in,
     1s);
     &.active {
