@@ -50,7 +50,7 @@
                         <button class="pull-right btn btn-default">編輯</button>
                     </div>
                     <div class="block-body">
-                        <div class="scroller">
+                        <div class="news-scroller">
                             <div class="block-news-list" ng-click="showDetail4(news.id)" ng-repeat="news in newsList">
                                 <div class="block-news-title">{{news.title}}</div>
                             </div>
@@ -144,10 +144,10 @@
             <!-- 推薦課程詳細 -->
             <div class="block-course-outer" ng-show="isCourseClick" ng-click="hideCourse()" ng-class="{active:isCourseShow}">
             </div>
-            <div class="block-inner block-course-inner" ng-class="{active:isCourseShow}">
+            <div class="block-inner block-course-inner" ng-show="isCourseClick" ng-class="{active:isCourseShow}">
                 <div class="block-header">{{courseTitle}}</div>
                 <div class="block-body">
-                    <div class="course-scroller" ng-class="{active:isPositionShow}">
+                    <div class="course-scroller"  ng-class="{active:isPositionShow}">
                         <div class="course-list" ng-repeat="course in courseList">
                             <p>{{course.day}}</p>
                             <div class="course-position" ng-repeat="position in course.position" ng-click="showPositionDetail(position.pos)">

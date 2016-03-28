@@ -262,7 +262,7 @@ body {
 /* 會員結尾 */
 /* 最新消息 */
 /* line 248, ../sass/main.scss */
-.scroller {
+.news-scroller {
   overflow: auto;
   position: absolute;
   left: 0;
