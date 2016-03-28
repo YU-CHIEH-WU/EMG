@@ -42,11 +42,51 @@ body {
 
 .row {
     width: 100%;
-    height: 90%;
     margin-top: 30px;
     &.filter {
         filter: blur(10px);
         -webkit-filter: blur(10px);
+    }
+}
+
+.btn:focus,
+.btn:active {
+    color: inherit;
+}
+
+.btn-flat {
+    background: rgba(0, 0, 0, 0);
+    color: $fontColor;
+    border: 1px #ccc solid;
+    &:hover {
+        color: $fontColor;
+    }
+    &:focus {
+        color: $fontColor;
+    }
+}
+
+.btn-options {
+    width: 82px;
+    height: 40px;
+    color: $fontColor;
+    &.active {
+        color: #333;
+        box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125);
+        outline: 5px auto -webkit-focus-ring-color
+    }
+}
+
+.btn-saveSVG {
+    background: #3a5795;
+    color: $fontColor;
+    height:100%;
+    line-height:1.2;
+    &:hover{
+        color:$fontColor;
+    }
+    &:focus{
+        color:$fontColor;
     }
 }
 
@@ -55,9 +95,15 @@ body {
 
 
 /* 首頁設定 */
-.unscroll{
-    overflow:hidden;
+
+.clearfix {
+    overflow: auto;
 }
+
+.unscroll {
+    overflow: hidden;
+}
+
 .block-outer {
     height: 290px;
     color: $fontColor;
@@ -66,9 +112,10 @@ body {
 
 .block-inner {
     width: 90%;
+    top: 0;
     position: absolute;
     background: $blockColor;
-    @include transition(all, 0.7s, ease-in);
+    @include transition(all, 0.5s, ease-in);
     @include border-radius(1.5%);
     &.gotop {
         z-index: 1;
@@ -91,13 +138,11 @@ body {
 
 .block-inner-1 {
     height: 100%;
-    top: 0;
 }
 
 .block-inner-2 {
     width: 95%;
     height: 100%;
-    top: 0;
     &:hover {
         box-shadow: $shadow3;
     }
@@ -107,14 +152,12 @@ body {
     width: 90%;
     height: 100%;
     left: 5%;
-    top: 0;
 }
 
 .block-inner-4 {
     width: 92.5%;
     height: 100%;
     left: 0;
-    top: 0;
 }
 
 .block-header {
@@ -146,11 +189,11 @@ body {
     line-height: 30px;
     background: $blockColor;
     border: 1px $chartColor solid;
-    top:-75%;
+    top: -75%;
     position: relative;
     opacity: 0;
-    z-index:1;
-    cursor:auto;
+    z-index: 1;
+    cursor: auto;
     @include transition(all,
     0.3s,
     ease-in);
@@ -253,15 +296,7 @@ body {
 #btn-index {
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0);
-    color: $fontColor;
-    font-size:18px;
-    &:hover {
-        color: $fontColor;
-    }
-    &:focus {
-        color: $fontColor;
-    }
+    font-size: 18px;
 }
 
 
@@ -274,12 +309,141 @@ body {
     position: relative;
 }
 
+.block-course-start {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    line-height: 230px;
+}
+
+#btn-course {
+    font-size: 18px;
+}
+
+.block-course-outer {
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    position: fixed;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 998;
+}
+
+.block-course-inner {
+    width: 50%;
+    height: 80%;
+    left: 25%;
+    top: 10%;
+    position: fixed;
+    color: $fontColor;
+    box-shadow: $shadow3;
+    opacity: 0;
+    z-index: 999;
+    @include transition(all,
+    0.3s,
+    ease-in);
+    &.active {
+        opacity: 1;
+    }
+    >.block-body {
+        overflow: hidden;
+        position: relative;
+    }
+}
+
+.course-options {
+    width: 100%;
+    height: 100%;
+    left: -120%;
+    top: 0;
+    position: absolute;
+    @include transition(all,
+    0.3s,
+    ease-in);
+    &.active {
+        left: 0;
+    }
+}
+
+.course-preview {
+    width: 100%;
+    height: 100%;
+    left: 120%;
+    top: 0;
+    position: absolute;
+    @include transition(all,
+    0.3s,
+    ease-in);
+    &.active {
+        left: 0;
+    }
+    &.left {
+        left: -120%;
+    }
+}
+
+.option {
+    margin: 24px;
+}
+
+.options {
+    max-width: 82px;
+    height: 100%;
+    float: left;
+    margin: 8px;
+}
+
+.power-option {
+    color: #000000;
+}
+
 .scroller {
-    overflow: scroll;
+    overflow: auto;
     position: absolute;
     left: 0;
     top: 0;
     bottom: 0;
+    width: 100%;
+}
+
+.preview-list {
+    padding: 10px;
+    float: left;
+}
+
+.preview-date {
+    width: 100%;
+    height: 140px;
+}
+
+.preview-confirm {
+    width: 100%;
+    height: 40px;
+    text-align: center;
+}
+
+.preview-position {
+    height: 30px;
+    padding: 12px;
+    &:hover {
+        background: $blockHoverColor;
+        cursor: pointer;
+    }
+}
+
+.course-position {
+    width: 100%;
+    height: 100%;
+    left: 120%;
+    top: 0;
+    position: relative;
+    @include transition(all,
+    0.3s,
+    ease-in);
+    &.active {
+        left: 0;
+    }
 }
 
 .block-course-list {
@@ -332,17 +496,22 @@ body {
 
 
 /* 詳細block */
-.block-detail-outer{
-    height:100%;
-    width:100%;
+
+.block-detail-outer {
+    height: 100%;
+    width: 100%;
     position: fixed;
-    left:0;
-    top:-1000%;
-    @include transition(all,1s,ease-in,1s);
-    &.active{
-        top:0;
+    left: 0;
+    top: -1000%;
+    @include transition(all,
+    1s,
+    ease-in,
+    1s);
+    &.active {
+        top: 0;
     }
 }
+
 .block-detail {
     height: 90%;
     width: 80%;
@@ -351,6 +520,7 @@ body {
     top: -1000%;
     color: $fontColor;
     background: $blockColor;
+    @include border-radius(1.5%);
     @include transition(all,
     1s,
     ease-in,

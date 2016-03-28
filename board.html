@@ -10,7 +10,8 @@
     <link rel="stylesheet" href="stylesheets/board.css">
 </head>
 
-<body ng-class="{unscroll:isDetailActive}">
+<body ng-class="{unscroll:isDetailActive,unscroll:isCourseShow}">
+    <div id="fb-root"></div>
     <!-- init放入使用者帳號 -->
     <div class="container" ng-init="userAccount='123456'">
         <div class="row">
@@ -39,7 +40,7 @@
                                 <div class="block-user-achieveDetail">查看成就</div>
                             </div>
                             <div class="block-user-index">
-                                <button type="button" class="btn btn-default" id="btn-index">返回總覽首頁</button>
+                                <button type="button" class="btn btn-flat" id="btn-index">返回總覽首頁</button>
                             </div>
                         </div>
                     </div>
@@ -50,11 +51,106 @@
                 <div ng-class="{gotop:isDetailActive,ontop:isOntop}" when-transition-end="setOntop()" class="block-inner block-inner-1" id="block-course">
                     <div class="block-header">課程行事曆</div>
                     <div class="block-body">
-                        <div class="scroller">
-                            <div class="block-course-list" ng-repeat="course in courseData">
+                        <div class="scroller" ng-show="isHaveCourse">
+                            <div class="block-course-list" ng-repeat="course in courseList">
                                 <div class="block-course-thumb"><img ng-src="{{course.thumb}}" class="course-thumb"></div>
                                 <div class="block-course-title">{{course.title}}</div>
                                 <div class="block-course-time">{{course.time}}</div>
+                            </div>
+                        </div>
+                        <div class="block-course-start">
+                            <button class="btn btn-flat" id="btn-course" ng-hide="isHaveCourse" ng-click="newCourse()">產生新課程</button>
+                        </div>
+                        <div class="block-course-outer" ng-show="isCourseShow" ng-click="hideCourse('continue')">
+                        </div>
+                        <div class="block-inner block-course-inner" ng-show="isCourseShow" ng-class="{active:isCourseShow}">
+                            <div class="block-header"><span class="title">產生個人化課程</span><span class="back" ng-click="hideCourse('quit')"><i class="fa fa-times icon-back"></i></span></div>
+                            <div class="block-body">
+                                <div class="course-options" ng-class="courseStatus['options']">
+                                    <section class="clearfix option">
+                                        <div class="goal-title">選擇訓鍊目標</div>
+                                        <div class="goal-options btn-group">
+                                            <div class="options options-strength">
+                                                <button class="btn btn-warning" ng-class="{active:selectedGoal['strength']}" ng-click="setGoal('肌力')">肌力</button>
+                                            </div>
+                                            <div class="options options-endurance">
+                                                <button class="btn btn-warning" ng-class="{active:selectedGoal['endurance']}" ng-click="setGoal('肌耐力')">肌耐力</button>
+                                            </div>
+                                        </div>
+                                    </section>
+                                    <section class="clearfix option">
+                                        <div class="part-title">選擇訓練部位</div>
+                                        <div class="part-options btn-group">
+                                            <div class="options options-chest">
+                                                <button class="btn btn-warning" ng-class="activePart['complex']" ng-click="setPart('複合')">複合部位</button>
+                                            </div>
+                                            <div class="options options-chest">
+                                                <button class="btn btn-warning" ng-class="activePart['chest']" ng-click="setPart('胸')">胸肌</button>
+                                            </div>
+                                            <div class="options options-back">
+                                                <button class="btn btn-warning" ng-class="activePart['back']" ng-click="setPart('背')">背肌</button>
+                                            </div>
+                                            <div class="options options-shoulder">
+                                                <button class="btn btn-warning" ng-class="activePart['shoulder']" ng-click="setPart('肩')">肩膀</button>
+                                            </div>
+                                            <div class="options options-belly">
+                                                <button class="btn btn-warning" ng-class="activePart['belly']" ng-click="setPart('腹')">腹肌</button>
+                                            </div>
+                                            <div class="options options-foot">
+                                                <button class="btn btn-warning" ng-class="activePart['foot']" ng-click="setPart('腳')">腿肌</button>
+                                            </div>
+                                            <div class="options options-two">
+                                                <button class="btn btn-warning" ng-class="activePart['two']" ng-click="setPart('肱二頭')">二頭肌</button>
+                                            </div>
+                                            <div class="options options-three">
+                                                <button class="btn btn-warning" ng-class="activePart['three']" ng-click="setPart('肱三頭')">三頭肌</button>
+                                            </div>
+                                        </div>
+                                    </section>
+                                    <section class="clearfix option">
+                                        <div class="power-title">輸入訓練磅數</div>
+                                        <div class="power-option">
+                                            <input type="number" ng-model="courseOptions.power">
+                                        </div>
+                                    </section>
+                                    <section class="clearfix option">
+                                        <button class="btn btn-flat" ng-click="createCourse()">產生個人化課程</button>
+                                    </section>
+                                </div>
+                                <div class="course-preview" ng-class="courseStatus['preview']">
+                                    <div class="scroller">
+                                        <div class="preview-title">
+                                            {{previewTitle}}
+                                        </div>
+                                        <div class="preview-list" ng-repeat="course in previewList">
+                                            <p>{{course.day}}</p>
+                                            <div class="preview-position" ng-repeat="position in course.position" ng-click="showPositionDetail(position.pos)">
+                                                <p>{{position.pos}}</p>
+                                            </div>
+                                        </div>
+                                        <div class="preview-date clearfix">
+                                            <div class="date-options" ng-repeat="date in previewDate">
+                                                <div class="options options-date">
+                                                    <button class="btn btn-warning" ng-class="activeDate[$index]" ng-click="setDate($index)">
+                                                        <p>{{date.month}}/{{date.day}}</p>
+                                                        <p>{{date.weekday}}</p>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="preview-confirm clearfix">
+                                            <button class="btn btn-flat" id='btn-confirm' ng-click="courseConfirm()">確認課程</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- 動作詳細 -->
+                                <div class="course-position" ng-class="courseStatus['position']">
+                                    <p>{{positionName}}</p>
+                                    <p>動作詳細說明（圖解或影片）</p>
+                                    <br>
+                                    <br>
+                                    <button class="btn btn-flat" ng-click="backPreviewList()">返回課程預覽</button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -63,9 +159,13 @@
             <div class="col-md-6 col-xs-12 block-outer">
                 <!-- 訓練成效 -->
                 <div ng-class="{gotop:isDetailActive,ontop:isOntop}" when-transition-end="setOntop()" class="block-inner block-inner-2 clickable" id="block-training" ng-mouseenter="showMessage('training')" ng-mouseleave="hideMessage('training')">
-                    <div class="block-header"><p class="pull-left">訓練成效</p><button class="btn btn-default btn-saveSVG pull-right" ng-click="shareChart()">分享圖表</button></div>
+                    <div class="block-header">
+                        <p class="pull-left">訓練成效</p>
+                        <button class="btn btn-saveSVG pull-right" id="btn-trainingSVG">分享圖表</button>
+                    </div>
                     <div class="block-body">
                         <div class="block-thumb" id="block-training-thumb" ng-click="showDetail1('training')"></div>
+                        <input type="hidden" id="trainingSVG" ng-model="trainingSVG">
                     </div>
                     <div class="block-message" id="training-message" ng-class="{active:hoverTraining}">
                         <p>這張圖表將你每次訓練時的各項指標加權計算，並以此評估你每次的訓練成效。</p>
@@ -76,7 +176,8 @@
             <div class="col-md-6 col-xs-12 block-outer">
                 <!-- 肌肉成長 -->
                 <div ng-class="{gotop:isDetailActive,ontop:isOntop}" when-transition-end="setOntop()" class="block-inner block-inner-2 clickable" id="block-grow" ng-mouseenter="showMessage('grow')" ng-mouseleave="hideMessage('grow')">
-                    <div class="block-header">肌肉成長</div>
+                    <div class="block-header"><p class="pull-left">肌肉成長</p>
+                        <button class="btn btn-saveSVG pull-right" id="btn-trainingSVG">分享圖表</button></div>
                     <div class="block-body">
                         <div class="block-thumb" id="block-grow-thumb" ng-click="showDetail1('grow')"></div>
                     </div>
@@ -89,7 +190,8 @@
             <div class="col-md-3 col-xs-6 block-outer">
                 <!-- 個人素質 -->
                 <div ng-class="{gotop:isDetailActive,ontop:isOntop}" when-transition-end="setOntop()" class="block-inner block-inner-1" id="block-status">
-                    <div class="block-header">個人素質</div>
+                    <div class="block-header"><p class="pull-left">個人素質</p>
+                        <button class="btn btn-saveSVG pull-right" id="btn-trainingSVG">分享圖表</button></div>
                     <div class="block-body">
                         <div class="block-thumb" id="block-chart-status"></div>
                     </div>
@@ -98,7 +200,8 @@
             <div class="col-md-3 col-xs-6 block-outer">
                 <!-- 體脂 -->
                 <div ng-class="{gotop:isDetailActive,ontop:isOntop}" when-transition-end="setOntop()" class="block-inner block-inner-1" id="block-bodyfat">
-                    <div class="block-header">體脂</div>
+                    <div class="block-header"><p class="pull-left">體脂</p>
+                        <button class="btn btn-saveSVG pull-right" id="btn-trainingSVG">分享圖表</button></div>
                     <div class="block-body">
                         <div class="block-thumb" id="block-bodyfat-thumb"></div>
                     </div>

@@ -58,11 +58,31 @@ body {
     margin-bottom: 0px;
 }
 
+.btn-default {
+    height: 100%;
+    line-height: 1.2;
+}
+.btn-flat {
+    background: rgba(0, 0, 0, 0);
+    color: $fontColor;
+    border: 1px #ccc solid;
+    &:hover {
+        color: $fontColor;
+    }
+    &:focus {
+        color: $fontColor;
+    }
+}
+
 
 /* 覆寫bootstrap */
 
 
 /* 首頁block */
+
+.unscroll {
+    overflow: hidden;
+}
 
 .block-outer {
     height: 290px;
@@ -221,3 +241,215 @@ body {
 
 
 /* 會員結尾 */
+
+
+/* 最新消息 */
+
+.scroller {
+    overflow: auto;
+    position: absolute;
+    left: 0;
+    top: 30px;
+    bottom: 0;
+    width: 100%;
+}
+
+.block-news-list {
+    width: 100%;
+    height: 50px;
+    padding: 5px;
+    border-bottom: 1px #9f9f9f solid;
+    line-height: 30px;
+    cursor: pointer;
+    >div {
+        float: left;
+    }
+    &:hover {
+        background: $blockHoverColor;
+    }
+    &:last-child {
+        border: none;
+    }
+}
+
+
+/* 最新消息結尾 */
+
+
+/* 名人榜 */
+
+.block-fame {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.block-fame-list {
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    position: absolute;
+    @include transition(all, 0.3s, ease-in-out);
+    &.opacity {
+        opacity: 1;
+    }
+    &.left {
+        left: -120%;
+    }
+    &.active {
+        left: 0;
+    }
+    &.right {
+        left: 120%;
+    }
+}
+
+.block-fame-title {
+    width: 100%;
+    height: 20%;
+    text-align: center;
+    font-size: 24px;
+    line-height: 50px;
+}
+
+.block-fame-thumb {
+    width: 100%;
+    height: 60%;
+    padding-left: calc(50% - 65px);
+    >img {
+        width: 130px;
+        height: 130px;
+        @include border-radius(50%);
+    }
+}
+
+.block-fame-name {
+    width: 100%;
+    height: 20%;
+    text-align: center;
+    font-size: 20px;
+}
+
+
+/* 名人榜結尾 */
+
+/* 推薦課程 */
+.block-course-outer{
+    width:100%;
+    height:100%;
+    left:0;
+    top:0;
+    position: fixed;
+    background:rgba(0,0,0,0.5);
+    @include transition(all,0.3s,ease-in);
+    &.active{
+    }
+}
+.block-course-inner{
+    width:50%;
+    height:80%;
+    left:25%;
+    top:10%;
+    position: fixed;
+    color:$fontColor;
+    box-shadow:$shadow3;
+    opacity:0;
+    @include transition(all,0.3s,ease-in);
+    &.active{
+        opacity:1;
+    }
+    >.block-body{
+        overflow:hidden;
+        position: relative;
+    }
+}
+
+.course-scroller {
+    overflow:auto;
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width:100%;
+    @include transition(all,0.3s,ease-in);
+    &.active{
+        left:-100%;
+    }
+}
+
+.course-list{
+    padding:10px;
+}
+.course-position{
+    height:30px;
+    padding:12px;
+    &:hover{
+        background:$blockHoverColor;
+        cursor:pointer;
+    }
+}
+.position-detail{
+    width:100%;
+    height:100%;
+    left:120%;
+    top:0;
+    position: relative;
+    @include transition(all,0.3s,ease-in);
+    &.active{
+        left:0;
+    }
+}
+/* 推薦課程結尾 */
+/* 詳細block */
+
+.block-detail-outer {
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    left: 0;
+    top: -1000%;
+    @include transition(all, 1s, ease-in, 1s);
+    &.active {
+        top: 0;
+    }
+}
+
+.block-detail {
+    height: 90%;
+    width: 80%;
+    left: 10%;
+    position: fixed;
+    top: -1000%;
+    color: $fontColor;
+    background: $blockColor;
+    @include border-radius(1.5%);
+    @include transition(all, 1s, ease-in, 1s);
+    &.active {
+        top: 5%;
+    }
+}
+
+.block-detail>.block-body>div {
+    padding: 15px;
+}
+
+.title {
+    left: 5px;
+    position: absolute;
+}
+
+.back {
+    right: 5px;
+    position: absolute;
+    cursor: pointer;
+}
+
+
+/* detail3 */
+
+#detail3-main-iframe {
+    width: 100%;
+    height: 100%;
+}

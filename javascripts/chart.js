@@ -1,11 +1,14 @@
 //TODO:參數增加data傳入
-function setChart(ChartName, targetId) {
+function setChart(ChartName, targetId, save) {
     var target = $('#' + targetId);
     //肌力變化-公斤
     if (ChartName == "1rm") {
         target.highcharts({
             chart: {
                 type: 'spline'
+            },
+            exporting: {
+                enabled: false
             },
             title: {
                 text: '肌力變化-公斤',
@@ -55,6 +58,9 @@ function setChart(ChartName, targetId) {
         target.highcharts({
             chart: {
                 type: 'spline'
+            },
+            exporting: {
+                enabled: false
             },
             title: {
                 text: '肌力變化-百分比',
@@ -108,6 +114,9 @@ function setChart(ChartName, targetId) {
             chart: {
                 type: 'bar'
             },
+            exporting: {
+                enabled: false
+            },
             title: {
                 text: '肌力變化-訓練動作'
             },
@@ -152,6 +161,9 @@ function setChart(ChartName, targetId) {
         target.highcharts({
             chart: {
                 type: 'spline'
+            },
+            exporting: {
+                enabled: false
             },
             title: {
                 text: '肌耐力變化-公斤',
@@ -201,6 +213,9 @@ function setChart(ChartName, targetId) {
         target.highcharts({
             chart: {
                 type: 'spline'
+            },
+            exporting: {
+                enabled: false
             },
             title: {
                 text: '肌耐力變化-百分比',
@@ -253,6 +268,9 @@ function setChart(ChartName, targetId) {
         target.highcharts({
             chart: {
                 type: 'bar'
+            },
+            exporting: {
+                enabled: false
             },
             title: {
                 text: '肌耐力變化-訓練動作'
@@ -310,6 +328,9 @@ function setChart(ChartName, targetId) {
         target.highcharts({
             chart: {
                 type: 'spline'
+            },
+            exporting: {
+                enabled: false
             },
             title: {
                 text: '體脂變化-原始百分比',
@@ -409,6 +430,9 @@ function setChart(ChartName, targetId) {
             chart: {
                 type: 'spline'
             },
+            exporting: {
+                enabled: false
+            },
             title: {
                 text: '體脂變化-變化百分比',
                 x: -20 //center
@@ -461,6 +485,9 @@ function setChart(ChartName, targetId) {
             chart: {
                 type: 'bar'
             },
+            exporting: {
+                enabled: false
+            },
             title: {
                 text: '訓練動作之體脂變化'
             },
@@ -505,6 +532,9 @@ function setChart(ChartName, targetId) {
         target.highcharts({
             chart: {
                 type: 'bar'
+            },
+            exporting: {
+                enabled: false
             },
             title: {
                 text: '訓練動作之肌肉成長'
@@ -553,6 +583,9 @@ function setChart(ChartName, targetId) {
         target.highcharts({
             chart: {
                 type: 'areaspline'
+            },
+            exporting: {
+                enabled: false
             },
             title: {
                 text: '肌肉疲勞'
@@ -606,6 +639,9 @@ function setChart(ChartName, targetId) {
         target.highcharts({
             chart: {
                 tpye: 'spline'
+            },
+            exporting: {
+                enabled: false
             },
             title: {
                 text: '肌肉出力百分比'
@@ -661,6 +697,9 @@ function setChart(ChartName, targetId) {
             chart: {
                 type: 'bar'
             },
+            exporting: {
+                enabled: false
+            },
             title: {
                 text: '訓練成效之綜合指標'
             },
@@ -710,6 +749,9 @@ function setChart(ChartName, targetId) {
                 polar: true,
                 type: 'line'
             },
+            exporting: {
+                enabled: false
+            },
             title: {
                 text: null,
                 x: -80
@@ -750,6 +792,9 @@ function setChart(ChartName, targetId) {
         target.highcharts({
             chart: {
                 type: 'column'
+            },
+            exporting: {
+                enabled: false
             },
             title: {
                 text: null,
@@ -792,6 +837,9 @@ function setChart(ChartName, targetId) {
             chart: {
                 type: 'spline'
             },
+            exporting: {
+                enabled: false
+            },
             title: {
                 text: null,
                 x: -20 //center
@@ -832,6 +880,9 @@ function setChart(ChartName, targetId) {
         target.highcharts({
             chart: {
                 type: 'spline'
+            },
+            exporting: {
+                enabled: false
             },
             title: {
                 text: null,
@@ -874,6 +925,9 @@ function setChart(ChartName, targetId) {
             chart: {
                 type: 'scatter',
                 zoomType: 'xy'
+            },
+            exporting: {
+                enabled: false
             },
             title: {
                 text: null
@@ -1474,6 +1528,9 @@ function setChart(ChartName, targetId) {
                         }, 500);
                     }
                 }
+            },
+            exporting: {
+                enabled: false
             },
             title: {
                 text: null
