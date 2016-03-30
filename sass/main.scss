@@ -40,16 +40,6 @@ body {
     height: 100%;
 }
 
-.row {
-    width: 100%;
-    height: 90%;
-    margin-top: 30px;
-    &.filter {
-        filter: blur(10px);
-        -webkit-filter: blur(10px);
-    }
-}
-
 .form-control {
     margin: 5px;
 }
@@ -62,6 +52,7 @@ body {
     height: 100%;
     line-height: 1.2;
 }
+
 .btn-flat {
     background: rgba(0, 0, 0, 0);
     color: $fontColor;
@@ -84,6 +75,21 @@ body {
     overflow: hidden;
 }
 
+.block-container {
+    margin-top: 30px;
+    width: 80%;
+    position: absolute;
+    top: 0;
+    left: 10%;
+    @include transition(all,0.5s,ease-in);
+    &.gotop{
+        top:300%;
+    }
+    &.ontop{
+        display:none;
+    }
+}
+
 .block-outer {
     height: 290px;
     color: $fontColor;
@@ -91,49 +97,15 @@ body {
 }
 
 .block-inner {
-    width: 90%;
-    position: absolute;
+    width: 100%;
+    height: 100%;
+    position: relative;
     background: $blockColor;
-    @include transition(all, 0.7s, ease-in);
+    @include transition(all, 0.3s, ease-in);
     @include border-radius(1.5%);
-    &.gotop {
-        z-index: 1;
-        top: 1000%;
-    }
-    &.ontop {
-        display: none;
-    }
     &.opacity {
         opacity: (0.6);
     }
-}
-
-.block-inner-1 {
-    height: 100%;
-    top: 0;
-}
-
-.block-inner-2 {
-    width: 95%;
-    height: 100%;
-    top: 0;
-    &:hover {
-        box-shadow: $shadow3;
-    }
-}
-
-.block-inner-3 {
-    width: 90%;
-    height: 100%;
-    left: 5%;
-    top: 0;
-}
-
-.block-inner-4 {
-    width: 92.5%;
-    height: 100%;
-    left: 0;
-    top: 0;
 }
 
 .block-header {
@@ -335,73 +307,81 @@ body {
 
 /* 名人榜結尾 */
 
+
 /* 推薦課程 */
-.block-course-outer{
-    width:100%;
-    height:100%;
-    left:0;
-    top:0;
+
+.block-course-outer {
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
     position: fixed;
-    background:rgba(0,0,0,0.5);
-    @include transition(all,0.3s,ease-in);
-    &.active{
-    }
+    background: rgba(0, 0, 0, 0.5);
+    @include transition(all, 0.3s, ease-in);
+    &.active {}
 }
-.block-course-inner{
-    width:50%;
-    height:80%;
-    left:25%;
-    top:10%;
+
+.block-course-inner {
+    width: 50%;
+    height: 80%;
+    left: 25%;
+    top: 10%;
     position: fixed;
-    color:$fontColor;
-    box-shadow:$shadow3;
-    opacity:0;
-    @include transition(all,0.3s,ease-in);
-    &.active{
-        opacity:1;
+    color: $fontColor;
+    box-shadow: $shadow3;
+    opacity: 0;
+    @include transition(all, 0.3s, ease-in);
+    &.active {
+        opacity: 1;
     }
-    >.block-body{
-        overflow:hidden;
+    >.block-body {
+        overflow: hidden;
         position: relative;
     }
 }
 
 .course-scroller {
-    overflow:auto;
+    overflow: auto;
     position: absolute;
     left: 0;
     top: 0;
     bottom: 0;
-    width:100%;
-    @include transition(all,0.3s,ease-in);
-    &.active{
-        left:-100%;
+    width: 100%;
+    @include transition(all, 0.3s, ease-in);
+    &.active {
+        left: -100%;
     }
 }
 
-.course-list{
-    padding:10px;
+.course-list {
+    padding: 10px;
 }
-.course-position{
-    height:30px;
-    padding:12px;
-    &:hover{
-        background:$blockHoverColor;
-        cursor:pointer;
+
+.course-position {
+    height: 30px;
+    padding: 12px;
+    &:hover {
+        background: $blockHoverColor;
+        cursor: pointer;
     }
 }
-.position-detail{
-    width:100%;
-    height:100%;
-    left:120%;
-    top:0;
+
+.position-detail {
+    width: 100%;
+    height: 100%;
+    left: 120%;
+    top: 0;
     position: relative;
-    @include transition(all,0.3s,ease-in);
-    &.active{
-        left:0;
+    @include transition(all, 0.3s, ease-in);
+    &.active {
+        left: 0;
     }
 }
+
+
 /* 推薦課程結尾 */
+
+
 /* 詳細block */
 
 .block-detail-outer {

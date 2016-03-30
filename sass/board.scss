@@ -40,18 +40,18 @@ body {
     height: 100%;
 }
 
-.row {
-    width: 100%;
-    margin-top: 30px;
-    &.filter {
-        filter: blur(10px);
-        -webkit-filter: blur(10px);
-    }
-}
-
 .btn:focus,
 .btn:active {
     color: inherit;
+}
+
+.btn.active.focus,
+.btn.active:focus,
+.btn.focus,
+.btn:active.focus,
+.btn:active:focus,
+.btn:focus {
+    outline: none;
 }
 
 .btn-flat {
@@ -67,26 +67,32 @@ body {
 }
 
 .btn-options {
-    width: 82px;
-    height: 40px;
+    background: #f0ad4e;
+    border-color: #eea236;
     color: $fontColor;
-    &.active {
-        color: #333;
-        box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125);
-        outline: 5px auto -webkit-focus-ring-color
+    box-shadow:$shadow1;
+    &.active,&.active:hover {
+        background: #d58512;
+        border-color: #985f0d;
+        color: $fontColor;
+    }
+    &:hover {
+        background: #ec971f;
+        border-color: #d58512;
+        color: $fontColor;
     }
 }
 
 .btn-saveSVG {
     background: #3a5795;
     color: $fontColor;
-    height:100%;
-    line-height:1.2;
-    &:hover{
-        color:$fontColor;
+    height: 100%;
+    line-height: 1.2;
+    &:hover {
+        color: $fontColor;
     }
-    &:focus{
-        color:$fontColor;
+    &:focus {
+        color: $fontColor;
     }
 }
 
@@ -104,6 +110,25 @@ body {
     overflow: hidden;
 }
 
+.block-container {
+    margin-top: 30px;
+    width: 80%;
+    position: absolute;
+    top: 0;
+    left: 10%;
+    @include transition(all, 0.5s, ease-in);
+    &.gotop {
+        top: 300%;
+    }
+    &.ontop {
+        display: none;
+    }
+    &.filter {
+        filter: blur(5px);
+        -webkit-filter: blur(5px);
+    }
+}
+
 .block-outer {
     height: 290px;
     color: $fontColor;
@@ -111,21 +136,14 @@ body {
 }
 
 .block-inner {
-    width: 90%;
-    top: 0;
-    position: absolute;
+    width: 100%;
+    height: 100%;
+    position: relative;
     background: $blockColor;
-    @include transition(all, 0.5s, ease-in);
+    @include transition(all, 0.3s, ease-in);
     @include border-radius(1.5%);
-    &.gotop {
-        z-index: 1;
-        top: 200%;
-    }
-    &.ontop {
-        display: none;
-    }
     &.opacity {
-        // opacity: (0.6);
+        opacity: (0.6);
     }
     &.clickable:hover {
         background: $blockHoverColor;
@@ -134,30 +152,6 @@ body {
         background-repeat: no-repeat;
         background-position: center;
     }
-}
-
-.block-inner-1 {
-    height: 100%;
-}
-
-.block-inner-2 {
-    width: 95%;
-    height: 100%;
-    &:hover {
-        box-shadow: $shadow3;
-    }
-}
-
-.block-inner-3 {
-    width: 90%;
-    height: 100%;
-    left: 5%;
-}
-
-.block-inner-4 {
-    width: 92.5%;
-    height: 100%;
-    left: 0;
 }
 
 .block-header {
@@ -175,8 +169,10 @@ body {
 }
 
 .block-thumb {
-    height: 100%;
-    width: 100%;
+    height: 98%;
+    width: 98%;
+    margin: 0 auto;
+    margin-top: 0.4%;
 }
 
 
@@ -189,7 +185,7 @@ body {
     line-height: 30px;
     background: $blockColor;
     border: 1px $chartColor solid;
-    top: -75%;
+    left: 25%;
     position: relative;
     opacity: 0;
     z-index: 1;
@@ -203,17 +199,17 @@ body {
 }
 
 #training-message {
-    left: 0;
+    top: -60%;
     &.active {
-        left: -60%;
+        top: 10%;
         opacity: 1;
     }
 }
 
 #grow-message {
-    left: 50%;
+    top: -80%;
     &.active {
-        left: 106%;
+        top: -165%;
         opacity: 1;
     }
 }
@@ -388,7 +384,6 @@ body {
 }
 
 .options {
-    max-width: 82px;
     height: 100%;
     float: left;
     margin: 8px;

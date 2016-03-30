@@ -23,83 +23,84 @@ body {
 }
 
 /* line 43, ../sass/main.scss */
-.row {
-  width: 100%;
-  height: 90%;
-  margin-top: 30px;
-}
-/* line 47, ../sass/main.scss */
-.row.filter {
-  filter: blur(10px);
-  -webkit-filter: blur(10px);
-}
-
-/* line 53, ../sass/main.scss */
 .form-control {
   margin: 5px;
 }
 
-/* line 57, ../sass/main.scss */
+/* line 47, ../sass/main.scss */
 .form-group {
   margin-bottom: 0px;
 }
 
-/* line 61, ../sass/main.scss */
+/* line 51, ../sass/main.scss */
 .btn-default {
   height: 100%;
   line-height: 1.2;
 }
 
-/* line 65, ../sass/main.scss */
+/* line 56, ../sass/main.scss */
 .btn-flat {
   background: transparent;
   color: #FFFFFF;
   border: 1px #ccc solid;
 }
-/* line 69, ../sass/main.scss */
+/* line 60, ../sass/main.scss */
 .btn-flat:hover {
   color: #FFFFFF;
 }
-/* line 72, ../sass/main.scss */
+/* line 63, ../sass/main.scss */
 .btn-flat:focus {
   color: #FFFFFF;
 }
 
 /* 覆寫bootstrap */
 /* 首頁block */
-/* line 83, ../sass/main.scss */
+/* line 74, ../sass/main.scss */
 .unscroll {
   overflow: hidden;
 }
 
-/* line 87, ../sass/main.scss */
+/* line 78, ../sass/main.scss */
+.block-container {
+  margin-top: 30px;
+  width: 80%;
+  position: absolute;
+  top: 0;
+  left: 10%;
+  -moz-transition: all, 0.5s, ease-in;
+  -o-transition: all, 0.5s, ease-in;
+  -webkit-transition: all, 0.5s, ease-in;
+  transition: all, 0.5s, ease-in;
+}
+/* line 85, ../sass/main.scss */
+.block-container.gotop {
+  top: 300%;
+}
+/* line 88, ../sass/main.scss */
+.block-container.ontop {
+  display: none;
+}
+
+/* line 93, ../sass/main.scss */
 .block-outer {
   height: 290px;
   color: #FFFFFF;
   margin-bottom: 30px;
 }
 
-/* line 93, ../sass/main.scss */
+/* line 99, ../sass/main.scss */
 .block-inner {
-  width: 90%;
-  position: absolute;
+  width: 100%;
+  height: 100%;
+  position: relative;
   background: #3d3d3d;
-  -moz-transition: all, 0.7s, ease-in;
-  -o-transition: all, 0.7s, ease-in;
-  -webkit-transition: all, 0.7s, ease-in;
-  transition: all, 0.7s, ease-in;
+  -moz-transition: all, 0.3s, ease-in;
+  -o-transition: all, 0.3s, ease-in;
+  -webkit-transition: all, 0.3s, ease-in;
+  transition: all, 0.3s, ease-in;
   -moz-border-radius: 1.5%;
   -webkit-border-radius: 1.5%;
   border-radius: 1.5%;
-}
-/* line 99, ../sass/main.scss */
-.block-inner.gotop {
-  z-index: 1;
-  top: 1000%;
-}
-/* line 103, ../sass/main.scss */
-.block-inner.ontop {
-  display: none;
 }
 /* line 106, ../sass/main.scss */
 .block-inner.opacity {
@@ -107,39 +108,6 @@ body {
 }
 
 /* line 111, ../sass/main.scss */
-.block-inner-1 {
-  height: 100%;
-  top: 0;
-}
-
-/* line 116, ../sass/main.scss */
-.block-inner-2 {
-  width: 95%;
-  height: 100%;
-  top: 0;
-}
-/* line 120, ../sass/main.scss */
-.block-inner-2:hover {
-  box-shadow: 0 12px 15px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
-}
-
-/* line 125, ../sass/main.scss */
-.block-inner-3 {
-  width: 90%;
-  height: 100%;
-  left: 5%;
-  top: 0;
-}
-
-/* line 132, ../sass/main.scss */
-.block-inner-4 {
-  width: 92.5%;
-  height: 100%;
-  left: 0;
-  top: 0;
-}
-
-/* line 139, ../sass/main.scss */
 .block-header {
   height: 30px;
   width: 100%;
@@ -148,14 +116,14 @@ body {
   padding-left: 5px;
 }
 
-/* line 147, ../sass/main.scss */
+/* line 119, ../sass/main.scss */
 .block-body {
   height: calc(100% - 30px);
   height: -webkit-calc(100% - 30px);
   width: 100%;
 }
 
-/* line 153, ../sass/main.scss */
+/* line 125, ../sass/main.scss */
 .block-thumb {
   height: 100%;
   width: 100%;
@@ -163,18 +131,18 @@ body {
 
 /* 首頁block結尾 */
 /* 會員 */
-/* line 164, ../sass/main.scss */
+/* line 136, ../sass/main.scss */
 .block-login-input {
   width: 100%;
   height: 80%;
   padding: 24px;
 }
-/* line 168, ../sass/main.scss */
+/* line 140, ../sass/main.scss */
 .block-login-input > input {
   margin: 8px auto;
 }
 
-/* line 173, ../sass/main.scss */
+/* line 145, ../sass/main.scss */
 .block-register-input {
   width: 100%;
   height: 20%;
@@ -182,27 +150,27 @@ body {
   text-align: right;
 }
 
-/* line 180, ../sass/main.scss */
+/* line 152, ../sass/main.scss */
 #btn-login,
 #btn-register,
 #btn-board {
   background: transparent;
   color: #FFFFFF;
 }
-/* line 185, ../sass/main.scss */
+/* line 157, ../sass/main.scss */
 #btn-login:hover,
 #btn-register:hover,
 #btn-board:hover {
   color: #FFFFFF;
 }
-/* line 188, ../sass/main.scss */
+/* line 160, ../sass/main.scss */
 #btn-login:focus,
 #btn-register:focus,
 #btn-board:focus {
   color: #FFFFFF;
 }
 
-/* line 193, ../sass/main.scss */
+/* line 165, ../sass/main.scss */
 #btn-login {
   margin-top: 20px;
   border: 1px #fff solid;
@@ -210,24 +178,24 @@ body {
   font-size: 16px;
 }
 
-/* line 200, ../sass/main.scss */
+/* line 172, ../sass/main.scss */
 #btn-register {
   text-decoration: underline;
 }
 
-/* line 204, ../sass/main.scss */
+/* line 176, ../sass/main.scss */
 .block-user {
   width: 100%;
   height: 100%;
   padding: 15px;
 }
 
-/* line 210, ../sass/main.scss */
+/* line 182, ../sass/main.scss */
 .user-photo {
   width: 100%;
   height: 50%;
 }
-/* line 213, ../sass/main.scss */
+/* line 185, ../sass/main.scss */
 .user-photo img {
   width: 115px;
   height: 115px;
@@ -236,7 +204,7 @@ body {
   margin: 0 auto;
 }
 
-/* line 222, ../sass/main.scss */
+/* line 194, ../sass/main.scss */
 .user-name {
   width: 100%;
   height: 30%;
@@ -246,13 +214,13 @@ body {
   font-size: 24px;
 }
 
-/* line 231, ../sass/main.scss */
+/* line 203, ../sass/main.scss */
 .user-board {
   width: 100%;
   height: 20%;
 }
 
-/* line 236, ../sass/main.scss */
+/* line 208, ../sass/main.scss */
 #btn-board {
   width: 100%;
   height: 100%;
@@ -261,7 +229,7 @@ body {
 
 /* 會員結尾 */
 /* 最新消息 */
-/* line 248, ../sass/main.scss */
+/* line 220, ../sass/main.scss */
 .news-scroller {
   overflow: auto;
   position: absolute;
@@ -271,7 +239,7 @@ body {
   width: 100%;
 }
 
-/* line 257, ../sass/main.scss */
+/* line 229, ../sass/main.scss */
 .block-news-list {
   width: 100%;
   height: 50px;
@@ -280,29 +248,29 @@ body {
   line-height: 30px;
   cursor: pointer;
 }
-/* line 264, ../sass/main.scss */
+/* line 236, ../sass/main.scss */
 .block-news-list > div {
   float: left;
 }
-/* line 267, ../sass/main.scss */
+/* line 239, ../sass/main.scss */
 .block-news-list:hover {
   background: #4f4f4f;
 }
-/* line 270, ../sass/main.scss */
+/* line 242, ../sass/main.scss */
 .block-news-list:last-child {
   border: none;
 }
 
 /* 最新消息結尾 */
 /* 名人榜 */
-/* line 281, ../sass/main.scss */
+/* line 253, ../sass/main.scss */
 .block-fame {
   width: 100%;
   height: 100%;
   position: relative;
 }
 
-/* line 287, ../sass/main.scss */
+/* line 259, ../sass/main.scss */
 .block-fame-list {
   width: 100%;
   height: 100%;
@@ -315,24 +283,24 @@ body {
   -webkit-transition: all, 0.3s, ease-in-out;
   transition: all, 0.3s, ease-in-out;
 }
-/* line 295, ../sass/main.scss */
+/* line 267, ../sass/main.scss */
 .block-fame-list.opacity {
   opacity: 1;
 }
-/* line 298, ../sass/main.scss */
+/* line 270, ../sass/main.scss */
 .block-fame-list.left {
   left: -120%;
 }
-/* line 301, ../sass/main.scss */
+/* line 273, ../sass/main.scss */
 .block-fame-list.active {
   left: 0;
 }
-/* line 304, ../sass/main.scss */
+/* line 276, ../sass/main.scss */
 .block-fame-list.right {
   left: 120%;
 }
 
-/* line 309, ../sass/main.scss */
+/* line 281, ../sass/main.scss */
 .block-fame-title {
   width: 100%;
   height: 20%;
@@ -341,13 +309,13 @@ body {
   line-height: 50px;
 }
 
-/* line 317, ../sass/main.scss */
+/* line 289, ../sass/main.scss */
 .block-fame-thumb {
   width: 100%;
   height: 60%;
   padding-left: calc(50% - 65px);
 }
-/* line 321, ../sass/main.scss */
+/* line 293, ../sass/main.scss */
 .block-fame-thumb > img {
   width: 130px;
   height: 130px;
@@ -356,7 +324,7 @@ body {
   border-radius: 50%;
 }
 
-/* line 328, ../sass/main.scss */
+/* line 300, ../sass/main.scss */
 .block-fame-name {
   width: 100%;
   height: 20%;
@@ -366,7 +334,7 @@ body {
 
 /* 名人榜結尾 */
 /* 推薦課程 */
-/* line 339, ../sass/main.scss */
+/* line 313, ../sass/main.scss */
 .block-course-outer {
   width: 100%;
   height: 100%;
@@ -380,7 +348,7 @@ body {
   transition: all, 0.3s, ease-in;
 }
 
-/* line 350, ../sass/main.scss */
+/* line 324, ../sass/main.scss */
 .block-course-inner {
   width: 50%;
   height: 80%;
@@ -395,17 +363,17 @@ body {
   -webkit-transition: all, 0.3s, ease-in;
   transition: all, 0.3s, ease-in;
 }
-/* line 360, ../sass/main.scss */
+/* line 334, ../sass/main.scss */
 .block-course-inner.active {
   opacity: 1;
 }
-/* line 363, ../sass/main.scss */
+/* line 337, ../sass/main.scss */
 .block-course-inner > .block-body {
   overflow: hidden;
   position: relative;
 }
 
-/* line 369, ../sass/main.scss */
+/* line 343, ../sass/main.scss */
 .course-scroller {
   overflow: auto;
   position: absolute;
@@ -418,28 +386,28 @@ body {
   -webkit-transition: all, 0.3s, ease-in;
   transition: all, 0.3s, ease-in;
 }
-/* line 377, ../sass/main.scss */
+/* line 351, ../sass/main.scss */
 .course-scroller.active {
   left: -100%;
 }
 
-/* line 382, ../sass/main.scss */
+/* line 356, ../sass/main.scss */
 .course-list {
   padding: 10px;
 }
 
-/* line 385, ../sass/main.scss */
+/* line 360, ../sass/main.scss */
 .course-position {
   height: 30px;
   padding: 12px;
 }
-/* line 388, ../sass/main.scss */
+/* line 363, ../sass/main.scss */
 .course-position:hover {
   background: #4f4f4f;
   cursor: pointer;
 }
 
-/* line 393, ../sass/main.scss */
+/* line 369, ../sass/main.scss */
 .position-detail {
   width: 100%;
   height: 100%;
@@ -451,14 +419,14 @@ body {
   -webkit-transition: all, 0.3s, ease-in;
   transition: all, 0.3s, ease-in;
 }
-/* line 400, ../sass/main.scss */
+/* line 376, ../sass/main.scss */
 .position-detail.active {
   left: 0;
 }
 
 /* 推薦課程結尾 */
 /* 詳細block */
-/* line 407, ../sass/main.scss */
+/* line 387, ../sass/main.scss */
 .block-detail-outer {
   height: 100%;
   width: 100%;
@@ -470,12 +438,12 @@ body {
   -webkit-transition: all, 1s, ease-in, 1s;
   transition: all, 1s, ease-in, 1s;
 }
-/* line 414, ../sass/main.scss */
+/* line 394, ../sass/main.scss */
 .block-detail-outer.active {
   top: 0;
 }
 
-/* line 419, ../sass/main.scss */
+/* line 399, ../sass/main.scss */
 .block-detail {
   height: 90%;
   width: 80%;
@@ -492,23 +460,23 @@ body {
   -webkit-transition: all, 1s, ease-in, 1s;
   transition: all, 1s, ease-in, 1s;
 }
-/* line 429, ../sass/main.scss */
+/* line 409, ../sass/main.scss */
 .block-detail.active {
   top: 5%;
 }
 
-/* line 434, ../sass/main.scss */
+/* line 414, ../sass/main.scss */
 .block-detail > .block-body > div {
   padding: 15px;
 }
 
-/* line 438, ../sass/main.scss */
+/* line 418, ../sass/main.scss */
 .title {
   left: 5px;
   position: absolute;
 }
 
-/* line 443, ../sass/main.scss */
+/* line 423, ../sass/main.scss */
 .back {
   right: 5px;
   position: absolute;
@@ -516,7 +484,7 @@ body {
 }
 
 /* detail3 */
-/* line 452, ../sass/main.scss */
+/* line 432, ../sass/main.scss */
 #detail3-main-iframe {
   width: 100%;
   height: 100%;

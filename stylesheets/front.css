@@ -6,7 +6,7 @@ body {
   overflow: hidden;
 }
 
-/* line 9, ../sass/front.scss */
+/* line 10, ../sass/front.scss */
 .block-front {
   width: 100%;
   height: 100%;
@@ -15,34 +15,51 @@ body {
   position: absolute;
 }
 
-/* line 16, ../sass/front.scss */
-.block-index {
-  width: 200px;
-  height: 200px;
+/* line 19, ../sass/front.scss */
+.block-video.filter {
+  filter: blur(5px);
+  -webkit-filter: blur(5px);
+}
+
+/* line 25, ../sass/front.scss */
+.block-index-outer {
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
   position: fixed;
-  top: 120%;
-  left: calc(50% - 100px);
+  top: 0;
+  left: 0;
+  opacity: 0;
   -moz-transition: all, 0.7s, ease-in;
   -o-transition: all, 0.7s, ease-in;
   -webkit-transition: all, 0.7s, ease-in;
   transition: all, 0.7s, ease-in;
 }
-/* line 23, ../sass/front.scss */
-.block-index.active {
-  top: 80%;
+/* line 34, ../sass/front.scss */
+.block-index-outer.active {
+  opacity: 1;
 }
 
-/* line 27, ../sass/front.scss */
+/* line 39, ../sass/front.scss */
+.block-index-inner {
+  width: 200px;
+  height: 200px;
+  position: fixed;
+  top: 45%;
+  left: calc(50% - 100px);
+}
+
+/* line 47, ../sass/front.scss */
 .btn-flat {
   background: transparent;
   color: #ffffff;
   border: 1px #ccc solid;
 }
-/* line 31, ../sass/front.scss */
+/* line 51, ../sass/front.scss */
 .btn-flat:hover {
   color: #ffffff;
 }
-/* line 34, ../sass/front.scss */
+/* line 54, ../sass/front.scss */
 .btn-flat:focus {
   color: #ffffff;
 }

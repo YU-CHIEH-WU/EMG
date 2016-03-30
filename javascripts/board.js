@@ -62,7 +62,7 @@ app.controller('blockController', ['$scope', '$http', '$timeout', '$location', '
             if (setting == 'grow') {
                 title = '肌肉成長詳細資訊';
                 chart1 = '1rm';
-                chart2 = 'pmvc';
+                chart2 = '15rm';
                 chart3 = 'growWays';
             };
             // 設定detail1圖表
@@ -154,7 +154,7 @@ app.controller('blockController', ['$scope', '$http', '$timeout', '$location', '
 
         // 會員
         $scope.userName = '使用者';
-        $scope.userPhoto = 'http://163.17.136.197:8080/EMG/images/profile.jpg';
+        $scope.userPhoto = 'images/profile.jpg';
         // 延遲載入使用者帳號並取得使用者資料 
         $timeout(function() {
             console.log($scope.userAccount);

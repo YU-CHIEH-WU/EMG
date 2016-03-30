@@ -1,0 +1,91 @@
+@charset "UTF-8";
+/* 設定變數 */
+/* line 17, ../sass/test.scss */
+.block-course-outer {
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  position: fixed;
+  background: rgba(0, 0, 0, 0.5);
+  -moz-transition: all, 0.3s, ease-in;
+  -o-transition: all, 0.3s, ease-in;
+  -webkit-transition: all, 0.3s, ease-in;
+  transition: all, 0.3s, ease-in;
+}
+
+/* line 28, ../sass/test.scss */
+.block-course-inner {
+  width: 50%;
+  height: 80%;
+  left: 25%;
+  top: 10%;
+  position: fixed;
+  color: #FFFFFF;
+  box-shadow: 0 12px 15px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+  opacity: 0;
+  -moz-transition: all, 0.3s, ease-in;
+  -o-transition: all, 0.3s, ease-in;
+  -webkit-transition: all, 0.3s, ease-in;
+  transition: all, 0.3s, ease-in;
+}
+/* line 38, ../sass/test.scss */
+.block-course-inner.active {
+  opacity: 1;
+}
+/* line 41, ../sass/test.scss */
+.block-course-inner > .block-body {
+  overflow: hidden;
+  position: relative;
+}
+
+/* line 47, ../sass/test.scss */
+.scroller {
+  overflow: auto;
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  -moz-transition: all, 0.3s, ease-in;
+  -o-transition: all, 0.3s, ease-in;
+  -webkit-transition: all, 0.3s, ease-in;
+  transition: all, 0.3s, ease-in;
+}
+/* line 55, ../sass/test.scss */
+.scroller.active {
+  left: -100%;
+}
+
+/* line 60, ../sass/test.scss */
+.course-list {
+  padding: 10px;
+}
+
+/* line 63, ../sass/test.scss */
+.course-position {
+  height: 30px;
+  padding: 12px;
+}
+/* line 66, ../sass/test.scss */
+.course-position:hover {
+  background: #4f4f4f;
+  cursor: pointer;
+}
+
+/* line 71, ../sass/test.scss */
+.position-detail {
+  width: 100%;
+  height: 100%;
+  left: 120%;
+  top: 0;
+  position: relative;
+  -moz-transition: all, 0.3s, ease-in;
+  -o-transition: all, 0.3s, ease-in;
+  -webkit-transition: all, 0.3s, ease-in;
+  transition: all, 0.3s, ease-in;
+}
+/* line 78, ../sass/test.scss */
+.position-detail.active {
+  left: 0;
+}

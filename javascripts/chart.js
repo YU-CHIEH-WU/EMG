@@ -527,7 +527,7 @@ function setChart(ChartName, targetId, save) {
             }]
         });
     }
-    //訓練動作累積成長
+    //訓練動作相對成長
     if (ChartName == "growWays") {
         target.highcharts({
             chart: {
@@ -537,7 +537,7 @@ function setChart(ChartName, targetId, save) {
                 enabled: false
             },
             title: {
-                text: '訓練動作之肌肉成長'
+                text: '訓練動作之相對肌肉成長'
             },
             xAxis: {
                 categories: ['啞鈴集中彎舉', '啞鈴斜板彎舉', '引體向上', '槓鈴站立彎舉'],
@@ -571,10 +571,10 @@ function setChart(ChartName, targetId, save) {
             },
             series: [{
                 name: '肌力',
-                data: [6, 3, 2, 1]
+                data: [51, 30, 12, 6]
             }, {
                 name: '肌耐力',
-                data: [5, 3, 1, 0]
+                data: [45, 31, 15, 9]
             }]
         });
     }

@@ -3,12 +3,12 @@
  * @author Torstein Honsi
  */
 
-// Load the fonts
-Highcharts.createElement('link', {
-	href: 'http://fonts.googleapis.com/css?family=Unica+One',
-	rel: 'stylesheet',
-	type: 'text/css'
-}, null, document.getElementsByTagName('head')[0]);
+// // Load the fonts
+// Highcharts.createElement('link', {
+// 	href: 'http://fonts.googleapis.com/css?family=Unica+One',
+// 	rel: 'stylesheet',
+// 	type: 'text/css'
+// }, null, document.getElementsByTagName('head')[0]);
 
 Highcharts.theme = {
 	colors: ["#FF9B00", "#FF7541", "#f45b5b", "#7798BF", "#aaeeee", "#ff0066", "#eeaaee",
@@ -16,7 +16,7 @@ Highcharts.theme = {
 	chart: {
 		backgroundColor: null,
 		style: {
-			fontFamily: "'Unica One', sans-serif"
+			fontFamily: "sans-serif"
 		},
 		plotBorderColor: '#606063'
 	},
