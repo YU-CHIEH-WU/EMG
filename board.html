@@ -166,105 +166,110 @@
                 </div>
             </div>
             <div class="block-course-outer" ng-show="isCourseShow" ng-click="hideCourse('continue')">
+            </div>
+            <div class="block-inner block-course-inner" ng-show="isCourseShow" ng-class="{active:isCourseShow}">
+                <div class="block-header"><span class="title">產生個人化課程</span><span class="back" ng-click="hideCourse('quit')"><i class="fa fa-times icon-back"></i></span></div>
+                <div class="block-body">
+                    <div class="course-options" ng-class="courseStatus['options']">
+                        <section class="clearfix option">
+                            <div class="course-title goal-title">選擇訓練目標<i class="fa fa-check icon-success" ng-class="{active:isGoalSet}"></i></div>
+                            <div class="goal-options btn-group">
+                                <div class="options options-strength">
+                                    <button class="btn btn-options btn-lg" ng-class="{active:selectedGoal['strength']}" ng-click="setGoal('肌力')">肌力</button>
+                                </div>
+                                <div class="options options-endurance">
+                                    <button class="btn btn-options btn-lg" ng-class="{active:selectedGoal['endurance']}" ng-click="setGoal('肌耐力')">肌耐力</button>
+                                </div>
                             </div>
-                            <div class="block-inner block-course-inner" ng-show="isCourseShow" ng-class="{active:isCourseShow}">
-                                <div class="block-header"><span class="title">產生個人化課程</span><span class="back" ng-click="hideCourse('quit')"><i class="fa fa-times icon-back"></i></span></div>
-                                <div class="block-body">
-                                    <div class="course-options" ng-class="courseStatus['options']">
-                                        <section class="clearfix option">
-                                            <div class="goal-title">選擇訓鍊目標</div>
-                                            <div class="goal-options btn-group">
-                                                <div class="options options-strength">
-                                                    <button class="btn btn-options btn-lg" ng-class="{active:selectedGoal['strength']}" ng-click="setGoal('肌力')">肌力</button>
-                                                </div>
-                                                <div class="options options-endurance">
-                                                    <button class="btn btn-options btn-lg" ng-class="{active:selectedGoal['endurance']}" ng-click="setGoal('肌耐力')">肌耐力</button>
-                                                </div>
-                                            </div>
-                                        </section>
-                                        <section class="clearfix option">
-                                            <div class="part-title">選擇訓練部位</div>
-                                            <div class="part-options btn-group">
-                                                <div class="options options-chest">
-                                                    <button class="btn btn-options btn-lg" ng-class="activePart['complex']" ng-click="setPart('複合')">複合部位</button>
-                                                </div>
-                                                <div class="options options-chest">
-                                                    <button class="btn btn-options btn-lg" ng-class="activePart['chest']" ng-click="setPart('胸')">胸肌</button>
-                                                </div>
-                                                <div class="options options-back">
-                                                    <button class="btn btn-options btn-lg" ng-class="activePart['back']" ng-click="setPart('背')">背肌</button>
-                                                </div>
-                                                <div class="options options-shoulder">
-                                                    <button class="btn btn-options btn-lg" ng-class="activePart['shoulder']" ng-click="setPart('肩')">肩膀</button>
-                                                </div>
-                                                <div class="options options-belly">
-                                                    <button class="btn btn-options btn-lg" ng-class="activePart['belly']" ng-click="setPart('腹')">腹肌</button>
-                                                </div>
-                                                <div class="options options-foot">
-                                                    <button class="btn btn-options btn-lg" ng-class="activePart['foot']" ng-click="setPart('腳')">腿肌</button>
-                                                </div>
-                                                <div class="options options-two">
-                                                    <button class="btn btn-options btn-lg" ng-class="activePart['two']" ng-click="setPart('肱二頭')">二頭肌</button>
-                                                </div>
-                                                <div class="options options-three">
-                                                    <button class="btn btn-options btn-lg" ng-class="activePart['three']" ng-click="setPart('肱三頭')">三頭肌</button>
-                                                </div>
-                                            </div>
-                                        </section>
-                                        <section class="clearfix option">
-                                            <div class="equip-title">選擇擁有的訓練器材</div>
-                                            <div class="equip-option">
-                                                <div class="options">
-                                                    <button class="btn btn-options btn-lg" ng-class="activeEquip[啞鈴]" ng-click="setEquip('啞鈴')">啞鈴</button>
-                                                </div>
-                                                <div class="options">
-                                                    <button class="btn btn-options btn-lg" ng-class="activeEquip['槓鈴']" ng-click="setEquip('槓鈴')">槓鈴</button>
-                                                </div>
-                                                <div class="options">
-                                                    <button class="btn btn-options btn-lg" ng-class="activeEquip['滑輪']" ng-click="setEquip('滑輪')">滑輪</button>
-                                                </div>
-                                            </div>
-                                        </section>
-                                        <section class="clearfix option">
-                                            <button class="btn btn-options btn-lg pull-right" ng-click="createCourse()">產生個人化課程<i class="fa fa-arrow-right"></i></button>
-                                        </section>
-                                    </div>
-                                    <div class="course-preview" ng-class="courseStatus['preview']">
-                                        <div class="scroller">
-                                            <div class="preview-title">
-                                                {{previewTitle}}
-                                            </div>
-                                            <div class="preview-list" ng-repeat="course in previewList">
-                                                <p>{{course.day}}</p>
-                                                <div class="preview-position" ng-repeat="position in course.position" ng-click="showPositionDetail(position.pos)">
-                                                    <p>{{position.pos}}</p>
-                                                </div>
-                                            </div>
-                                            <div class="preview-date clearfix">
-                                                <div class="date-options" ng-repeat="date in previewDate">
-                                                    <div class="options options-date">
-                                                        <button class="btn btn-options" ng-class="activeDate[$index]" ng-click="setDate($index)">
-                                                            <p>{{date.month}}/{{date.day}}</p>
-                                                            <p>{{date.weekday}}</p>
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="preview-confirm clearfix">
-                                                <button class="btn btn-flat" id='btn-confirm' ng-click="courseConfirm()">確認課程</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- 動作詳細 -->
-                                    <div class="course-position" ng-class="courseStatus['position']">
-                                        <p>{{positionName}}</p>
-                                        <p>動作詳細說明（圖解或影片）</p>
-                                        <br>
-                                        <br>
-                                        <button class="btn btn-flat" ng-click="backPreviewList()">返回課程預覽</button>
+                        </section>
+                        <section class="clearfix option">
+                            <div class="course-title part-title">選擇訓練部位<i class="fa fa-check icon-success" ng-class="{active:isPartSet}"></i></div>
+                            <div class="part-options btn-group">
+                                <div class="options options-chest">
+                                    <button class="btn btn-options btn-lg" ng-class="{active:selectedPart['complex']}" ng-click="setPart('複合')">複合部位</button>
+                                </div>
+                                <div class="options options-chest">
+                                    <button class="btn btn-options btn-lg" ng-class="{active:selectedPart['chest']}" ng-click="setPart('胸')">胸肌</button>
+                                </div>
+                                <div class="options options-back">
+                                    <button class="btn btn-options btn-lg" ng-class="{active:selectedPart['back']}" ng-click="setPart('背')">背肌</button>
+                                </div>
+                                <div class="options options-shoulder">
+                                    <button class="btn btn-options btn-lg" ng-class="{active:selectedPart['shoulder']}" ng-click="setPart('肩')">肩膀</button>
+                                </div>
+                                <div class="options options-belly">
+                                    <button class="btn btn-options btn-lg" ng-class="{active:selectedPart['belly']}" ng-click="setPart('腹')">腹肌</button>
+                                </div>
+                                <div class="options options-foot">
+                                    <button class="btn btn-options btn-lg" ng-class="{active:selectedPart['foot']}" ng-click="setPart('腳')">腿肌</button>
+                                </div>
+                                <div class="options options-two">
+                                    <button class="btn btn-options btn-lg" ng-class="{active:selectedPart['two']}" ng-click="setPart('肱二頭')">二頭肌</button>
+                                </div>
+                                <div class="options options-three">
+                                    <button class="btn btn-options btn-lg" ng-class="{active:selectedPart['three']}" ng-click="setPart('肱三頭')">三頭肌</button>
+                                </div>
+                            </div>
+                        </section>
+                        <section class="clearfix option">
+                            <div class="course-title device-title">選擇擁有的訓練器材<i class="fa fa-check icon-success" ng-class="{active:isDeviceSet}"></i></div>
+                            <div class="device-option">
+                                <div class="options">
+                                    <button class="btn btn-options btn-lg" ng-class="{active:selectedDevice['dumbbell']}" ng-click="setDevice('啞鈴')">啞鈴</button>
+                                </div>
+                                <div class="options">
+                                    <button class="btn btn-options btn-lg" ng-class="{active:selectedDevice['barbell']}" ng-click="setDevice('槓鈴')">槓鈴</button>
+                                </div>
+                                <div class="options">
+                                    <button class="btn btn-options btn-lg" ng-class="{active:selectedDevice['pulley']}" ng-click="setDevice('滑輪')">滑輪</button>
+                                </div>
+                            </div>
+                        </section>
+                        <section class="clearfix option">
+                            <button class="btn btn-options btn-lg pull-right" ng-click="createCourse()">產生個人化課程<i class="fa fa-arrow-circle-o-right"></i></button>
+                        </section>
+                    </div>
+                    <div class="course-preview" ng-class="courseStatus['preview']">
+                        <div class="scroller">
+                            <div class="preview-course">
+                                <div class="course-title preview-title">
+                                    個人化課程預覽
+                                </div>
+                                <div class="preview-list" ng-repeat="course in previewList">
+                                    <p>{{course.day}}</p>
+                                    <div class="preview-position" ng-repeat="position in course.position" ng-click="showPositionDetail(position.pos)">
+                                        <p>{{position.pos}}<i class="fa fa-chevron-right pull-right"></i></p>
                                     </div>
                                 </div>
                             </div>
+                            <div class="preview-date clearfix">
+                                <div class="course-title date-title">
+                                    選擇課程開始日期
+                                </div>
+                                <div class="date-options" ng-repeat="date in previewDate">
+                                    <div class="options options-date">
+                                        <button class="btn btn-options" ng-class="activeDate[$index]" ng-click="setDate($index)">
+                                            <p>{{date.month}}/{{date.day}}</p>
+                                            <p>{{date.weekday}}</p>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="preview-confirm clearfix">
+                                <button class="btn btn-options btn-lg" id='btn-confirm' ng-click="courseConfirm()">確認課程</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 動作詳細 -->
+                    <div class="course-position" ng-class="courseStatus['position']">
+                        <p>{{positionName}}</p>
+                        <p>動作詳細說明（圖解或影片）</p>
+                        <br>
+                        <br>
+                        <button class="btn btn-options" ng-click="backPreviewList()">返回課程預覽</button>
+                    </div>
+                </div>
+            </div>
             <!-- 詳細block -->
             <div class="block-detail-outer" ng-class="{active:isDetailActive}" ng-click="showIndex()"></div>
             <div class="block-detail" id="block-detail-1" ng-class="{active:detail1Active}">

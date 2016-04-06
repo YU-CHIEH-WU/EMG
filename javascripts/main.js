@@ -1,5 +1,5 @@
 var app = angular.module('mainApp', ['mainApp']);
-app.controller('blockController', ['$scope', '$http', '$timeout','$interval', function($scope, $http, $timeout,$interval) {
+app.controller('blockController', ['$scope', '$http', '$timeout', '$interval', function($scope, $http, $timeout, $interval) {
     // 首頁
     // true時隱藏首頁block
     $scope.isDetailActive = false;
@@ -91,41 +91,107 @@ app.controller('blockController', ['$scope', '$http', '$timeout','$interval', fu
     var fameCount = 1;
     $interval(function() {
         if (fameCount == 0) {
-            $scope.fameList[4].opacity='';
+            $scope.fameList[4].opacity = '';
             $scope.fameList[fameCount].opacity = 'opacity';
             fameCount++;
-        }
-        else if (fameCount>0 && fameCount < 4) {
+        } else if (fameCount > 0 && fameCount < 4) {
             $scope.fameList[fameCount - 1].opacity = '';
             $scope.fameList[fameCount].opacity = 'opacity';
             fameCount++;
-        }
-        else {
+        } else {
             $scope.fameList[fameCount - 1].opacity = '';
             $scope.fameList[fameCount].opacity = 'opacity';
             fameCount = 0;
         }
-    },2000);
-    // 推薦課程
+    }, 2000);
+    // 推薦課程 接入api
+    var beginnerCourse = {
+        title: '初學者均衡鍛鍊',
+        'courseList': [{ 'day': 'Day1', 'position': [{ 'pos': '姿勢一' }, { 'pos': '姿勢二' }, { 'pos': '姿勢三' }] },
+            { 'day': 'Day3', 'position': [{ 'pos': '姿勢四' }, { 'pos': '姿勢五' }, { 'pos': '姿勢六' }] },
+            { 'day': 'Day6', 'position': [{ 'pos': '姿勢一' }, { 'pos': '姿勢二' }, { 'pos': '姿勢三' }] },
+            { 'day': 'Day8', 'position': [{ 'pos': '姿勢四' }, { 'pos': '姿勢五' }, { 'pos': '姿勢六' }] },
+            { 'day': 'Day11', 'position': [{ 'pos': '姿勢一' }, { 'pos': '姿勢二' }, { 'pos': '姿勢三' }] },
+            { 'day': 'Day13', 'position': [{ 'pos': '姿勢四' }, { 'pos': '姿勢五' }, { 'pos': '姿勢六' }] },
+            { 'day': 'Day16', 'position': [{ 'pos': '姿勢一' }, { 'pos': '姿勢二' }, { 'pos': '姿勢三' }] },
+            { 'day': 'Day18', 'position': [{ 'pos': '姿勢四' }, { 'pos': '姿勢五' }, { 'pos': '姿勢六' }] },
+            { 'day': 'Day21', 'position': [{ 'pos': '姿勢一' }, { 'pos': '姿勢二' }, { 'pos': '姿勢三' }] },
+            { 'day': 'Day23', 'position': [{ 'pos': '姿勢四' }, { 'pos': '姿勢五' }, { 'pos': '姿勢六' }] },
+            { 'day': 'Day26', 'position': [{ 'pos': '姿勢一' }, { 'pos': '姿勢二' }, { 'pos': '姿勢三' }] },
+            { 'day': 'Day28', 'position': [{ 'pos': '姿勢四' }, { 'pos': '姿勢五' }, { 'pos': '姿勢六' }] },
+            { 'day': 'Day31', 'position': [{ 'pos': '姿勢一' }, { 'pos': '姿勢二' }, { 'pos': '姿勢三' }] }
+        ]
+    };
+    var hotCourse = {
+        title: '進階均衡鍛鍊',
+        'courseList': [{ 'day': 'Day1', 'position': [{ 'pos': '姿勢一' }, { 'pos': '姿勢二' }, { 'pos': '姿勢三' }] },
+            { 'day': 'Day3', 'position': [{ 'pos': '姿勢四' }, { 'pos': '姿勢五' }, { 'pos': '姿勢六' }] },
+            { 'day': 'Day6', 'position': [{ 'pos': '姿勢一' }, { 'pos': '姿勢二' }, { 'pos': '姿勢三' }] },
+            { 'day': 'Day8', 'position': [{ 'pos': '姿勢四' }, { 'pos': '姿勢五' }, { 'pos': '姿勢六' }] },
+            { 'day': 'Day11', 'position': [{ 'pos': '姿勢一' }, { 'pos': '姿勢二' }, { 'pos': '姿勢三' }] },
+            { 'day': 'Day13', 'position': [{ 'pos': '姿勢四' }, { 'pos': '姿勢五' }, { 'pos': '姿勢六' }] },
+            { 'day': 'Day16', 'position': [{ 'pos': '姿勢一' }, { 'pos': '姿勢二' }, { 'pos': '姿勢三' }] },
+            { 'day': 'Day18', 'position': [{ 'pos': '姿勢四' }, { 'pos': '姿勢五' }, { 'pos': '姿勢六' }] },
+            { 'day': 'Day21', 'position': [{ 'pos': '姿勢一' }, { 'pos': '姿勢二' }, { 'pos': '姿勢三' }] },
+            { 'day': 'Day23', 'position': [{ 'pos': '姿勢四' }, { 'pos': '姿勢五' }, { 'pos': '姿勢六' }] },
+            { 'day': 'Day26', 'position': [{ 'pos': '姿勢一' }, { 'pos': '姿勢二' }, { 'pos': '姿勢三' }] },
+            { 'day': 'Day28', 'position': [{ 'pos': '姿勢四' }, { 'pos': '姿勢五' }, { 'pos': '姿勢六' }] },
+            { 'day': 'Day31', 'position': [{ 'pos': '姿勢一' }, { 'pos': '姿勢二' }, { 'pos': '姿勢三' }] }
+        ]
+    };
+    var themeCourse = {
+        title: '二頭肌強力鍛鍊',
+        'courseList': [{ 'day': 'Day1', 'position': [{ 'pos': '姿勢一' }, { 'pos': '姿勢二' }, { 'pos': '姿勢三' }] },
+            { 'day': 'Day3', 'position': [{ 'pos': '姿勢四' }, { 'pos': '姿勢五' }, { 'pos': '姿勢六' }] },
+            { 'day': 'Day6', 'position': [{ 'pos': '姿勢一' }, { 'pos': '姿勢二' }, { 'pos': '姿勢三' }] },
+            { 'day': 'Day8', 'position': [{ 'pos': '姿勢四' }, { 'pos': '姿勢五' }, { 'pos': '姿勢六' }] },
+            { 'day': 'Day11', 'position': [{ 'pos': '姿勢一' }, { 'pos': '姿勢二' }, { 'pos': '姿勢三' }] },
+            { 'day': 'Day13', 'position': [{ 'pos': '姿勢四' }, { 'pos': '姿勢五' }, { 'pos': '姿勢六' }] },
+            { 'day': 'Day16', 'position': [{ 'pos': '姿勢一' }, { 'pos': '姿勢二' }, { 'pos': '姿勢三' }] },
+            { 'day': 'Day18', 'position': [{ 'pos': '姿勢四' }, { 'pos': '姿勢五' }, { 'pos': '姿勢六' }] },
+            { 'day': 'Day21', 'position': [{ 'pos': '姿勢一' }, { 'pos': '姿勢二' }, { 'pos': '姿勢三' }] },
+            { 'day': 'Day23', 'position': [{ 'pos': '姿勢四' }, { 'pos': '姿勢五' }, { 'pos': '姿勢六' }] },
+            { 'day': 'Day26', 'position': [{ 'pos': '姿勢一' }, { 'pos': '姿勢二' }, { 'pos': '姿勢三' }] },
+            { 'day': 'Day28', 'position': [{ 'pos': '姿勢四' }, { 'pos': '姿勢五' }, { 'pos': '姿勢六' }] },
+            { 'day': 'Day31', 'position': [{ 'pos': '姿勢一' }, { 'pos': '姿勢二' }, { 'pos': '姿勢三' }] }
+        ]
+    };
+    var targetCourse = {
+        title: '進階減脂課程',
+        'courseList': [{ 'day': 'Day1', 'position': [{ 'pos': '姿勢一' }, { 'pos': '姿勢二' }, { 'pos': '姿勢三' }] },
+            { 'day': 'Day3', 'position': [{ 'pos': '姿勢四' }, { 'pos': '姿勢五' }, { 'pos': '姿勢六' }] },
+            { 'day': 'Day6', 'position': [{ 'pos': '姿勢一' }, { 'pos': '姿勢二' }, { 'pos': '姿勢三' }] },
+            { 'day': 'Day8', 'position': [{ 'pos': '姿勢四' }, { 'pos': '姿勢五' }, { 'pos': '姿勢六' }] },
+            { 'day': 'Day11', 'position': [{ 'pos': '姿勢一' }, { 'pos': '姿勢二' }, { 'pos': '姿勢三' }] },
+            { 'day': 'Day13', 'position': [{ 'pos': '姿勢四' }, { 'pos': '姿勢五' }, { 'pos': '姿勢六' }] },
+            { 'day': 'Day16', 'position': [{ 'pos': '姿勢一' }, { 'pos': '姿勢二' }, { 'pos': '姿勢三' }] },
+            { 'day': 'Day18', 'position': [{ 'pos': '姿勢四' }, { 'pos': '姿勢五' }, { 'pos': '姿勢六' }] },
+            { 'day': 'Day21', 'position': [{ 'pos': '姿勢一' }, { 'pos': '姿勢二' }, { 'pos': '姿勢三' }] },
+            { 'day': 'Day23', 'position': [{ 'pos': '姿勢四' }, { 'pos': '姿勢五' }, { 'pos': '姿勢六' }] },
+            { 'day': 'Day26', 'position': [{ 'pos': '姿勢一' }, { 'pos': '姿勢二' }, { 'pos': '姿勢三' }] },
+            { 'day': 'Day28', 'position': [{ 'pos': '姿勢四' }, { 'pos': '姿勢五' }, { 'pos': '姿勢六' }] },
+            { 'day': 'Day31', 'position': [{ 'pos': '姿勢一' }, { 'pos': '姿勢二' }, { 'pos': '姿勢三' }] }
+        ]
+    };
     $scope.isCourseClick = false;
     $scope.isCourseShow = false;
-    $scope.isPositionShow=false;
+    $scope.isPositionShow = false;
     $scope.showCourse = function(filter) {
-        if(filter=='beginner'){
-            $scope.courseTitle='初學者均衡鍛鍊';
-            $scope.courseList=[{'day':'Day1','position':[{'pos':'姿勢一'},{'pos':'姿勢二'},{'pos':'姿勢三'}]},
-            {'day':'Day3','position':[{'pos':'姿勢四'},{'pos':'姿勢五'},{'pos':'姿勢六'}]},
-            {'day':'Day6','position':[{'pos':'姿勢一'},{'pos':'姿勢二'},{'pos':'姿勢三'}]},
-            {'day':'Day8','position':[{'pos':'姿勢四'},{'pos':'姿勢五'},{'pos':'姿勢六'}]},
-            {'day':'Day11','position':[{'pos':'姿勢一'},{'pos':'姿勢二'},{'pos':'姿勢三'}]},
-            {'day':'Day13','position':[{'pos':'姿勢四'},{'pos':'姿勢五'},{'pos':'姿勢六'}]},
-            {'day':'Day16','position':[{'pos':'姿勢一'},{'pos':'姿勢二'},{'pos':'姿勢三'}]},
-            {'day':'Day18','position':[{'pos':'姿勢四'},{'pos':'姿勢五'},{'pos':'姿勢六'}]},
-            {'day':'Day21','position':[{'pos':'姿勢一'},{'pos':'姿勢二'},{'pos':'姿勢三'}]},
-            {'day':'Day23','position':[{'pos':'姿勢四'},{'pos':'姿勢五'},{'pos':'姿勢六'}]},
-            {'day':'Day26','position':[{'pos':'姿勢一'},{'pos':'姿勢二'},{'pos':'姿勢三'}]},
-            {'day':'Day28','position':[{'pos':'姿勢四'},{'pos':'姿勢五'},{'pos':'姿勢六'}]},
-            {'day':'Day31','position':[{'pos':'姿勢一'},{'pos':'姿勢二'},{'pos':'姿勢三'}]}];
+        if (filter == 'beginner') {
+            $scope.courseTitle=angular.copy(beginnerCourse.title);
+            $scope.courseList=angular.copy(beginnerCourse.courseList);
+        }
+        if(filter=='hot'){
+            $scope.courseTitle=angular.copy(hotCourse.title);
+            $scope.courseList=angular.copy(hotCourse.courseList);
+        }
+        if(filter=='theme'){
+            $scope.courseTitle=angular.copy(themeCourse.title);
+            $scope.courseList=angular.copy(themeCourse.courseList);
+        }
+        if(filter=='target'){
+            $scope.courseTitle=angular.copy(targetCourse.title);
+            $scope.courseList=angular.copy(targetCourse.courseList);
         }
         $scope.isCourseClick = true;
         $timeout(function() {
@@ -138,12 +204,13 @@ app.controller('blockController', ['$scope', '$http', '$timeout','$interval', fu
             $scope.isCourseClick = false;
         }, 250);
     }
-    $scope.showPositionDetail = function(pos){
-        $scope.positionName=pos;
-        $scope.isPositionShow=true;
+    $scope.showPositionDetail = function(pos) {
+        //接入姿勢api
+        $scope.positionName = pos;
+        $scope.isPositionShow = true;
     }
-    $scope.backCourseList = function(){
-        $scope.isPositionShow=false;
+    $scope.backCourseList = function() {
+        $scope.isPositionShow = false;
     }
 }]);
 // 偵測TransitionEnd

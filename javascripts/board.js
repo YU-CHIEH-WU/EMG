@@ -176,20 +176,24 @@ app.controller('blockController', ['$scope', '$http', '$timeout', '$location', '
         var goalList = { 'strength': '', 'endurance': '' };
         // 部位選項格式
         var partList = { 'complex': '', 'chest': '', 'back': '', 'shoulder': '', 'shoulder': '', 'belly': '', 'foot': '', two: '', 'three': '' };
+        // 器材選項格式
+        var deviceList = { 'dumbbell': '', 'barbell': '', 'pulley': '' };
         // 存放課程預覽
         $scope.previewList = [];
         // 複製格式 active為控制按鈕class所用
         $scope.courseOptions = angular.copy(courseOptions);
         $scope.selectedGoal = angular.copy(goalList);
-        $scope.activePart = angular.copy(partList);
         $scope.selectedPart = angular.copy(partList);
+        $scope.selectedDevice = angular.copy(deviceList);
         // 確認是否輸入選項
-        var isGoalSet = false;
-        var isPartSet = false;
-        var isPowerSet = false;
+        $scope.isGoalSet = false;
+        $scope.isPartSet = false;
+        $scope.isDeviceSet = false;
         // 判斷是否有部位選取
         var isPartialSelected = false;
         var partialSelectedCount = 0;
+        // 判斷是否有器材選取
+        var deviceSelectedCount = 0;
         // true時顯示課程選項(不重複)
         $scope.isCreateCourse = false;
         // true時顯示產生新課程視窗
@@ -207,25 +211,29 @@ app.controller('blockController', ['$scope', '$http', '$timeout', '$location', '
                 $scope.isCreateCourse = true;
                 $scope.isCourseShow = true;
             }
-            // 隱藏產生新課程block
-        $scope.hideCourse = function(option) {
-                // 重置產生新課程
-                if (option == 'quit') {
+        var refreshCourse=function(){
                     $scope.previewList = [];
                     $scope.courseOptions = angular.copy(courseOptions);
                     $scope.selectedGoal = angular.copy(goalList);
-                    $scope.activePart = angular.copy(partList);
                     $scope.selectedPart = angular.copy(partList);
-                    isGoalSet = false;
-                    isPartSet = false;
-                    isPowerSet = false;
+                    $scope.selectedDevice=angular.copy(deviceList);
+                    $scope.isGoalSet = false;
+                    $scope.isPartSet = false;
                     isPartialSelected = false;
                     partialSelectedCount = 0;
+                    $scope.isDeviceSet = false;
+                    deviceSelectedCount = 0;
                     $scope.isCreateCourse = false;
                     $scope.isCourseShow = false;
                     $scope.selectedStrength = false;
                     $scope.selectedEndurance = false;
                     $scope.courseStatus = { 'options': '', 'preview': '', 'position': '' };
+            }
+            // 隱藏產生新課程block
+        $scope.hideCourse = function(option) {
+                // 重置產生新課程
+                if (option == 'quit') {
+                    refreshCourse();
                 }
                 $scope.isCourseShow = false;
             }
@@ -236,20 +244,20 @@ app.controller('blockController', ['$scope', '$http', '$timeout', '$location', '
                     $scope.selectedGoal['endurance'] = '';
                     if ($scope.selectedGoal['strength'] != '肌力') {
                         $scope.selectedGoal['strength'] = '肌力';
-                        isGoalSet = true;
+                        $scope.isGoalSet = true;
                     } else {
-                        $scope.selectedGoal[strength] = '';
-                        isGoalSet = false;
+                        $scope.selectedGoal['strength'] = '';
+                        $scope.isGoalSet = false;
                     }
                 }
                 if (options == '肌耐力') {
                     $scope.selectedGoal['strength'] = '';
                     if ($scope.selectedGoal['endurance]'] != '肌耐力') {
                         $scope.selectedGoal['endurance'] = '肌耐力';
-                        isGoalSet = true;
+                        $scope.isGoalSet = true;
                     } else {
                         $scope.selectedGoal['endurance'] = '';
-                        isGoalSet = false;
+                        $scope.isGoalSet = false;
                     }
                 }
             }
@@ -283,71 +291,87 @@ app.controller('blockController', ['$scope', '$http', '$timeout', '$location', '
                 // 如果有均衡訓練或部位訓練跨選則更新選項
                 if (index == 'complex' && isPartialSelected) {
                     $scope.selectedPart = angular.copy(partList);
-                    $scope.activePart = angular.copy(partList);
                     partialSelectedCount = 0;
                 }
-                if (index != 'complex' && $scope.activePart['complex'] == 'active') {
+                if (index != 'complex' && $scope.selectedPart['complex'] != '') {
                     $scope.selectedPart = angular.copy(partList);
-                    $scope.activePart = angular.copy(partList);
                 }
-                if (index != 'complex' && $scope.activePart[index] != 'active') {
+                if (index != 'complex' && $scope.selectedPart[index] == '') {
                     partialSelectedCount++;
                 }
-                if (index != 'complex' && $scope.activePart[index] == 'active') {
+                if (index != 'complex' && $scope.selectedPart[index] != '') {
                     partialSelectedCount--;
                 }
                 if (partialSelectedCount > 0) {
                     isPartialSelected = true;
-                    isPartSet = true;
+                    $scope.isPartSet = true;
                 } else {
                     isPartialSelected = false;
-                    isPartSet = false;
+                    $scope.isPartSet = false;
                 }
                 // toggle選取
-                if ($scope.activePart[index] != 'active') {
+                if ($scope.selectedPart[index] == '') {
                     $scope.selectedPart[index] = options;
-                    $scope.activePart[index] = 'active';
                     if (index == 'complex') {
-                        isPartSet = true;
+                        $scope.isPartSet = true;
                     }
                 } else {
                     $scope.selectedPart[index] = '';
-                    $scope.activePart[index] = '';
                     if (index == 'complex') {
-                        isPartSet = false;
+                        $scope.isPartSet = false;
                     }
                 }
-                console.log($scope.selectedPart, $scope.activePart);
+            }
+            // 設定訓練器材
+        $scope.setDevice = function(options) {
+                var index = '';
+                if (options == '啞鈴') {
+                    index = 'dumbbell';
+                }
+                if (options == '槓鈴') {
+                    index = 'barbell';
+                }
+                if (options == '滑輪') {
+                    index = 'pulley';
+                }
+                console.log($scope.selectedDevice[index]=='');
+                if ($scope.selectedDevice[index] == '') {
+                    deviceSelectedCount++;
+                    $scope.selectedDevice[index] = options;
+                }
+                else if ($scope.selectedDevice[index] != '') {
+                    deviceSelectedCount--;
+                    $scope.selectedDevice[index] = '';
+                }
+                if (deviceSelectedCount > 0) {
+                    $scope.isDeviceSet = true;
+                } else {
+                    $scope.isDeviceSet = false;
+                }
+                console.log($scope.selectedDevice[index])
             }
             // 產生個人化課表
         $scope.createCourse = function() {
-            if ($scope.courseOptions.power > 0) {
-                isPowerSet = true;
-            };
             // 判斷輸入選項
-            if (!isGoalSet) {
+            if (!$scope.isGoalSet) {
                 alert('請選擇訓練目標');
                 return;
             };
-            if (!isPartSet) {
+            if (!$scope.isPartSet) {
                 alert('請選擇訓練部位');
                 return;
             };
-            if (!isPowerSet) {
-                alert('請選擇訓練磅數');
+            if(!$scope.isDeviceSet){
+                alert('請選擇訓練器材');
                 return;
-            };
+            }
             // 放入訓練部位
             angular.forEach($scope.selectedPart, function(value, key) {
-                if ($scope.selectedPart[value] != undefined) {}
-                console.log($scope.selectedPart[key]);
-                $scope.courseOptions[key] = $scope.selectedPart[key];
-            })
-
-            console.log('here', $scope.courseOptions);
-            // 產生個人化課表
-            // 產生課程api網址
-            //var createCourseApi = 'http://localhost:55546/api/CourseApi/CreateCourse'; //本機測試用網址
+                    $scope.courseOptions[key] = $scope.selectedPart[key];
+                })
+                // 產生個人化課表
+                // 產生課程api網址
+                //var createCourseApi = 'http://localhost:55546/api/CourseApi/CreateCourse'; //本機測試用網址
             var createCourseApi = 'http://163.17.136.197:8080/EMG/api/CourseApi/CreateCourse';
             // 產生課程選項
             var courseData = $scope.courseOptions;
@@ -416,7 +440,7 @@ app.controller('blockController', ['$scope', '$http', '$timeout', '$location', '
                     angular.forEach(data, function(value, key) {
                         var values = value['Date'].split('T');
                         var time = values[0];
-                        console.log(values,time)
+                        console.log(values, time)
                         var course = { 'thumb': 'images/muscle.jpg', 'title': value['P_Name'], 'time': time };
                         $scope.courseList.push(course);
                     })
@@ -428,9 +452,9 @@ app.controller('blockController', ['$scope', '$http', '$timeout', '$location', '
                     $scope.selectedGoal = angular.copy(goalList);
                     $scope.activePart = angular.copy(partList);
                     $scope.selectedPart = angular.copy(partList);
-                    isGoalSet = false;
-                    isPartSet = false;
-                    isPowerSet = false;
+                    $scope.isGoalSet = false;
+                    $scope.isPartSet = false;
+                    $scope.isDeviceSet = false;
                     isPartialSelected = false;
                     partialSelectedCount = 0;
                     $scope.isCreateCourse = false;

@@ -66,75 +66,98 @@ body {
   border-color: #985f0d;
   color: #FFFFFF;
 }
-/* line 79, ../sass/board.scss */
+/* line 80, ../sass/board.scss */
 .btn-options:hover {
   background: #ec971f;
   border-color: #d58512;
   color: #FFFFFF;
 }
 
-/* line 86, ../sass/board.scss */
+/* line 87, ../sass/board.scss */
 .btn-saveSVG {
   background: #3a5795;
   color: #FFFFFF;
   height: 100%;
   line-height: 1.2;
 }
-/* line 91, ../sass/board.scss */
+/* line 92, ../sass/board.scss */
 .btn-saveSVG:hover {
   color: #FFFFFF;
 }
-/* line 94, ../sass/board.scss */
+/* line 95, ../sass/board.scss */
 .btn-saveSVG:focus {
   color: #FFFFFF;
 }
 
+/* line 99, ../sass/board.scss */
+.fa {
+  margin-left: 5px;
+}
+
+/* line 102, ../sass/board.scss */
+.icon-success {
+  color: #449d44;
+  opacity: 0;
+  -moz-transition: all, 0.3s, ease-in;
+  -o-transition: all, 0.3s, ease-in;
+  -webkit-transition: all, 0.3s, ease-in;
+  transition: all, 0.3s, ease-in;
+}
+/* line 106, ../sass/board.scss */
+.icon-success.active {
+  opacity: 1;
+}
+
 /* 覆寫bootstrap結尾 */
 /* 首頁設定 */
-/* line 105, ../sass/board.scss */
+/* line 117, ../sass/board.scss */
 .clearfix {
   overflow: auto;
 }
 
-/* line 109, ../sass/board.scss */
+/* line 121, ../sass/board.scss */
 .unscroll {
   overflow: hidden;
 }
 
-/* line 113, ../sass/board.scss */
+/* line 125, ../sass/board.scss */
 .block-container {
   margin-top: 30px;
   width: 80%;
   position: absolute;
   top: 0;
   left: 10%;
-  -moz-transition: all, 0.5s, ease-in;
-  -o-transition: all, 0.5s, ease-in;
-  -webkit-transition: all, 0.5s, ease-in;
-  transition: all, 0.5s, ease-in;
+  -moz-transition: top, 1s, ease-in;
+  -o-transition: top, 1s, ease-in;
+  -webkit-transition: top, 1s, ease-in;
+  transition: top, 1s, ease-in;
+  -moz-transition: blur, 0.3s, liner;
+  -o-transition: blur, 0.3s, liner;
+  -webkit-transition: blur, 0.3s, liner;
+  transition: blur, 0.3s, liner;
 }
-/* line 120, ../sass/board.scss */
+/* line 133, ../sass/board.scss */
 .block-container.gotop {
   top: 300%;
 }
-/* line 123, ../sass/board.scss */
+/* line 136, ../sass/board.scss */
 .block-container.ontop {
   display: none;
 }
-/* line 126, ../sass/board.scss */
+/* line 139, ../sass/board.scss */
 .block-container.filter {
   filter: blur(5px);
   -webkit-filter: blur(5px);
 }
 
-/* line 132, ../sass/board.scss */
+/* line 145, ../sass/board.scss */
 .block-outer {
   height: 290px;
   color: #FFFFFF;
   margin-bottom: 30px;
 }
 
-/* line 138, ../sass/board.scss */
+/* line 151, ../sass/board.scss */
 .block-inner {
   width: 100%;
   height: 100%;
@@ -148,11 +171,11 @@ body {
   -webkit-border-radius: 1.5%;
   border-radius: 1.5%;
 }
-/* line 145, ../sass/board.scss */
+/* line 158, ../sass/board.scss */
 .block-inner.opacity {
   opacity: 0.6;
 }
-/* line 148, ../sass/board.scss */
+/* line 161, ../sass/board.scss */
 .block-inner.clickable:hover {
   background: #4f4f4f;
   cursor: pointer;
@@ -161,7 +184,7 @@ body {
   background-position: center;
 }
 
-/* line 157, ../sass/board.scss */
+/* line 170, ../sass/board.scss */
 .block-header {
   height: 30px;
   width: 100%;
@@ -170,14 +193,14 @@ body {
   padding-left: 5px;
 }
 
-/* line 165, ../sass/board.scss */
+/* line 178, ../sass/board.scss */
 .block-body {
   height: calc(100% - 30px);
   height: -webkit-calc(100% - 30px);
   width: 100%;
 }
 
-/* line 171, ../sass/board.scss */
+/* line 184, ../sass/board.scss */
 .block-thumb {
   height: 98%;
   width: 98%;
@@ -186,7 +209,7 @@ body {
 }
 
 /*彈出訊息 */
-/* line 181, ../sass/board.scss */
+/* line 194, ../sass/board.scss */
 .block-message {
   height: 160px;
   width: 240px;
@@ -204,26 +227,26 @@ body {
   -webkit-transition: all, 0.3s, ease-in;
   transition: all, 0.3s, ease-in;
 }
-/* line 196, ../sass/board.scss */
+/* line 209, ../sass/board.scss */
 .block-message.active {
   z-index: 10;
 }
 
-/* line 201, ../sass/board.scss */
+/* line 214, ../sass/board.scss */
 #training-message {
   top: -60%;
 }
-/* line 203, ../sass/board.scss */
+/* line 216, ../sass/board.scss */
 #training-message.active {
   top: 10%;
   opacity: 1;
 }
 
-/* line 209, ../sass/board.scss */
+/* line 222, ../sass/board.scss */
 #grow-message {
   top: -80%;
 }
-/* line 211, ../sass/board.scss */
+/* line 224, ../sass/board.scss */
 #grow-message.active {
   top: -165%;
   opacity: 1;
@@ -232,34 +255,34 @@ body {
 /* 彈出訊息結尾 */
 /* 首頁結尾 */
 /* 會員 */
-/* line 226, ../sass/board.scss */
+/* line 239, ../sass/board.scss */
 .block-user {
   width: 100%;
   height: 100%;
   padding: 15px;
 }
 
-/* line 232, ../sass/board.scss */
+/* line 245, ../sass/board.scss */
 .block-user-info {
   width: 100%;
   height: 40%;
 }
 
-/* line 237, ../sass/board.scss */
+/* line 250, ../sass/board.scss */
 .block-user-photo {
   width: 80px;
   height: 100%;
   float: left;
 }
 
-/* line 243, ../sass/board.scss */
+/* line 256, ../sass/board.scss */
 .user-photo {
   width: 80px;
   height: 80px;
   border-radius: 50%;
 }
 
-/* line 249, ../sass/board.scss */
+/* line 262, ../sass/board.scss */
 .block-user-name {
   width: calc(100% - 80px);
   height: 60%;
@@ -269,7 +292,7 @@ body {
   float: left;
 }
 
-/* line 258, ../sass/board.scss */
+/* line 271, ../sass/board.scss */
 .block-user-update {
   width: calc(100% - 80px);
   height: 40%;
@@ -278,38 +301,38 @@ body {
   float: left;
 }
 
-/* line 266, ../sass/board.scss */
+/* line 279, ../sass/board.scss */
 .block-user-group {
   width: 100%;
   height: 40%;
 }
-/* line 269, ../sass/board.scss */
+/* line 282, ../sass/board.scss */
 .block-user-group > div {
   height: 50%;
   float: left;
   line-height: 30px;
 }
 
-/* line 276, ../sass/board.scss */
+/* line 289, ../sass/board.scss */
 .block-user-count,
 .block-user-achieve {
   width: 60%;
 }
 
-/* line 281, ../sass/board.scss */
+/* line 294, ../sass/board.scss */
 .block-user-countDetail,
 .block-user-achieveDetail {
   width: 40%;
   text-align: center;
 }
 
-/* line 287, ../sass/board.scss */
+/* line 300, ../sass/board.scss */
 .block-user-index {
   width: 100%;
   height: 20%;
 }
 
-/* line 292, ../sass/board.scss */
+/* line 305, ../sass/board.scss */
 #btn-index {
   width: 100%;
   height: 100%;
@@ -318,12 +341,12 @@ body {
 
 /* 會員結尾 */
 /* 行事曆 */
-/* line 304, ../sass/board.scss */
+/* line 317, ../sass/board.scss */
 #block-course > .block-body {
   position: relative;
 }
 
-/* line 308, ../sass/board.scss */
+/* line 321, ../sass/board.scss */
 .block-course-start {
   width: 100%;
   height: 100%;
@@ -331,12 +354,12 @@ body {
   line-height: 230px;
 }
 
-/* line 315, ../sass/board.scss */
+/* line 328, ../sass/board.scss */
 #btn-course {
   font-size: 18px;
 }
 
-/* line 319, ../sass/board.scss */
+/* line 332, ../sass/board.scss */
 .block-course-outer {
   width: 100%;
   height: 100%;
@@ -347,7 +370,7 @@ body {
   z-index: 998;
 }
 
-/* line 329, ../sass/board.scss */
+/* line 342, ../sass/board.scss */
 .block-course-inner {
   width: 50%;
   height: 80%;
@@ -363,17 +386,23 @@ body {
   -webkit-transition: all, 0.3s, ease-in;
   transition: all, 0.3s, ease-in;
 }
-/* line 342, ../sass/board.scss */
+/* line 355, ../sass/board.scss */
 .block-course-inner.active {
   opacity: 1;
 }
-/* line 345, ../sass/board.scss */
+/* line 358, ../sass/board.scss */
 .block-course-inner > .block-body {
   overflow: hidden;
   position: relative;
 }
 
-/* line 351, ../sass/board.scss */
+/* line 364, ../sass/board.scss */
+.course-title {
+  font-size: 16px;
+  padding: 10px;
+}
+
+/* line 369, ../sass/board.scss */
 .course-options {
   width: 100%;
   height: 100%;
@@ -385,12 +414,12 @@ body {
   -webkit-transition: all, 0.3s, ease-in;
   transition: all, 0.3s, ease-in;
 }
-/* line 360, ../sass/board.scss */
+/* line 378, ../sass/board.scss */
 .course-options.active {
   left: 0;
 }
 
-/* line 365, ../sass/board.scss */
+/* line 383, ../sass/board.scss */
 .course-preview {
   width: 100%;
   height: 100%;
@@ -402,33 +431,33 @@ body {
   -webkit-transition: all, 0.3s, ease-in;
   transition: all, 0.3s, ease-in;
 }
-/* line 374, ../sass/board.scss */
+/* line 392, ../sass/board.scss */
 .course-preview.active {
   left: 0;
 }
-/* line 377, ../sass/board.scss */
+/* line 395, ../sass/board.scss */
 .course-preview.left {
   left: -120%;
 }
 
-/* line 382, ../sass/board.scss */
+/* line 400, ../sass/board.scss */
 .option {
-  margin: 24px;
+  margin: 12px;
 }
 
-/* line 386, ../sass/board.scss */
+/* line 404, ../sass/board.scss */
 .options {
   height: 100%;
   float: left;
   margin: 8px;
 }
 
-/* line 392, ../sass/board.scss */
+/* line 410, ../sass/board.scss */
 .power-option {
   color: #000000;
 }
 
-/* line 396, ../sass/board.scss */
+/* line 414, ../sass/board.scss */
 .scroller {
   overflow: auto;
   position: absolute;
@@ -438,37 +467,44 @@ body {
   width: 100%;
 }
 
-/* line 405, ../sass/board.scss */
+/* line 422, ../sass/board.scss */
+.preview-course {
+  width: 100%;
+}
+
+/* line 425, ../sass/board.scss */
 .preview-list {
   padding: 10px;
   float: left;
 }
 
-/* line 410, ../sass/board.scss */
+/* line 430, ../sass/board.scss */
 .preview-date {
   width: 100%;
-  height: 140px;
+  padding-top: 24px;
 }
 
-/* line 415, ../sass/board.scss */
+/* line 435, ../sass/board.scss */
 .preview-confirm {
   width: 100%;
-  height: 40px;
+  padding-top: 24px;
+  margin-bottom: 30px;
   text-align: center;
 }
 
-/* line 421, ../sass/board.scss */
+/* line 442, ../sass/board.scss */
 .preview-position {
   height: 30px;
-  padding: 12px;
+  padding: 8px;
+  line-height: 15px;
 }
-/* line 424, ../sass/board.scss */
+/* line 446, ../sass/board.scss */
 .preview-position:hover {
   background: #4f4f4f;
   cursor: pointer;
 }
 
-/* line 430, ../sass/board.scss */
+/* line 452, ../sass/board.scss */
 .course-position {
   width: 100%;
   height: 100%;
@@ -480,12 +516,12 @@ body {
   -webkit-transition: all, 0.3s, ease-in;
   transition: all, 0.3s, ease-in;
 }
-/* line 439, ../sass/board.scss */
+/* line 461, ../sass/board.scss */
 .course-position.active {
   left: 0;
 }
 
-/* line 444, ../sass/board.scss */
+/* line 466, ../sass/board.scss */
 .block-course-list {
   width: 100%;
   height: 60px;
@@ -493,33 +529,33 @@ body {
   border-bottom: 1px #9f9f9f solid;
   cursor: pointer;
 }
-/* line 450, ../sass/board.scss */
+/* line 472, ../sass/board.scss */
 .block-course-list > div {
   float: left;
 }
-/* line 453, ../sass/board.scss */
+/* line 475, ../sass/board.scss */
 .block-course-list:hover {
   background: #4f4f4f;
 }
-/* line 456, ../sass/board.scss */
+/* line 478, ../sass/board.scss */
 .block-course-list:last-child {
   border: none;
 }
 
-/* line 461, ../sass/board.scss */
+/* line 483, ../sass/board.scss */
 .block-course-thumb {
   width: 50px;
   height: 50px;
   padding: 2px;
 }
 
-/* line 467, ../sass/board.scss */
+/* line 489, ../sass/board.scss */
 .course-thumb {
   width: 100%;
   height: 100%;
 }
 
-/* line 472, ../sass/board.scss */
+/* line 494, ../sass/board.scss */
 .block-course-title {
   width: calc(100% - 50px);
   width: -webkit-calc(100% - 50px);
@@ -528,7 +564,7 @@ body {
   padding-left: 10px;
 }
 
-/* line 480, ../sass/board.scss */
+/* line 502, ../sass/board.scss */
 .block-course-time {
   width: calc(100% - 50px);
   width: -webkit-calc(100% - 50px);
@@ -540,7 +576,7 @@ body {
 
 /* 行事曆結尾 */
 /* 詳細block */
-/* line 495, ../sass/board.scss */
+/* line 517, ../sass/board.scss */
 .block-detail-outer {
   height: 100%;
   width: 100%;
@@ -552,12 +588,12 @@ body {
   -webkit-transition: all, 1s, ease-in, 1s;
   transition: all, 1s, ease-in, 1s;
 }
-/* line 505, ../sass/board.scss */
+/* line 527, ../sass/board.scss */
 .block-detail-outer.active {
   top: 0;
 }
 
-/* line 510, ../sass/board.scss */
+/* line 532, ../sass/board.scss */
 .block-detail {
   height: 90%;
   width: 80%;
@@ -574,23 +610,23 @@ body {
   -webkit-transition: all, 1s, ease-in, 1s;
   transition: all, 1s, ease-in, 1s;
 }
-/* line 523, ../sass/board.scss */
+/* line 545, ../sass/board.scss */
 .block-detail.active {
   top: 5%;
 }
 
-/* line 528, ../sass/board.scss */
+/* line 550, ../sass/board.scss */
 .block-detail > .block-body > div {
   padding: 15px;
 }
 
-/* line 532, ../sass/board.scss */
+/* line 554, ../sass/board.scss */
 .title {
   left: 5px;
   position: absolute;
 }
 
-/* line 537, ../sass/board.scss */
+/* line 559, ../sass/board.scss */
 .back {
   right: 5px;
   position: absolute;
@@ -598,7 +634,7 @@ body {
 }
 
 /* detai1 */
-/* line 546, ../sass/board.scss */
+/* line 568, ../sass/board.scss */
 #detail1-main-chart {
   width: 70%;
   height: 50%;
@@ -607,7 +643,7 @@ body {
   position: absolute;
 }
 
-/* line 554, ../sass/board.scss */
+/* line 576, ../sass/board.scss */
 #detail1-right-tabs {
   width: 25%;
   height: 50%;
@@ -616,7 +652,7 @@ body {
   position: absolute;
 }
 
-/* line 562, ../sass/board.scss */
+/* line 584, ../sass/board.scss */
 #detail1-left-chart,
 #detail1-right-chart {
   width: 50%;
@@ -624,13 +660,13 @@ body {
   position: absolute;
 }
 
-/* line 569, ../sass/board.scss */
+/* line 591, ../sass/board.scss */
 #detail1-left-chart {
   left: 0;
   top: 50%;
 }
 
-/* line 574, ../sass/board.scss */
+/* line 596, ../sass/board.scss */
 #detail1-right-chart {
   right: 0;
   top: 50%;
@@ -638,7 +674,7 @@ body {
 
 /* detail1結尾 */
 /* detail2 */
-/* line 585, ../sass/board.scss */
+/* line 607, ../sass/board.scss */
 #detail2-topleft-chart,
 #detail2-topright-chart,
 #detail2-bottomleft-chart,
@@ -648,25 +684,25 @@ body {
   position: absolute;
 }
 
-/* line 594, ../sass/board.scss */
+/* line 616, ../sass/board.scss */
 #detail2-topleft-chart {
   left: 0;
   top: 0;
 }
 
-/* line 599, ../sass/board.scss */
+/* line 621, ../sass/board.scss */
 #detail2-right-chart {
   right: 0;
   top: 0;
 }
 
-/* line 604, ../sass/board.scss */
+/* line 626, ../sass/board.scss */
 #detail2-left-chart {
   left: 0;
   top: 50%;
 }
 
-/* line 609, ../sass/board.scss */
+/* line 631, ../sass/board.scss */
 #detail2-right-chart {
   right: 0;
   top: 50%;
@@ -674,7 +710,7 @@ body {
 
 /* detail2結尾 */
 /* detail3 */
-/* line 620, ../sass/board.scss */
+/* line 642, ../sass/board.scss */
 #detail3-main-iframe {
   width: 100%;
   height: 100%;

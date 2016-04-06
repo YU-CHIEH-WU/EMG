@@ -89,3 +89,10 @@
 .position-detail.active {
   left: 0;
 }
+
+/* line 82, ../sass/test.scss */
+.filter {
+  background: rgba(255, 255, 255, 0.2);
+  width: 50px;
+  height: 50px;
+}
