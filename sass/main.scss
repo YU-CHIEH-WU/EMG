@@ -48,6 +48,20 @@ body {
     margin-bottom: 0px;
 }
 
+.btn:focus,
+.btn:active {
+    color: inherit;
+}
+
+.btn.active.focus,
+.btn.active:focus,
+.btn.focus,
+.btn:active.focus,
+.btn:active:focus,
+.btn:focus {
+    outline: none;
+}
+
 .btn-default {
     height: 100%;
     line-height: 1.2;
@@ -64,7 +78,39 @@ body {
         color: $fontColor;
     }
 }
+.btn-sex {
+    background: rgba(0,0,0,0);
+    border: 1px #ccc solid;
+    width: 30px;
+    height: 30px;
+    box-shadow: $shadow1;
+    @include transition(all, 0.3s, ease-in);
+    &.active {
+        background: #FFFFFF;
+    }
+    &:hover{
+        color:$fontColor;
+    }
+    &:focus{
+        color:$fontColor;
+    }
+}
 
+.fa-mars {
+    vertical-align: middle;
+    @include transition(all, 0.3s, ease-in);
+    &.active {
+        color: rgb(51, 102, 204);
+    }
+}
+
+.fa-venus {
+    vertical-align: middle;
+    @include transition(all, 0.3s, ease-in);
+    &.active {
+        color: rgb(220, 57, 18);
+    }
+}
 
 /* 覆寫bootstrap */
 
@@ -81,12 +127,12 @@ body {
     position: absolute;
     top: 0;
     left: 10%;
-    @include transition(all,0.5s,ease-in);
-    &.gotop{
-        top:300%;
+    @include transition(all, 0.5s, ease-in);
+    &.gotop {
+        top: 300%;
     }
-    &.ontop{
-        display:none;
+    &.ontop {
+        display: none;
     }
 }
 
@@ -101,6 +147,7 @@ body {
     height: 100%;
     position: relative;
     background: $blockColor;
+    box-shadow: $shadow2;
     @include transition(all, 0.3s, ease-in);
     @include border-radius(1.5%);
     &.opacity {
@@ -123,8 +170,10 @@ body {
 }
 
 .block-thumb {
-    height: 100%;
-    width: 100%;
+    height: 98%;
+    width: 98%;
+    margin: 0 auto;
+    margin-top: 0.4%;
 }
 
 
@@ -307,6 +356,25 @@ body {
 
 /* 名人榜結尾 */
 
+
+/* 相簿 */
+
+.block-carousel {
+    width: 100%;
+    height: 100%;
+}
+
+
+/* 相簿結尾 */
+
+/* 大數據分析 */
+.block-sex{
+    position: absolute;
+    top:36px;
+    right:6px;
+}
+
+/* 大數據分析結尾 */
 
 /* 推薦課程 */
 

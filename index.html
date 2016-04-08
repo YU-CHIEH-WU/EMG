@@ -14,134 +14,146 @@
     <div class="container">
         <div class="row">
             <!-- 主頁面 -->
-            <div class="block-container" ng-class="{gotop:isDetailActive,ontop:isOntop}" when-transition-end="setOntop()" >
-            <div class="col-md-3 col-xs-6 block-outer">
-                <!-- 會員 -->
-                <!-- TODO: ProgressButtonStyles -->
-                <div class="block-inner" id="block-user">
-                    <div class="block-header">會員</div>
-                    <div class="block-body">
-                        <!-- 未登入 -->
-                        <div class="block-login-input form-group text-center" ng-show="!isLogin">
-                            <input type="text" id="input-account" class="form-control" placeholder="Account" ng-model="loginAccount" ng-disabled="loginLoading">
-                            <input type="password" id="input-password" class="form-control" placeholder="Password" ng-model="loginPassword" ng-disabled="loginLoading">
-                            <button type="button" class="btn btn-normal" id="btn-login" ng-class="{active:loginLoading}" ng-click="login()" ng-disabled="loginLoading">{{loginMessage}}</button>
-                        </div>
-                        <div class="block-register-input text-center" ng-show="!isLogin">
-                            <button type="button" class="btn btn-normal" id="btn-register" ng-disabled="loginLoading">還沒有帳號嗎？點我註冊</button>
-                        </div>
-                        <!-- 登入 -->
-                        <div class="block-user text-center" ng-show="isLogin">
-                            <div class="user-photo">
-                                <img ng-src="{{userPhoto}}">
+            <div class="block-container" ng-class="{gotop:isDetailActive,ontop:isOntop}" when-transition-end="setOntop()">
+                <div class="col-md-3 col-xs-6 block-outer">
+                    <!-- 會員 -->
+                    <!-- TODO: ProgressButtonStyles -->
+                    <div class="block-inner" id="block-user">
+                        <div class="block-header">會員</div>
+                        <div class="block-body">
+                            <!-- 未登入 -->
+                            <div class="block-login-input form-group text-center" ng-show="!isLogin">
+                                <input type="text" id="input-account" class="form-control" placeholder="Account" ng-model="loginAccount" ng-disabled="loginLoading">
+                                <input type="password" id="input-password" class="form-control" placeholder="Password" ng-model="loginPassword" ng-disabled="loginLoading">
+                                <button type="button" class="btn btn-normal" id="btn-login" ng-class="{active:loginLoading}" ng-click="login()" ng-disabled="loginLoading">{{loginMessage}}</button>
                             </div>
-                            <div class="user-name">
-                                <p>{{userName}}</p>
+                            <div class="block-register-input text-center" ng-show="!isLogin">
+                                <button type="button" class="btn btn-normal" id="btn-register" ng-disabled="loginLoading">還沒有帳號嗎？點我註冊</button>
                             </div>
-                            <div class="user-board">
-                                <button class="btn btn-default" id="btn-board" ng-submit="toBoard()">前往個人首頁</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 col-xs-6 block-outer">
-                <div class="block-inner" id="block-news">
-                    <div class="block-header"><span class="title pull-left">最新消息</span>
-                        <button class="pull-right btn btn-default">編輯</button>
-                    </div>
-                    <div class="block-body">
-                        <div class="news-scroller">
-                            <div class="block-news-list" ng-click="showDetail4(news.id)" ng-repeat="news in newsList">
-                                <div class="block-news-title">{{news.title}}</div>
+                            <!-- 登入 -->
+                            <div class="block-user text-center" ng-show="isLogin">
+                                <div class="user-photo">
+                                    <img ng-src="{{userPhoto}}">
+                                </div>
+                                <div class="user-name">
+                                    <p>{{userName}}</p>
+                                </div>
+                                <div class="user-board">
+                                    <button class="btn btn-default" id="btn-board" ng-submit="toBoard()">前往個人首頁</button>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-3 col-xs-6 block-outer">
-                <!-- 名人榜 -->
-                <div class="block-inner" id="block-Fame">
-                    <div class="block-header">名人榜</div>
-                    <div class="block-body">
-                        <div class="block-fame">
-                            <div class="block-fame-list" ng-class="[fame.opacity]" ng-repeat="fame in fameList">
-                                <div class="block-fame-title">{{fame.title}}</div>
-                                <div class="block-fame-thumb"><img ng-src="{{fame.thumb}}"></div>
-                                <div class="block-fame-name">{{fame.name}}</div>
+                <div class="col-md-3 col-xs-6 block-outer">
+                    <div class="block-inner" id="block-news">
+                        <div class="block-header"><span class="title pull-left">最新消息</span>
+                            <button class="pull-right btn btn-default">編輯</button>
+                        </div>
+                        <div class="block-body">
+                            <div class="news-scroller">
+                                <div class="block-news-list" ng-click="showDetail4(news.id)" ng-repeat="news in newsList">
+                                    <div class="block-news-title">{{news.title}}</div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-3 col-xs-6 block-outer">
-                <!-- 訓練成果相片 -->
-                <div class="block-inner" id="block-album">
-                    <div class="block-header">訓練成果相片</div>
-                    <div class="block-body">
+                <div class="col-md-3 col-xs-6 block-outer">
+                    <!-- 名人榜 -->
+                    <div class="block-inner" id="block-Fame">
+                        <div class="block-header">名人榜</div>
+                        <div class="block-body">
+                            <div class="block-fame">
+                                <div class="block-fame-list" ng-class="[fame.opacity]" ng-repeat="fame in fameList">
+                                    <div class="block-fame-title">{{fame.title}}</div>
+                                    <div class="block-fame-thumb"><img ng-src="{{fame.thumb}}"></div>
+                                    <div class="block-fame-name">{{fame.name}}</div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-6 col-xs-6 block-outer">
-                <!-- 大數據分析 -->
-                <div class="block-inner" id="block-bigdata1">
-                    <div class="block-header">大數據分析一</div>
-                    <div class="block-body">
+                <div class="col-md-3 col-xs-6 block-outer">
+                    <!-- 訓練成果相片 -->
+                    <div class="block-inner" id="block-album">
+                        <div class="block-header">訓練成果相片</div>
+                        <div class="block-body">
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-6 col-xs-6 block-outer">
-                <!-- 大數據分析 -->
-                <div class="block-inner" id="block-bigdata2">
-                    <div class="block-header">大數據分析二</div>
-                    <div class="block-body">
+                <div class="col-md-6 col-xs-6 block-outer">
+                    <!-- 大數據分析 -->
+                    <div class="block-inner" id="block-bigdata1">
+                        <div class="block-header">大數據分析一</div>
+                        <div class="block-body">
+                            <div class="block-thumb" id="block-bigdata1-thumb"></div>
+                            <div class="block-sex">
+                                <button type=button class="btn btn-sex" ng-class="{active:isMaleWant}" ng-click="changeSex('want','male')"><i class="fa fa-mars fa-lg icon-show" ng-class="{active:isMaleWant}"></i></button>
+                                <button type=button class="btn btn-sex" ng-class="{active:isFemaleWant}" ng-click="changeSex('want','female')"><i class="fa fa-venus fa-lg icon-show" ng-class="{active:isFemaleWant}"></i></button>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-6 col-xs-6 block-outer">
-                <!-- 大數據分析 -->
-                <div class="block-inner" id="block-bigdata3">
-                    <div class="block-header">大數據分析三</div>
-                    <div class="block-body">
+                <div class="col-md-6 col-xs-6 block-outer">
+                    <!-- 大數據分析 -->
+                    <div class="block-inner" id="block-bigdata2">
+                        <div class="block-header">大數據分析二</div>
+                        <div class="block-body">
+                            <div class="block-thumb" id="block-bigdata2-thumb"></div>
+                            <div class="block-sex">
+                                <button type=button class="btn btn-sex" ng-class="{active:isMaleFocus}" ng-click="changeSex('focus','male')"><i class="fa fa-mars fa-lg icon-show" ng-class="{active:isMaleFocus}"></i></button>
+                                <button type=button class="btn btn-sex" ng-class="{active:isFemaleFocus}" ng-click="changeSex('focus','female')"><i class="fa fa-venus fa-lg icon-show" ng-class="{active:isFemaleFocus}"></i></button>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-6 col-xs-6 block-outer">
-                <!-- 大數據分析 -->
-                <div class="block-inner" id="block-bigdata4">
-                    <div class="block-header">大數據分析四</div>
-                    <div class="block-body">
+                <div class="col-md-6 col-xs-6 block-outer">
+                    <!-- 大數據分析 -->
+                    <div class="block-inner" id="block-bigdata3">
+                        <div class="block-header">大數據分析三</div>
+                        <div class="block-body">
+                            <div class="block-thumb" id="block-bigdata3-thumb"></div>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <!-- 初學課程 -->
-            <div class="col-md-3 col-xs-6 block-outer">
-                <div class="block-inner" id="block-beginner" ng-click="showCourse('beginner')">
-                    <div class="block-header">初學課程</div>
-                    <div class="block-body"></div>
+                <div class="col-md-6 col-xs-6 block-outer">
+                    <!-- 大數據分析 -->
+                    <div class="block-inner" id="block-bigdata4">
+                        <div class="block-header">大數據分析四</div>
+                        <div class="block-body">
+                            <div class="block-thumb" id="block-bigdata4-thumb"></div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <!-- 熱門課程 -->
-            <div class="col-md-3 col-xs-6 block-outer">
-                <div class="block-inner" id="block-hot" ng-click="showCourse('hot')">
-                    <div class="block-header">熱門課程</div>
-                    <div class="block-body"></div>
+                <!-- 熱門課程 -->
+                <div class="col-md-3 col-xs-6 block-outer">
+                    <div class="block-inner" id="block-popular" ng-click="showCourse('popular')">
+                        <div class="block-header">熱門課程</div>
+                        <div class="block-body"></div>
+                    </div>
                 </div>
-            </div>
-            <!-- 主題課程 -->
-            <div class="col-md-3 col-xs-6 block-outer">
-                <div class="block-inner" id="block-theme" ng-click="showCourse('theme')">
-                    <div class="block-header">主題課程</div>
-                    <div class="block-body"></div>
+                <!-- 主題課程 -->
+                <div class="col-md-3 col-xs-6 block-outer">
+                    <div class="block-inner" id="block-theme" ng-click="showCourse('theme')">
+                        <div class="block-header">主題課程</div>
+                        <div class="block-body"></div>
+                    </div>
                 </div>
-            </div>
-            <!-- 目標課程 -->
-            <div class="col-md-3 col-xs-6 block-outer">
-                <div class="block-inner" id="block-target" ng-click="showCourse('target')">
-                    <div class="block-header">目標課程</div>
-                    <div class="block-body"></div>
+                <!-- 目標課程 -->
+                <div class="col-md-3 col-xs-6 block-outer">
+                    <div class="block-inner" id="block-bodyfat" ng-click="showCourse('bodyfat')">
+                        <div class="block-header">減脂課程</div>
+                        <div class="block-body"></div>
+                    </div>
                 </div>
-            </div>    
+                <!-- 初學課程 -->
+                <div class="col-md-3 col-xs-6 block-outer">
+                    <div class="block-inner" id="block-beginner" ng-click="showCourse('beginner')">
+                        <div class="block-header">初學課程</div>
+                        <div class="block-body"></div>
+                    </div>
+                </div>
             </div>
             <!-- 推薦課程詳細 -->
             <div class="block-course-outer" ng-show="isCourseClick" ng-click="hideCourse()" ng-class="{active:isCourseShow}">
@@ -149,7 +161,7 @@
             <div class="block-inner block-course-inner" ng-show="isCourseClick" ng-class="{active:isCourseShow}">
                 <div class="block-header">{{courseTitle}}</div>
                 <div class="block-body">
-                    <div class="course-scroller"  ng-class="{active:isPositionShow}">
+                    <div class="course-scroller" ng-class="{active:isPositionShow}">
                         <div class="course-list" ng-repeat="course in courseList">
                             <p>{{course.day}}</p>
                             <div class="course-position" ng-repeat="position in course.position" ng-click="showPositionDetail(position.pos)">
@@ -187,7 +199,7 @@
     <script src="javascripts/bootstrap.min.js"></script>
     <script src="javascripts/highcharts.js"></script>
     <script src="javascripts/highcharts-more.js"></script>
-    <!-- <script src="javascripts/dark-unica.js"></script> -->
+    <script src="javascripts/dark-unica.js"></script>
     <script src="javascripts/main.js"></script>
     <script src="javascripts/chart.js"></script>
 </body>

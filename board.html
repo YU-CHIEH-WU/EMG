@@ -37,11 +37,12 @@
                                 <div class="block-user-group">
                                     <div class="block-user-count">已完成課程：1</div>
                                     <div class="block-user-countDetail">查看課程</div>
-                                    <div class="block-user-achieve">已達成成就：5</div>
-                                    <div class="block-user-achieveDetail">查看成就</div>
+                                    <div class="block-user-count">已達成成就：3</div>
+                                    <div class="block-user-countDetail">查看成就</div>
                                 </div>
                                 <div class="block-user-index">
                                     <button type="button" class="btn btn-flat" id="btn-index">返回總覽首頁</button>
+                                    <button type="button" class="btn btn-flat" id="btn-logout">登出</button>
                                 </div>
                             </div>
                         </div>
@@ -237,8 +238,8 @@
                                 </div>
                                 <div class="preview-list" ng-repeat="course in previewList">
                                     <p>{{course.day}}</p>
-                                    <div class="preview-position" ng-repeat="position in course.position" ng-click="showPositionDetail(position.pos)">
-                                        <p>{{position.pos}}<i class="fa fa-chevron-right pull-right"></i></p>
+                                    <div class="preview-posture" ng-repeat="posture in course.posture" ng-click="showPostureDetail(posture.pos)">
+                                        <p>{{posture.pos}}<i class="fa fa-chevron-right pull-right"></i></p>
                                     </div>
                                 </div>
                             </div>
@@ -261,12 +262,16 @@
                         </div>
                     </div>
                     <!-- 動作詳細 -->
-                    <div class="course-position" ng-class="courseStatus['position']">
-                        <p>{{positionName}}</p>
-                        <p>動作詳細說明（圖解或影片）</p>
-                        <br>
-                        <br>
-                        <button class="btn btn-options" ng-click="backPreviewList()">返回課程預覽</button>
+                    <div class="course-posture" ng-class="courseStatus['posture']">
+                        <div class="course-title posture-title">
+                            {{postureName}}
+                        </div>
+                        <div class="posture-video">
+                        <iframe class="posture-iframe" src="https://www.youtube.com/embed/paQczLIrDMI"></iframe>    
+                        </div>
+                        <div class="posture-back">
+                            <button class="btn btn-options" ng-click="backPreviewList()">返回課程預覽</button>
+                        </div>
                     </div>
                 </div>
             </div>

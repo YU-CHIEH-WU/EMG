@@ -202,32 +202,32 @@ app.controller('blockController', ['$scope', '$http', '$timeout', '$location', '
         $scope.selectedStrength = false;
         $scope.selectedEndurance = false;
         // 控制產生新課程步驟所用
-        $scope.courseStatus = { 'options': '', 'preview': '', 'position': '' };
+        $scope.courseStatus = { 'options': '', 'preview': '', 'posture': '' };
         // 開始產生新課程
         $scope.newCourse = function() {
-                if (!$scope.isCreateCourse) {
-                    $scope.courseStatus['options'] = 'active';
-                }
-                $scope.isCreateCourse = true;
-                $scope.isCourseShow = true;
+            if (!$scope.isCreateCourse) {
+                $scope.courseStatus['options'] = 'active';
             }
-        var refreshCourse=function(){
-                    $scope.previewList = [];
-                    $scope.courseOptions = angular.copy(courseOptions);
-                    $scope.selectedGoal = angular.copy(goalList);
-                    $scope.selectedPart = angular.copy(partList);
-                    $scope.selectedDevice=angular.copy(deviceList);
-                    $scope.isGoalSet = false;
-                    $scope.isPartSet = false;
-                    isPartialSelected = false;
-                    partialSelectedCount = 0;
-                    $scope.isDeviceSet = false;
-                    deviceSelectedCount = 0;
-                    $scope.isCreateCourse = false;
-                    $scope.isCourseShow = false;
-                    $scope.selectedStrength = false;
-                    $scope.selectedEndurance = false;
-                    $scope.courseStatus = { 'options': '', 'preview': '', 'position': '' };
+            $scope.isCreateCourse = true;
+            $scope.isCourseShow = true;
+        }
+        var refreshCourse = function() {
+                $scope.previewList = [];
+                $scope.courseOptions = angular.copy(courseOptions);
+                $scope.selectedGoal = angular.copy(goalList);
+                $scope.selectedPart = angular.copy(partList);
+                $scope.selectedDevice = angular.copy(deviceList);
+                $scope.isGoalSet = false;
+                $scope.isPartSet = false;
+                isPartialSelected = false;
+                partialSelectedCount = 0;
+                $scope.isDeviceSet = false;
+                deviceSelectedCount = 0;
+                $scope.isCreateCourse = false;
+                $scope.isCourseShow = false;
+                $scope.selectedStrength = false;
+                $scope.selectedEndurance = false;
+                $scope.courseStatus = { 'options': '', 'preview': '', 'posture': '' };
             }
             // 隱藏產生新課程block
         $scope.hideCourse = function(option) {
@@ -334,12 +334,11 @@ app.controller('blockController', ['$scope', '$http', '$timeout', '$location', '
                 if (options == '滑輪') {
                     index = 'pulley';
                 }
-                console.log($scope.selectedDevice[index]=='');
+                console.log($scope.selectedDevice[index] == '');
                 if ($scope.selectedDevice[index] == '') {
                     deviceSelectedCount++;
                     $scope.selectedDevice[index] = options;
-                }
-                else if ($scope.selectedDevice[index] != '') {
+                } else if ($scope.selectedDevice[index] != '') {
                     deviceSelectedCount--;
                     $scope.selectedDevice[index] = '';
                 }
@@ -361,7 +360,7 @@ app.controller('blockController', ['$scope', '$http', '$timeout', '$location', '
                 alert('請選擇訓練部位');
                 return;
             };
-            if(!$scope.isDeviceSet){
+            if (!$scope.isDeviceSet) {
                 alert('請選擇訓練器材');
                 return;
             }
@@ -385,7 +384,7 @@ app.controller('blockController', ['$scope', '$http', '$timeout', '$location', '
                     angular.forEach(data, function(value, key) {
                         var preview = {
                             'day': 'Day' + value.Days,
-                            'position': [{ 'pos': value.Pos1 }, { 'pos': value.Pos2 },
+                            'posture': [{ 'pos': value.Pos1 }, { 'pos': value.Pos2 },
                                 { 'pos': value.Pos3 }, { 'pos': value.Pos4 }, { 'pos': value.Pos5 }, { 'pos': value.Pos6 }
                             ]
                         };
@@ -441,6 +440,7 @@ app.controller('blockController', ['$scope', '$http', '$timeout', '$location', '
                         var values = value['Date'].split('T');
                         var time = values[0];
                         console.log(values, time)
+                        $scope.time = time;
                         var course = { 'thumb': 'images/muscle.jpg', 'title': value['P_Name'], 'time': time };
                         $scope.courseList.push(course);
                     })
@@ -461,7 +461,7 @@ app.controller('blockController', ['$scope', '$http', '$timeout', '$location', '
                     $scope.isCourseShow = false;
                     $scope.selectedStrength = false;
                     $scope.selectedEndurance = false;
-                    $scope.courseStatus = { 'options': '', 'preview': '', 'position': '' };
+                    $scope.courseStatus = { 'options': '', 'preview': '', 'posture': '' };
                 }
                 // 儲存課程失敗
                 else {
@@ -470,15 +470,17 @@ app.controller('blockController', ['$scope', '$http', '$timeout', '$location', '
             });
         };
         // 顯示姿勢詳細教學
-        $scope.showPositionDetail = function(pos) {
-            $scope.positionName = pos;
-            $scope.courseStatus['position'] = 'active';
+        $scope.showPostureDetail = function(pos) {
+            var posDataApi= 'http://163.17.136.197/EMG/api/PostureApi/getPosData';
+            $scope.postureName = pos;
+            $scope.postureSrc='https://www.youtube.com/embed/vGbPbo0VH14';
+            $scope.courseStatus['posture'] = 'active';
             $scope.courseStatus['preview'] = 'left';
         };
         // 返回課程預覽
         $scope.backPreviewList = function() {
             $scope.courseStatus['preview'] = 'active';
-            $scope.courseStatus['position'] = '';
+            $scope.courseStatus['posture'] = '';
         };
 
         // 訓練成效與肌肉成長

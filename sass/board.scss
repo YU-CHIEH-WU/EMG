@@ -153,6 +153,7 @@ body {
     height: 100%;
     position: relative;
     background: $blockColor;
+    box-shadow:$shadow2;
     @include transition(all, 0.3s, ease-in);
     @include border-radius(1.5%);
     &.opacity {
@@ -302,10 +303,15 @@ body {
     height: 20%;
 }
 
-#btn-index {
-    width: 100%;
+#btn-index,#btn-logout {
     height: 100%;
     font-size: 18px;
+}
+#btn-index{
+    width:65%;
+}
+#btn-logout{
+    width:30%
 }
 
 
@@ -439,7 +445,7 @@ body {
     text-align: center;
 }
 
-.preview-position {
+.preview-posture {
     height: 30px;
     padding: 8px;
     line-height: 15px;
@@ -449,7 +455,7 @@ body {
     }
 }
 
-.course-position {
+.course-posture {
     width: 100%;
     height: 100%;
     left: 120%;
@@ -462,7 +468,11 @@ body {
         left: 0;
     }
 }
-
+.posture-iframe{
+    width:90%;
+    height:77.5%;
+    margin:0 auto;
+}
 .block-course-list {
     width: 100%;
     height: 60px;
@@ -566,7 +576,7 @@ body {
 /* detai1 */
 
 #detail1-main-chart {
-    width: 70%;
+    width: 85%;
     height: 50%;
     left: 0;
     top: 30px;
@@ -574,7 +584,7 @@ body {
 }
 
 #detail1-right-tabs {
-    width: 25%;
+    width: 10%;
     height: 50%;
     right: 0;
     top: 30px;

@@ -1,8 +1,178 @@
 //TODO:參數增加data傳入
-function setChart(ChartName, targetId, save) {
+function setChart(ChartName, targetId, title, data1, data2) {
+
     var target = $('#' + targetId);
-    //肌力變化-公斤
+    // 大數據分析圖
+    if (ChartName == "tippie") {
+        target.highcharts({
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                type: 'pie'
+            },
+            title: {
+                text: title
+            },
+            tooltip: {
+                pointFormat: '<b>{point.percentage:.1f}%</b>'
+            },
+            legend: {
+                enabled: false
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: true,
+                        format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                        style: {
+                            color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                        }
+                    },
+                    showInLegend: true
+                }
+            },
+            series: [{
+                colorByPoint: true,
+                data: data1
+            }],
+            credits: {
+                enabled: false
+            }
+        });
+    }
+    if (ChartName == "pie") {
+        target.highcharts({
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                type: 'pie'
+            },
+            title: {
+                text: title
+            },
+            tooltip: {
+                pointFormat: '<b>{point.percentage:.1f}%</b>'
+            },
+            legend: {
+                enabled: false
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: false,
+                        format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                        style: {
+                            color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                        }
+                    },
+                    showInLegend: true
+                }
+            },
+            series: [{
+                colorByPoint: true,
+                data: data1
+            }],
+            credits: {
+                enabled: false
+            }
+        });
+    }
+    // 肌力變化-公斤&百分比
     if (ChartName == "1rm") {
+        target.highcharts({
+            chart: {
+                zoomType: 'xy'
+            },
+            exporting: {
+                enabled: false
+            },
+            title: {
+                text: '訓練期間肌力變化圖'
+            },
+            subtitle: {
+                text: '1RM為評估最大肌力的指標'
+            },
+            xAxis: [{
+                categories: ['2/17', '2/24', '3/2', '3/9', '3/16', '3/23', '3/30', '4/6', '4/13', '4/20', '4/27', '5/4', '5/11', '5/18', '5/25'],
+                crosshair: true
+            }],
+            yAxis: [{ // Primary yAxis
+                labels: {
+                    format: '{value}%',
+                    style: {
+                        color: Highcharts.getOptions().colors[1]
+                    }
+                },
+                title: {
+                    text: '成長百分比',
+                    style: {
+                        color: Highcharts.getOptions().colors[1]
+                    },
+                    align: 'high',
+                    rotation: 0,
+                    x: 50,
+                    y: -20
+                }
+            }, { // Secondary yAxis
+                title: {
+                    text: '成長公斤數',
+                    style: {
+                        color: Highcharts.getOptions().colors[0]
+                    },
+                    align: 'high',
+                    rotation: 0,
+                    x: -50,
+                    y: -20
+                },
+                labels: {
+                    format: '{value} KG',
+                    style: {
+                        color: Highcharts.getOptions().colors[0]
+                    }
+                },
+                opposite: true
+            }],
+            tooltip: {
+                shared: true
+            },
+            legend: {
+                borderWidth: 0,
+                itemDistance: 50,
+                margin: 24,
+                itemStyle: {
+                    "font-size": "14px"
+                }
+            },
+            series: [{
+                name: '成長公斤數',
+                type: 'column',
+                yAxis: 1,
+                data: [82, 85, 87, 91, 94, 97, 100, 106, 109, 112, 115, 117, 119, 121, 124],
+                tooltip: {
+                    valueSuffix: ' KG'
+                }
+
+            }, {
+                name: '成長百分比',
+                type: 'spline',
+                data: [0, 3.6, 6.1, 11.0, 14.6, 18.3, 22.0, 29.3, 33.0, 36.6, 40.2, 42.7, 45.1, 47.6, 51.2],
+                tooltip: {
+                    valueSuffix: '%'
+                }
+            }],
+            credits: {
+                enabled: false
+            }
+        });
+    }
+    //肌力變化-公斤
+    if (ChartName == "1rmKG") {
         target.highcharts({
             chart: {
                 type: 'spline'
