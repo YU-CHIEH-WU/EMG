@@ -87,7 +87,8 @@ function setChart(ChartName, targetId, title, data1, data2) {
     if (ChartName == "1rm") {
         target.highcharts({
             chart: {
-                zoomType: 'xy'
+                zoomType: 'xy',
+                spacing:[0,0,0,0]
             },
             exporting: {
                 enabled: false
@@ -153,7 +154,7 @@ function setChart(ChartName, targetId, title, data1, data2) {
                 name: '成長公斤數',
                 type: 'column',
                 yAxis: 1,
-                data: [82, 85, 87, 91, 94, 97, 100, 106, 109, 112, 115, 117, 119, 121, 124],
+                data: [10, 12, 13, 14, 16, 18, 19, 21, 23, 26, 27, 29, 30, 31, 33],
                 tooltip: {
                     valueSuffix: ' KG'
                 }
@@ -161,7 +162,7 @@ function setChart(ChartName, targetId, title, data1, data2) {
             }, {
                 name: '成長百分比',
                 type: 'spline',
-                data: [0, 3.6, 6.1, 11.0, 14.6, 18.3, 22.0, 29.3, 33.0, 36.6, 40.2, 42.7, 45.1, 47.6, 51.2],
+                data: [0, 20.0, 30.0,40.0, 60.0, 80.0, 90.0, 110.0, 130.0, 160.0, 170.0, 190.0, 200.0, 210.0, 230.0],
                 tooltip: {
                     valueSuffix: '%'
                 }
@@ -215,7 +216,7 @@ function setChart(ChartName, targetId, title, data1, data2) {
                 valueSuffix: 'KG'
             },
             series: [{
-                name: 'SELF',
+                name: '肌力',
                 data: [82, 87, 94, 100, 106, 112]
             }],
             credits: {
@@ -270,7 +271,7 @@ function setChart(ChartName, targetId, title, data1, data2) {
                 }
             },
             series: [{
-                name: 'SELF',
+                name: '肌力',
                 data: [0, 2, 3, 5, 8, 10, 12]
             }],
             credits: {
@@ -321,26 +322,70 @@ function setChart(ChartName, targetId, title, data1, data2) {
                 enabled: false
             },
             series: [{
-                name: 'SELF',
+                name: '肌力',
                 data: [21, 12, 6, 9]
             }]
         });
     }
-    //肌耐力變化-公斤
+    //肌耐力變化-公斤&百分比
     if (ChartName == "15rm") {
         target.highcharts({
             chart: {
-                type: 'spline'
+                zoomType: 'xy'
             },
             exporting: {
                 enabled: false
             },
             title: {
-                text: '肌耐力變化-公斤',
-                x: -20 //center
+                text: '訓練期間肌耐力變化圖'
             },
             subtitle: {
                 text: '15RM為評估肌耐力的指標'
+            },
+            xAxis: [{
+                categories: ['2/17', '2/24', '3/2', '3/9', '3/16', '3/23', '3/30', '4/6', '4/13', '4/20', '4/27', '5/4', '5/11', '5/18', '5/25'],
+                crosshair: true
+            }],
+            yAxis: [{ // Primary yAxis
+                labels: {
+                    format: '{value}%',
+                    style: {
+                        color: Highcharts.getOptions().colors[1]
+                    }
+                },
+                title: {
+                    text: '成長百分比',
+                    style: {
+                        color: Highcharts.getOptions().colors[1]
+                    },
+                    align: 'high',
+                    rotation: 0,
+                    x: 50,
+                    y: -20,
+                    offset:50
+                }
+            }, { // Secondary yAxis
+                title: {
+                    text: '成長公斤數',
+                    style: {
+                        color: Highcharts.getOptions().colors[0]
+                    },
+                    align: 'high',
+                    rotation: 0,
+                    x: -50,
+                    y: -20,
+                    offset:50
+                },
+                labels: {
+                    format: '{value} KG',
+                    style: {
+                        color: Highcharts.getOptions().colors[0]
+                    }
+                },
+                opposite: true
+            }],
+            tooltip: {
+                shared: true
             },
             legend: {
                 borderWidth: 0,
@@ -350,28 +395,22 @@ function setChart(ChartName, targetId, title, data1, data2) {
                     "font-size": "14px"
                 }
             },
-            xAxis: {
-                categories: ['2/17', '2/19', '2/20', '2/22', '2/23', '2/25']
-            },
-            yAxis: {
-                title: {
-                    text: null
-                },
-                labels: {
-                    format: '{value}KG'
-                },
-                plotLines: [{
-                    value: 0,
-                    width: 1,
-                    color: '#808080'
-                }]
-            },
-            tooltip: {
-                valueSuffix: 'KG'
-            },
             series: [{
-                name: 'SELF',
-                data: [54, 57, 60, 62, 64, 68]
+                name: '成長公斤數',
+                type: 'column',
+                yAxis: 1,
+                data: [3, 5, 7, 8, 10, 12, 13, 15, 16, 18, 19, 20, 21, 23, 25],
+                tooltip: {
+                    valueSuffix: ' KG'
+                }
+
+            }, {
+                name: '成長百分比',
+                type: 'spline',
+                data: [0, 66.6, 133.3, 166.6, 233.3, 300.0, 333.3, 400.0, 433.3, 500.0, 533.3, 566.6, 600.0, 633.3, 733.3],
+                tooltip: {
+                    valueSuffix: '%'
+                }
             }],
             credits: {
                 enabled: false
@@ -425,7 +464,7 @@ function setChart(ChartName, targetId, title, data1, data2) {
                 }
             },
             series: [{
-                name: 'SELF',
+                name: '肌耐力',
                 data: [0, 2, 3, 5, 6, 8, 9]
             }],
             credits: {
@@ -476,7 +515,7 @@ function setChart(ChartName, targetId, title, data1, data2) {
                 enabled: false
             },
             series: [{
-                name: 'SELF',
+                name: '肌耐力',
                 data: [14, 8, 5, 2]
             }]
         });
@@ -642,7 +681,7 @@ function setChart(ChartName, targetId, title, data1, data2) {
                 }
             },
             series: [{
-                name: 'SELF',
+                name: '體脂率',
                 data: [0, 2, 3, 5, 6, 8, 10]
             }],
             credits: {
@@ -698,7 +737,7 @@ function setChart(ChartName, targetId, title, data1, data2) {
             }]
         });
     }
-    //訓練動作相對成長
+    //訓練姿勢相對成長
     if (ChartName == "growWays") {
         target.highcharts({
             chart: {
@@ -708,7 +747,7 @@ function setChart(ChartName, targetId, title, data1, data2) {
                 enabled: false
             },
             title: {
-                text: '訓練動作之相對肌肉成長'
+                text: '訓練姿勢之相對肌肉成長'
             },
             xAxis: {
                 categories: ['啞鈴集中彎舉', '啞鈴斜板彎舉', '引體向上', '槓鈴站立彎舉'],
@@ -797,7 +836,7 @@ function setChart(ChartName, targetId, title, data1, data2) {
             },
             series: [{
                 type: 'area',
-                name: 'SELF',
+                name: '肌肉疲勞',
                 data: [0, 8, 12, 15, 21, 28, 32, 45, 54, 60, 68, 73, 80, 84, 86, 90, 92, 94, 95, 97, 98, 100, 100, 100]
             }],
             credits: {
@@ -853,7 +892,7 @@ function setChart(ChartName, targetId, title, data1, data2) {
             },
             series: [{
                 type: 'spline',
-                name: 'SELF',
+                name: '肌肉出力',
                 data: [65, 72, 80, 80, 79, 82, 78, 81, 75, 73, 78, 82, 80, 84, 86, 78, 75, 72, 80, 71, 75, 71, 69, 68]
             }],
             credits: {
@@ -861,7 +900,7 @@ function setChart(ChartName, targetId, title, data1, data2) {
             }
         })
     }
-    //訓練成效-成效評估
+    //訓練成效-訓練姿勢
     if (ChartName == "result") {
         //$('#'+targetId).html('<div class="progress-title"><p>本次訓練成效</p></div><div class="block-progress"><div class="progress progress-striped active"><div class="progress-bar progress-bar-theme" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 82%"><span class="pull-right">82%</span></div></div></div>')
         target.highcharts({
@@ -872,16 +911,16 @@ function setChart(ChartName, targetId, title, data1, data2) {
                 enabled: false
             },
             title: {
-                text: '訓練成效之綜合指標'
+                text: '訓練姿勢之相對訓練成效'
             },
             xAxis: {
-                categories: ['訓練完成度', '動作正確性', '預估肌肉成長'],
+                categories: ['槓鈴彎舉', '槓鈴斜板彎舉', '坐姿啞鈴交替彎舉'],
                 title: {
                     text: null
                 }
             },
             legend: {
-                enabled: false
+                enabled: true
             },
             yAxis: {
                 min: 0,
@@ -908,8 +947,11 @@ function setChart(ChartName, targetId, title, data1, data2) {
                 enabled: false
             },
             series: [{
-                name: 'SELF',
-                data: [85, 32, 3]
+                name: '肌肉疲勞',
+                data: [72, 62, 85]
+            }, {
+                name: '肌肉出力',
+                data: [90, 82, 87]
             }]
         });
     }
@@ -945,7 +987,7 @@ function setChart(ChartName, targetId, title, data1, data2) {
             },
             tooltip: {
                 shared: true,
-                pointFormat: '<span style="color:{series.color}">{series.name}: <b>{point.y}%</b><br/>'
+                pointFormat: '<span style="color:{series.color}"><b>{point.y}%</b><br/>'
             },
             series: [{
                 name: 'SELF',
@@ -994,7 +1036,7 @@ function setChart(ChartName, targetId, title, data1, data2) {
                 valueSuffix: '%'
             },
             series: [{
-                name: 'SELF',
+                name: '訓練成效',
                 data: [66, 82, 71, 60, 0, 84]
             }],
             credits: {
@@ -1038,7 +1080,7 @@ function setChart(ChartName, targetId, title, data1, data2) {
                 valueSuffix: '%'
             },
             series: [{
-                name: 'SELF',
+                name: '肌肉成長',
                 data: [23, 28, 32, 38, 42, 49]
             }],
             credits: {
