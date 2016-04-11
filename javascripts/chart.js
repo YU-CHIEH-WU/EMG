@@ -503,10 +503,11 @@ function setChart(ChartName, targetId, title, data1, data2) {
                 enabled: false
             },
             title: {
-                text: '體脂變化-原始百分比',
+                text: null,
                 x: -20 //center
             },
             legend: {
+                enabled: false,
                 borderWidth: 0,
                 itemDistance: 50,
                 margin: 24,
@@ -569,7 +570,7 @@ function setChart(ChartName, targetId, title, data1, data2) {
                     to: fat.fatEnd,
                     color: 'rgba(244,67,54,0.1)',
                     label: {
-                        text: '你超胖',
+                        text: '過胖',
                         style: {
                             color: '#fff'
                         }
@@ -586,8 +587,8 @@ function setChart(ChartName, targetId, title, data1, data2) {
                 }
             },
             series: [{
-                name: 'SELF',
-                data: [30, 26, 23, 19, 13, 11, 9]
+                name: '體脂率',
+                data: [29.8, 26.1, 23.4, 19.3, 16.9, 15.8, 14.6]
             }],
             credits: {
                 enabled: false
@@ -933,7 +934,7 @@ function setChart(ChartName, targetId, title, data1, data2) {
                 enabled: false
             },
             xAxis: {
-                categories: ['肌耐力', '體脂率', '肌力'],
+                categories: ['肌群均衡', '肌力', '肌耐力', '訓練成效', '體脂率', '超負荷'],
                 tickmarkPlacement: 'on',
                 lineWidth: 0,
             },
@@ -949,7 +950,7 @@ function setChart(ChartName, targetId, title, data1, data2) {
             series: [{
                 name: 'SELF',
                 type: 'area',
-                data: [43, 60, 35],
+                data: [15, 70, 42, 90, 72, 65],
                 pointPlacement: 'on'
             }],
             credits: {

@@ -4,6 +4,7 @@ app.controller('blockController', ['$scope', '$http', '$timeout', '$interval', f
     // true時隱藏首頁block
     $scope.isDetailActive = false;
     // true時顯示對應detail
+    $scope.detail3Active = false;
     $scope.detail4Active = false;
     // 以動畫差隱藏首頁block
     $scope.isOntop = false;
@@ -15,20 +16,25 @@ app.controller('blockController', ['$scope', '$http', '$timeout', '$interval', f
     };
     // 顯示首頁
     $scope.showIndex = function() {
+        $scope.detail3Active = false;
         $scope.detail4Active = false;
         $scope.isOntop = false;
         $timeout(function() { $scope.isDetailActive = false }, 50);
     };
+    $scope.showDetail3 = function() {
+        $scope.isDetailActive = true;
+        $scope.detail3Active = true;
+    }
     $scope.showDetail4 = function(id) {
             console.log(id);
             //接API
-            $scope.isDetailActive = true;
             $scope.detailTitle = '健身消息標題';
             $scope.detailContent = '健身消息內文';
             $scope.detail4Active = true;
             $scope.isDetailActive = true;
         }
         // 取得問卷資料
+        // categories 放運動項目 series name放健身部位 data放各個部位的值
     var questList = [];
     var femaleCount = 0;
     var maleCount = 0;
@@ -50,6 +56,11 @@ app.controller('blockController', ['$scope', '$http', '$timeout', '$interval', f
     $scope.isFemaleFocus = false;
     var motiveList = [];
     var motiveCount = {};
+    var sportList = ['其他'];
+    var sportTempCount = {};
+    var sportCount = [{ 'name': '其他', 'y': 0, 'data': [] }];
+    var sportFocus = [];
+    var sportSeries = [{ 'name': '均衡發展', 'data': [] }, { 'name': '腿部', 'data': [] }, { 'name': '胸部', 'data': [] }, { 'name': '背部', 'data': [] }, { 'name': '腹部', 'data': [] }, { 'name': '肩部', 'data': [] }, { 'name': '肱二頭肌', 'data': [] }, { 'name': '肱三頭肌', 'data': [] }, ]
     var questApi = 'https://spreadsheets.google.com/feeds/list/1ZiCa4_VaaajJ2mNj36Mb-Z51AwuwH5O7g60NN7a4SPQ/od6/public/values?alt=json';
     $http.get(questApi).then(function(response) {
         var entry = response.data.feed.entry;
@@ -97,9 +108,14 @@ app.controller('blockController', ['$scope', '$http', '$timeout', '$interval', f
             questList.push(data);
             if (motiveCount[motive] == undefined) {
                 motiveCount[motive] = 1;
-                motiveList.push({'name':motive,'y':0});
+                motiveList.push({ 'name': motive, 'y': 0 });
             } else {
                 motiveCount[motive]++;
+            }
+            if (sportTempCount[sport] == undefined) {
+                sportTempCount[sport] = 1;
+            } else {
+                sportTempCount[sport]++;
             }
             if (sex == '男生') {
                 maleWantCount[want]++;
@@ -112,9 +128,22 @@ app.controller('blockController', ['$scope', '$http', '$timeout', '$interval', f
                 femaleCount++;
             }
         })
-        console.log(questList.length);
-        angular.forEach(motiveList,function(value,key){
-            motiveList[key].y=parseFloat((motiveCount[value.name]/questList.length*100).toFixed(2));
+        angular.forEach(sportTempCount, function(value, key) {
+            if (value >= 3 && key != '無') {
+                sportCount.push({ 'name': key, 'y': value, 'data': [] });
+                sportList.push(key);
+            } else {
+                sportCount[0].y += value;
+            }
+        })
+        sportCount.sort(function(a, b) {
+            return a.y - b.y;
+        });
+        sportCount.reverse();
+        sportCount.pop()
+        console.log(sportList, sportCount);
+        angular.forEach(motiveList, function(value, key) {
+            motiveList[key].y = parseFloat((motiveCount[value.name] / questList.length * 100).toFixed(2));
         })
         angular.forEach(maleWant, function(value, key) {
             maleWant[key].y = parseFloat((maleWantCount[value.name] / maleCount * 100).toFixed(2));
@@ -128,32 +157,31 @@ app.controller('blockController', ['$scope', '$http', '$timeout', '$interval', f
         angular.forEach(femaleFocus, function(value, key) {
             femaleFocus[key].y = parseFloat((femaleFocusCount[value.name] / femaleCount * 100).toFixed(2));
         })
-        console.log(motiveList);
-        setChart('tippie', 'block-bigdata1-thumb', '女生最想看異性的哪個肌肉部位', femaleWant);
+        setChart('tippie', 'block-bigdata1-thumb', '女生最想看異性哪個肌肉部位', femaleWant);
         setChart('tippie', 'block-bigdata2-thumb', '男生最注重自己哪個肌肉部位', maleFocus);
-        setChart('pie','block-bigdata3-thumb','大家健身最大的動機為何',motiveList);
+        setChart('pie', 'block-bigdata3-thumb', '大家健身最大的動機為何', motiveList);
     })
     $scope.changeSex = function(type, sex) {
             if (type == 'want') {
                 if (sex == 'female') {
                     $scope.isFemaleWant = true;
                     $scope.isMaleWant = false;
-                    setChart('pie', 'block-bigdata1-thumb', '女生最想看異性的哪個肌肉部位', femaleWant);
+                    setChart('tippie', 'block-bigdata1-thumb', '女生最想看異性哪個肌肉部位', femaleWant);
                 } else {
                     $scope.isMaleWant = true;
                     $scope.isFemaleWant = false
-                    setChart('pie', 'block-bigdata1-thumb', '男生最想看異性的哪個肌肉部位', maleWant);
+                    setChart('tippie', 'block-bigdata1-thumb', '男生最想看異性哪個肌肉部位', maleWant);
                 }
             }
             if (type == 'focus') {
                 if (sex == 'female') {
                     $scope.isFemaleFocus = true;
                     $scope.isMaleFocus = false;
-                    setChart('pie', 'block-bigdata2-thumb', '女生最注重自己哪個肌肉部位', femaleFocus);
+                    setChart('tippie', 'block-bigdata2-thumb', '女生最注重自己哪個肌肉部位', femaleFocus);
                 } else {
                     $scope.isMaleFocus = true;
                     $scope.isFemaleFocus = false;
-                    setChart('pie', 'block-bigdata2-thumb', '男生最注重自己哪個肌肉部位', maleFocus);
+                    setChart('tippie', 'block-bigdata2-thumb', '男生最注重自己哪個肌肉部位', maleFocus);
                 }
             }
         }
@@ -202,6 +230,19 @@ app.controller('blockController', ['$scope', '$http', '$timeout', '$interval', f
                 $scope.loginLoading = false;
             }, 1000);
         }
+        // 註冊
+    $scope.register = function() {
+        $scope.isRegisterClick = true;
+        $timeout(function() {
+            $scope.isRegisterShow = true;
+        }, 30);
+    }
+    $scope.hideRegister = function() {
+            $scope.isRegisterShow = false;
+            $timeout(function() {
+                $scope.isRegisterClick = false;
+            }, 250);
+        }
         // 登入後
         //最新消息
     $scope.newsList = [{ 'id': '1', 'title': '健身消息標題' }, { 'id': '1', 'title': '健身消息標題' }, { 'id': '1', 'title': '健身消息標題' },
@@ -233,6 +274,15 @@ app.controller('blockController', ['$scope', '$http', '$timeout', '$interval', f
             fameCount = 0;
         }
     }, 2000);
+    // 訓練成果相片
+    $scope.albumList = [{ 'title': '肱二頭肌', 'thumb': 'images/T51.jpg' },
+        { 'title': '肱三頭肌', 'thumb': 'images/T51.jpg' }, { 'title': '胸肌', 'thumb': 'images/T51.jpg' },
+        { 'title': '腹肌', 'thumb': 'images/T51.jpg' }, { 'title': '背肌', 'thumb': 'images/T51.jpg' },
+        { 'title': '肩部', 'thumb': 'images/T51.jpg' }, { 'title': '腿部', 'thumb': 'images/T51.jpg' }
+    ];
+    $scope.showPhotoList = function(title) {
+        console.log(title);
+    };
     // 推薦課程 接入api
     var beginnerCourse = {
         title: '初學者均衡鍛鍊',

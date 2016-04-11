@@ -10,11 +10,11 @@
     <link rel="stylesheet" href="stylesheets/main.css">
 </head>
 
-<body ng-class="{unscroll:isDetailActive,unscroll:isCourseClick}">
+<body ng-class="{unscroll:isDetailActive,unscroll:isCourseClick,unscroll:isRegisterClick}">
     <div class="container">
         <div class="row">
             <!-- 主頁面 -->
-            <div class="block-container" ng-class="{gotop:isDetailActive,ontop:isOntop}" when-transition-end="setOntop()">
+            <div class="block-container" ng-class="{gotop:isDetailActive,ontop:isOntop,filter:isCourseClick,filter:isRegisterClick}" when-transition-end="setOntop()">
                 <div class="col-md-3 col-xs-6 block-outer">
                     <!-- 會員 -->
                     <!-- TODO: ProgressButtonStyles -->
@@ -28,7 +28,7 @@
                                 <button type="button" class="btn btn-normal" id="btn-login" ng-class="{active:loginLoading}" ng-click="login()" ng-disabled="loginLoading">{{loginMessage}}</button>
                             </div>
                             <div class="block-register-input text-center" ng-show="!isLogin">
-                                <button type="button" class="btn btn-normal" id="btn-register" ng-disabled="loginLoading">還沒有帳號嗎？點我註冊</button>
+                                <button type="button" class="btn btn-normal" id="btn-register" ng-click="register()" ng-disabled="loginLoading">還沒有帳號嗎？點我註冊</button>
                             </div>
                             <!-- 登入 -->
                             <div class="block-user text-center" ng-show="isLogin">
@@ -79,6 +79,9 @@
                     <div class="block-inner" id="block-album">
                         <div class="block-header">訓練成果相片</div>
                         <div class="block-body">
+                            <div class="block-album-thumb" ng-click="showDetail3()">
+                                <img src="images/T51.jpg" alt="" style="width:100%;width:100%;">
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -133,14 +136,14 @@
                         <div class="block-body"></div>
                     </div>
                 </div>
-                <!-- 主題課程 -->
+                <!-- 部位課程 -->
                 <div class="col-md-3 col-xs-6 block-outer">
                     <div class="block-inner" id="block-theme" ng-click="showCourse('theme')">
-                        <div class="block-header">主題課程</div>
+                        <div class="block-header">部位課程</div>
                         <div class="block-body"></div>
                     </div>
                 </div>
-                <!-- 目標課程 -->
+                <!-- 減脂課程 -->
                 <div class="col-md-3 col-xs-6 block-outer">
                     <div class="block-inner" id="block-bodyfat" ng-click="showCourse('bodyfat')">
                         <div class="block-header">減脂課程</div>
@@ -155,11 +158,18 @@
                     </div>
                 </div>
             </div>
+            <!-- 註冊 -->
+            <div class="block-register-outer" ng-show="isRegisterClick" ng-click="hideRegister()" ng-class="{active:isRegisterShow}"></div>
+            <div class="block-inner block-register-inner" ng-show="isRegisterClick" ng-class="{active:isRegisterShow}">
+                <div class="block-header"></div>
+                <div class="block-body">
+                </div>
+            </div>
             <!-- 推薦課程詳細 -->
             <div class="block-course-outer" ng-show="isCourseClick" ng-click="hideCourse()" ng-class="{active:isCourseShow}">
             </div>
             <div class="block-inner block-course-inner" ng-show="isCourseClick" ng-class="{active:isCourseShow}">
-                <div class="block-header">{{courseTitle}}</div>
+                <div class="block-header"><span class="title">{{courseTitle}}</span><span class="back" ng-click="hideCourse()"><i class="fa fa-times icon-back"></i></span></div>
                 <div class="block-body">
                     <div class="course-scroller" ng-class="{active:isPositionShow}">
                         <div class="course-list" ng-repeat="course in courseList">
@@ -179,8 +189,31 @@
                     </div>
                 </div>
             </div>
+            <!-- 詳細block3(相簿) -->
+            <div class="block-detail-outer" ng-class="{active:detail3Active}" ng-click="showIndex()"></div>
+            <div class="block-detail" id="block-detail-3" ng-class="{active:detail3Active}">
+                <div class="block-header"><span class="title">訓練成果相片</span><span class="back" ng-click="showIndex()"><i class="fa fa-times icon-back"></i></span></div>
+                <div class="block-body">
+                <div class="detail-album-list">
+                    <div class="detail-album-outer" ng-repeat="album in albumList">
+                        <div class="detail-album-inner" ng-click="showPhotoList({{album.title}})">
+                            <div class="album-title">{{album.title}}</div>
+                            <div class="album-thumb"><img ng-src="{{album.thumb}}"></div>
+                        </div>
+                    </div>
+                    <div class="detail-album-outer">
+                        <div class="detail-album-inner">
+                            <button class="btn btn-flat">上傳相片</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="detail-photo-list">
+                    
+                </div>
+                </div>
+            </div>
             <!-- 詳細block4 -->
-            <div class="block-detail-outer" ng-class="{active:isDetailActive}" ng-click="showIndex()"></div>
+            <div class="block-detail-outer" ng-class="{active:detail4Active}" ng-click="showIndex()"></div>
             <div class="block-detail" id="block-detail-4" ng-class="{active:detail4Active}">
                 <div class="prev"></div>
                 <div class="next"></div>

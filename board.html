@@ -172,63 +172,59 @@
                 <div class="block-header"><span class="title">產生個人化課程</span><span class="back" ng-click="hideCourse('quit')"><i class="fa fa-times icon-back"></i></span></div>
                 <div class="block-body">
                     <div class="course-options" ng-class="courseStatus['options']">
-                        <section class="clearfix option">
-                            <div class="course-title goal-title">選擇訓練目標<i class="fa fa-check icon-success" ng-class="{active:isGoalSet}"></i></div>
-                            <div class="goal-options btn-group">
-                                <div class="options options-strength">
-                                    <button class="btn btn-options btn-lg" ng-class="{active:selectedGoal['strength']}" ng-click="setGoal('肌力')">肌力</button>
+                        <div class="scroller">
+                            <section class="clearfix option">
+                                <div class="course-title goal-title">選擇訓練目標<i class="fa fa-check icon-success" ng-class="{active:isGoalSet}"></i></div>
+                                <div class="goal-options btn-group">
+                                    <div class="options options-strength">
+                                        <button class="btn btn-options btn-lg" ng-class="{active:selectedGoal['strength']}" ng-click="setGoal('肌力')">肌力</button>
+                                    </div>
+                                    <div class="options options-endurance">
+                                        <button class="btn btn-options btn-lg" ng-class="{active:selectedGoal['endurance']}" ng-click="setGoal('肌耐力')">肌耐力</button>
+                                    </div>
                                 </div>
-                                <div class="options options-endurance">
-                                    <button class="btn btn-options btn-lg" ng-class="{active:selectedGoal['endurance']}" ng-click="setGoal('肌耐力')">肌耐力</button>
+                            </section>
+                            <section class="clearfix option">
+                                <div class="course-title part-title">選擇訓練部位<i class="fa fa-check icon-success" ng-class="{active:isPartSet}"></i></div>
+                                <div class="part-options btn-group">
+                                    <div class="options options-chest">
+                                        <button class="btn btn-options btn-lg" ng-class="{active:selectedPart['complex']}" ng-click="setPart('複合')">複合部位</button>
+                                    </div>
+                                    <div class="options options-chest">
+                                        <button class="btn btn-options btn-lg" ng-class="{active:selectedPart['chest']}" ng-click="setPart('胸')">胸肌</button>
+                                    </div>
+                                    <div class="options options-back">
+                                        <button class="btn btn-options btn-lg" ng-class="{active:selectedPart['back']}" ng-click="setPart('背')">背肌</button>
+                                    </div>
+                                    <div class="options options-shoulder">
+                                        <button class="btn btn-options btn-lg" ng-class="{active:selectedPart['shoulder']}" ng-click="setPart('肩')">肩膀</button>
+                                    </div>
+                                    <div class="options options-belly">
+                                        <button class="btn btn-options btn-lg" ng-class="{active:selectedPart['belly']}" ng-click="setPart('腹')">腹肌</button>
+                                    </div>
+                                    <div class="options options-foot">
+                                        <button class="btn btn-options btn-lg" ng-class="{active:selectedPart['foot']}" ng-click="setPart('腳')">腿肌</button>
+                                    </div>
+                                    <div class="options options-two">
+                                        <button class="btn btn-options btn-lg" ng-class="{active:selectedPart['two']}" ng-click="setPart('肱二頭')">二頭肌</button>
+                                    </div>
+                                    <div class="options options-three">
+                                        <button class="btn btn-options btn-lg" ng-class="{active:selectedPart['three']}" ng-click="setPart('肱三頭')">三頭肌</button>
+                                    </div>
                                 </div>
-                            </div>
-                        </section>
-                        <section class="clearfix option">
-                            <div class="course-title part-title">選擇訓練部位<i class="fa fa-check icon-success" ng-class="{active:isPartSet}"></i></div>
-                            <div class="part-options btn-group">
-                                <div class="options options-chest">
-                                    <button class="btn btn-options btn-lg" ng-class="{active:selectedPart['complex']}" ng-click="setPart('複合')">複合部位</button>
+                            </section>
+                            <section class="clearfix option">
+                                <div class="course-title device-title">選擇擁有的訓練器材<i class="fa fa-check icon-success" ng-class="{active:isDeviceSet}"></i></div>
+                                <div class="device-option">
+                                    <div class="options" ng-repeat="device in deviceButtonList">
+                                        <button class="btn btn-options btn-lg" ng-class="{active:selectedDevice[device.eng]}" ng-click="setDevice(device.chi)">{{device.chi}}</button>
+                                    </div>
                                 </div>
-                                <div class="options options-chest">
-                                    <button class="btn btn-options btn-lg" ng-class="{active:selectedPart['chest']}" ng-click="setPart('胸')">胸肌</button>
-                                </div>
-                                <div class="options options-back">
-                                    <button class="btn btn-options btn-lg" ng-class="{active:selectedPart['back']}" ng-click="setPart('背')">背肌</button>
-                                </div>
-                                <div class="options options-shoulder">
-                                    <button class="btn btn-options btn-lg" ng-class="{active:selectedPart['shoulder']}" ng-click="setPart('肩')">肩膀</button>
-                                </div>
-                                <div class="options options-belly">
-                                    <button class="btn btn-options btn-lg" ng-class="{active:selectedPart['belly']}" ng-click="setPart('腹')">腹肌</button>
-                                </div>
-                                <div class="options options-foot">
-                                    <button class="btn btn-options btn-lg" ng-class="{active:selectedPart['foot']}" ng-click="setPart('腳')">腿肌</button>
-                                </div>
-                                <div class="options options-two">
-                                    <button class="btn btn-options btn-lg" ng-class="{active:selectedPart['two']}" ng-click="setPart('肱二頭')">二頭肌</button>
-                                </div>
-                                <div class="options options-three">
-                                    <button class="btn btn-options btn-lg" ng-class="{active:selectedPart['three']}" ng-click="setPart('肱三頭')">三頭肌</button>
-                                </div>
-                            </div>
-                        </section>
-                        <section class="clearfix option">
-                            <div class="course-title device-title">選擇擁有的訓練器材<i class="fa fa-check icon-success" ng-class="{active:isDeviceSet}"></i></div>
-                            <div class="device-option">
-                                <div class="options">
-                                    <button class="btn btn-options btn-lg" ng-class="{active:selectedDevice['dumbbell']}" ng-click="setDevice('啞鈴')">啞鈴</button>
-                                </div>
-                                <div class="options">
-                                    <button class="btn btn-options btn-lg" ng-class="{active:selectedDevice['barbell']}" ng-click="setDevice('槓鈴')">槓鈴</button>
-                                </div>
-                                <div class="options">
-                                    <button class="btn btn-options btn-lg" ng-class="{active:selectedDevice['pulley']}" ng-click="setDevice('滑輪')">滑輪</button>
-                                </div>
-                            </div>
-                        </section>
-                        <section class="clearfix option">
-                            <button class="btn btn-options btn-lg pull-right" ng-click="createCourse()">產生個人化課程<i class="fa fa-arrow-circle-o-right"></i></button>
-                        </section>
+                            </section>
+                            <section class="clearfix option">
+                                <button class="btn btn-options btn-lg pull-right" ng-click="createCourse()">產生個人化課程<i class="fa fa-arrow-circle-o-right"></i></button>
+                            </section>
+                        </div>
                     </div>
                     <div class="course-preview" ng-class="courseStatus['preview']">
                         <div class="scroller">
@@ -267,7 +263,7 @@
                             {{postureName}}
                         </div>
                         <div class="posture-video">
-                        <iframe class="posture-iframe" src="https://www.youtube.com/embed/paQczLIrDMI"></iframe>    
+                            <iframe class="posture-iframe" src="https://www.youtube.com/embed/paQczLIrDMI"></iframe>
                         </div>
                         <div class="posture-back">
                             <button class="btn btn-options" ng-click="backPreviewList()">返回課程預覽</button>

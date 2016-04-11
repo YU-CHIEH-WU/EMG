@@ -78,21 +78,23 @@ body {
         color: $fontColor;
     }
 }
+
 .btn-sex {
-    background: rgba(0,0,0,0);
+    background: rgba(0, 0, 0, 0);
     border: 1px #ccc solid;
     width: 30px;
     height: 30px;
     box-shadow: $shadow1;
+    color: $fontColor;
     @include transition(all, 0.3s, ease-in);
     &.active {
         background: #FFFFFF;
     }
-    &:hover{
-        color:$fontColor;
+    &:hover {
+        color: $fontColor;
     }
-    &:focus{
-        color:$fontColor;
+    &:focus {
+        color: $fontColor;
     }
 }
 
@@ -111,6 +113,7 @@ body {
         color: rgb(220, 57, 18);
     }
 }
+
 
 /* 覆寫bootstrap */
 
@@ -133,6 +136,10 @@ body {
     }
     &.ontop {
         display: none;
+    }
+    &.filter {
+        filter: blur(5px);
+        -webkit-filter: blur(5px);
     }
 }
 
@@ -260,6 +267,35 @@ body {
     border: 1px #fff solid;
 }
 
+.block-register-outer {
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    position: fixed;
+    background: rgba(0, 0, 0, 0.5);
+    @include transition(all, 0.3s, ease-in);
+}
+
+.block-register-inner {
+    width: 60%;
+    height: 80%;
+    left: 20%;
+    top: 10%;
+    position: fixed;
+    color: $fontColor;
+    box-shadow: $shadow3;
+    opacity: 0;
+    @include transition(all, 0.3s, ease-in);
+    &.active {
+        opacity: 1;
+    }
+    >.block-body {
+        overflow: hidden;
+        position: relative;
+    }
+}
+
 
 /* 會員結尾 */
 
@@ -364,17 +400,63 @@ body {
     height: 100%;
 }
 
+.detail-album-list {
+    width: 100%;
+    height: 100%;
+}
+
+.detail-album-outer {
+    width: 25%;
+    height: 50%;
+    padding: 12px;
+    float: left;
+}
+
+.detail-album-inner {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    border: 1px #ccc solid;
+    border-radius: 2.5%;
+}
+
+.album-title {
+    width: 100%;
+    height: 15%;
+    text-align: center;
+    line-height: 60px;
+    color: white;
+    font-size: 20px;
+}
+
+.album-thumb {
+    width: 100%;
+    height: 85%;
+}
+
+.album-thumb>img {
+    height: 90%;
+    width: 90%;
+    left: 5%;
+    top: 5%;
+    position: relative;
+}
+
 
 /* 相簿結尾 */
 
+
 /* 大數據分析 */
-.block-sex{
+
+.block-sex {
     position: absolute;
-    top:36px;
-    right:6px;
+    top: 36px;
+    right: 6px;
 }
 
+
 /* 大數據分析結尾 */
+
 
 /* 推薦課程 */
 
@@ -386,7 +468,6 @@ body {
     position: fixed;
     background: rgba(0, 0, 0, 0.5);
     @include transition(all, 0.3s, ease-in);
-    &.active {}
 }
 
 .block-course-inner {
@@ -492,12 +573,4 @@ body {
     right: 5px;
     position: absolute;
     cursor: pointer;
-}
-
-
-/* detail3 */
-
-#detail3-main-iframe {
-    width: 100%;
-    height: 100%;
 }
