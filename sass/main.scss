@@ -33,15 +33,11 @@ body {
 /* 修改頁面元素結尾 */
 
 
-/* 覆寫bootstrap */
+/* 覆寫bootstrap和共用項目 */
 
 .container {
     width: 80%;
     height: 100%;
-}
-
-.form-control {
-    margin: 5px;
 }
 
 .form-group {
@@ -65,6 +61,10 @@ body {
 .btn-default {
     height: 100%;
     line-height: 1.2;
+}
+
+.input-sm {
+    height: 24px;
 }
 
 .btn-flat {
@@ -114,8 +114,16 @@ body {
     }
 }
 
+.scroller {
+    overflow: auto;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+}
 
-/* 覆寫bootstrap */
+
+/* 覆寫bootstrap和共用項目 */
 
 
 /* 首頁block */
@@ -153,9 +161,12 @@ body {
     width: 100%;
     height: 100%;
     position: relative;
-    background: $blockColor;
+    background-color: $blockColor;
+    background-image: url('../images/sep-half.png');
     box-shadow: $shadow2;
-    @include transition(all, 0.3s, ease-in);
+    @include transition(all,
+    0.3s,
+    ease-in);
     @include border-radius(1.5%);
     &.opacity {
         opacity: (0.6);
@@ -274,7 +285,9 @@ body {
     top: 0;
     position: fixed;
     background: rgba(0, 0, 0, 0.5);
-    @include transition(all, 0.3s, ease-in);
+    @include transition(all,
+    0.3s,
+    ease-in);
 }
 
 .block-register-inner {
@@ -286,7 +299,9 @@ body {
     color: $fontColor;
     box-shadow: $shadow3;
     opacity: 0;
-    @include transition(all, 0.3s, ease-in);
+    @include transition(all,
+    0.3s,
+    ease-in);
     &.active {
         opacity: 1;
     }
@@ -294,6 +309,81 @@ body {
         overflow: hidden;
         position: relative;
     }
+}
+
+.register-scroller {
+    overflow-y: auto;
+    height: 100%;
+    width: 120%;
+}
+
+.block-register-form {
+    width: 80%;
+    left: -100%;
+    top: 0;
+    text-align: center;
+    position: absolute;
+    @include transition(all,
+    0.3s,
+    ease-in);
+    &.active {
+        left: 10%;
+    }
+    .form-control {
+        margin: 5px;
+    }
+    .col-sm-4 {
+        padding-right: 0;
+    }
+    .col-sm-8 {
+        padding-left: 0;
+    }
+    .form-group {
+        margin-top: 4px;
+    }
+    .control-label {
+        line-height: 28px;
+    }
+}
+
+.block-register-quest {
+    width: 80%;
+    height: 100%;
+    left: 150%;
+    top: 0;
+    position: absolute;
+    @include transition(all,
+    0.3s,
+    ease-in);
+    &.active {
+        left: 10%;
+    }
+    .form-group {
+        margin-top: 18px;
+        margin-left: 18px;
+    }
+}
+
+.questend {
+    margin-bottom: 36px;
+}
+
+.block-register-profile {
+    margin-top: 12px;
+}
+
+#input-profile {
+    margin-left: 35%;
+}
+
+.register-fixright {
+    padding-right: 10%;
+}
+
+.register-left,
+.register-right {
+    width: 50%;
+    float: left;
 }
 
 
@@ -348,7 +438,9 @@ body {
     left: 0;
     opacity: 0;
     position: absolute;
-    @include transition(all, 0.3s, ease-in-out);
+    @include transition(all,
+    0.3s,
+    ease-in-out);
     &.opacity {
         opacity: 1;
     }
@@ -403,6 +495,14 @@ body {
 .detail-album-list {
     width: 100%;
     height: 100%;
+    left: -100%;
+    position: absolute;
+    @include transition(all,
+    0.3s,
+    ease-in);
+    &.active {
+        left: 0;
+    }
 }
 
 .detail-album-outer {
@@ -442,6 +542,19 @@ body {
     position: relative;
 }
 
+.detail-photo-list {
+    width: 100%;
+    height: 100%;
+    left: 100%;
+    position: absolute;
+    @include transition(all,
+    0.3s,
+    ease-in);
+    &.active {
+        left: 0;
+    }
+}
+
 
 /* 相簿結尾 */
 
@@ -467,7 +580,9 @@ body {
     top: 0;
     position: fixed;
     background: rgba(0, 0, 0, 0.5);
-    @include transition(all, 0.3s, ease-in);
+    @include transition(all,
+    0.3s,
+    ease-in);
 }
 
 .block-course-inner {
@@ -479,7 +594,9 @@ body {
     color: $fontColor;
     box-shadow: $shadow3;
     opacity: 0;
-    @include transition(all, 0.3s, ease-in);
+    @include transition(all,
+    0.3s,
+    ease-in);
     &.active {
         opacity: 1;
     }
@@ -496,7 +613,9 @@ body {
     top: 0;
     bottom: 0;
     width: 100%;
-    @include transition(all, 0.3s, ease-in);
+    @include transition(all,
+    0.3s,
+    ease-in);
     &.active {
         left: -100%;
     }
@@ -521,7 +640,9 @@ body {
     left: 120%;
     top: 0;
     position: relative;
-    @include transition(all, 0.3s, ease-in);
+    @include transition(all,
+    0.3s,
+    ease-in);
     &.active {
         left: 0;
     }
@@ -536,10 +657,13 @@ body {
 .block-detail-outer {
     height: 100%;
     width: 100%;
-    position: fixed;
+    position: absolute;
     left: 0;
     top: -1000%;
-    @include transition(all, 1s, ease-in, 1s);
+    @include transition(all,
+    1s,
+    ease-in,
+    1s);
     &.active {
         top: 0;
     }
@@ -549,12 +673,15 @@ body {
     height: 90%;
     width: 80%;
     left: 10%;
-    position: fixed;
+    position: absolute;
     top: -1000%;
     color: $fontColor;
     background: $blockColor;
     @include border-radius(1.5%);
-    @include transition(all, 1s, ease-in, 1s);
+    @include transition(all,
+    1s,
+    ease-in,
+    1s);
     &.active {
         top: 5%;
     }

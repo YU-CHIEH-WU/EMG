@@ -7,9 +7,58 @@ $(function() {
         })
         //分享圖表至Facebook
     $('#btn-trainingSVG').on('click', function() {
-        var svg = $('#block-training-thumb').highcharts().getSVG();
-        $('#trainingSVG').text(svg);
-        console.log("data:image/svg+xml;base64," + btoa(svg));
+        var data = {
+            options: JSON.stringify({
+                chart: {
+                    type: 'column'
+                },
+                exporting: {
+                    enabled: false
+                },
+                title: {
+                    text: null,
+                    x: -20 //center
+                },
+                legend: {
+                    enabled: false
+                },
+                xAxis: {
+                    categories: ['2/17', '2/19', '2/20', '2/22', '2/23', '2/25']
+                },
+                yAxis: {
+                    title: {
+                        text: null
+                    },
+                    labels: {
+                        format: '{value}%'
+                    },
+                    plotLines: [{
+                        value: 0,
+                        width: 1,
+                        color: '#808080'
+                    }]
+                },
+                tooltip: {
+                    valueSuffix: '%'
+                },
+                series: [{
+                    name: '訓練成效',
+                    data: [66, 82, 71, 60, 0, 84]
+                }],
+                credits: {
+                    enabled: false
+                }
+            }),
+            filename: 'chart',
+            type: 'image/png',
+            width: 1200,
+            async: true
+        };
+        var exportUrl = 'http://export.highcharts.com/';
+        $.post(exportUrl, data, function(data) {
+            var url = exportUrl + data;
+            console.log(url);
+        });
         window.fbAsyncInit = function() {
             FB.init({
                 appId: '472853519550243',
@@ -20,7 +69,7 @@ $(function() {
         };
         var e = document.createElement('script');
         e.async = true;
-        e.src = document.location.protocol + '//connect.facebook.net/en_US/all.js';
+        e.src = '//connect.facebook.net/zh-TW/all.js';
         document.getElementById('fb-root').appendChild(e);
         url = "data:image/svg+xml;base64," + btoa(svg);
         FB.ui({
@@ -44,6 +93,9 @@ app.controller('blockController', ['$scope', '$http', '$timeout', '$location', '
         $scope.detail1Active = false;
         $scope.detail2Active = false;
         $scope.detail3Active = false;
+        $scope.deatil3Options = { 'title': '', 'src': '' };
+        $scope.detail4Active = false;
+        $scope.detail4Options = { 'title': '', 'startDay': '' };
         // 以動畫差隱藏首頁block
         $scope.isOntop = false;
         this.prevType = '';
@@ -137,7 +189,61 @@ app.controller('blockController', ['$scope', '$http', '$timeout', '$location', '
             $scope.detail3Active = true;
             $scope.isDetailActive = true;
         };
-        // 防止動畫重複觸發
+        $scope.showDetail4 = function(nowDate) {
+                var title = '課程行事曆';
+                var date = new Date(nowDate);
+                var month = date.getMonth() + 1;
+                var first = new Date('2016-' + month + '-01');
+                var newDay = new Date(first);
+                var weekday = first.getDay();
+                $scope.calendar = [{ 'weekday': 1, 'weekdayTW': '一', 'day1': '', 'day2': '', 'day3': '', 'day4': '', 'day5': '' },
+                    { 'weekday': 2, 'weekdayTW': '二', 'day1': '', 'day2': '', 'day3': '', 'day4': '', 'day5': '' },
+                    { 'weekday': 3, 'weekdayTW': '三', 'day1': '', 'day2': '', 'day3': '', 'day4': '', 'day5': '' },
+                    { 'weekday': 4, 'weekdayTW': '四', 'day1': '', 'day2': '', 'day3': '', 'day4': '', 'day5': '' },
+                    { 'weekday': 5, 'weekdayTW': '五', 'day1': '', 'day2': '', 'day3': '', 'day4': '', 'day5': '' },
+                    { 'weekday': 6, 'weekdayTW': '六', 'day1': '', 'day2': '', 'day3': '', 'day4': '', 'day5': '' },
+                    { 'weekday': 7, 'weekdayTW': '日', 'day1': '', 'day2': '', 'day3': '', 'day4': '', 'day5': '' }
+                ];
+                var weekdayCount = 0;
+                var firstFind = false;
+                for (i = 1; i <= 5; i++) {
+                    angular.forEach($scope.calendar, function(value, key) {
+                        if (firstFind) {
+                            var result = new Date(newDay);
+                            result.setDate(newDay.getDate() + 1);
+                            newDay = result;
+                            if (i == 1) {
+                                $scope.calendar[key].day1 = newDay;
+                            }
+                            if (i == 2) {
+                                $scope.calendar[key].day2 = newDay;
+                            }
+                            if (i == 3) {
+                                $scope.calendar[key].day3 = newDay;
+                            }
+                            if (i == 4) {
+                                $scope.calendar[key].day4 = newDay;
+                            }
+                            if (i == 5) {
+                                $scope.calendar[key].day5 = newDay;
+                            }
+                        }
+                        if ($scope.calendar[key].weekday == weekday) {
+                            $scope.calendar[key].day1 = first;
+                            firstFind = true;
+                        }
+                    })
+                }
+                angular.forEach($scope.courseData,function(value,key){
+                    var date = new Date($scope.courseData[key].time);
+                    
+                })
+                $scope.detail4Options.title = title;
+                $scope.detail4Options.startDay = weekday;
+                $scope.detail4Active = true;
+                $scope.isDetailActive = true;
+            }
+            // 防止動畫重複觸發
         $scope.setOntop = function() {
             if ($scope.isDetailActive && !$scope.isOntop) {
                 $scope.isOntop = true;
@@ -148,6 +254,7 @@ app.controller('blockController', ['$scope', '$http', '$timeout', '$location', '
             $scope.detail1Active = false;
             $scope.detail2Active = false;
             $scope.detail3Active = false;
+            $scope.detail4Active = false;
             $scope.isOntop = false;
             $timeout(function() { $scope.isDetailActive = false }, 50);
         };
@@ -168,8 +275,69 @@ app.controller('blockController', ['$scope', '$http', '$timeout', '$location', '
         setChart('dotThumb', 'block-dotThumb');
         setChart('resultThumb', 'block-result-thumb');
         // 行事曆控制項與預設
+        $scope.courseData = [{
+            'thumb': 'images/dumbbell.png',
+            'title': '啞鈴仰臥推舉',
+            'time': '2016-4-16',
+            'weekday': ' 星期六'
+        }, {
+            'thumb': 'images/dumbbell-c.png',
+            'title': '槓鈴仰臥推舉',
+            'time': '2016-4-16',
+            'weekday': ' 星期六'
+        }, {
+            'thumb': 'images/muscle.jpg',
+            'title': '寬版伏地挺身',
+            'time': '2016-4-16',
+            'weekday': ' 星期六'
+        }, {
+            'thumb': 'images/dumbbell.png',
+            'title': '啞鈴單手後屈伸',
+            'time': '2016-4-16',
+            'weekday': ' 星期六'
+        }, {
+            'thumb': 'images/dumbbell.png',
+            'title': '啞鈴單手後屈伸',
+            'time': '2016-4-16',
+            'weekday': ' 星期六'
+        }, {
+            'thumb': 'images/dumbbell-c.png',
+            'title': '槓鈴窄握推舉',
+            'time': '2016-4-16',
+            'weekday': ' 星期六'
+        }, {
+            'thumb': 'images/dumbbell-c.png',
+            'title': '硬舉',
+            'time': '2016-4-17',
+            'weekday': ' 星期日'
+        }, {
+            'thumb': 'images/muscle.jpg',
+            'title': '站姿負重俯身挺背',
+            'time': '2016-4-17',
+            'weekday': ' 星期日'
+        }, {
+            'thumb': 'images/dumbbell-c.png',
+            'title': '槓鈴曲體划船',
+            'time': '2016-4-17',
+            'weekday': ' 星期日'
+        }, {
+            'thumb': 'images/dumbbell.png',
+            'title': '坐姿啞鈴交替彎舉',
+            'time': '2016-4-17',
+            'weekday': ' 星期日'
+        }, {
+            'thumb': 'images/dumbbell.png',
+            'title': '站姿啞鈴交替彎舉',
+            'time': '2016-4-17',
+            'weekday': ' 星期日'
+        }, {
+            'thumb': 'images/dumbbell-c.png',
+            'title': '槓鈴彎舉',
+            'time': '2016-4-17',
+            'weekday': ' 星期日'
+        }];
         $scope.courseList = [];
-        $scope.isHaveCourse = false;
+        $scope.isHaveCourse = true;
         // 課程選項格式
         var courseOptions = { 'goal': '', 'complex': '', 'chest': '', 'back': '', 'shoulder': '', 'belly': '', 'foot': '', 'two': '', 'three': '', 'TBar': '', 'WBarbell': '', 'Barbell': '', 'Dumbbell': '', 'Smith': '', 'LegPress': '', 'Butterfly': '', 'PullBack': '', 'LegExtension': '', 'PullUp': '', 'Squat': '', 'Pulley': '', 'Boating': '', 'PulleyChest': '', 'WeightBench': '', 'ParallelBars': '', 'Cross': '' };
         // 目標選項格式
@@ -344,7 +512,7 @@ app.controller('blockController', ['$scope', '$http', '$timeout', '$location', '
                 if (options == '腿舉機') {
                     index = 'LegPress';
                 }
-                if(options=='蝴蝶機'){
+                if (options == '蝴蝶機') {
                     index = 'Butterfly';
                 }
                 if (options == '拉背機') {

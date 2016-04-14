@@ -12,6 +12,7 @@
 
 <body ng-class="{unscroll:isDetailActive,unscroll:isCourseShow}">
     <div id="fb-root"></div>
+    <canvas id="chartCanvas"></canvas>
     <!-- init放入使用者帳號 -->
     <div class="container" ng-init="userAccount='123456'">
         <div class="row">
@@ -54,10 +55,10 @@
                         <div class="block-header">課程行事曆</div>
                         <div class="block-body">
                             <div class="scroller" ng-show="isHaveCourse">
-                                <div class="block-course-list" ng-repeat="course in courseList">
+                                <div class="block-course-list" ng-repeat="course in courseData" ng-click="showDetail4(course.time)">
                                     <div class="block-course-thumb"><img ng-src="{{course.thumb}}" class="course-thumb"></div>
                                     <div class="block-course-title">{{course.title}}</div>
-                                    <div class="block-course-time">{{course.time}}</div>
+                                    <div class="block-course-time">{{course.time}}{{course.weekday}}</div>
                                 </div>
                             </div>
                             <div class="block-course-start">
@@ -306,6 +307,25 @@
                     <sapn class="title">{{detail3Options.title}}</sapn><span class="back" ng-click="showIndex()"><i class="fa fa-times icon-back"></i></span></div>
                 <div class="block-body">
                     <iframe ng-src="{{detail3Options.src}}" frameborder="0" id="detail3-main-iframe"></iframe>
+                </div>
+            </div>
+            <div class="block-detail" id="block-detail-4" ng-class="{active:detail4Active}">
+                <div class="block-header"><span class="title">{{detail4Options.title}}</span><span class="back" ng-click="showIndex()"><i class="fa fa-times icon-back"></i></span></div>
+                <div class="block-body">
+                    <div class="detail4-calendar">
+                        <div class="calendar-week col-sm-1" ng-repeat="week in calendar">
+                            <div class="week-weekday">{{week.weekdayTW}}</div>
+                            <div class="week-day">{{week.day1 | date}}</div>
+                            <div class="week-day">{{week.day2 | date}}</div>
+                            <div class="week-day">{{week.day3 | date}}</div>
+                            <div class="week-day">{{week.day4 | date}}</div>
+                            <div class="week-day">{{week.day5 | date}}</div>
+                        </div>
+                        <div class="calendar-posture-outer col-sm-5">
+                            <div class="calendar-posture-inner">
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

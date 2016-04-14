@@ -1,3 +1,9 @@
+$(function() {
+    $('.datepicker').datepicker({
+        language: "zh-TW",
+        autoclose: true
+    });
+})
 var app = angular.module('mainApp', ['mainApp']);
 app.controller('blockController', ['$scope', '$http', '$timeout', '$interval', function($scope, $http, $timeout, $interval) {
     // 首頁
@@ -140,7 +146,6 @@ app.controller('blockController', ['$scope', '$http', '$timeout', '$interval', f
             return a.y - b.y;
         });
         sportCount.reverse();
-        sportCount.pop()
         console.log(sportList, sportCount);
         angular.forEach(motiveList, function(value, key) {
             motiveList[key].y = parseFloat((motiveCount[value.name] / questList.length * 100).toFixed(2));
@@ -232,16 +237,24 @@ app.controller('blockController', ['$scope', '$http', '$timeout', '$interval', f
         }
         // 註冊
     $scope.register = function() {
+        $scope.registerUser = { 'url': 'images/profile.jpg' };
         $scope.isRegisterClick = true;
+        $scope.isFormShow = true;
+        $scope.isQuestShow = false;
         $timeout(function() {
             $scope.isRegisterShow = true;
         }, 30);
     }
     $scope.hideRegister = function() {
-            $scope.isRegisterShow = false;
-            $timeout(function() {
-                $scope.isRegisterClick = false;
-            }, 250);
+        $scope.isRegisterShow = false;
+        $timeout(function() {
+            $scope.isRegisterClick = false;
+        }, 250);
+    }
+    $scope.doQuest = function(event) {
+            event.preventDefault();
+            $scope.isFormShow = false;
+            $scope.isQuestShow = true;
         }
         // 登入後
         //最新消息
@@ -282,6 +295,7 @@ app.controller('blockController', ['$scope', '$http', '$timeout', '$interval', f
     ];
     $scope.showPhotoList = function(title) {
         console.log(title);
+        $scope.isPhotoListShow = true;
     };
     // 推薦課程 接入api
     var beginnerCourse = {
@@ -436,3 +450,21 @@ app.directive('whenTransitionEnd', [
         };
     }
 ]);
+app.directive("fileread", [function() {
+    return {
+        scope: {
+            fileread: "="
+        },
+        link: function(scope, element, attributes) {
+            element.bind("change", function(changeEvent) {
+                var reader = new FileReader();
+                reader.onload = function(loadEvent) {
+                    scope.$apply(function() {
+                        scope.fileread = loadEvent.target.result;
+                    });
+                }
+                reader.readAsDataURL(changeEvent.target.files[0]);
+            });
+        }
+    }
+}]);

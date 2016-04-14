@@ -1,94 +1,497 @@
 <link rel="stylesheet" href="stylesheets/bootstrap.min.css">
-<style>
-body {
-    background: #3d3d3d;
-}
-
-.block-album {
-    margin: 6px;
-    width: 23%;
-    height: 47.5%;
-    float: left;
-    position: relative;
-    border: 1px #ccc solid;
-    border-radius: 2.5%;
-}
-
-.album-title {
-    width: 100%;
-    height: 15%;
-    text-align: center;
-    line-height: 60px;
-    color: white;
-    font-size: 20px;
-}
-
-.album-thumb {
-    width: 100%;
-    height: 85%;
-}
-
-.album-thumb>img {
-    height: 90%;
-    width: 90%;
-    left: 5%;
-    top: 5%;
-    position: relative;
-}
-.btn-flat {
-    background: rgba(0, 0, 0, 0);
-    color: #fff;
-    border: 1px #ccc solid;
-    position: relative;
-    top:40%;
-    left:25%;
-}
-.btn-flat:hover,.btn-flat:focus{
-	color:#fff;
-}
-</style>
-<div class="block-album">
-    <div class="album-title">
-        肱二頭肌
+<link rel="stylesheet" href="stylesheets/screen.css">
+<link rel="stylesheet" href="stylesheets/main.css">
+<div class="block-inner block-register-inner active" ng-show="isRegisterClick" ng-class="{active:isRegisterShow}">
+    <div class="block-header"><span class="title">註冊</span><span class="back" ng-click="hideRegister()"><i class="fa fa-times icon-back"></i></span></div>
+    <div class="block-body">
+        <form action="/EMG/User/Register?Length=4" data-ajax="true" data-ajax-method="POST" data-ajax-mode="replace" data-ajax-update="#status" enctype="multipart/form-data" id="form0" method="post" class="form-horizontal">
+            <div class="block-register-quest active" ng-class="{active:isQuestShow}">
+                <div class="register-scroller scroller">
+                    <section>
+                        <div class="form-group">
+                            1. 您平常是否有控制飲食的習慣?(單選)
+                            <div class="radio">
+                                <label>
+                                    <input id="Control" class="radio" name="Control" type="radio" value="有, 控制飲食習慣"> 有, 控制飲食習慣
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    <input id="Control" class="radio" name="Control" type="radio" value="稍微有控制"> 稍微有控制
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    <input id="Control" class="radio" name="Control" type="radio" value="沒有, 控制飲食習慣"> 沒有, 控制飲食習慣
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    <input id="Control" class="radio" name="Control" type="radio" value="有, 控制飲食習慣"> 有, 控制飲食習慣
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    <input id="Control" class="radio" name="Other" type="radio" value="">
+                                    <input id="Control" class="form-control input-sm" placeholder="其他" name="Control" type="text">
+                                </label>
+                            </div>
+                            <span class="field-validation-valid text-danger" data-valmsg-for="Control" data-valmsg-replace="true"></span>
+                        </div>
+                        <div class="form-group">
+                            2. 您平常吃水果的習慣為何?(單選)
+                            <div class="radio">
+                                <label>
+                                    <input id="Fruit" class="radio" name="Fruit" type="radio" value="溫帶水果(蘋果、杏子、櫻桃、桃子、李子及梨子等)">溫帶水果(蘋果、杏子、櫻桃、桃子、李子及梨子等)
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    <input id="Fruit" class="radio" name="Fruit" type="radio" value="亞熱帶水果(柚子、檸檬、柑橘、無花果、石榴、酪梨等)">亞熱帶水果(柚子、檸檬、柑橘、無花果、石榴、酪梨等)
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    <input id="Fruit" class="radio" name="Fruit" type="radio" value="熱帶水果(荔枝、木瓜、鳳梨等)">熱帶水果(荔枝、木瓜、鳳梨等)
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    <input id="Fruit" class="radio" type="radio" value="">
+                                    <input type="text" id="Fruit" class="form-control input-sm" placeholder="其他" name="Fruit">
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            3. 您的消化能力為何?(單選)
+                            <div class="radio">
+                                <label>
+                                    <input id="Ability" class="radio" name="Ability" type="radio" value="很好">很好
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    <input id="Ability" class="radio" name="Ability" type="radio" value="好">好
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    <input id="Ability" class="radio" name="Ability" type="radio" value="普通">普通
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    <input id="Ability" class="radio" name="Ability" type="radio" value="不好">不好
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    <input id="Ability" class="radio" name="Ability" type="radio" value="非常不好">非常不好
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            4. 您用餐是否定時定量?(單選)
+                            <div class="radio">
+                                <label>
+                                    <input id="Ontime" class="radio" name="Ontime" type="radio" value="是">是
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    <input id="Ontime" class="radio" name="Ontime" type="radio" value="否">否
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            5. 您平常吃多少用油炸的、或用油煎的食物?(1 份以半碗計算)(單選)
+                            <div class="radio">
+                                <label>
+                                    <input id="Fry" class="radio" name="Fry" type="radio" value="不吃或每週少於1份">不吃或每週少於1份
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    <input id="Fry" class="radio" name="Fry" type="radio" value="每週吃1-3份">每週吃1-3份
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    <input id="Fry" class="radio" name="Fry" type="radio" value="每週吃4-6份">每週吃4-6份
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    <input id="Fry" class="radio" name="Fry" type="radio" value="每天吃1份">每天吃1份
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    <input id="Fry" class="radio" name="Fry" type="radio" value="每天吃2份或以上">每天吃2份或以上
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            6. 您平常有沒有喝含糖飲料?(單選)
+                            <div class="radio">
+                                <label>
+                                    <input id="Drink" class="radio" name="Drink" type="radio" value="不喝或每週少於1杯">不喝或每週少於1杯
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    <input id="Drink" class="radio" name="Drink" type="radio" value="每週喝1-3杯">每週喝1-3杯
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    <input id="Drink" class="radio" name="Drink" type="radio" value="每週喝4-6杯">每週喝4-6杯
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    <input id="Drink" class="radio" name="Drink" type="radio" value="每天喝1杯">每天喝1杯
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    <input id="Drink" class="radio" name="Drink" type="radio" value="每天喝2杯或以上">每天喝2杯或以上
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            7. 您的睡眠品質如何?(單選)
+                            <div class="radio">
+                                <label>
+                                    <input id="Quality" class="radio" name="Quality" type="radio" value="很好">很好
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    <input id="Quality" class="radio" name="Quality" type="radio" value="好">好
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    <input id="Quality" class="radio" name="Quality" type="radio" value="普通">普通
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    <input id="Quality" class="radio" name="Quality" type="radio" value="不好">不好
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    <input id="Quality" class="radio" name="Quality" type="radio" value="非常不好">非常不好
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            8. 您每週運動的次數 (單選)
+                            <div class="radio">
+                                <label>
+                                    <input id="Sportnum" class="radio" name="Sportnum" type="radio" value="0次">0次
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    <input id="Sportnum" class="radio" name="Sportnum" type="radio" value="1次">1次
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    <input id="Sportnum" class="radio" name="Sportnum" type="radio" value="2次">2次
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    <input id="Sportnum" class="radio" name="Sportnum" type="radio" value="3次以上">3次以上
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            9. 您每次運動的時間 (單選)
+                            <div class="radio">
+                                <label>
+                                    <input id="Sporttime" class="radio" name="Sporttime" type="radio" value="30分鐘以下">30分鐘以下
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    <input id="Sporttime" class="radio" name="Sporttime" type="radio" value="30-60分鐘">30-60分鐘
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    <input id="Sporttime" class="radio" name="Sporttime" type="radio" value="60-120分鐘">60-120分鐘
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    <input id="Sporttime" class="radio" name="Sporttime" type="radio" value="120分鐘以上">120分鐘以上
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            10. 您喜愛的運動項目是什麼?(單選)
+                            <div class="radio">
+                                <label>
+                                    <input id="Sports" class="radio" name="Sports" type="radio" value="籃球">籃球
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    <input id="Sports" class="radio" name="Sports" type="radio" value="排球">排球
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    <input id="Sports" class="radio" name="Sports" type="radio" value="棒球">棒球
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    <input id="Sports" class="radio" name="Sports" type="radio" value="羽球">羽球
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    <input id="Sports" class="radio" name="Sports" type="radio" value="桌球">桌球
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    <input id="Sports" class="radio" name="Sports" type="radio" value="短跑">短跑
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    <input id="Sports" class="radio" name="Sports" type="radio" value="長跑">長跑
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    <input id="Sports" class="radio" name="Sports" type="radio" value="拳擊">拳擊
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    <input id="Sports" class="radio" name="Sports" type="radio" value="">
+                                    <input type="text" id="Sports" class="form-control input-sm" name="Sports" placeholder="其他">
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            11. 您健身最大的動機為?(單選)
+                            <div class="radio">
+                                <label>
+                                    <input id="Motivation" class="radio" name="Motivation" type="radio" value="讓自己的身體保持健康">讓自己的身體保持健康
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    <input id="Motivation" class="radio" name="Motivation" type="radio" value="讓自己的體態變得更好看">讓自己的體態變得更好看
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    <input id="Motivation" class="radio" name="Motivation" type="radio" value="增加肌肉強度達到最高境界">增加肌肉強度達到最高境界
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    <input id="Motivation" class="radio" name="Motivation" type="radio" value="維持身體健康">維持身體健康
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    <input id="Motivation" class="radio" name="Motivation" type="radio" value="降低體脂肪">降低體脂肪
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    <input id="Motivation" class="radio" name="Motivation" type="radio" value="">
+                                    <input type="text" class="form-control input-sm" name="Motivation" placeholder="其他">
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            12. 您在健身中屬於哪個等級?
+                            <div class="radio">
+                                <label>
+                                    <input id="Grade" class="radio" name="Grade" type="radio" value="初學">初學
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    <input id="Grade" class="radio" name="Grade" type="radio" value="中階">中階
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    <input id="Grade" class="radio" name="Grade" type="radio" value="進階">進階
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            13. 您注重的肌肉部位?(單選)
+                            <div class="radio">
+                                <label>
+                                    <input id="Place" class="radio" name="Place" type="radio" value="均衡發展">均衡發展
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    <input id="Place" class="radio" name="Place" type="radio" value="胸部">胸部
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    <input id="Place" class="radio" name="Place" type="radio" value="腹部">腹部
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    <input id="Place" class="radio" name="Place" type="radio" value="背部">背部
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    <input id="Place" class="radio" name="Place" type="radio" value="肩部">肩部
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    <input id="Place" class="radio" name="Place" type="radio" value="腿部">腿部
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    <input id="Place" class="radio" name="Place" type="radio" value="肱二頭肌">肱二頭肌
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    <input id="Place" class="radio" name="Place" type="radio" value="肱三頭肌">肱三頭肌
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            14. 男 / 女最想看異性的哪個肌肉部位?(單選)
+                            <div class="radio">
+                                <label>
+                                    <input id="Look" class="radio" name="Look" type="radio" value="胸部">胸部
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    <input id="Look" class="radio" name="Look" type="radio" value="腹部">腹部
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    <input id="Look" class="radio" name="Look" type="radio" value="背部">背部
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    <input id="Look" class="radio" name="Look" type="radio" value="肩部">肩部
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    <input id="Look" class="radio" name="Look" type="radio" value="腿部">腿部
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    <input id="Look" class="radio" name="Look" type="radio" value="肱二頭肌">肱二頭肌
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    <input id="Look" class="radio" name="Look" type="radio" value="肱三頭肌">肱三頭肌
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            15. 下列哪個選項能讓您更有意欲持續健身?(單選)
+                            <div class="radio">
+                                <label>
+                                    <input id="Want" class="radio" name="Want" type="radio" value="維持身體健康">維持身體健康
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    <input id="Want" class="radio" name="Want" type="radio" value="與同好互相競爭">與同好互相競爭
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    <input id="Want" class="radio" name="Want" type="radio" value="從健身當中獲得成就感">從健身當中獲得成就感
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    <input id="Want" class="radio" name="Want" type="radio" value="滿足自身對於健身的要求">滿足自身對於健身的要求
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    <input id="Want" class="radio" type="radio" value="">
+                                    <input type="text" class="form-control input-sm" name="Want" placeholder="其他">
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            16. 您在健身時，對自己的要求為何?(單選)
+                            <div class="radio">
+                                <label>
+                                    <input id="Request" class="radio" name="Request" type="radio" value="嚴格要求自己">嚴格要求自己
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    <input id="Request" class="radio" name="Request" type="radio" value="保持一定水準">保持一定水準
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    <input id="Request" class="radio" name="Request" type="radio" value="放鬆按部就班">放鬆按部就班
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    <input id="Request" class="radio" name="Request" type="radio" value="不與他人比較">不與他人比較
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    <input id="Request" class="radio" type="radio" value="">
+                                    <input type="text" class="form-control input-sm" name="Request" placeholder="其他">
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            17. 未來是否願意增加健身計劃 (單選)
+                            <div class="radio">
+                                <label>
+                                    <input id="Increase" class="radio" name="Increase" type="radio" value="是">是
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    <input id="Increase" class="radio" name="Increase" type="radio" value="否">否
+                                </label>
+                            </div>
+                        </div>
+                    </section>
+                    <section class="questend">
+                        <button class="btn btn-flat btn-lg col-sm-offset-7">註冊</button>
+                    </section>
+                </div>
+            </div>
+        </form>
     </div>
-    <div class="album-thumb"><img src="images/T51.jpg"></div>
-</div>
-<div class="block-album">
-    <div class="album-title">
-        肱三頭肌
-    </div>
-    <div class="album-thumb"><img src="images/T51.jpg"></div>
-</div>
-<div class="block-album">
-    <div class="album-title">
-        胸部
-    </div>
-    <div class="album-thumb"><img src="images/T51.jpg"></div>
-</div>
-<div class="block-album">
-    <div class="album-title">
-        背部
-    </div>
-    <div class="album-thumb"><img src="images/T51.jpg"></div>
-</div>
-<div class="block-album">
-    <div class="album-title">
-        腹部
-    </div>
-    <div class="album-thumb"><img src="images/T51.jpg"></div>
-</div>
-<div class="block-album">
-    <div class="album-title">
-        肩部
-    </div>
-    <div class="album-thumb"><img src="images/T51.jpg"></div>
-</div>
-<div class="block-album">
-    <div class="album-title">
-        腿
-    </div>
-    <div class="album-thumb"><img src="images/T51.jpg"></div>
-</div>
-<div class="block-album">
-    <button class="btn btn-flat">上傳相片</button>
 </div>
