@@ -794,6 +794,7 @@ function setChart(ChartName, targetId, title, data1, data2) {
             chart: {
                 type: 'areaspline'
             },
+            colors:['#ff495f'],
             exporting: {
                 enabled: false
             },
@@ -850,6 +851,7 @@ function setChart(ChartName, targetId, title, data1, data2) {
             chart: {
                 tpye: 'spline'
             },
+            colors:['#ff495f'],
             exporting: {
                 enabled: false
             },
@@ -907,6 +909,7 @@ function setChart(ChartName, targetId, title, data1, data2) {
             chart: {
                 type: 'bar'
             },
+            colors:['#ff495f','#08C3C9'],
             exporting: {
                 enabled: false
             },
@@ -962,6 +965,7 @@ function setChart(ChartName, targetId, title, data1, data2) {
                 polar: true,
                 type: 'line'
             },
+            colors:['#FFFF00'],
             exporting: {
                 enabled: false
             },
@@ -978,10 +982,12 @@ function setChart(ChartName, targetId, title, data1, data2) {
             xAxis: {
                 categories: ['肌群均衡', '肌力', '肌耐力', '訓練成效', '體脂率', '超負荷'],
                 tickmarkPlacement: 'on',
+                gridLineColor:'#EEEEEE',
                 lineWidth: 0,
             },
             yAxis: {
                 gridLineInterpolation: 'polygon',
+                gridLineColor:'#EEEEEE',
                 lineWidth: 0,
                 min: 0
             },
@@ -1006,6 +1012,7 @@ function setChart(ChartName, targetId, title, data1, data2) {
             chart: {
                 type: 'column'
             },
+            colors:['#ff495f'],
             exporting: {
                 enabled: false
             },

@@ -797,7 +797,7 @@
             <div class="block-detail" id="block-detail-3" ng-class="{active:detail3Active}">
                 <div class="block-header"><span class="title">訓練成果相片</span><span class="back" ng-click="showIndex()"><i class="fa fa-times icon-back"></i></span></div>
                 <div class="block-body">
-                    <div class="detail-album-list" ng-class="{active:!isPhotoListShow}">
+                    <div class="detail-album-list" ng-show="!isPhotoListShow">
                         <div class="detail-album-outer" ng-repeat="album in albumList">
                             <div class="detail-album-inner" ng-click="showPhotoList(album.title)">
                                 <div class="album-title">{{album.title}}</div>
@@ -810,7 +810,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="detail-photo-list" ng-class="{active:isPhotoListShow}">
+                    <div class="detail-photo-list" ng-show="isPhotoListShow">
                     </div>
                 </div>
             </div>

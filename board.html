@@ -315,14 +315,26 @@
                     <div class="detail4-calendar">
                         <div class="calendar-week col-sm-1" ng-repeat="week in calendar">
                             <div class="week-weekday">{{week.weekdayTW}}</div>
-                            <div class="week-day">{{week.day1 | date}}</div>
-                            <div class="week-day">{{week.day2 | date}}</div>
-                            <div class="week-day">{{week.day3 | date}}</div>
-                            <div class="week-day">{{week.day4 | date}}</div>
-                            <div class="week-day">{{week.day5 | date}}</div>
+                            <div class="week-day" ng-click="showCalendarPosture(week.day1,week.day1Posture,week.day1Complete)">{{week.day1|date:'dd'}}<img class="day-thumb" ng-src="{{week.day1Thumb}}"></div>
+                            <div class="week-day" ng-click="showCalendarPosture(week.day2,week.day2Posture,week.day2Complete)">{{week.day2|date:'dd'}}<img class="day-thumb" ng-src="{{week.day2Thumb}}"></div>
+                            <div class="week-day" ng-click="showCalendarPosture(week.day3,week.day3Posture,week.day3Complete)">{{week.day3|date:'dd'}}<img class="day-thumb" ng-src="{{week.day3Thumb}}"></div>
+                            <div class="week-day" ng-click="showCalendarPosture(week.day4,week.day4Posture,week.day4Complete)">{{week.day4|date:'dd'}}<img class="day-thumb" ng-src="{{week.day4Thumb}}"></div>
+                            <div class="week-day" ng-click="showCalendarPosture(week.day5,week.day5Posture,week.day5Complete)">{{week.day5|date:'dd'}}<img class="day-thumb" ng-src="{{week.day5Thumb}}"></div>
                         </div>
                         <div class="calendar-posture-outer col-sm-5">
                             <div class="calendar-posture-inner">
+                                <div class="posture-list" ng-show="!isPostureShow">
+                                    <div class="posture-date">{{postureDate | date:'yyyy-MM-dd' }}</div>
+                                    <div class="posture-title">{{postureTitle}}</div>
+                                    <div class="posture-name" ng-click='showPosture(posture.posture)' ng-repeat="posture in postureList">
+                                        {{posture.posture}}
+                                    </div>
+                                </div>
+                                <div class="posture-detail" ng-show="isPostureShow">
+                                {{postureName}}
+                                <iframe class="posture-video" src="https://www.youtube.com/embed/paQczLIrDMI" frameborder="0" class="posture-video"></iframe>
+                                <button class="btn btn-flat btn-lg" ng-click="showPostureList()">返回</button>
+                                </div>
                             </div>
                         </div>
                     </div>

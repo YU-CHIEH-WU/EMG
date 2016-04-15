@@ -282,7 +282,9 @@ span {
 
 
 /* 會員 */
-
+#block-user{
+    background:#006C4C;
+}
 .block-user {
     width: 100%;
     height: 100%;
@@ -727,6 +729,7 @@ span {
 .week-weekday {
     height: 40px;
     border: 1px #FFF solid;
+    background:$blockHoverColor;
     text-align: center;
     line-height: 40px;
     font-size: 24px;
@@ -735,6 +738,7 @@ span {
 .week-day {
     height: calc((100% - 40px) / 5);
     border: 1px #FFF solid;
+    background:$blockHoverColor;
 }
 
 .calendar-posture-outer {
@@ -746,6 +750,47 @@ span {
     width: 100%;
     height: 100%;
     border: 1px #FFF solid;
+}
+.day-thumb{
+    width:100%;
+    position: relative;
+    top:-6px;
+}
+.posture-date,.posture-title{
+    text-align: center;
+    margin: 12px;
+    font-size: 24px;
+}
+.posture-list{
+    width:100%;
+    height:100%;
+}
+.posture-detail{
+    width:100%;
+    height:100%;
+    font-size:22px;
+    text-align: center;
+    padding-top:22px;
+}
+.posture-video{
+    width:397px;
+    height:244px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+.posture-name{
+    padding:12px;
+    border-bottom: 1px #9f9f9f solid;
+    cursor: pointer;
+    >div {
+        float: left;
+    }
+    &:hover {
+        background: $blockHoverColor;
+    }
+    &:last-child {
+        border: none;
+    }
 }
 
 

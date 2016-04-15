@@ -55,7 +55,7 @@ $(function() {
             async: true
         };
         var exportUrl = 'http://export.highcharts.com/';
-        $.post(exportUrl, data, function(data) {
+        $http.post(exportUrl, data, function(data) {
             var url = exportUrl + data;
             console.log(url);
         });
@@ -190,28 +190,29 @@ app.controller('blockController', ['$scope', '$http', '$timeout', '$location', '
             $scope.isDetailActive = true;
         };
         $scope.showDetail4 = function(nowDate) {
-                var title = '課程行事曆';
-                var date = new Date(nowDate);
-                var month = date.getMonth() + 1;
-                var first = new Date('2016-' + month + '-01');
-                var newDay = new Date(first);
-                var weekday = first.getDay();
-                $scope.calendar = [{ 'weekday': 1, 'weekdayTW': '一', 'day1': '', 'day2': '', 'day3': '', 'day4': '', 'day5': '' },
-                    { 'weekday': 2, 'weekdayTW': '二', 'day1': '', 'day2': '', 'day3': '', 'day4': '', 'day5': '' },
-                    { 'weekday': 3, 'weekdayTW': '三', 'day1': '', 'day2': '', 'day3': '', 'day4': '', 'day5': '' },
-                    { 'weekday': 4, 'weekdayTW': '四', 'day1': '', 'day2': '', 'day3': '', 'day4': '', 'day5': '' },
-                    { 'weekday': 5, 'weekdayTW': '五', 'day1': '', 'day2': '', 'day3': '', 'day4': '', 'day5': '' },
-                    { 'weekday': 6, 'weekdayTW': '六', 'day1': '', 'day2': '', 'day3': '', 'day4': '', 'day5': '' },
-                    { 'weekday': 7, 'weekdayTW': '日', 'day1': '', 'day2': '', 'day3': '', 'day4': '', 'day5': '' }
-                ];
-                var weekdayCount = 0;
-                var firstFind = false;
-                for (i = 1; i <= 5; i++) {
-                    angular.forEach($scope.calendar, function(value, key) {
-                        if (firstFind) {
-                            var result = new Date(newDay);
-                            result.setDate(newDay.getDate() + 1);
-                            newDay = result;
+            var title = '課程行事曆';
+            var date = new Date(nowDate);
+            var month = date.getMonth() + 1;
+            var first = new Date('2016-' + month + '-01');
+            var newDay = new Date(first);
+            var weekday = first.getDay();
+            $scope.calendar = [{ 'weekday': 1, 'weekdayTW': '一', 'day1': '', 'day1Posture': [], day1Thumb: 'images/null.png', 'day1Complete': false, 'day2': '', 'day2Posture': [], 'day2Thumb': 'images/null.png', 'day2Complete': false, 'day3': '', 'day3Posture': [], day3Thumb: 'images/null.png', 'day3Complete': false, 'day4': '', 'day4Posture': [], day4Thumb: 'images/null.png', 'day4Complete': false, 'day5': '', 'day5Posture': [], day5Thumb: 'images/null.png', 'day5Complete': false },
+                { 'weekday': 2, 'weekdayTW': '二', 'day1': '', 'day1Posture': [], day1Thumb: 'images/null.png', 'day1Complete': false, 'day2': '', 'day2Posture': [], 'day2Thumb': 'images/null.png', 'day2Complete': false, 'day3': '', 'day3Posture': [], day3Thumb: 'images/null.png', 'day3Complete': false, 'day4': '', 'day4Posture': [], day4Thumb: 'images/null.png', 'day4Complete': false, 'day5': '', 'day5Posture': [], day5Thumb: 'images/null.png', 'day5Complete': false },
+                { 'weekday': 3, 'weekdayTW': '三', 'day1': '', 'day1Posture': [], day1Thumb: 'images/null.png', 'day1Complete': false, 'day2': '', 'day2Posture': [], 'day2Thumb': 'images/null.png', 'day2Complete': false, 'day3': '', 'day3Posture': [], day3Thumb: 'images/null.png', 'day3Complete': false, 'day4': '', 'day4Posture': [], day4Thumb: 'images/null.png', 'day4Complete': false, 'day5': '', 'day5Posture': [], day5Thumb: 'images/null.png', 'day5Complete': false },
+                { 'weekday': 4, 'weekdayTW': '四', 'day1': '', 'day1Posture': [], day1Thumb: 'images/null.png', 'day1Complete': false, 'day2': '', 'day2Posture': [], 'day2Thumb': 'images/null.png', 'day2Complete': false, 'day3': '', 'day3Posture': [], day3Thumb: 'images/null.png', 'day3Complete': false, 'day4': '', 'day4Posture': [], day4Thumb: 'images/null.png', 'day4Complete': false, 'day5': '', 'day5Posture': [], day5Thumb: 'images/null.png', 'day5Complete': false },
+                { 'weekday': 5, 'weekdayTW': '五', 'day1': '', 'day1Posture': [], day1Thumb: 'images/null.png', 'day1Complete': false, 'day2': '', 'day2Posture': [], 'day2Thumb': 'images/null.png', 'day2Complete': false, 'day3': '', 'day3Posture': [], day3Thumb: 'images/null.png', 'day3Complete': false, 'day4': '', 'day4Posture': [], day4Thumb: 'images/null.png', 'day4Complete': false, 'day5': '', 'day5Posture': [], day5Thumb: 'images/null.png', 'day5Complete': false },
+                { 'weekday': 6, 'weekdayTW': '六', 'day1': '', 'day1Posture': [], day1Thumb: 'images/null.png', 'day1Complete': false, 'day2': '', 'day2Posture': [], 'day2Thumb': 'images/null.png', 'day2Complete': false, 'day3': '', 'day3Posture': [], day3Thumb: 'images/null.png', 'day3Complete': false, 'day4': '', 'day4Posture': [], day4Thumb: 'images/null.png', 'day4Complete': false, 'day5': '', 'day5Posture': [], day5Thumb: 'images/null.png', 'day5Complete': false },
+                { 'weekday': 7, 'weekdayTW': '日', 'day1': '', 'day1Posture': [], day1Thumb: 'images/null.png', 'day1Complete': false, 'day2': '', 'day2Posture': [], 'day2Thumb': 'images/null.png', 'day2Complete': false, 'day3': '', 'day3Posture': [], day3Thumb: 'images/null.png', 'day3Complete': false, 'day4': '', 'day4Posture': [], day4Thumb: 'images/null.png', 'day4Complete': false, 'day5': '', 'day5Posture': [], day5Thumb: 'images/null.png', 'day5Complete': false }
+            ];
+            var weekdayCount = 0;
+            var firstFind = false;
+            for (i = 1; i <= 5; i++) {
+                angular.forEach($scope.calendar, function(value, key) {
+                    if (firstFind) {
+                        var result = new Date(newDay);
+                        result.setDate(newDay.getDate() + 1);
+                        newDay = result;
+                        if (result.getMonth() + 1 == month) {
                             if (i == 1) {
                                 $scope.calendar[key].day1 = newDay;
                             }
@@ -228,22 +229,131 @@ app.controller('blockController', ['$scope', '$http', '$timeout', '$location', '
                                 $scope.calendar[key].day5 = newDay;
                             }
                         }
-                        if ($scope.calendar[key].weekday == weekday) {
-                            $scope.calendar[key].day1 = first;
-                            firstFind = true;
-                        }
-                    })
-                }
-                angular.forEach($scope.courseData,function(value,key){
-                    var date = new Date($scope.courseData[key].time);
-                    
+                    }
+                    if ($scope.calendar[key].weekday == weekday) {
+                        $scope.calendar[key].day1 = first;
+                        firstFind = true;
+                    }
                 })
-                $scope.detail4Options.title = title;
-                $scope.detail4Options.startDay = weekday;
-                $scope.detail4Active = true;
-                $scope.isDetailActive = true;
             }
-            // 防止動畫重複觸發
+            angular.forEach($scope.courseData, function(value, key) {
+                var today = new Date().getTime();
+                var date = new Date($scope.courseData[key].time);
+                var posture = $scope.courseData[key].title;
+                var thumb = $scope.courseData[key].thumb;
+                angular.forEach($scope.calendar, function(value, key) {
+                    var dateTime = date.getTime();
+                    if (value.day1 != "") {
+                        var day1Time = value.day1.getTime();
+                    }
+                    var day2Time = value.day2.getTime();
+                    var day3Time = value.day3.getTime();
+                    var day4Time = value.day4.getTime();
+                    if (value.day5 != "") {
+                        var day5Time = value.day5.getTime();
+                    }
+                    if (day1Time == dateTime) {
+                        $scope.calendar[key].day1Posture.push({ 'thumb': thumb, 'posture': posture });
+                        $scope.calendar[key].day1Thumb = 'images/gym.png';
+                        if (today > dateTime) {
+                            $scope.calendar[key].day1Complete = true;
+                        }
+                    }
+                    if (day2Time == dateTime) {
+                        $scope.calendar[key].day2Posture.push({ 'thumb': thumb, 'posture': posture });
+                        $scope.calendar[key].day2Thumb = 'images/gym.png';
+                        if (today > dateTime) {
+                            $scope.calendar[key].day2Complete = true;
+                        }
+                    }
+                    if (day3Time == dateTime) {
+                        $scope.calendar[key].day3Posture.push({ 'thumb': thumb, 'posture': posture });
+                        $scope.calendar[key].day3Thumb = 'images/gym.png';
+                        if (today > dateTime) {
+                            $scope.calendar[key].day3Complete = true;
+                        }
+                    }
+                    if (day4Time == dateTime) {
+                        $scope.calendar[key].day4Posture.push({ 'thumb': thumb, 'posture': posture });
+                        $scope.calendar[key].day4Thumb = 'images/gym.png';
+                        if (today > dateTime) {
+                            $scope.calendar[key].day4Complete = true;
+                        }
+                    }
+                    if (day5Time == dateTime) {
+                        $scope.calendar[key].day5Posture.push({ 'thumb': thumb, 'posture': posture });
+                        $scope.calendar[key].day5Thumb = 'images/gym.png';
+                        if (today > dateTime) {
+                            $scope.calendar[key].day5Complete = true;
+                        }
+                    }
+                })
+            })
+            $scope.detail4Options.title = title;
+            $scope.detail4Options.startDay = weekday;
+            $scope.detail4Active = true;
+            $scope.isDetailActive = true;
+        };
+        $scope.showCalendarPosture = function(day, posture, complete) {
+            angular.forEach($scope.calendar, function(value, key) {
+                if (value.day1Thumb == 'images/gym-c.png') {
+                    $scope.calendar[key].day1Thumb = 'images/gym.png';
+                }
+                if (value.day2Thumb == 'images/gym-c.png') {
+                    $scope.calendar[key].day2Thumb = 'images/gym.png';
+                }
+                if (value.day3Thumb == 'images/gym-c.png') {
+                    $scope.calendar[key].day3Thumb = 'images/gym.png';
+                }
+                if (value.day4Thumb == 'images/gym-c.png') {
+                    $scope.calendar[key].day4Thumb = 'images/gym.png';
+                }
+                if (value.day5Thumb == 'images/gym-c.png') {
+                    $scope.calendar[key].day5Thumb = 'images/gym.png';
+                }
+                if (value.day1 == day && posture[0] != undefined) {
+                    $scope.calendar[key].day1Thumb = 'images/gym-c.png';
+                }
+                if (value.day2 == day && posture[0] != undefined) {
+                    $scope.calendar[key].day2Thumb = 'images/gym-c.png';
+                }
+                if (value.day3 == day && posture[0] != undefined) {
+                    $scope.calendar[key].day3Thumb = 'images/gym-c.png';
+                }
+                if (value.day4 == day && posture[0] != undefined) {
+                    $scope.calendar[key].day4Thumb = 'images/gym-c.png';
+                }
+                if (value.day5 == day && posture[0] != undefined) {
+                    $scope.calendar[key].day5Thumb = 'images/gym-c.png';
+                }
+            })
+            $scope.postureDate = day;
+            console.log(posture[0] == undefined);
+            if (posture[0] == undefined) {
+                $scope.postureTitle = '本日沒有課程';
+                $scope.postureList=[];
+            } else {
+                if (complete) {
+                    $scope.postureTitle = '本日課程已結束';
+                } else {
+                    $scope.postureTitle = '本日課程';
+                }
+                $scope.postureList = posture;
+            }
+        }
+        $scope.showPosture = function(pos) {
+            var posDataApi = 'http://163.17.136.197/EMG/api/PostureApi/getPosData';
+            $scope.postureName = pos;
+            $http.post(posDataApi, pos, function(data) {
+                console.log(data);
+            })
+            $scope.postureSrc = 'https://www.youtube.com/embed/vGbPbo0VH14';
+            $scope.isPostureShow = true;
+        };
+        $scope.showPostureList = function() {
+            $scope.isPostureShow = false;
+        };
+        // 防止動畫重複觸發
         $scope.setOntop = function() {
             if ($scope.isDetailActive && !$scope.isOntop) {
                 $scope.isOntop = true;
@@ -269,13 +379,43 @@ app.controller('blockController', ['$scope', '$http', '$timeout', '$location', '
         }, 10);
         // 登入後使用者個人資料
         setChart('status', 'block-chart-status');
-        setChart('bodyfat', 'block-bodyfat-thumb');
+        setChart('bodyfatThumb', 'block-bodyfat-thumb');
         setChart('training', 'block-training-thumb');
         setChart('grow', 'block-grow-thumb');
         setChart('dotThumb', 'block-dotThumb');
         setChart('resultThumb', 'block-result-thumb');
         // 行事曆控制項與預設
         $scope.courseData = [{
+            'thumb': 'images/dumbbell.png',
+            'title': '啞鈴仰臥推舉',
+            'time': '2016-4-11',
+            'weekday': ' 星期一'
+        }, {
+            'thumb': 'images/dumbbell-c.png',
+            'title': '槓鈴仰臥推舉',
+            'time': '2016-4-11',
+            'weekday': ' 星期一'
+        }, {
+            'thumb': 'images/gym.png',
+            'title': '寬版伏地挺身',
+            'time': '2016-4-11',
+            'weekday': ' 星期一'
+        }, {
+            'thumb': 'images/dumbbell.png',
+            'title': '啞鈴單手後屈伸',
+            'time': '2016-4-11',
+            'weekday': ' 星期一'
+        }, {
+            'thumb': 'images/dumbbell.png',
+            'title': '啞鈴單手後屈伸',
+            'time': '2016-4-11',
+            'weekday': ' 星期一'
+        }, {
+            'thumb': 'images/dumbbell-c.png',
+            'title': '槓鈴窄握推舉',
+            'time': '2016-4-11',
+            'weekday': ' 星期一'
+        }, {
             'thumb': 'images/dumbbell.png',
             'title': '啞鈴仰臥推舉',
             'time': '2016-4-16',

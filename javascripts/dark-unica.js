@@ -11,7 +11,7 @@
 // }, null, document.getElementsByTagName('head')[0]);
 
 Highcharts.theme = {
-	colors: ["#FF9B00", "#FF7541", "#f45b5b", "#7798BF", "#aaeeee", "#ff0066", "#eeaaee",
+	colors: ["#FF9B00", "#08C3C9", "#f45b5b", "#7798BF", "#aaeeee", "#ff0066", "#eeaaee",
 		"#55BF3B", "#DF5353", "#7798BF", "#aaeeee"],
 	chart: {
 		backgroundColor: null,
