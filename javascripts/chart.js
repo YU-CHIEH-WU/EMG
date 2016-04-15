@@ -1,10 +1,66 @@
 //TODO:參數增加data傳入
-function setChart(ChartName, targetId, title, data1, data2) {
-
+function setChart(targetId, chartOption) {
     var target = $('#' + targetId);
+    target.highcharts(chartOption);
+}
+
+function getChartOption(ChartName, title, data1, data2) {
+    console.log(ChartName,title,data1,data2);
+    var chartOption={};
+    if (ChartName == "Heart") {
+        chartOption = {
+            chart: { type: 'column' },
+            title: { text: 'HeartDisease Column Chart' },
+            exporting: { enabled: false },
+            xAxis: {
+                categories: ['Presence Female', 'Absence Female', 'Presence Male', 'Absence Male'],
+                crosshair: true
+            },
+            yAxis: {
+                min: 0,
+                title: { text: 'average' }
+            },
+            tooltip: {
+                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                    '<td style="padding:0"><b>{point.y:.1f}</b></td></tr>',
+                footerFormat: '</table>',
+                shared: true,
+                useHTML: true
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0
+                }
+            },
+            credits: { enabled: false },
+            series: [{
+                name: 'age',
+                data: [59.35, 54.58, 56.04, 51.19]
+
+            }, {
+                name: 'chest pain type',
+                data: [3.85, 2.91, 3.57, 2.75]
+
+            }, {
+                name: 'maximum heart rate',
+                data: [143.5, 154.84, 137.93, 161.16]
+            }, {
+                name: 'exercise induced angina',
+                data: [0.5, 0.12, 0.56, 0.18]
+            }, {
+                name: 'ca',
+                data: [1.35, 0.31, 1.11, 0.27]
+            }, {
+                name: 'thal',
+                data: [5.2, 3.12, 6, 4.33]
+            }]
+        };
+    }
     // 大數據分析圖
     if (ChartName == "tippie") {
-        target.highcharts({
+        chartOption = {
             chart: {
                 plotBackgroundColor: null,
                 plotBorderWidth: null,
@@ -41,10 +97,11 @@ function setChart(ChartName, targetId, title, data1, data2) {
             credits: {
                 enabled: false
             }
-        });
+        };
+        console.log(chartOption);
     }
     if (ChartName == "pie") {
-        target.highcharts({
+        chartOption = {
             chart: {
                 plotBackgroundColor: null,
                 plotBorderWidth: null,
@@ -81,14 +138,14 @@ function setChart(ChartName, targetId, title, data1, data2) {
             credits: {
                 enabled: false
             }
-        });
+        };
     }
     // 肌力變化-公斤&百分比
     if (ChartName == "1rm") {
-        target.highcharts({
+        chartOption = {
             chart: {
                 zoomType: 'xy',
-                spacing:[0,0,0,0]
+                spacing: [0, 0, 0, 0]
             },
             exporting: {
                 enabled: false
@@ -162,7 +219,7 @@ function setChart(ChartName, targetId, title, data1, data2) {
             }, {
                 name: '成長百分比',
                 type: 'spline',
-                data: [0, 20.0, 30.0,40.0, 60.0, 80.0, 90.0, 110.0, 130.0, 160.0, 170.0, 190.0, 200.0, 210.0, 230.0],
+                data: [0, 20.0, 30.0, 40.0, 60.0, 80.0, 90.0, 110.0, 130.0, 160.0, 170.0, 190.0, 200.0, 210.0, 230.0],
                 tooltip: {
                     valueSuffix: '%'
                 }
@@ -170,11 +227,11 @@ function setChart(ChartName, targetId, title, data1, data2) {
             credits: {
                 enabled: false
             }
-        });
+        };
     }
     //肌力變化-公斤
     if (ChartName == "1rmKG") {
-        target.highcharts({
+        chartOption = {
             chart: {
                 type: 'spline'
             },
@@ -222,11 +279,11 @@ function setChart(ChartName, targetId, title, data1, data2) {
             credits: {
                 enabled: false
             }
-        });
+        };
     }
     //肌力變化-百分比
     if (ChartName == "1rmGrow") {
-        target.highcharts({
+        chartOption = {
             chart: {
                 type: 'spline'
             },
@@ -277,11 +334,11 @@ function setChart(ChartName, targetId, title, data1, data2) {
             credits: {
                 enabled: false
             }
-        });
+        };
     }
     //肌力變化-訓練動作
     if (ChartName == "1rmWays") {
-        target.highcharts({
+        chartOption = {
             chart: {
                 type: 'bar'
             },
@@ -325,11 +382,11 @@ function setChart(ChartName, targetId, title, data1, data2) {
                 name: '肌力',
                 data: [21, 12, 6, 9]
             }]
-        });
+        };
     }
     //肌耐力變化-公斤&百分比
     if (ChartName == "15rm") {
-        target.highcharts({
+        chartOption = {
             chart: {
                 zoomType: 'xy'
             },
@@ -362,7 +419,7 @@ function setChart(ChartName, targetId, title, data1, data2) {
                     rotation: 0,
                     x: 50,
                     y: -20,
-                    offset:50
+                    offset: 50
                 }
             }, { // Secondary yAxis
                 title: {
@@ -374,7 +431,7 @@ function setChart(ChartName, targetId, title, data1, data2) {
                     rotation: 0,
                     x: -50,
                     y: -20,
-                    offset:50
+                    offset: 50
                 },
                 labels: {
                     format: '{value} KG',
@@ -415,11 +472,11 @@ function setChart(ChartName, targetId, title, data1, data2) {
             credits: {
                 enabled: false
             }
-        });
+        };
     }
     //肌耐力變化-百分比
     if (ChartName == "15rmGrow") {
-        target.highcharts({
+        chartOption = {
             chart: {
                 type: 'spline'
             },
@@ -470,11 +527,11 @@ function setChart(ChartName, targetId, title, data1, data2) {
             credits: {
                 enabled: false
             }
-        });
+        };
     }
     //肌耐力變化-訓練動作
     if (ChartName == "15rmWays") {
-        target.highcharts({
+        chartOption = {
             chart: {
                 type: 'bar'
             },
@@ -518,7 +575,7 @@ function setChart(ChartName, targetId, title, data1, data2) {
                 name: '肌耐力',
                 data: [14, 8, 5, 2]
             }]
-        });
+        };
     }
     //體脂變化-原始百分比
     if (ChartName == "bodyfat") {
@@ -534,7 +591,7 @@ function setChart(ChartName, targetId, title, data1, data2) {
                 standard = { "leanStart": 2.5, "leanEnd": 8.4, "idealStart": 8.4, "idealEnd": 15.4, "averageStart": 15.4, "averageEnd": 21.2, "aboveStart": 21.2, "aboveEnd": 25.8, };
             }
         }
-        target.highcharts({
+        chartOption = {
             chart: {
                 type: 'spline'
             },
@@ -632,11 +689,11 @@ function setChart(ChartName, targetId, title, data1, data2) {
             credits: {
                 enabled: false
             }
-        });
+        };
     }
     //體脂變化-變化百分比
     if (ChartName == "bodyfatGrow") {
-        target.highcharts({
+        chartOption = {
             chart: {
                 type: 'spline'
             },
@@ -687,11 +744,11 @@ function setChart(ChartName, targetId, title, data1, data2) {
             credits: {
                 enabled: false
             }
-        });
+        };
     }
     //體脂變化-訓練動作
     if (ChartName == "bodyfatWays") {
-        target.highcharts({
+        chartOption = {
             chart: {
                 type: 'bar'
             },
@@ -735,11 +792,11 @@ function setChart(ChartName, targetId, title, data1, data2) {
                 name: '體脂變化率',
                 data: [4, 2, 1, 0]
             }]
-        });
+        };
     }
     //訓練姿勢相對成長
     if (ChartName == "growWays") {
-        target.highcharts({
+        chartOption = {
             chart: {
                 type: 'bar'
             },
@@ -786,15 +843,15 @@ function setChart(ChartName, targetId, title, data1, data2) {
                 name: '肌耐力',
                 data: [45, 31, 15, 9]
             }]
-        });
+        };
     }
     //訓練成效-肌肉疲勞
     if (ChartName == "fatigue") {
-        target.highcharts({
+        chartOption = {
             chart: {
                 type: 'areaspline'
             },
-            colors:['#ff495f'],
+            colors: ['#ff495f'],
             exporting: {
                 enabled: false
             },
@@ -843,15 +900,15 @@ function setChart(ChartName, targetId, title, data1, data2) {
             credits: {
                 enabled: false
             }
-        })
+        }
     }
     //訓練成效-出力百分比
     if (ChartName == "pmvc") {
-        target.highcharts({
+        chartOption = {
             chart: {
                 tpye: 'spline'
             },
-            colors:['#ff495f'],
+            colors: ['#ff495f'],
             exporting: {
                 enabled: false
             },
@@ -900,16 +957,16 @@ function setChart(ChartName, targetId, title, data1, data2) {
             credits: {
                 enabled: false
             }
-        })
+        }
     }
     //訓練成效-訓練姿勢
     if (ChartName == "result") {
         //$('#'+targetId).html('<div class="progress-title"><p>本次訓練成效</p></div><div class="block-progress"><div class="progress progress-striped active"><div class="progress-bar progress-bar-theme" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 82%"><span class="pull-right">82%</span></div></div></div>')
-        target.highcharts({
+        chartOption = {
             chart: {
                 type: 'bar'
             },
-            colors:['#ff495f','#08C3C9'],
+            colors: ['#ff495f', '#08C3C9'],
             exporting: {
                 enabled: false
             },
@@ -956,16 +1013,16 @@ function setChart(ChartName, targetId, title, data1, data2) {
                 name: '肌肉出力',
                 data: [90, 82, 87]
             }]
-        });
+        };
     }
     //個人素質
     if (ChartName == "status") {
-        target.highcharts({
+        chartOption = {
             chart: {
                 polar: true,
                 type: 'line'
             },
-            colors:['#FFFF00'],
+            colors: ['#FFFF00'],
             exporting: {
                 enabled: false
             },
@@ -982,12 +1039,12 @@ function setChart(ChartName, targetId, title, data1, data2) {
             xAxis: {
                 categories: ['肌群均衡', '肌力', '肌耐力', '訓練成效', '體脂率', '超負荷'],
                 tickmarkPlacement: 'on',
-                gridLineColor:'#EEEEEE',
+                gridLineColor: '#EEEEEE',
                 lineWidth: 0,
             },
             yAxis: {
                 gridLineInterpolation: 'polygon',
-                gridLineColor:'#EEEEEE',
+                gridLineColor: '#EEEEEE',
                 lineWidth: 0,
                 min: 0
             },
@@ -1004,15 +1061,15 @@ function setChart(ChartName, targetId, title, data1, data2) {
             credits: {
                 enabled: false
             }
-        });
+        };
     }
     //訓練成效
     if (ChartName == "training") {
-        target.highcharts({
+        chartOption = {
             chart: {
                 type: 'column'
             },
-            colors:['#ff495f'],
+            colors: ['#ff495f'],
             exporting: {
                 enabled: false
             },
@@ -1049,11 +1106,11 @@ function setChart(ChartName, targetId, title, data1, data2) {
             credits: {
                 enabled: false
             }
-        });
+        };
     }
     //肌肉成長
     if (ChartName == "grow") {
-        target.highcharts({
+        chartOption = {
             chart: {
                 type: 'spline'
             },
@@ -1093,11 +1150,11 @@ function setChart(ChartName, targetId, title, data1, data2) {
             credits: {
                 enabled: false
             }
-        });
+        };
     }
     //體脂縮圖
     if (ChartName == "bodyfatThumb") {
-        target.highcharts({
+        chartOption = {
             chart: {
                 type: 'spline'
             },
@@ -1137,11 +1194,11 @@ function setChart(ChartName, targetId, title, data1, data2) {
             credits: {
                 enabled: false
             }
-        });
+        };
     }
     //落點分析縮圖
     if (ChartName == "dotThumb") {
-        target.highcharts({
+        chartOption = {
             chart: {
                 type: 'scatter',
                 zoomType: 'xy'
@@ -1720,96 +1777,7 @@ function setChart(ChartName, targetId, title, data1, data2) {
             credits: {
                 enabled: false
             }
-        });
+        };
     }
-    //訓練成效縮圖
-    if (ChartName == "resultThumb") {
-        var data = [
-            [25],
-            [72],
-            [64],
-            [50],
-            [12],
-            [45],
-            [55]
-        ]
-        target.highcharts({
-            chart: {
-                type: 'area',
-                events: {
-                    load: function() {
-
-                        // set up the updating of the chart each second
-                        var series = this.series[0];
-                        setInterval(function() {
-                            var x = (new Date()).getTime(), // current time
-                                y = parseInt(Math.random() * 100);
-                            series.addPoint([x, y], true, true);
-                        }, 500);
-                    }
-                }
-            },
-            exporting: {
-                enabled: false
-            },
-            title: {
-                text: null
-            },
-            tooltip: {
-                enabled: false
-            },
-            legend: {
-                enabled: false
-            },
-            xAxis: {
-                allowDecimals: false,
-                labels: {
-                    enabled: false
-                }
-            },
-            yAxis: {
-                title: {
-                    text: null
-                },
-                labels: {
-                    enabled: null
-                }
-            },
-            plotOptions: {
-                area: {
-                    pointStart: 1940,
-                    marker: {
-                        enabled: false,
-                        symbol: 'circle',
-                        radius: 2,
-                        states: {
-                            hover: {
-                                enabled: true
-                            }
-                        }
-                    }
-                }
-            },
-            series: [{
-                name: 'data',
-                data: (function() {
-                    // generate an array of random data
-                    var data = [],
-                        time = (new Date()).getTime(),
-                        i;
-
-                    for (i = -19; i <= 0; i += 1) {
-                        data.push({
-                            x: time + i * 500,
-                            y: parseInt(Math.random() * 100)
-                        });
-                    }
-                    return data;
-                }())
-            }],
-            credits: {
-                enabled: false
-            }
-        });
-    }
+    return chartOption;
 }

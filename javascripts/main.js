@@ -162,31 +162,40 @@ app.controller('blockController', ['$scope', '$http', '$timeout', '$interval', f
         angular.forEach(femaleFocus, function(value, key) {
             femaleFocus[key].y = parseFloat((femaleFocusCount[value.name] / femaleCount * 100).toFixed(2));
         })
-        setChart('tippie', 'block-bigdata1-thumb', '女生最想看異性哪個肌肉部位', femaleWant);
-        setChart('tippie', 'block-bigdata2-thumb', '男生最注重自己哪個肌肉部位', maleFocus);
-        setChart('pie', 'block-bigdata3-thumb', '大家健身最大的動機為何', motiveList);
+        var bigdata1Option = getChartOption('tippie', '女生最想看異性哪個肌肉部位', femaleWant);
+        var bigdata2Option = getChartOption('tippie', '男生最注重自己哪個肌肉部位', maleFocus);
+        var bigdata3Option = getChartOption('pie', '大家健身最大的動機為何', motiveList);
+        console.log(bigdata1Option);
+        setChart('block-bigdata1-thumb', bigdata1Option);
+        setChart('block-bigdata2-thumb', bigdata2Option);
+        setChart('block-bigdata3-thumb', bigdata3Option);
     })
     $scope.changeSex = function(type, sex) {
+            var chartOption = {};
             if (type == 'want') {
                 if (sex == 'female') {
                     $scope.isFemaleWant = true;
                     $scope.isMaleWant = false;
-                    setChart('tippie', 'block-bigdata1-thumb', '女生最想看異性哪個肌肉部位', femaleWant);
+                    chartOption = getChartOption('tippie', '女生最想看異性哪個肌肉部位', femaleWant);
+                    setChart('block-bigdata1-thumb', chartOption);
                 } else {
                     $scope.isMaleWant = true;
                     $scope.isFemaleWant = false
-                    setChart('tippie', 'block-bigdata1-thumb', '男生最想看異性哪個肌肉部位', maleWant);
+                    chartOption = getChartOption('tippie', '男生最想看異性哪個肌肉部位', maleWant);
+                    setChart('block-bigdata1-thumb', chartOption);
                 }
             }
             if (type == 'focus') {
                 if (sex == 'female') {
                     $scope.isFemaleFocus = true;
                     $scope.isMaleFocus = false;
-                    setChart('tippie', 'block-bigdata2-thumb', '女生最注重自己哪個肌肉部位', femaleFocus);
+                    chartOption = getChartOption('tippie', '女生最注重自己哪個肌肉部位', femaleFocus);
+                    setChart('block-bigdata2-thumb', chartOption);
                 } else {
                     $scope.isMaleFocus = true;
                     $scope.isFemaleFocus = false;
-                    setChart('tippie', 'block-bigdata2-thumb', '男生最注重自己哪個肌肉部位', maleFocus);
+                    chartOption = getChartOption('tippie', '男生最注重自己哪個肌肉部位', maleFocus);
+                    setChart('block-bigdata2-thumb', chartOption);
                 }
             }
         }

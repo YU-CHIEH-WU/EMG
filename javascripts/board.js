@@ -6,56 +6,18 @@ $(function() {
             $('.opacity').removeClass('opacity');
         })
         //分享圖表至Facebook
-    $('#btn-trainingSVG').on('click', function() {
+    $('.btn-saveSVG').on('click', function() {
+        var chartName = $(this).data('chartname');
+        var chartOption = getChartOption(chartName);
         var data = {
-            options: JSON.stringify({
-                chart: {
-                    type: 'column'
-                },
-                exporting: {
-                    enabled: false
-                },
-                title: {
-                    text: null,
-                    x: -20 //center
-                },
-                legend: {
-                    enabled: false
-                },
-                xAxis: {
-                    categories: ['2/17', '2/19', '2/20', '2/22', '2/23', '2/25']
-                },
-                yAxis: {
-                    title: {
-                        text: null
-                    },
-                    labels: {
-                        format: '{value}%'
-                    },
-                    plotLines: [{
-                        value: 0,
-                        width: 1,
-                        color: '#808080'
-                    }]
-                },
-                tooltip: {
-                    valueSuffix: '%'
-                },
-                series: [{
-                    name: '訓練成效',
-                    data: [66, 82, 71, 60, 0, 84]
-                }],
-                credits: {
-                    enabled: false
-                }
-            }),
+            options: JSON.stringify(chartOption),
             filename: 'chart',
             type: 'image/png',
             width: 1200,
             async: true
         };
         var exportUrl = 'http://export.highcharts.com/';
-        $http.post(exportUrl, data, function(data) {
+        $.post(exportUrl, data, function(data) {
             var url = exportUrl + data;
             console.log(url);
         });
@@ -71,7 +33,6 @@ $(function() {
         e.async = true;
         e.src = '//connect.facebook.net/zh-TW/all.js';
         document.getElementById('fb-root').appendChild(e);
-        url = "data:image/svg+xml;base64," + btoa(svg);
         FB.ui({
             method: 'feed',
             name: 'FIT ME 肌不可失',
@@ -118,9 +79,12 @@ app.controller('blockController', ['$scope', '$http', '$timeout', '$location', '
                 chart3 = 'growWays';
             };
             // 設定detail1圖表
-            setChart(chart1, 'detail1-main-chart');
-            setChart(chart2, 'detail1-left-chart');
-            setChart(chart3, 'detail1-right-chart');
+            var chart1Option = getChartOption(chart1);
+            var chart2Option = getChartOption(chart2);
+            var chart3Option = getChartOption(chart3);
+            setChart('detail1-main-chart',chart1Option);
+            setChart('detail1-left-chart',chart2Option);
+            setChart('detail1-right-chart',chart3Option);
             $scope.detail1Active = true;
             $scope.isDetailActive = true;
         };
@@ -378,12 +342,14 @@ app.controller('blockController', ['$scope', '$http', '$timeout', '$location', '
             // TODO:API取得使用者資料
         }, 10);
         // 登入後使用者個人資料
-        setChart('status', 'block-chart-status');
-        setChart('bodyfatThumb', 'block-bodyfat-thumb');
-        setChart('training', 'block-training-thumb');
-        setChart('grow', 'block-grow-thumb');
-        setChart('dotThumb', 'block-dotThumb');
-        setChart('resultThumb', 'block-result-thumb');
+        var status = getChartOption('status');
+        var bodyfatThumb = getChartOption('bodyfatThumb');
+        var training = getChartOption('training');
+        var grow = getChartOption('grow');
+        setChart('block-chart-status',status);
+        setChart('block-bodyfat-thumb',bodyfatThumb);
+        setChart('block-training-thumb',training);
+        setChart('block-grow-thumb',grow);
         // 行事曆控制項與預設
         $scope.courseData = [{
             'thumb': 'images/dumbbell.png',
