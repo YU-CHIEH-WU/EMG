@@ -72,7 +72,6 @@ span {
 /* 覆寫bootstrap */
 
 .container {
-    width: 80%;
     height: 100%;
 }
 
@@ -164,16 +163,22 @@ span {
 
 .block-container {
     margin-top: 30px;
-    width: 80%;
+    width:70%;
     position: absolute;
     top: 0;
-    left: 10%;
+    left:15%;
+    right:15%;
     @include transition(top,
     1s,
     ease-in);
     @include transition(blur,
     0.3s,
     liner);
+    @media screen and (max-width:1280px){
+        width:80%;
+        left:10%;
+        right:10%;
+    }
     &.gotop {
         top: 300%;
     }
@@ -282,9 +287,11 @@ span {
 
 
 /* 會員 */
-#block-user{
-    background:#006C4C;
+
+#block-user {
+    background: #006C4C;
 }
+
 .block-user {
     width: 100%;
     height: 100%;
@@ -729,7 +736,7 @@ span {
 .week-weekday {
     height: 40px;
     border: 1px #FFF solid;
-    background:$blockHoverColor;
+    background: $blockHoverColor;
     text-align: center;
     line-height: 40px;
     font-size: 24px;
@@ -738,7 +745,7 @@ span {
 .week-day {
     height: calc((100% - 40px) / 5);
     border: 1px #FFF solid;
-    background:$blockHoverColor;
+    background: $blockHoverColor;
 }
 
 .calendar-posture-outer {
@@ -751,35 +758,42 @@ span {
     height: 100%;
     border: 1px #FFF solid;
 }
-.day-thumb{
-    width:100%;
+
+.day-thumb {
+    width: 100%;
     position: relative;
-    top:-6px;
+    top: -6px;
 }
-.posture-date,.posture-title{
+
+.posture-date,
+.posture-title {
     text-align: center;
     margin: 12px;
     font-size: 24px;
 }
-.posture-list{
-    width:100%;
-    height:100%;
+
+.posture-list {
+    width: 100%;
+    height: 100%;
 }
-.posture-detail{
-    width:100%;
-    height:100%;
-    font-size:22px;
+
+.posture-detail {
+    width: 100%;
+    height: 100%;
+    font-size: 22px;
     text-align: center;
-    padding-top:22px;
+    padding-top: 22px;
 }
-.posture-video{
-    width:397px;
-    height:244px;
+
+.posture-video {
+    width: 397px;
+    height: 244px;
     margin-top: 40px;
     margin-bottom: 40px;
 }
-.posture-name{
-    padding:12px;
+
+.posture-name {
+    padding: 12px;
     border-bottom: 1px #9f9f9f solid;
     cursor: pointer;
     >div {

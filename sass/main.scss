@@ -134,11 +134,22 @@ body {
 
 .block-container {
     margin-top: 30px;
-    width: 80%;
+    width:70%;
     position: absolute;
     top: 0;
-    left: 10%;
-    @include transition(all, 0.5s, ease-in);
+    left:15%;
+    right:15%;
+    @include transition(top,
+    1s,
+    ease-in);
+    @include transition(blur,
+    0.3s,
+    liner);
+    @media screen and (max-width:1280px){
+        width:80%;
+        left:10%;
+        right:10%;
+    }
     &.gotop {
         top: 300%;
     }

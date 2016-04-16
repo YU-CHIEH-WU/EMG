@@ -12,7 +12,7 @@ $(function() {
         var data = {
             options: JSON.stringify(chartOption),
             filename: 'chart',
-            type: 'image/png',
+            type: 'image/jpeg',
             width: 1200,
             async: true
         };
@@ -75,8 +75,8 @@ app.controller('blockController', ['$scope', '$http', '$timeout', '$location', '
             if (setting == 'grow') {
                 title = '肌肉成長詳細資訊';
                 chart1 = '1rm';
-                chart2 = '15rm';
-                chart3 = 'growWays';
+                chart2 = 'Heart';
+                chart3 = 'dotThumb';
             };
             // 設定detail1圖表
             var chart1Option = getChartOption(chart1);
