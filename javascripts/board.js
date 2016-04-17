@@ -68,23 +68,23 @@ app.controller('blockController', ['$scope', '$http', '$timeout', '$location', '
             var chart3 = '';
             if (setting == 'training') {
                 title = '訓練成效詳細資訊';
-                chart1 = 'fatigue';
-                chart2 = 'pmvc';
-                chart3 = 'result';
+                chart1 = 'result';
+                chart2 = 'fatigue';
+                chart3 = 'pmvc';
             };
             if (setting == 'grow') {
                 title = '肌肉成長詳細資訊';
-                chart1 = '1rm';
-                chart2 = 'Heart';
-                chart3 = 'dotThumb';
+                chart1 = 'growWays';
+                chart2 = '1rm';
+                chart3 = '15rm';
             };
             // 設定detail1圖表
             var chart1Option = getChartOption(chart1);
             var chart2Option = getChartOption(chart2);
             var chart3Option = getChartOption(chart3);
-            setChart('detail1-main-chart',chart1Option);
-            setChart('detail1-left-chart',chart2Option);
-            setChart('detail1-right-chart',chart3Option);
+            setChart('detail1-main-chart', chart1Option);
+            setChart('detail1-left-chart', chart2Option);
+            setChart('detail1-right-chart', chart3Option);
             $scope.detail1Active = true;
             $scope.isDetailActive = true;
         };
@@ -295,7 +295,7 @@ app.controller('blockController', ['$scope', '$http', '$timeout', '$location', '
             console.log(posture[0] == undefined);
             if (posture[0] == undefined) {
                 $scope.postureTitle = '本日沒有課程';
-                $scope.postureList=[];
+                $scope.postureList = [];
             } else {
                 if (complete) {
                     $scope.postureTitle = '本日課程已結束';
@@ -305,6 +305,8 @@ app.controller('blockController', ['$scope', '$http', '$timeout', '$location', '
                 $scope.postureList = posture;
             }
         }
+        $scope.isPostureListShow = true;
+        $scope.isPostureDetailShow = false;
         $scope.showPosture = function(pos) {
             var posDataApi = 'http://163.17.136.197/EMG/api/PostureApi/getPosData';
             $scope.postureName = pos;
@@ -312,10 +314,12 @@ app.controller('blockController', ['$scope', '$http', '$timeout', '$location', '
                 console.log(data);
             })
             $scope.postureSrc = 'https://www.youtube.com/embed/vGbPbo0VH14';
-            $scope.isPostureShow = true;
+            $scope.isPostureDetailShow = true;
+            $scope.isPostureListShow = false;
         };
         $scope.showPostureList = function() {
-            $scope.isPostureShow = false;
+            $scope.isPostureDetailShow = false;
+            $scope.isPostureListShow = true;
         };
         // 防止動畫重複觸發
         $scope.setOntop = function() {
@@ -346,10 +350,10 @@ app.controller('blockController', ['$scope', '$http', '$timeout', '$location', '
         var bodyfatThumb = getChartOption('bodyfatThumb');
         var training = getChartOption('training');
         var grow = getChartOption('grow');
-        setChart('block-chart-status',status);
-        setChart('block-bodyfat-thumb',bodyfatThumb);
-        setChart('block-training-thumb',training);
-        setChart('block-grow-thumb',grow);
+        setChart('block-chart-status', status);
+        setChart('block-bodyfat-thumb', bodyfatThumb);
+        setChart('block-training-thumb', training);
+        setChart('block-grow-thumb', grow);
         // 行事曆控制項與預設
         $scope.courseData = [{
             'thumb': 'images/dumbbell.png',

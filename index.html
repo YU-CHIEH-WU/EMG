@@ -15,7 +15,7 @@
     <div class="container">
         <div class="row">
             <!-- 主頁面 -->
-            <div class="block-container" ng-class="{gotop:isDetailActive,ontop:isOntop,filter:isCourseClick,filter:isRegisterClick}" when-transition-end="setOntop()">
+            <div class="block-container" ng-class="{gotop:isDetailActive,ontop:isOntop,filter:isCourseClick,filter:isRegisterClick,filter:isPhotoClick}" when-transition-end="setOntop()">
                 <div class="col-md-3 col-xs-6 block-outer">
                     <!-- 會員 -->
                     <!-- TODO: ProgressButtonStyles -->
@@ -62,11 +62,11 @@
                 </div>
                 <div class="col-md-3 col-xs-6 block-outer">
                     <!-- 名人榜 -->
-                    <div class="block-inner" id="block-Fame">
+                    <div class="block-inner" id="block-fame">
                         <div class="block-header">名人榜</div>
                         <div class="block-body">
-                            <div class="block-fame">
-                                <div class="block-fame-list" ng-class="[fame.opacity]" ng-repeat="fame in fameList">
+                            <div class="block-fame slide">
+                                <div class="block-fame-list" ng-class="[fame.slide,fame.opacity]" ng-repeat="fame in fameList">
                                     <div class="block-fame-title">{{fame.title}}</div>
                                     <div class="block-fame-thumb"><img ng-src="{{fame.thumb}}"></div>
                                     <div class="block-fame-name">{{fame.name}}</div>
@@ -81,7 +81,7 @@
                         <div class="block-header">訓練成果相片</div>
                         <div class="block-body">
                             <div class="block-album-thumb" ng-click="showDetail3()">
-                                <img src="images/T51.jpg" alt="" style="width:100%;width:100%;">
+                                <img src="images/T51.jpg" alt="" style="width:100%;height:260px;">
                             </div>
                         </div>
                     </div>
@@ -163,7 +163,7 @@
             <div class="block-register-outer" ng-show="isRegisterClick" ng-click="hideRegister()" ng-class="{active:isRegisterShow}"></div>
             <div class="block-inner block-register-inner" ng-show="isRegisterClick" ng-class="{active:isRegisterShow}">
                 <div class="block-header"><span class="title">註冊</span><span class="back" ng-click="hideRegister()"><i class="fa fa-times icon-back"></i></span></div>
-                <div class="block-body">
+                <div class="block-body slide">
                     <form action="/EMG/User/Register?Length=4" data-ajax="true" data-ajax-method="POST" data-ajax-mode="replace" data-ajax-update="#status" enctype="multipart/form-data" id="form0" method="post" class="form-horizontal">
                         <div class="block-register-form" ng-class="{active:isFormShow}">
                             <section class="clearfix">
@@ -230,8 +230,8 @@
                                                 <option selected="selected" value=""></option>
                                                 <option value="A型">A型</option>
                                                 <option value="B型">B型</option>
-                                                <option value="B型">O型</option>
-                                                <option value="B型">AB型</option>
+                                                <option value="O型">O型</option>
+                                                <option value="AB型">AB型</option>
                                             </select>
                                             <span class="field-validation-valid text-danger" data-valmsg-for="Blood" data-valmsg-replace="true"></span>
                                         </div>
@@ -631,7 +631,7 @@
                                         </div>
                                         <div class="radio">
                                             <label>
-                                                <input id="Place" class="radio" name="Place" type="radio" value="肩部">肩部
+                                                <input id="Place" class="radio" name="Place" type="radio" value="肩膀">肩膀
                                             </label>
                                         </div>
                                         <div class="radio">
@@ -669,7 +669,7 @@
                                         </div>
                                         <div class="radio">
                                             <label>
-                                                <input id="Look" class="radio" name="Look" type="radio" value="肩部">肩部
+                                                <input id="Look" class="radio" name="Look" type="radio" value="肩膀">肩膀
                                             </label>
                                         </div>
                                         <div class="radio">
@@ -773,7 +773,7 @@
             </div>
             <div class="block-inner block-course-inner" ng-show="isCourseClick" ng-class="{active:isCourseShow}">
                 <div class="block-header"><span class="title">{{courseTitle}}</span><span class="back" ng-click="hideCourse()"><i class="fa fa-times icon-back"></i></span></div>
-                <div class="block-body">
+                <div class="block-body slide">
                     <div class="course-scroller" ng-class="{active:isPositionShow}">
                         <div class="course-list" ng-repeat="course in courseList">
                             <p>{{course.day}}</p>
@@ -796,8 +796,8 @@
             <div class="block-detail-outer" ng-class="{active:detail3Active}" ng-click="showIndex()"></div>
             <div class="block-detail" id="block-detail-3" ng-class="{active:detail3Active}">
                 <div class="block-header"><span class="title">訓練成果相片</span><span class="back" ng-click="showIndex()"><i class="fa fa-times icon-back"></i></span></div>
-                <div class="block-body">
-                    <div class="detail-album-list" ng-show="!isPhotoListShow">
+                <div class="block-body slide">
+                    <div class="detail-album-list" ng-class="{active:isAlbumListShow}">
                         <div class="detail-album-outer" ng-repeat="album in albumList">
                             <div class="detail-album-inner" ng-click="showPhotoList(album.title)">
                                 <div class="album-title">{{album.title}}</div>
@@ -805,14 +805,48 @@
                             </div>
                         </div>
                         <div class="detail-album-outer">
-                            <div class="detail-album-inner text-center">
-                                <button class="btn btn-flat">上傳相片</button>
+                            <div class="detail-album-inner album-upload">
+                                <div class="album-upload-upload">
+                                <input type="file" name="file" fileread="uploadPreview">
+                                </div>
+                                <div class="album-upload-preview">
+                                    <img ng-src="{{uploadPreview}}">
+                                </div>
+                                <div class="album-upload-option">
+                                    <select class="form-control pull-left" data-val="true" data-val-required="請輸入上傳相簿" id="Blood" name="Blood">
+                                        <option selected="selected" value=""></option>
+                                        <option value="肱二頭肌">肱二頭肌</option>
+                                        <option value="肱三頭肌">肱三頭肌</option>
+                                        <option value="胸肌">胸肌</option>
+                                        <option value="腹肌">腹肌</option>
+                                        <option value="背肌">背肌</option>
+                                        <option value="肩膀">肩膀</option>
+                                        <option value="腿部">腿部</option>
+                                    </select>
+                                <button class="btn btn-flat pull-right">確認</button>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="detail-photo-list" ng-show="isPhotoListShow">
+                    <div class="detail-photo-list" ng-class="{active:isPhotoListShow}">
+                        <div class="photo-bar" ng-show="isPhotoListShow">
+                            <div class="photo-back">
+                                <button class="btn btn-flat" ng-click="showAlbumList()">返回相簿列表</button>
+                            </div>
+                            <div class="photo-title" ng-show="isPhotoListShow">{{photoTitle}}</div>
+                        </div>
+                        <div class="scroller">
+                            <div class="photo-list">
+                                <div class="photo-outer" ng-repeat="photo in photoList">
+                                    <div class="photo-inner" ng-click="showPhoto(photo)"><img ng-src="{{photo.src}}"></div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
+            </div>
+            <div class="photo-detail" ng-click="backPhotoList()" ng-show="isPhotoClick" ng-class="{active:isPhotoShow}">
+                <img class="detail-image" ng-src="{{detailPhoto.src}}">
             </div>
             <!-- 詳細block4 -->
             <div class="block-detail-outer" ng-class="{active:detail4Active}" ng-click="showIndex()"></div>

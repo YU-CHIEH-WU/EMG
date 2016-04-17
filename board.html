@@ -321,15 +321,15 @@
                             <div class="week-day" ng-click="showCalendarPosture(week.day5,week.day5Posture,week.day5Complete)">{{week.day5|date:'dd'}}<img class="day-thumb" ng-src="{{week.day5Thumb}}"></div>
                         </div>
                         <div class="calendar-posture-outer col-sm-5">
-                            <div class="calendar-posture-inner">
-                                <div class="posture-list" ng-show="!isPostureShow">
+                            <div class="calendar-posture-inner slide">
+                                <div class="posture-list" ng-class="{active:isPostureListShow}">
                                     <div class="posture-date">{{postureDate | date:'yyyy-MM-dd' }}</div>
                                     <div class="posture-title">{{postureTitle}}</div>
                                     <div class="posture-name" ng-click='showPosture(posture.posture)' ng-repeat="posture in postureList">
                                         {{posture.posture}}
                                     </div>
                                 </div>
-                                <div class="posture-detail" ng-show="isPostureShow">
+                                <div class="posture-detail" ng-class="{active:isPostureDetailShow}">
                                 {{postureName}}
                                 <iframe class="posture-video" src="https://www.youtube.com/embed/paQczLIrDMI" frameborder="0" class="posture-video"></iframe>
                                 <button class="btn btn-flat btn-lg" ng-click="showPostureList()">返回</button>
@@ -348,7 +348,6 @@
     <script src="javascripts/bootstrap.min.js"></script>
     <script src="javascripts/highcharts.js"></script>
     <script src="javascripts/highcharts-more.js"></script>
-    <script src="javascripts/exporting.js"></script>
     <script src="javascripts/dark-unica.js"></script>
     <script src="javascripts/board.js"></script>
     <script src="javascripts/chart.js"></script>

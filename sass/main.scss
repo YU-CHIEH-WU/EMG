@@ -29,6 +29,11 @@ body {
     background: $backgroundColor;
 }
 
+img {
+    width: 100%;
+    height: 100%;
+}
+
 
 /* 修改頁面元素結尾 */
 
@@ -120,6 +125,12 @@ body {
     left: 0;
     top: 0;
     width: 100%;
+    height: 100%;
+}
+
+.slide {
+    overflow: hidden;
+    position: relative;
 }
 
 
@@ -134,21 +145,17 @@ body {
 
 .block-container {
     margin-top: 30px;
-    width:70%;
+    width: 70%;
     position: absolute;
     top: 0;
-    left:15%;
-    right:15%;
-    @include transition(top,
-    1s,
-    ease-in);
-    @include transition(blur,
-    0.3s,
-    liner);
-    @media screen and (max-width:1280px){
-        width:80%;
-        left:10%;
-        right:10%;
+    left: 15%;
+    right: 15%;
+    @include transition(top, 1s, ease-in);
+    @include transition(blur, 0.3s, liner);
+    @media screen and (max-width: 1280px) {
+        width: 80%;
+        left: 10%;
+        right: 10%;
     }
     &.gotop {
         top: 300%;
@@ -315,10 +322,6 @@ body {
     ease-in);
     &.active {
         opacity: 1;
-    }
-    >.block-body {
-        overflow: hidden;
-        position: relative;
     }
 }
 
@@ -506,7 +509,7 @@ body {
 .detail-album-list {
     width: 100%;
     height: 100%;
-    left: 0%;
+    left: -100%;
     position: absolute;
     @include transition(all,
     0.3s,
@@ -556,7 +559,7 @@ body {
 .detail-photo-list {
     width: 100%;
     height: 100%;
-    left: 0;
+    left: 100%;
     position: absolute;
     @include transition(all,
     0.3s,
@@ -564,6 +567,102 @@ body {
     &.active {
         left: 0;
     }
+}
+
+.album-upload {
+    padding: 12px;
+}
+
+.album-upload-upload {
+    width: 100%;
+    height: 10%;
+    position: relative;
+}
+
+.album-upload-preview {
+    width: 100%;
+    height: 75%;
+    position: relative;
+}
+
+.album-upload-option {
+    width: 100%;
+    height: 10%;
+    margin-top: 8px;
+    >.form-control {
+        width: 70%;
+    }
+}
+
+.photo-bar {
+    height: 10%;
+    width: 100%;
+    left: 0;
+    top: 0;
+    position: absolute;
+    z-index: 5;
+    background: $blockHoverColor;
+}
+
+.photo-back {
+    top: 6px;
+    left: 15px;
+    position: absolute;
+}
+
+.photo-title {
+    top: 15px;
+    left: 47.5%;
+    font-size: 20px;
+    position: absolute;
+}
+
+.photo-list {
+    margin-top: 10%;
+}
+
+.photo-outer {
+    width: 20%;
+    height: 50%;
+    float: left;
+    position: relative;
+    margin-top: 1%;
+}
+
+.photo-outer:first-child:nth-last-child(5),
+.photo-outer:first-child:nth-last-child(5) ~ .photo-outer {
+    margin-top: 7.5%;
+}
+
+.photo-inner {
+    margin: 15px;
+    cursor: pointer;
+}
+
+.photo-detail {
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    position: fixed;
+    text-align: center;
+    display: table-cell;
+    vertical-align: middle;
+    opacity: 0;
+    @include transition(all,
+    0.3s,
+    ease-in);
+    &.active {
+        opacity: 1;
+    }
+}
+
+.detail-image {
+    width: 80%;
+    height: 90%;
+    left: 10%;
+    top: 5%;
+    position: absolute;
 }
 
 
@@ -610,10 +709,6 @@ body {
     ease-in);
     &.active {
         opacity: 1;
-    }
-    >.block-body {
-        overflow: hidden;
-        position: relative;
     }
 }
 
@@ -668,7 +763,7 @@ body {
 .block-detail-outer {
     height: 100%;
     width: 100%;
-    position: absolute;
+    position: fixed;
     left: 0;
     top: -1000%;
     @include transition(all,
@@ -684,7 +779,7 @@ body {
     height: 90%;
     width: 80%;
     left: 10%;
-    position: absolute;
+    position: fixed;
     top: -1000%;
     color: $fontColor;
     background: $blockColor;

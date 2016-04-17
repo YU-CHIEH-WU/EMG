@@ -5,7 +5,6 @@ function setChart(targetId, chartOption) {
 }
 
 function getChartOption(ChartName, title, data1, data2) {
-    console.log(ChartName, title, data1, data2);
     var chartOption = {};
     if (ChartName == "Heart") {
         chartOption = {
@@ -98,7 +97,6 @@ function getChartOption(ChartName, title, data1, data2) {
                 enabled: false
             }
         };
-        console.log(chartOption);
     }
     if (ChartName == "pie") {
         chartOption = {
@@ -145,10 +143,7 @@ function getChartOption(ChartName, title, data1, data2) {
         chartOption = {
             chart: {
                 zoomType: 'xy',
-                spacing: [0, 0, 0, 0]
-            },
-            exporting: {
-                enabled: false
+                spacing: [10, 0, 0, 0]
             },
             title: {
                 text: '訓練期間肌力變化圖'
@@ -168,6 +163,7 @@ function getChartOption(ChartName, title, data1, data2) {
                     }
                 },
                 title: {
+                    enabled:false,
                     text: '成長百分比',
                     style: {
                         color: Highcharts.getOptions().colors[1]
@@ -179,6 +175,7 @@ function getChartOption(ChartName, title, data1, data2) {
                 }
             }, { // Secondary yAxis
                 title: {
+                    enabled:false,
                     text: '成長公斤數',
                     style: {
                         color: Highcharts.getOptions().colors[0]
@@ -235,9 +232,6 @@ function getChartOption(ChartName, title, data1, data2) {
             chart: {
                 type: 'spline'
             },
-            exporting: {
-                enabled: false
-            },
             title: {
                 text: '肌力變化-公斤',
                 x: -20 //center
@@ -286,9 +280,6 @@ function getChartOption(ChartName, title, data1, data2) {
         chartOption = {
             chart: {
                 type: 'spline'
-            },
-            exporting: {
-                enabled: false
             },
             title: {
                 text: '肌力變化-百分比',
@@ -342,9 +333,6 @@ function getChartOption(ChartName, title, data1, data2) {
             chart: {
                 type: 'bar'
             },
-            exporting: {
-                enabled: false
-            },
             title: {
                 text: '肌力變化-訓練動作'
             },
@@ -388,10 +376,8 @@ function getChartOption(ChartName, title, data1, data2) {
     if (ChartName == "15rm") {
         chartOption = {
             chart: {
-                zoomType: 'xy'
-            },
-            exporting: {
-                enabled: false
+                zoomType: 'xy',
+                spacing: [10, 0, 0, 0]
             },
             title: {
                 text: '訓練期間肌耐力變化圖'
@@ -411,6 +397,7 @@ function getChartOption(ChartName, title, data1, data2) {
                     }
                 },
                 title: {
+                    enabled:false,
                     text: '成長百分比',
                     style: {
                         color: Highcharts.getOptions().colors[1]
@@ -423,6 +410,7 @@ function getChartOption(ChartName, title, data1, data2) {
                 }
             }, { // Secondary yAxis
                 title: {
+                    enabled:false,
                     text: '成長公斤數',
                     style: {
                         color: Highcharts.getOptions().colors[0]
@@ -480,9 +468,6 @@ function getChartOption(ChartName, title, data1, data2) {
             chart: {
                 type: 'spline'
             },
-            exporting: {
-                enabled: false
-            },
             title: {
                 text: '肌耐力變化-百分比',
                 x: -20 //center
@@ -534,9 +519,6 @@ function getChartOption(ChartName, title, data1, data2) {
         chartOption = {
             chart: {
                 type: 'bar'
-            },
-            exporting: {
-                enabled: false
             },
             title: {
                 text: '肌耐力變化-訓練動作'
@@ -594,9 +576,6 @@ function getChartOption(ChartName, title, data1, data2) {
         chartOption = {
             chart: {
                 type: 'spline'
-            },
-            exporting: {
-                enabled: false
             },
             title: {
                 text: null,
@@ -697,9 +676,6 @@ function getChartOption(ChartName, title, data1, data2) {
             chart: {
                 type: 'spline'
             },
-            exporting: {
-                enabled: false
-            },
             title: {
                 text: '體脂變化-變化百分比',
                 x: -20 //center
@@ -752,9 +728,6 @@ function getChartOption(ChartName, title, data1, data2) {
             chart: {
                 type: 'bar'
             },
-            exporting: {
-                enabled: false
-            },
             title: {
                 text: '訓練動作之體脂變化'
             },
@@ -799,9 +772,6 @@ function getChartOption(ChartName, title, data1, data2) {
         chartOption = {
             chart: {
                 type: 'bar'
-            },
-            exporting: {
-                enabled: false
             },
             title: {
                 text: '訓練姿勢之相對肌肉成長'
@@ -851,10 +821,7 @@ function getChartOption(ChartName, title, data1, data2) {
             chart: {
                 type: 'areaspline'
             },
-            colors: ['#ff495f'],
-            exporting: {
-                enabled: false
-            },
+            colors: ['#FF9A00'],
             title: {
                 text: '肌肉疲勞'
             },
@@ -908,10 +875,7 @@ function getChartOption(ChartName, title, data1, data2) {
             chart: {
                 tpye: 'spline'
             },
-            colors: ['#ff495f'],
-            exporting: {
-                enabled: false
-            },
+            colors: ['#FF9A00'],
             title: {
                 text: '肌肉出力百分比'
             },
@@ -966,10 +930,7 @@ function getChartOption(ChartName, title, data1, data2) {
             chart: {
                 type: 'bar'
             },
-            colors: ['#ff495f', '#08C3C9'],
-            exporting: {
-                enabled: false
-            },
+            colors: ['#FF9A00', '#08C3C9'],
             title: {
                 text: '訓練姿勢之相對訓練成效'
             },
@@ -1022,10 +983,7 @@ function getChartOption(ChartName, title, data1, data2) {
                 polar: true,
                 type: 'line'
             },
-            colors: ['#FFB544'],
-            exporting: {
-                enabled: false
-            },
+            colors: ['#00A876'],
             title: {
                 text: null,
                 x: -80
@@ -1039,12 +997,10 @@ function getChartOption(ChartName, title, data1, data2) {
             xAxis: {
                 categories: ['肌群均衡', '肌力', '肌耐力', '訓練成效', '體脂率', '超負荷'],
                 tickmarkPlacement: 'on',
-                gridLineColor: '#EEEEEE',
                 lineWidth: 0,
             },
             yAxis: {
                 gridLineInterpolation: 'polygon',
-                gridLineColor: '#EEEEEE',
                 lineWidth: 0,
                 min: 0
             },
@@ -1069,10 +1025,7 @@ function getChartOption(ChartName, title, data1, data2) {
             chart: {
                 type: 'column'
             },
-            colors: ['#FFD18B'],
-            exporting: {
-                enabled: false
-            },
+            colors: ['#FF9A00'],
             title: {
                 text: null,
                 x: -20 //center
@@ -1114,10 +1067,7 @@ function getChartOption(ChartName, title, data1, data2) {
             chart: {
                 type: 'spline'
             },
-            exporting: {
-                enabled: false
-            },
-            colors:['#FFC161'],
+            colors:['#FF9A00'],
             title: {
                 text: null,
                 x: -20 //center
@@ -1159,10 +1109,7 @@ function getChartOption(ChartName, title, data1, data2) {
             chart: {
                 type: 'spline'
             },
-            colors:['#F1960B'],
-            exporting: {
-                enabled: false
-            },
+            colors:['#00A876'],
             title: {
                 text: null,
                 x: -20 //center
@@ -1204,9 +1151,6 @@ function getChartOption(ChartName, title, data1, data2) {
             chart: {
                 type: 'scatter',
                 zoomType: 'xy'
-            },
-            exporting: {
-                enabled: false
             },
             title: {
                 text: 'Dependent Variable Scatter'

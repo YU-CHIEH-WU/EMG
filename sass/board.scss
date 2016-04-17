@@ -146,7 +146,10 @@ span {
         opacity: 1;
     }
 }
-
+.slide{
+    overflow: hidden;
+    position: relative;
+}
 
 /* 覆寫bootstrap結尾 */
 
@@ -641,7 +644,6 @@ span {
     width: 85%;
     height: 50%;
     left: 0;
-    top: 30px;
     position: absolute;
 }
 
@@ -649,7 +651,6 @@ span {
     width: 10%;
     height: 50%;
     right: 0;
-    top: 30px;
     position: absolute;
 }
 
@@ -775,6 +776,13 @@ span {
 .posture-list {
     width: 100%;
     height: 100%;
+    position: absolute;
+    left:-100%;
+    top:0;
+    @include transition(all,0.3s,ease-in);
+    &.active{
+        left:0;
+    }
 }
 
 .posture-detail {
@@ -783,6 +791,13 @@ span {
     font-size: 22px;
     text-align: center;
     padding-top: 22px;
+    position: absolute;
+    left:100%;
+    top:0;
+    @include transition(all,0.3s,ease-in);
+    &.active{
+        left:0;
+    }
 }
 
 .posture-video {

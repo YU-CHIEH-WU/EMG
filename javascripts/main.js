@@ -274,7 +274,7 @@ app.controller('blockController', ['$scope', '$http', '$timeout', '$interval', f
     ];
     // 名人榜
     var fameList = [{ 'title': '第一名', 'thumb': 'images/profile.jpg', 'name': '姜琇森', 'slide': 'active', opacity: 'opacity' },
-        { 'title': '第二名', 'thumb': 'images/profile.jpg', 'name': '王麒瑞', 'slide': 'right', opacity: '' },
+        { 'title': '第二名', 'thumb': 'images/profile.jpg', 'name': '王麒瑞', 'slide': 'right', opacity: 'opacity' },
         { 'title': '第三名', 'thumb': 'images/profile.jpg', 'name': '鄧方晴', 'slide': 'right', opacity: '' },
         { 'title': '第四名', 'thumb': 'images/profile.jpg', 'name': '張哲瑋', 'slide': 'right', opacity: '' },
         { 'title': '第五名', 'thumb': 'images/profile.jpg', 'name': '吳彧傑', 'slide': 'right', opacity: '' }
@@ -283,29 +283,79 @@ app.controller('blockController', ['$scope', '$http', '$timeout', '$interval', f
     var fameCount = 1;
     $interval(function() {
         if (fameCount == 0) {
+            $scope.fameList[3].opacity = '';
+            $scope.fameList[4].slide = 'left';
+            $scope.fameList[0].slide = 'active';
+            $scope.fameList[1].opacity = 'opacity';
+            $scope.fameList[2].slide = 'right';
+        }
+        if (fameCount == 1) {
             $scope.fameList[4].opacity = '';
-            $scope.fameList[fameCount].opacity = 'opacity';
-            fameCount++;
-        } else if (fameCount > 0 && fameCount < 4) {
-            $scope.fameList[fameCount - 1].opacity = '';
-            $scope.fameList[fameCount].opacity = 'opacity';
-            fameCount++;
-        } else {
-            $scope.fameList[fameCount - 1].opacity = '';
-            $scope.fameList[fameCount].opacity = 'opacity';
+            $scope.fameList[0].slide = 'left';
+            $scope.fameList[1].slide = 'active';
+            $scope.fameList[2].opacity = 'opacity';
+            $scope.fameList[3].slide = 'right';
+        }
+        if (fameCount == 2) {
+            $scope.fameList[0].opacity = '';
+            $scope.fameList[1].slide = 'left';
+            $scope.fameList[2].slide = 'active';
+            $scope.fameList[3].opacity = 'opacity';
+            $scope.fameList[4].slide = 'right';
+        }
+        if (fameCount == 3) {
+            $scope.fameList[1].opacity = '';
+            $scope.fameList[2].slide = 'left';
+            $scope.fameList[3].slide = 'active';
+            $scope.fameList[4].opacity = 'opacity';
+            $scope.fameList[0].slide = 'right';
+        }
+        if (fameCount == 4) {
+            $scope.fameList[2].opacity = '';
+            $scope.fameList[3].slide = 'left';
+            $scope.fameList[4].slide = 'active';
+            $scope.fameList[0].opacity = 'opacity';
+            $scope.fameList[1].slide = 'right';
+        }
+        fameCount++;
+        if (fameCount == 5) {
             fameCount = 0;
         }
     }, 2000);
     // 訓練成果相片
+    $scope.isAlbumListShow = true;
+    $scope.isPhotoListShow = false;
+    $scope.photoTitle = '';
     $scope.albumList = [{ 'title': '肱二頭肌', 'thumb': 'images/T51.jpg' },
         { 'title': '肱三頭肌', 'thumb': 'images/T51.jpg' }, { 'title': '胸肌', 'thumb': 'images/T51.jpg' },
         { 'title': '腹肌', 'thumb': 'images/T51.jpg' }, { 'title': '背肌', 'thumb': 'images/T51.jpg' },
         { 'title': '肩部', 'thumb': 'images/T51.jpg' }, { 'title': '腿部', 'thumb': 'images/T51.jpg' }
     ];
     $scope.showPhotoList = function(title) {
-        console.log(title);
+        $scope.photoTitle = title;
+        $scope.photoList=[{'src':'images/T51.jpg'},{'src':'images/T51.jpg'},{'src':'images/T51.jpg'},
+        {'src':'images/T51.jpg'},{'src':'images/T51.jpg'},{'src':'images/T51.jpg'},{'src':'images/T51.jpg'},
+        {'src':'images/T51.jpg'},{'src':'images/T51.jpg'},{'src':'images/T51.jpg'},{'src':'images/T51.jpg'}]
         $scope.isPhotoListShow = true;
+        $scope.isAlbumListShow = false;
     };
+    $scope.showAlbumList = function() {
+        $scope.isAlbumListShow = true;
+        $scope.isPhotoListShow = false;
+    };
+    $scope.showPhoto=function(photo){
+        $scope.detailPhoto=photo;
+        $scope.isPhotoClick = true;
+        $timeout(function() {
+            $scope.isPhotoShow = true;
+        }, 250);
+    }
+    $scope.backPhotoList=function(){
+        $scope.isPhotoShow = false;
+        $timeout(function() {
+            $scope.isPhotoClick = false;
+        }, 250);
+    }
     // 推薦課程 接入api
     var beginnerCourse = {
         title: '初學者均衡鍛鍊',

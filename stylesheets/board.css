@@ -125,19 +125,25 @@ span {
   opacity: 1;
 }
 
+/* line 149, ../sass/board.scss */
+.slide {
+  overflow: hidden;
+  position: relative;
+}
+
 /* 覆寫bootstrap結尾 */
 /* 首頁設定 */
-/* line 156, ../sass/board.scss */
+/* line 159, ../sass/board.scss */
 .clearfix {
   overflow: auto;
 }
 
-/* line 160, ../sass/board.scss */
+/* line 163, ../sass/board.scss */
 .unscroll {
   overflow: hidden;
 }
 
-/* line 164, ../sass/board.scss */
+/* line 167, ../sass/board.scss */
 .block-container {
   margin-top: 30px;
   width: 70%;
@@ -155,35 +161,35 @@ span {
   transition: blur, 0.3s, liner;
 }
 @media screen and (max-width: 1280px) {
-  /* line 164, ../sass/board.scss */
+  /* line 167, ../sass/board.scss */
   .block-container {
     width: 80%;
     left: 10%;
     right: 10%;
   }
 }
-/* line 182, ../sass/board.scss */
+/* line 185, ../sass/board.scss */
 .block-container.gotop {
   top: 300%;
 }
-/* line 185, ../sass/board.scss */
+/* line 188, ../sass/board.scss */
 .block-container.ontop {
   display: none;
 }
-/* line 188, ../sass/board.scss */
+/* line 191, ../sass/board.scss */
 .block-container.filter {
   filter: blur(5px);
   -webkit-filter: blur(5px);
 }
 
-/* line 194, ../sass/board.scss */
+/* line 197, ../sass/board.scss */
 .block-outer {
   height: 290px;
   color: #FFFFFF;
   margin-bottom: 30px;
 }
 
-/* line 200, ../sass/board.scss */
+/* line 203, ../sass/board.scss */
 .block-inner {
   width: 100%;
   height: 100%;
@@ -198,11 +204,11 @@ span {
   -webkit-border-radius: 1.5%;
   border-radius: 1.5%;
 }
-/* line 210, ../sass/board.scss */
+/* line 213, ../sass/board.scss */
 .block-inner.opacity {
   opacity: 0.6;
 }
-/* line 213, ../sass/board.scss */
+/* line 216, ../sass/board.scss */
 .block-inner.clickable:hover {
   background: #4f4f4f;
   cursor: pointer;
@@ -211,7 +217,7 @@ span {
   background-position: center;
 }
 
-/* line 222, ../sass/board.scss */
+/* line 225, ../sass/board.scss */
 .block-header {
   height: 30px;
   width: 100%;
@@ -220,14 +226,14 @@ span {
   padding-left: 5px;
 }
 
-/* line 230, ../sass/board.scss */
+/* line 233, ../sass/board.scss */
 .block-body {
   height: calc(100% - 30px);
   height: -webkit-calc(100% - 30px);
   width: 100%;
 }
 
-/* line 236, ../sass/board.scss */
+/* line 239, ../sass/board.scss */
 .block-thumb {
   height: 98%;
   width: 98%;
@@ -236,7 +242,7 @@ span {
 }
 
 /*彈出訊息 */
-/* line 246, ../sass/board.scss */
+/* line 249, ../sass/board.scss */
 .block-message {
   height: 160px;
   width: 240px;
@@ -254,26 +260,26 @@ span {
   -webkit-transition: all, 0.3s, ease-in;
   transition: all, 0.3s, ease-in;
 }
-/* line 261, ../sass/board.scss */
+/* line 264, ../sass/board.scss */
 .block-message.active {
   z-index: 10;
 }
 
-/* line 266, ../sass/board.scss */
+/* line 269, ../sass/board.scss */
 #training-message {
   top: -60%;
 }
-/* line 268, ../sass/board.scss */
+/* line 271, ../sass/board.scss */
 #training-message.active {
   top: 10%;
   opacity: 1;
 }
 
-/* line 274, ../sass/board.scss */
+/* line 277, ../sass/board.scss */
 #grow-message {
   top: -80%;
 }
-/* line 276, ../sass/board.scss */
+/* line 279, ../sass/board.scss */
 #grow-message.active {
   top: -165%;
   opacity: 1;
@@ -282,39 +288,39 @@ span {
 /* 彈出訊息結尾 */
 /* 首頁結尾 */
 /* 會員 */
-/* line 291, ../sass/board.scss */
+/* line 294, ../sass/board.scss */
 #block-user {
   background: #006C4C;
 }
 
-/* line 295, ../sass/board.scss */
+/* line 298, ../sass/board.scss */
 .block-user {
   width: 100%;
   height: 100%;
   padding: 15px;
 }
 
-/* line 301, ../sass/board.scss */
+/* line 304, ../sass/board.scss */
 .block-user-info {
   width: 100%;
   height: 40%;
 }
 
-/* line 306, ../sass/board.scss */
+/* line 309, ../sass/board.scss */
 .block-user-photo {
   width: 80px;
   height: 100%;
   float: left;
 }
 
-/* line 312, ../sass/board.scss */
+/* line 315, ../sass/board.scss */
 .user-photo {
   width: 80px;
   height: 80px;
   border-radius: 50%;
 }
 
-/* line 318, ../sass/board.scss */
+/* line 321, ../sass/board.scss */
 .block-user-name {
   width: calc(100% - 80px);
   height: 60%;
@@ -324,7 +330,7 @@ span {
   float: left;
 }
 
-/* line 327, ../sass/board.scss */
+/* line 330, ../sass/board.scss */
 .block-user-update {
   width: calc(100% - 80px);
   height: 40%;
@@ -333,62 +339,62 @@ span {
   float: left;
 }
 
-/* line 335, ../sass/board.scss */
+/* line 338, ../sass/board.scss */
 .block-user-group {
   width: 100%;
   height: 40%;
 }
-/* line 338, ../sass/board.scss */
+/* line 341, ../sass/board.scss */
 .block-user-group > div {
   height: 50%;
   float: left;
   line-height: 30px;
 }
 
-/* line 345, ../sass/board.scss */
+/* line 348, ../sass/board.scss */
 .block-user-count,
 .block-user-achieve {
   width: 60%;
 }
 
-/* line 350, ../sass/board.scss */
+/* line 353, ../sass/board.scss */
 .block-user-countDetail,
 .block-user-achieveDetail {
   width: 40%;
   text-align: center;
 }
 
-/* line 356, ../sass/board.scss */
+/* line 359, ../sass/board.scss */
 .block-user-index {
   width: 100%;
   height: 20%;
 }
 
-/* line 361, ../sass/board.scss */
+/* line 364, ../sass/board.scss */
 #btn-index,
 #btn-logout {
   height: 100%;
   font-size: 18px;
 }
 
-/* line 367, ../sass/board.scss */
+/* line 370, ../sass/board.scss */
 #btn-index {
   width: 65%;
 }
 
-/* line 371, ../sass/board.scss */
+/* line 374, ../sass/board.scss */
 #btn-logout {
   width: 30%;
 }
 
 /* 會員結尾 */
 /* 行事曆 */
-/* line 381, ../sass/board.scss */
+/* line 384, ../sass/board.scss */
 #block-course > .block-body {
   position: relative;
 }
 
-/* line 385, ../sass/board.scss */
+/* line 388, ../sass/board.scss */
 .block-course-start {
   width: 100%;
   height: 100%;
@@ -396,12 +402,12 @@ span {
   line-height: 230px;
 }
 
-/* line 392, ../sass/board.scss */
+/* line 395, ../sass/board.scss */
 #btn-course {
   font-size: 18px;
 }
 
-/* line 396, ../sass/board.scss */
+/* line 399, ../sass/board.scss */
 .block-course-outer {
   width: 100%;
   height: 100%;
@@ -412,7 +418,7 @@ span {
   z-index: 998;
 }
 
-/* line 406, ../sass/board.scss */
+/* line 409, ../sass/board.scss */
 .block-course-inner {
   width: 50%;
   height: 80%;
@@ -428,23 +434,23 @@ span {
   -webkit-transition: all, 0.3s, ease-in;
   transition: all, 0.3s, ease-in;
 }
-/* line 419, ../sass/board.scss */
+/* line 422, ../sass/board.scss */
 .block-course-inner.active {
   opacity: 1;
 }
-/* line 422, ../sass/board.scss */
+/* line 425, ../sass/board.scss */
 .block-course-inner > .block-body {
   overflow: hidden;
   position: relative;
 }
 
-/* line 428, ../sass/board.scss */
+/* line 431, ../sass/board.scss */
 .course-title {
   font-size: 16px;
   padding: 10px;
 }
 
-/* line 433, ../sass/board.scss */
+/* line 436, ../sass/board.scss */
 .course-options {
   width: 100%;
   height: 100%;
@@ -456,12 +462,12 @@ span {
   -webkit-transition: all, 0.3s, ease-in;
   transition: all, 0.3s, ease-in;
 }
-/* line 442, ../sass/board.scss */
+/* line 445, ../sass/board.scss */
 .course-options.active {
   left: 0;
 }
 
-/* line 447, ../sass/board.scss */
+/* line 450, ../sass/board.scss */
 .course-preview {
   width: 100%;
   height: 100%;
@@ -473,33 +479,33 @@ span {
   -webkit-transition: all, 0.3s, ease-in;
   transition: all, 0.3s, ease-in;
 }
-/* line 456, ../sass/board.scss */
+/* line 459, ../sass/board.scss */
 .course-preview.active {
   left: 0;
 }
-/* line 459, ../sass/board.scss */
+/* line 462, ../sass/board.scss */
 .course-preview.left {
   left: -120%;
 }
 
-/* line 464, ../sass/board.scss */
+/* line 467, ../sass/board.scss */
 .option {
   margin: 12px;
 }
 
-/* line 468, ../sass/board.scss */
+/* line 471, ../sass/board.scss */
 .options {
   height: 100%;
   float: left;
   margin: 8px;
 }
 
-/* line 474, ../sass/board.scss */
+/* line 477, ../sass/board.scss */
 .power-option {
   color: #000000;
 }
 
-/* line 478, ../sass/board.scss */
+/* line 481, ../sass/board.scss */
 .scroller {
   overflow: auto;
   position: absolute;
@@ -509,24 +515,24 @@ span {
   width: 100%;
 }
 
-/* line 487, ../sass/board.scss */
+/* line 490, ../sass/board.scss */
 .preview-course {
   width: 100%;
 }
 
-/* line 491, ../sass/board.scss */
+/* line 494, ../sass/board.scss */
 .preview-list {
   padding: 10px;
   float: left;
 }
 
-/* line 496, ../sass/board.scss */
+/* line 499, ../sass/board.scss */
 .preview-date {
   width: 100%;
   padding-top: 24px;
 }
 
-/* line 501, ../sass/board.scss */
+/* line 504, ../sass/board.scss */
 .preview-confirm {
   width: 100%;
   padding-top: 24px;
@@ -534,19 +540,19 @@ span {
   text-align: center;
 }
 
-/* line 508, ../sass/board.scss */
+/* line 511, ../sass/board.scss */
 .preview-posture {
   height: 30px;
   padding: 8px;
   line-height: 15px;
 }
-/* line 512, ../sass/board.scss */
+/* line 515, ../sass/board.scss */
 .preview-posture:hover {
   background: #4f4f4f;
   cursor: pointer;
 }
 
-/* line 518, ../sass/board.scss */
+/* line 521, ../sass/board.scss */
 .course-posture {
   width: 100%;
   height: 100%;
@@ -558,19 +564,19 @@ span {
   -webkit-transition: all, 0.3s, ease-in;
   transition: all, 0.3s, ease-in;
 }
-/* line 527, ../sass/board.scss */
+/* line 530, ../sass/board.scss */
 .course-posture.active {
   left: 0;
 }
 
-/* line 532, ../sass/board.scss */
+/* line 535, ../sass/board.scss */
 .posture-iframe {
   width: 90%;
   height: 77.5%;
   margin: 0 auto;
 }
 
-/* line 538, ../sass/board.scss */
+/* line 541, ../sass/board.scss */
 .block-course-list {
   width: 100%;
   height: 60px;
@@ -578,33 +584,33 @@ span {
   border-bottom: 1px #9f9f9f solid;
   cursor: pointer;
 }
-/* line 544, ../sass/board.scss */
+/* line 547, ../sass/board.scss */
 .block-course-list > div {
   float: left;
 }
-/* line 547, ../sass/board.scss */
+/* line 550, ../sass/board.scss */
 .block-course-list:hover {
   background: #4f4f4f;
 }
-/* line 550, ../sass/board.scss */
+/* line 553, ../sass/board.scss */
 .block-course-list:last-child {
   border: none;
 }
 
-/* line 555, ../sass/board.scss */
+/* line 558, ../sass/board.scss */
 .block-course-thumb {
   width: 50px;
   height: 50px;
   padding: 2px;
 }
 
-/* line 561, ../sass/board.scss */
+/* line 564, ../sass/board.scss */
 .course-thumb {
   width: 100%;
   height: 100%;
 }
 
-/* line 566, ../sass/board.scss */
+/* line 569, ../sass/board.scss */
 .block-course-title {
   width: calc(100% - 50px);
   width: -webkit-calc(100% - 50px);
@@ -613,7 +619,7 @@ span {
   padding-left: 10px;
 }
 
-/* line 574, ../sass/board.scss */
+/* line 577, ../sass/board.scss */
 .block-course-time {
   width: calc(100% - 50px);
   width: -webkit-calc(100% - 50px);
@@ -625,7 +631,7 @@ span {
 
 /* 行事曆結尾 */
 /* 詳細block */
-/* line 589, ../sass/board.scss */
+/* line 592, ../sass/board.scss */
 .block-detail-outer {
   height: 100%;
   width: 100%;
@@ -637,12 +643,12 @@ span {
   -webkit-transition: all, 1s, ease-in, 1s;
   transition: all, 1s, ease-in, 1s;
 }
-/* line 599, ../sass/board.scss */
+/* line 602, ../sass/board.scss */
 .block-detail-outer.active {
   top: 0;
 }
 
-/* line 604, ../sass/board.scss */
+/* line 607, ../sass/board.scss */
 .block-detail {
   height: 90%;
   width: 80%;
@@ -659,23 +665,23 @@ span {
   -webkit-transition: all, 1s, ease-in, 1s;
   transition: all, 1s, ease-in, 1s;
 }
-/* line 617, ../sass/board.scss */
+/* line 620, ../sass/board.scss */
 .block-detail.active {
   top: 5%;
 }
 
-/* line 622, ../sass/board.scss */
+/* line 625, ../sass/board.scss */
 .block-detail > .block-body > div {
   padding: 15px;
 }
 
-/* line 626, ../sass/board.scss */
+/* line 629, ../sass/board.scss */
 .title {
   left: 5px;
   position: absolute;
 }
 
-/* line 631, ../sass/board.scss */
+/* line 634, ../sass/board.scss */
 .back {
   right: 5px;
   position: absolute;
@@ -683,25 +689,23 @@ span {
 }
 
 /* detai1 */
-/* line 640, ../sass/board.scss */
+/* line 643, ../sass/board.scss */
 #detail1-main-chart {
   width: 85%;
   height: 50%;
   left: 0;
-  top: 30px;
   position: absolute;
 }
 
-/* line 648, ../sass/board.scss */
+/* line 650, ../sass/board.scss */
 #detail1-right-tabs {
   width: 10%;
   height: 50%;
   right: 0;
-  top: 30px;
   position: absolute;
 }
 
-/* line 656, ../sass/board.scss */
+/* line 657, ../sass/board.scss */
 #detail1-left-chart,
 #detail1-right-chart {
   width: 50%;
@@ -709,13 +713,13 @@ span {
   position: absolute;
 }
 
-/* line 663, ../sass/board.scss */
+/* line 664, ../sass/board.scss */
 #detail1-left-chart {
   left: 0;
   top: 50%;
 }
 
-/* line 668, ../sass/board.scss */
+/* line 669, ../sass/board.scss */
 #detail1-right-chart {
   right: 0;
   top: 50%;
@@ -723,7 +727,7 @@ span {
 
 /* detail1結尾 */
 /* detail2 */
-/* line 679, ../sass/board.scss */
+/* line 680, ../sass/board.scss */
 #detail2-topleft-chart,
 #detail2-topright-chart,
 #detail2-bottomleft-chart,
@@ -733,25 +737,25 @@ span {
   position: absolute;
 }
 
-/* line 688, ../sass/board.scss */
+/* line 689, ../sass/board.scss */
 #detail2-topleft-chart {
   left: 0;
   top: 0;
 }
 
-/* line 693, ../sass/board.scss */
+/* line 694, ../sass/board.scss */
 #detail2-right-chart {
   right: 0;
   top: 0;
 }
 
-/* line 698, ../sass/board.scss */
+/* line 699, ../sass/board.scss */
 #detail2-left-chart {
   left: 0;
   top: 50%;
 }
 
-/* line 703, ../sass/board.scss */
+/* line 704, ../sass/board.scss */
 #detail2-right-chart {
   right: 0;
   top: 50%;
@@ -759,7 +763,7 @@ span {
 
 /* detail2結尾 */
 /* detail3 */
-/* line 714, ../sass/board.scss */
+/* line 715, ../sass/board.scss */
 #detail3-main-iframe {
   width: 100%;
   height: 100%;
@@ -767,20 +771,20 @@ span {
 
 /* detail3結尾 */
 /* detail4 */
-/* line 725, ../sass/board.scss */
+/* line 726, ../sass/board.scss */
 .detail4-calendar {
   width: 100%;
   height: 100%;
 }
 
-/* line 730, ../sass/board.scss */
+/* line 731, ../sass/board.scss */
 .calendar-week {
   height: 100%;
   padding-left: 0;
   padding-right: 0;
 }
 
-/* line 736, ../sass/board.scss */
+/* line 737, ../sass/board.scss */
 .week-weekday {
   height: 40px;
   border: 1px #FFF solid;
@@ -790,34 +794,34 @@ span {
   font-size: 24px;
 }
 
-/* line 745, ../sass/board.scss */
+/* line 746, ../sass/board.scss */
 .week-day {
   height: calc((100% - 40px) / 5);
   border: 1px #FFF solid;
   background: #4f4f4f;
 }
 
-/* line 751, ../sass/board.scss */
+/* line 752, ../sass/board.scss */
 .calendar-posture-outer {
   height: 100%;
   padding-right: 0;
 }
 
-/* line 756, ../sass/board.scss */
+/* line 757, ../sass/board.scss */
 .calendar-posture-inner {
   width: 100%;
   height: 100%;
   border: 1px #FFF solid;
 }
 
-/* line 762, ../sass/board.scss */
+/* line 763, ../sass/board.scss */
 .day-thumb {
   width: 100%;
   position: relative;
   top: -6px;
 }
 
-/* line 768, ../sass/board.scss */
+/* line 769, ../sass/board.scss */
 .posture-date,
 .posture-title {
   text-align: center;
@@ -825,22 +829,44 @@ span {
   font-size: 24px;
 }
 
-/* line 775, ../sass/board.scss */
+/* line 776, ../sass/board.scss */
 .posture-list {
   width: 100%;
   height: 100%;
+  position: absolute;
+  left: -100%;
+  top: 0;
+  -moz-transition: all, 0.3s, ease-in;
+  -o-transition: all, 0.3s, ease-in;
+  -webkit-transition: all, 0.3s, ease-in;
+  transition: all, 0.3s, ease-in;
+}
+/* line 783, ../sass/board.scss */
+.posture-list.active {
+  left: 0;
 }
 
-/* line 780, ../sass/board.scss */
+/* line 788, ../sass/board.scss */
 .posture-detail {
   width: 100%;
   height: 100%;
   font-size: 22px;
   text-align: center;
   padding-top: 22px;
+  position: absolute;
+  left: 100%;
+  top: 0;
+  -moz-transition: all, 0.3s, ease-in;
+  -o-transition: all, 0.3s, ease-in;
+  -webkit-transition: all, 0.3s, ease-in;
+  transition: all, 0.3s, ease-in;
+}
+/* line 798, ../sass/board.scss */
+.posture-detail.active {
+  left: 0;
 }
 
-/* line 788, ../sass/board.scss */
+/* line 803, ../sass/board.scss */
 .posture-video {
   width: 397px;
   height: 244px;
@@ -848,21 +874,21 @@ span {
   margin-bottom: 40px;
 }
 
-/* line 795, ../sass/board.scss */
+/* line 810, ../sass/board.scss */
 .posture-name {
   padding: 12px;
   border-bottom: 1px #9f9f9f solid;
   cursor: pointer;
 }
-/* line 799, ../sass/board.scss */
+/* line 814, ../sass/board.scss */
 .posture-name > div {
   float: left;
 }
-/* line 802, ../sass/board.scss */
+/* line 817, ../sass/board.scss */
 .posture-name:hover {
   background: #4f4f4f;
 }
-/* line 805, ../sass/board.scss */
+/* line 820, ../sass/board.scss */
 .posture-name:last-child {
   border: none;
 }
