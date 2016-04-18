@@ -208,8 +208,8 @@
                                         <div class="col-sm-8">
                                             <select class="form-control" data-val="true" data-val-required="請輸入性別" id="Sex" name="Sex">
                                                 <option selected="selected" value=""></option>
-                                                <option value="男生">男生</option>
-                                                <option value="女生">女生</option>
+                                                <option value="男">男生</option>
+                                                <option value="女">女生</option>
                                             </select>
                                             <span class="field-validation-valid text-danger" data-valmsg-for="Sex" data-valmsg-replace="true"></span>
                                         </div>
@@ -228,10 +228,10 @@
                                         <div class="col-sm-8">
                                             <select class="form-control" data-val="true" data-val-required="請輸入血型" id="Blood" name="Blood">
                                                 <option selected="selected" value=""></option>
-                                                <option value="A型">A型</option>
-                                                <option value="B型">B型</option>
-                                                <option value="O型">O型</option>
-                                                <option value="AB型">AB型</option>
+                                                <option value="A">A型</option>
+                                                <option value="B">B型</option>
+                                                <option value="O">O型</option>
+                                                <option value="AB">AB型</option>
                                             </select>
                                             <span class="field-validation-valid text-danger" data-valmsg-for="Blood" data-valmsg-replace="true"></span>
                                         </div>
@@ -871,11 +871,22 @@
                 <div class="block-header">
                     <sapn class="title">{{detailTitle}}</sapn><span class="back" ng-click="showIndex()"><i class="fa fa-times icon-back"></i></span></div>
                 <div class="block-body">
-                <div class="detail-bar"></div>
-                    <div class="detail-content">
-                        <div class="scroller content-scroller text-center">
-                        <textarea type="text" class="form-control" id="content-edit" ng-model="detailEdit"></textarea>
-                        <button class="btn btn-flat btn-lg">確認</button>
+                    <div class="detail-edit">
+                        <div class="scroller edit-scroller text-center">
+                            <textarea type="text" class="form-control" id="edit-area" ng-model="detailEdit"></textarea>
+                            <button class="btn btn-danger btn-lg btn-gap">刪除</button>
+                            <button class="btn btn-flat btn-lg">修改</button>
+                            </div>
+                    </div>
+                </div>
+            </div>
+            <div class="detail-bar" ng-class="{active:detail5Active}">
+                <div class="block-header">最新消息列表</div>
+                <div class="block-body">
+                    <div class="news-scroller">
+                    <div class="block-edit-create text-center">新增</div>
+                        <div class="block-edit-list" ng-repeat="news in newsList">
+                            <div class="block-edit-title">{{news.title}}</div>
                         </div>
                     </div>
                 </div>
