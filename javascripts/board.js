@@ -74,7 +74,7 @@ app.controller('blockController', ['$scope', '$http', '$timeout', '$location', '
             };
             if (setting == 'grow') {
                 title = '肌肉成長詳細資訊';
-                chart1 = 'growWays';
+                chart1 = 'growPart';
                 chart2 = '1rm';
                 chart3 = '15rm';
             };

@@ -66,6 +66,12 @@ img {
 .btn-default {
     height: 100%;
     line-height: 1.2;
+    &:hover {
+        color: #000;
+    }
+    &:focus {
+        color: #000;
+    }
 }
 
 .input-sm {
@@ -433,6 +439,21 @@ img {
     }
 }
 
+.content-scroller {
+    top: 30px;
+    left: 0;
+    padding: 12px 10% 12px 5%;
+    margin-bottom: 50px;
+    height: 90%;
+}
+
+#content-edit{
+    color:#000;
+    width:100%;
+    height:90%;
+    margin-bottom: 6px;
+}
+
 
 /* 最新消息結尾 */
 
@@ -790,6 +811,13 @@ img {
     1s);
     &.active {
         top: 5%;
+    }
+}
+
+#block-detail-5 {
+    height: 70%;
+    &.active {
+        top: 25%;
     }
 }
 

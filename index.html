@@ -16,8 +16,8 @@
         <div class="row">
             <!-- 主頁面 -->
             <div class="block-container" ng-class="{gotop:isDetailActive,ontop:isOntop,filter:isCourseClick,filter:isRegisterClick,filter:isPhotoClick}" when-transition-end="setOntop()">
+                <!-- 會員 -->
                 <div class="col-md-3 col-xs-6 block-outer">
-                    <!-- 會員 -->
                     <!-- TODO: ProgressButtonStyles -->
                     <div class="block-inner" id="block-user">
                         <div class="block-header">會員</div>
@@ -46,10 +46,11 @@
                         </div>
                     </div>
                 </div>
+                <!-- 最新消息 -->
                 <div class="col-md-3 col-xs-6 block-outer">
                     <div class="block-inner" id="block-news">
                         <div class="block-header"><span class="title pull-left">最新消息</span>
-                            <button class="pull-right btn btn-default">編輯</button>
+                            <button class="pull-right btn btn-default" ng-click="showDetail5(news.id)">編輯</button>
                         </div>
                         <div class="block-body">
                             <div class="news-scroller">
@@ -60,8 +61,8 @@
                         </div>
                     </div>
                 </div>
+                <!-- 名人榜 -->
                 <div class="col-md-3 col-xs-6 block-outer">
-                    <!-- 名人榜 -->
                     <div class="block-inner" id="block-fame">
                         <div class="block-header">名人榜</div>
                         <div class="block-body">
@@ -75,10 +76,10 @@
                         </div>
                     </div>
                 </div>
+                <!-- 訓練成果相簿 -->
                 <div class="col-md-3 col-xs-6 block-outer">
-                    <!-- 訓練成果相片 -->
                     <div class="block-inner" id="block-album">
-                        <div class="block-header">訓練成果相片</div>
+                        <div class="block-header">訓練成果相簿</div>
                         <div class="block-body">
                             <div class="block-album-thumb" ng-click="showDetail3()">
                                 <img src="images/T51.jpg" alt="" style="width:100%;height:260px;">
@@ -86,8 +87,8 @@
                         </div>
                     </div>
                 </div>
+                <!-- 大數據分析 -->
                 <div class="col-md-6 col-xs-6 block-outer">
-                    <!-- 大數據分析 -->
                     <div class="block-inner" id="block-bigdata1">
                         <div class="block-header">大數據分析一</div>
                         <div class="block-body">
@@ -99,8 +100,8 @@
                         </div>
                     </div>
                 </div>
+                <!-- 大數據分析 -->
                 <div class="col-md-6 col-xs-6 block-outer">
-                    <!-- 大數據分析 -->
                     <div class="block-inner" id="block-bigdata2">
                         <div class="block-header">大數據分析二</div>
                         <div class="block-body">
@@ -112,8 +113,8 @@
                         </div>
                     </div>
                 </div>
+                <!-- 大數據分析 -->
                 <div class="col-md-6 col-xs-6 block-outer">
-                    <!-- 大數據分析 -->
                     <div class="block-inner" id="block-bigdata3">
                         <div class="block-header">大數據分析三</div>
                         <div class="block-body">
@@ -121,8 +122,8 @@
                         </div>
                     </div>
                 </div>
+                <!-- 大數據分析 -->
                 <div class="col-md-6 col-xs-6 block-outer">
-                    <!-- 大數據分析 -->
                     <div class="block-inner" id="block-bigdata4">
                         <div class="block-header">大數據分析四</div>
                         <div class="block-body">
@@ -131,31 +132,30 @@
                     </div>
                 </div>
                 <!-- 熱門課程 -->
-                <div class="col-md-3 col-xs-6 block-outer">
+                <div class="col-md-4 col-xs-4 block-outer">
                     <div class="block-inner" id="block-popular" ng-click="showCourse('popular')">
                         <div class="block-header">熱門課程</div>
-                        <div class="block-body"></div>
+                        <div class="block-body">
+                            <img src="images/popular.gif">
+                        </div>
                     </div>
                 </div>
                 <!-- 部位課程 -->
-                <div class="col-md-3 col-xs-6 block-outer">
-                    <div class="block-inner" id="block-theme" ng-click="showCourse('theme')">
+                <div class="col-md-4 col-xs-4 block-outer">
+                    <div class="block-inner" id="block-part" ng-click="showCourse('part')">
                         <div class="block-header">部位課程</div>
-                        <div class="block-body"></div>
+                        <div class="block-body">
+                            <img src="images/part.gif">
+                        </div>
                     </div>
                 </div>
                 <!-- 減脂課程 -->
-                <div class="col-md-3 col-xs-6 block-outer">
+                <div class="col-md-4 col-xs-4 block-outer">
                     <div class="block-inner" id="block-bodyfat" ng-click="showCourse('bodyfat')">
                         <div class="block-header">減脂課程</div>
-                        <div class="block-body"></div>
-                    </div>
-                </div>
-                <!-- 初學課程 -->
-                <div class="col-md-3 col-xs-6 block-outer">
-                    <div class="block-inner" id="block-beginner" ng-click="showCourse('beginner')">
-                        <div class="block-header">初學課程</div>
-                        <div class="block-body"></div>
+                        <div class="block-body">
+                            <img src="images/bodyfat.gif">
+                        </div>
                     </div>
                 </div>
             </div>
@@ -807,7 +807,7 @@
                         <div class="detail-album-outer">
                             <div class="detail-album-inner album-upload">
                                 <div class="album-upload-upload">
-                                <input type="file" name="file" fileread="uploadPreview">
+                                    <input type="file" name="file" fileread="uploadPreview">
                                 </div>
                                 <div class="album-upload-preview">
                                     <img ng-src="{{uploadPreview}}">
@@ -823,7 +823,7 @@
                                         <option value="肩膀">肩膀</option>
                                         <option value="腿部">腿部</option>
                                     </select>
-                                <button class="btn btn-flat pull-right">確認</button>
+                                    <button class="btn btn-flat pull-right">確認</button>
                                 </div>
                             </div>
                         </div>
@@ -856,7 +856,28 @@
                 <div class="block-header">
                     <sapn class="title">{{detailTitle}}</sapn><span class="back" ng-click="showIndex()"><i class="fa fa-times icon-back"></i></span></div>
                 <div class="block-body">
-                    <p>{{detailContent}}</p>
+                    <div class="detail-content">
+                        <div class="scroller content-scroller">
+                            <p ng-bind-html="detailContent"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 詳細block5 -->
+            <div class="block-detail-outer" ng-class="{active:detail5Active}" ng-click="showIndex()"></div>
+            <div class="block-detail" id="block-detail-5" ng-class="{active:detail5Active}">
+                <div class="prev"></div>
+                <div class="next"></div>
+                <div class="block-header">
+                    <sapn class="title">{{detailTitle}}</sapn><span class="back" ng-click="showIndex()"><i class="fa fa-times icon-back"></i></span></div>
+                <div class="block-body">
+                <div class="detail-bar"></div>
+                    <div class="detail-content">
+                        <div class="scroller content-scroller text-center">
+                        <textarea type="text" class="form-control" id="content-edit" ng-model="detailEdit"></textarea>
+                        <button class="btn btn-flat btn-lg">確認</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

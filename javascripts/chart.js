@@ -163,7 +163,7 @@ function getChartOption(ChartName, title, data1, data2) {
                     }
                 },
                 title: {
-                    enabled:false,
+                    enabled: false,
                     text: '成長百分比',
                     style: {
                         color: Highcharts.getOptions().colors[1]
@@ -175,7 +175,7 @@ function getChartOption(ChartName, title, data1, data2) {
                 }
             }, { // Secondary yAxis
                 title: {
-                    enabled:false,
+                    enabled: false,
                     text: '成長公斤數',
                     style: {
                         color: Highcharts.getOptions().colors[0]
@@ -397,7 +397,7 @@ function getChartOption(ChartName, title, data1, data2) {
                     }
                 },
                 title: {
-                    enabled:false,
+                    enabled: false,
                     text: '成長百分比',
                     style: {
                         color: Highcharts.getOptions().colors[1]
@@ -410,7 +410,7 @@ function getChartOption(ChartName, title, data1, data2) {
                 }
             }, { // Secondary yAxis
                 title: {
-                    enabled:false,
+                    enabled: false,
                     text: '成長公斤數',
                     style: {
                         color: Highcharts.getOptions().colors[0]
@@ -768,16 +768,16 @@ function getChartOption(ChartName, title, data1, data2) {
         };
     }
     //訓練姿勢相對成長
-    if (ChartName == "growWays") {
+    if (ChartName == "growPart") {
         chartOption = {
             chart: {
                 type: 'bar'
             },
             title: {
-                text: '訓練姿勢之相對肌肉成長'
+                text: '肌肉部位之相對肌肉成長'
             },
             xAxis: {
-                categories: ['啞鈴集中彎舉', '啞鈴斜板彎舉', '引體向上', '槓鈴站立彎舉'],
+                categories: ['肱二頭肌', '肱三頭肌', '胸肌', '腹肌', '背肌', '肩膀', '腿部'],
                 title: {
                     text: null
                 }
@@ -808,10 +808,10 @@ function getChartOption(ChartName, title, data1, data2) {
             },
             series: [{
                 name: '肌力',
-                data: [51, 30, 12, 6]
+                data: [31, 25, 15, 6, 11, 4, 8]
             }, {
                 name: '肌耐力',
-                data: [45, 31, 15, 9]
+                data: [41, 24, 10, 6, 9, 3, 7]
             }]
         };
     }
@@ -875,7 +875,7 @@ function getChartOption(ChartName, title, data1, data2) {
             chart: {
                 tpye: 'spline'
             },
-            colors: ['#FF9A00'],
+            colors: ['#FF9A00', '#08C3C9'],
             title: {
                 text: '肌肉出力百分比'
             },
@@ -897,7 +897,7 @@ function getChartOption(ChartName, title, data1, data2) {
                 }
             },
             legend: {
-                enabled: false
+                enabled: true
             },
             plotOptions: {
                 area: {
@@ -915,8 +915,12 @@ function getChartOption(ChartName, title, data1, data2) {
             },
             series: [{
                 type: 'spline',
-                name: '肌肉出力',
+                name: '向心',
                 data: [65, 72, 80, 80, 79, 82, 78, 81, 75, 73, 78, 82, 80, 84, 86, 78, 75, 72, 80, 71, 75, 71, 69, 68]
+            }, {
+                type: 'spline',
+                name: '離心',
+                data: [45, 68, 72, 68, 81, 74, 81, 73, 62, 68, 81, 75, 68, 74, 88, 81, 65, 84, 77, 75, 67, 74, 80, 75]
             }],
             credits: {
                 enabled: false
@@ -983,7 +987,7 @@ function getChartOption(ChartName, title, data1, data2) {
                 polar: true,
                 type: 'line'
             },
-            colors: ['#00A876'],
+            colors: ['#f45b5b'],
             title: {
                 text: null,
                 x: -80
@@ -1067,7 +1071,7 @@ function getChartOption(ChartName, title, data1, data2) {
             chart: {
                 type: 'spline'
             },
-            colors:['#FF9A00'],
+            colors: ['#FF9A00'],
             title: {
                 text: null,
                 x: -20 //center
@@ -1109,7 +1113,7 @@ function getChartOption(ChartName, title, data1, data2) {
             chart: {
                 type: 'spline'
             },
-            colors:['#00A876'],
+            colors: ['#f45b5b'],
             title: {
                 text: null,
                 x: -20 //center
@@ -1162,8 +1166,8 @@ function getChartOption(ChartName, title, data1, data2) {
                 floating: true,
                 backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF',
                 borderWidth: 1,
-                y:-50,
-                x:50
+                y: -50,
+                x: 50
             },
             tooltip: {
                 enabled: false

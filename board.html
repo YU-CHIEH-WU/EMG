@@ -66,8 +66,32 @@
                         </div>
                     </div>
                 </div>
+                <!-- 個人素質 -->
+                <div class="col-md-3 col-xs-6 block-outer">
+                    <div class="block-inner block-inner-1" id="block-status">
+                        <div class="block-header">
+                            <p class="pull-left">個人素質</p>
+                            <button class="btn btn-saveSVG pull-right" data-chartname="status" id="btn-trainingSVG">分享圖表</button>
+                        </div>
+                        <div class="block-body">
+                            <div class="block-thumb" id="block-chart-status"></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- 體脂 -->
+                <div class="col-md-3 col-xs-6 block-outer">
+                    <div class="block-inner block-inner-1" id="block-bodyfat">
+                        <div class="block-header">
+                            <p class="pull-left">體脂</p>
+                            <button class="btn btn-saveSVG pull-right" data-chartname="bodyfatThumb" id="btn-trainingSVG">分享圖表</button>
+                        </div>
+                        <div class="block-body">
+                            <div class="block-thumb" id="block-bodyfat-thumb"></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- 訓練成效 -->
                 <div class="col-md-6 col-xs-12 block-outer">
-                    <!-- 訓練成效 -->
                     <div class="block-inner block-inner-2 clickable" id="block-training" ng-mouseenter="showMessage('training')" ng-mouseleave="hideMessage('training')">
                         <div class="block-header">
                             <p class="pull-left">訓練成效</p>
@@ -83,8 +107,8 @@
                         </div>
                     </div>
                 </div>
+                <!-- 肌肉成長 -->
                 <div class="col-md-6 col-xs-12 block-outer">
-                    <!-- 肌肉成長 -->
                     <div class="block-inner block-inner-2 clickable" id="block-grow" ng-mouseenter="showMessage('grow')" ng-mouseleave="hideMessage('grow')">
                         <div class="block-header">
                             <p class="pull-left">肌肉成長</p>
@@ -96,30 +120,6 @@
                         <div class="block-message" id="grow-message" ng-class="{active:hoverGrow}">
                             <p>這張圖表將你各項肌肉指標加權計算，並以此評估你的肌肉成長比例。</p>
                             <p>點擊圖表可查看詳細資訊</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 col-xs-6 block-outer">
-                    <!-- 個人素質 -->
-                    <div class="block-inner block-inner-1" id="block-status">
-                        <div class="block-header">
-                            <p class="pull-left">個人素質</p>
-                            <button class="btn btn-saveSVG pull-right" data-chartname="status" id="btn-trainingSVG">分享圖表</button>
-                        </div>
-                        <div class="block-body">
-                            <div class="block-thumb" id="block-chart-status"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 col-xs-6 block-outer">
-                    <!-- 體脂 -->
-                    <div class="block-inner block-inner-1" id="block-bodyfat">
-                        <div class="block-header">
-                            <p class="pull-left">體脂</p>
-                            <button class="btn btn-saveSVG pull-right" data-chartname="bodyfatThumb" id="btn-trainingSVG">分享圖表</button>
-                        </div>
-                        <div class="block-body">
-                            <div class="block-thumb" id="block-bodyfat-thumb"></div>
                         </div>
                     </div>
                 </div>

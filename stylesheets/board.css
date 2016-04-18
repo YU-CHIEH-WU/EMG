@@ -267,11 +267,11 @@ span {
 
 /* line 269, ../sass/board.scss */
 #training-message {
-  top: -60%;
+  top: -80%;
 }
 /* line 271, ../sass/board.scss */
 #training-message.active {
-  top: 10%;
+  top: -165%;
   opacity: 1;
 }
 
