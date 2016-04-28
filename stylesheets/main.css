@@ -754,8 +754,24 @@ img {
   padding: 12px;
   float: left;
 }
+/* line 643, ../sass/main.scss */
+.detail-album-outer:nth-child(1) {
+  margin-left: 12.5%;
+}
+/* line 646, ../sass/main.scss */
+.detail-album-outer:nth-child(3) {
+  margin-right: 12.5%;
+}
+/* line 649, ../sass/main.scss */
+.detail-album-outer:nth-child(4) {
+  margin-left: 22.5%;
+}
+/* line 652, ../sass/main.scss */
+.detail-album-outer:nth-child(5) {
+  margin-right: 22.5%;
+}
 
-/* line 645, ../sass/main.scss */
+/* line 657, ../sass/main.scss */
 .detail-album-inner {
   width: 100%;
   height: 100%;
@@ -764,7 +780,7 @@ img {
   border-radius: 2.5%;
 }
 
-/* line 653, ../sass/main.scss */
+/* line 665, ../sass/main.scss */
 .album-title {
   width: 100%;
   height: 15%;
@@ -774,13 +790,13 @@ img {
   font-size: 20px;
 }
 
-/* line 662, ../sass/main.scss */
+/* line 674, ../sass/main.scss */
 .album-thumb {
   width: 100%;
   height: 85%;
 }
 
-/* line 667, ../sass/main.scss */
+/* line 679, ../sass/main.scss */
 .album-thumb > img {
   height: 90%;
   width: 90%;
@@ -789,7 +805,7 @@ img {
   position: relative;
 }
 
-/* line 675, ../sass/main.scss */
+/* line 687, ../sass/main.scss */
 .detail-photo-list {
   width: 100%;
   height: 100%;
@@ -800,42 +816,42 @@ img {
   -webkit-transition: all, 0.3s, ease-in;
   transition: all, 0.3s, ease-in;
 }
-/* line 683, ../sass/main.scss */
+/* line 695, ../sass/main.scss */
 .detail-photo-list.active {
   left: 0;
 }
 
-/* line 688, ../sass/main.scss */
+/* line 700, ../sass/main.scss */
 .album-upload {
   padding: 12px;
 }
 
-/* line 692, ../sass/main.scss */
+/* line 704, ../sass/main.scss */
 .album-upload-upload {
   width: 100%;
   height: 10%;
   position: relative;
 }
 
-/* line 698, ../sass/main.scss */
+/* line 710, ../sass/main.scss */
 .album-upload-preview {
   width: 100%;
   height: 75%;
   position: relative;
 }
 
-/* line 704, ../sass/main.scss */
+/* line 716, ../sass/main.scss */
 .album-upload-option {
   width: 100%;
   height: 10%;
   margin-top: 8px;
 }
-/* line 708, ../sass/main.scss */
+/* line 720, ../sass/main.scss */
 .album-upload-option > .form-control {
   width: 70%;
 }
 
-/* line 713, ../sass/main.scss */
+/* line 725, ../sass/main.scss */
 .photo-bar {
   height: 10%;
   width: 100%;
@@ -846,14 +862,14 @@ img {
   background: #4f4f4f;
 }
 
-/* line 723, ../sass/main.scss */
+/* line 735, ../sass/main.scss */
 .photo-back {
   top: 6px;
   left: 15px;
   position: absolute;
 }
 
-/* line 729, ../sass/main.scss */
+/* line 741, ../sass/main.scss */
 .photo-title {
   top: 15px;
   left: 47.5%;
@@ -861,12 +877,12 @@ img {
   position: absolute;
 }
 
-/* line 736, ../sass/main.scss */
+/* line 748, ../sass/main.scss */
 .photo-list {
   margin-top: 10%;
 }
 
-/* line 740, ../sass/main.scss */
+/* line 752, ../sass/main.scss */
 .photo-outer {
   width: 20%;
   height: 50%;
@@ -875,19 +891,19 @@ img {
   margin-top: 1%;
 }
 
-/* line 748, ../sass/main.scss */
+/* line 760, ../sass/main.scss */
 .photo-outer:first-child:nth-last-child(5),
 .photo-outer:first-child:nth-last-child(5) ~ .photo-outer {
   margin-top: 7.5%;
 }
 
-/* line 753, ../sass/main.scss */
+/* line 765, ../sass/main.scss */
 .photo-inner {
   margin: 15px;
   cursor: pointer;
 }
 
-/* line 758, ../sass/main.scss */
+/* line 770, ../sass/main.scss */
 .photo-detail {
   width: 100%;
   height: 100%;
@@ -903,12 +919,12 @@ img {
   -webkit-transition: all, 0.3s, ease-in;
   transition: all, 0.3s, ease-in;
 }
-/* line 771, ../sass/main.scss */
+/* line 783, ../sass/main.scss */
 .photo-detail.active {
   opacity: 1;
 }
 
-/* line 776, ../sass/main.scss */
+/* line 788, ../sass/main.scss */
 .detail-image {
   width: 80%;
   height: 90%;
@@ -919,7 +935,7 @@ img {
 
 /* 相簿結尾 */
 /* 大數據分析 */
-/* line 790, ../sass/main.scss */
+/* line 802, ../sass/main.scss */
 .block-sex {
   position: absolute;
   top: 36px;
@@ -928,7 +944,7 @@ img {
 
 /* 大數據分析結尾 */
 /* 推薦課程 */
-/* line 802, ../sass/main.scss */
+/* line 814, ../sass/main.scss */
 .block-course-outer {
   width: 100%;
   height: 100%;
@@ -942,7 +958,7 @@ img {
   transition: all, 0.3s, ease-in;
 }
 
-/* line 814, ../sass/main.scss */
+/* line 826, ../sass/main.scss */
 .block-course-inner {
   width: 50%;
   height: 80%;
@@ -957,12 +973,12 @@ img {
   -webkit-transition: all, 0.3s, ease-in;
   transition: all, 0.3s, ease-in;
 }
-/* line 826, ../sass/main.scss */
+/* line 838, ../sass/main.scss */
 .block-course-inner.active {
   opacity: 1;
 }
 
-/* line 831, ../sass/main.scss */
+/* line 843, ../sass/main.scss */
 .course-scroller {
   overflow: auto;
   position: absolute;
@@ -975,28 +991,28 @@ img {
   -webkit-transition: all, 0.3s, ease-in;
   transition: all, 0.3s, ease-in;
 }
-/* line 841, ../sass/main.scss */
+/* line 853, ../sass/main.scss */
 .course-scroller.active {
   left: -100%;
 }
 
-/* line 846, ../sass/main.scss */
+/* line 858, ../sass/main.scss */
 .course-list {
   padding: 10px;
 }
 
-/* line 850, ../sass/main.scss */
+/* line 862, ../sass/main.scss */
 .course-position {
   height: 30px;
   padding: 12px;
 }
-/* line 853, ../sass/main.scss */
+/* line 865, ../sass/main.scss */
 .course-position:hover {
   background: #4f4f4f;
   cursor: pointer;
 }
 
-/* line 859, ../sass/main.scss */
+/* line 871, ../sass/main.scss */
 .position-detail {
   width: 100%;
   height: 100%;
@@ -1008,14 +1024,14 @@ img {
   -webkit-transition: all, 0.3s, ease-in;
   transition: all, 0.3s, ease-in;
 }
-/* line 868, ../sass/main.scss */
+/* line 880, ../sass/main.scss */
 .position-detail.active {
   left: 0;
 }
 
 /* 推薦課程結尾 */
 /* 詳細block */
-/* line 879, ../sass/main.scss */
+/* line 891, ../sass/main.scss */
 .block-detail-outer {
   height: 100%;
   width: 100%;
@@ -1027,12 +1043,12 @@ img {
   -webkit-transition: all, 1s, ease-in, 1s;
   transition: all, 1s, ease-in, 1s;
 }
-/* line 889, ../sass/main.scss */
+/* line 901, ../sass/main.scss */
 .block-detail-outer.active {
   top: 0;
 }
 
-/* line 894, ../sass/main.scss */
+/* line 906, ../sass/main.scss */
 .block-detail {
   height: 90%;
   width: 80%;
@@ -1049,29 +1065,29 @@ img {
   -webkit-transition: all, 1s, ease-in, 1s;
   transition: all, 1s, ease-in, 1s;
 }
-/* line 907, ../sass/main.scss */
+/* line 919, ../sass/main.scss */
 .block-detail.active {
   top: 5%;
 }
 
-/* line 912, ../sass/main.scss */
+/* line 924, ../sass/main.scss */
 #block-detail-4, #block-detail-5, #block-detail-6 {
   width: 60%;
   left: 10%;
 }
 
-/* line 917, ../sass/main.scss */
+/* line 929, ../sass/main.scss */
 .block-detail > .block-body > div {
   padding: 15px;
 }
 
-/* line 921, ../sass/main.scss */
+/* line 933, ../sass/main.scss */
 .title {
   left: 5px;
   position: absolute;
 }
 
-/* line 926, ../sass/main.scss */
+/* line 938, ../sass/main.scss */
 .back {
   right: 5px;
   position: absolute;

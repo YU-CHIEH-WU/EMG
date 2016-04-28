@@ -80,12 +80,12 @@ app.controller('blockController', ['$scope', '$sce', '$http', '$timeout', '$inte
             $scope.replyList[key].content = $sce.valueOf($sce.trustAsHtml(value.content.replace(new RegExp('\r?\n', 'g'), '<br />')));
         });
     };
-    $scope.createMessage=function(){
-        $scope.isCreateMessage=true;
-        $
-    }
-    // 取得問卷資料
-    // categories 放運動項目 series name放健身部位 data放各個部位的值
+    $scope.createMessage = function() {
+            $scope.isCreateMessage = true;
+            $
+        }
+        // 取得問卷資料
+        // categories 放運動項目 series name放健身部位 data放各個部位的值
     var questList = [];
     var femaleCount = 0;
     var maleCount = 0;
@@ -560,10 +560,9 @@ app.controller('blockController', ['$scope', '$sce', '$http', '$timeout', '$inte
     $scope.isAlbumListShow = true;
     $scope.isPhotoListShow = false;
     $scope.photoTitle = '';
-    $scope.albumList = [{ 'title': '肱二頭肌', 'thumb': 'images/T51.jpg' },
-        { 'title': '肱三頭肌', 'thumb': 'images/T51.jpg' }, { 'title': '胸肌', 'thumb': 'images/T51.jpg' },
-        { 'title': '腹肌', 'thumb': 'images/T51.jpg' }, { 'title': '背肌', 'thumb': 'images/T51.jpg' },
-        { 'title': '肩部', 'thumb': 'images/T51.jpg' }, { 'title': '腿部', 'thumb': 'images/T51.jpg' }
+    $scope.albumList = [{ 'title': '第一名', 'thumb': 'images/T51.jpg' },
+        { 'title': '第二名', 'thumb': 'images/T51.jpg' }, { 'title': '第三名', 'thumb': 'images/T51.jpg' },
+        { 'title': '第四名', 'thumb': 'images/T51.jpg' }, { 'title': '第五名', 'thumb': 'images/T51.jpg' }
     ];
     $scope.showPhotoList = function(title) {
         $scope.photoTitle = title;
