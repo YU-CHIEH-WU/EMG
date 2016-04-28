@@ -3,5 +3,5 @@ app.controller('frontController', ['$scope', '$timeout', function($scope, $timeo
     $scope.isVideoDone = false;
     $timeout(function() {
         $scope.isVideoDone = true;
-    }, 15000)
+    }, 21000)
 }]);
