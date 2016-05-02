@@ -44,7 +44,7 @@ app.controller('blockController', ['$scope', '$sce', '$http', '$timeout', '$inte
         $scope.isDetailActive = true;
     };
     $scope.showDetail5 = function() {
-        $scope.editHolder = '請點選列表中的最新消息標題';
+        $scope.editHolder = '請輸入消息內文，或點選列表中的標題以編輯';
         $scope.detail5Active = true;
         $scope.isDetailActive = true;
     };

@@ -810,8 +810,8 @@
                     </div>
                 </div>
             </div>
+            <div class="block-detail-outer" ng-class="{active:isDetailActive}" ng-click="showIndex()"></div>
             <!-- 詳細block3(相簿) -->
-            <div class="block-detail-outer" ng-class="{active:detail3Active}" ng-click="showIndex()"></div>
             <div class="block-detail" id="block-detail-3" ng-class="{active:detail3Active}">
                 <div class="block-header"><span class="title">訓練成果相片</span><span class="back" ng-click="showIndex()"><i class="fa fa-times icon-back"></i></span></div>
                 <div class="block-body slide">
@@ -867,7 +867,6 @@
                 <img class="detail-image" ng-src="{{detailPhoto.src}}">
             </div>
             <!-- 詳細block4 -->
-            <div class="block-detail-outer" ng-class="{active:detail4Active}" ng-click="showIndex()"></div>
             <div class="block-detail" id="block-detail-4" ng-class="{active:detail4Active}">
                 <div class="prev"></div>
                 <div class="next"></div>
@@ -882,32 +881,28 @@
                 </div>
             </div>
             <div class="detail-bar" ng-class="{active:detail4Active}">
-                <div class="bar-create">
-                    <i class="fa fa-plus fa-lg"></i>
-                </div>
-                <div class="bar-search">
+                <div class="bar-search-2">
                     <i class="fa fa-search inline-search"></i>
-                    <input type="text" class="input-search">
+                    <input type="text" class="input-search" ng-model="search.title">
                 </div>
             </div>
-            
             <div class="detail-list" ng-class="{active:detail4Active}">
                 <div class="block-header">最新消息列表</div>
                 <div class="block-body">
                     <div class="news-scroller">
-                        <div class="block-news-list" ng-click="showNews(news)" ng-repeat="news in newsList">
+                        <div class="block-news-list" ng-click="showNews(news)" ng-repeat="news in newsList | filter:search">
                             <div class="block-news-title">{{news.title}}</div>
                         </div>
                     </div>
                 </div>
             </div>
             <!-- 詳細block5 -->
-            <div class="block-detail-outer" ng-class="{active:detail5Active}" ng-click="showIndex()"></div>
             <div class="block-detail" id="block-detail-5" ng-class="{active:detail5Active}">
                 <div class="prev"></div>
                 <div class="next"></div>
                 <div class="block-header">
-                    <sapn class="title">{{editTitle}}</sapn><span class="back" ng-click="showIndex()"><i class="fa fa-times icon-back"></i></span></div>
+                    <input type="text" class="input-title" placeholder="新增最新消息標題" ng-model="editTitle">
+                    <span class="back" ng-click="showIndex()"><i class="fa fa-times icon-back"></i></span></div>
                 <div class="block-body">
                     <div class="detail-edit">
                         <div class="scroller edit-scroller text-center">
@@ -919,17 +914,25 @@
                 </div>
             </div>
             <div class="detail-bar" ng-class="{active:detail5Active}">
+                <div class="bar-create">
+                    <span ng-click="createNews()"><i class="fa fa-plus fa-lg"></i></span>
+                </div>
+                <div class="bar-search">
+                    <i class="fa fa-search inline-search"></i>
+                    <input type="text" class="input-search" ng-model="search.title">
+                </div>
+            </div>
+            <div class="detail-list" ng-class="{active:detail5Active}">
                 <div class="block-header">最新消息列表</div>
                 <div class="block-body">
                     <div class="news-scroller">
-                        <div class="block-edit-list" ng-click="editNews(news)" ng-repeat="news in newsList">
+                        <div class="block-edit-list" ng-click="editNews(news)" ng-repeat="news in newsList | filter:search">
                             <div class="block-edit-title">{{news.title}}</div>
                         </div>
                     </div>
                 </div>
             </div>
             <!-- 詳細block6 -->
-            <div class="block-detail-outer" ng-class="{active:detail6Active}" ng-click="showIndex()"></div>
             <div class="block-detail" id="block-detail-6" ng-class="{active:detail6Active}">
                 <div class="prev"></div>
                 <div class="next"></div>
@@ -953,19 +956,16 @@
                 </div>
             </div>
             <div class="detail-bar" ng-class="{active:detail6Active}">
-                <div class="bar-create">
-                    <i class="fa fa-plus fa-lg"></i>
-                </div>
-                <div class="bar-search">
+                <div class="bar-search-2">
                     <i class="fa fa-search inline-search"></i>
-                    <input type="text" class="input-search">
+                    <input type="text" class="input-search" ng-model="search.title">
                 </div>
             </div>
             <div class="detail-list" ng-class="{active:detail6Active}">
                 <div class="block-header">肌友交流列表</div>
                 <div class="block-body">
                     <div class="message-scroller">
-                        <div class="block-message-list" ng-click="showMessage(message)" ng-repeat="message in messageList">
+                        <div class="block-message-list" ng-click="showMessage(message)" ng-repeat="message in messageList | filter:search">
                             <div class="block-message-title">{{message.title}}</div>
                         </div>
                     </div>

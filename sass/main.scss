@@ -5,6 +5,8 @@
 $backgroundColor:#1f1f1f;
 $blockColor:#3d3d3d;
 $blockHoverColor:#4f4f4f;
+$borderColor:#6B6868;
+$editColor:#323131;
 $fontColor:#FFFFFF;
 $chartColor:#FF9B00;
 $shadow1:0 2px 5px 0 rgba(0, 0, 0, 0.16),
@@ -77,9 +79,11 @@ img {
 .input-sm {
     height: 24px;
 }
-.btn-gap{
-    margin-right:15px;
+
+.btn-gap {
+    margin-right: 15px;
 }
+
 .btn-flat {
     background: rgba(0, 0, 0, 0);
     color: $fontColor;
@@ -109,6 +113,10 @@ img {
     &:focus {
         color: $fontColor;
     }
+}
+
+.fa {
+    cursor: pointer;
 }
 
 .fa-mars {
@@ -348,12 +356,12 @@ img {
     &.active {
         left: 10%;
     }
-    section{
-        margin:6px;
-        margin-bottom:32px;
+    section {
+        margin: 6px;
+        margin-bottom: 32px;
     }
     .form-control {
-        width:60%;
+        width: 60%;
         margin: 5px;
     }
     .form-group {
@@ -361,14 +369,14 @@ img {
     }
     .control-label {
         line-height: 28px;
-        padding-left:0;
-        padding-right:0;
+        padding-left: 0;
+        padding-right: 0;
         text-align: right;
-        margin-right:12px;
+        margin-right: 12px;
     }
-    .form-valid{
-        height:16px;
-        color:red;
+    .form-valid {
+        height: 16px;
+        color: red;
     }
 }
 
@@ -427,25 +435,6 @@ img {
     width: 100%;
 }
 
-.block-news-list {
-    width: 100%;
-    height: 50px;
-    padding-left: 6px;
-    border-bottom: 1px #9f9f9f solid;
-    line-height: 50px;
-    cursor: pointer;
-    overflow: hidden;
-    >div {
-        float: left;
-    }
-    &:hover {
-        background: $blockHoverColor;
-    }
-    &:last-child {
-        border: none;
-    }
-}
-
 .content-scroller {
     top: 30px;
     left: 0;
@@ -464,50 +453,81 @@ img {
 
 #edit-area {
     color: $fontColor;
-    background: #323131;
-    border: 1px #6B6868 solid;
+    background: $editColor;
+    border: 1px $borderColor solid;
     width: 100%;
     height: 90%;
     margin-bottom: 12px;
 }
-.detail-bar{
-    width:22.5%;
-    height:40px;
-    top:-500%;
-    right:5%;
-    color:$fontColor;
+
+.detail-bar {
+    width: 22.5%;
+    height: 40px;
+    top: -500%;
+    right: 5%;
+    color: $fontColor;
     position: fixed;
-    @include transition(all,1s,ease-in,1s);
-    &.active{
-        top:5%;
+    @include transition(all,
+    1s,
+    ease-in,
+    1s);
+    &.active {
+        top: 5%;
     }
 }
-.bar-create{
-    width:40px;
+
+.bar-create {
+    width: 40px;
     height: 28px;
     text-align: center;
     line-height: 28px;
-    float:left;
-    background:$blockHoverColor;
+    float: left;
+    background: $blockHoverColor;
     @include transition(5%);
 }
-.bar-search{
-    width:80%;
-    height:40px;
-    float:right;
+
+.bar-search {
+    width: 80%;
+    height: 40px;
+    float: right;
+    >.inline-search{
+        left:22.5%;
+    }
 }
-.inline-search{
-    color:black;
-    top:7px;
-    left:22.5%;
+.bar-search-2{
+    width:100%;
+    height:40px;
+    float: right;
+    >.inline-search{
+        left:6px;
+    }
+}
+
+.inline-search {
+    color: black;
+    top: 6px;
     position: absolute;
 }
-.input-search{
-    color:black;
-    width:100%;
-    height:28px;
-    border-radius:4px;
+
+.input-title {
+    border: 1px $borderColor solid;
+    border-radius: 4px;
+    background: $editColor;
+    line-height: 1;
+    padding-left: 6px;
+    &:focus {
+        outline: none;
+    }
 }
+
+.input-search {
+    color: black;
+    width: 100%;
+    height: 28px;
+    border-radius: 4px;
+    padding-left: 24px;
+}
+
 .detail-list {
     width: 22.5%;
     height: calc(90% - 40px);
@@ -525,15 +545,20 @@ img {
         top: calc(5% + 40px);
     }
 }
-.block-message-create,.block-edit-create{
-    width:100%;
-    height:50px;
+
+.block-message-create,
+.block-edit-create {
+    width: 100%;
+    height: 50px;
     line-height: 50px;
-    background:#999;
-    cursor:pointer;
+    background: #999;
+    cursor: pointer;
     font-size: 20px;
 }
-.block-message-list,.block-news-list,.block-edit-list {
+
+.block-message-list,
+.block-news-list,
+.block-edit-list {
     width: 100%;
     height: 50px;
     padding-left: 6px;
@@ -640,16 +665,16 @@ img {
     height: 50%;
     padding: 12px;
     float: left;
-    &:nth-child(1){
-        margin-left:12.5%;
+    &:nth-child(1) {
+        margin-left: 12.5%;
     }
-    &:nth-child(3){
+    &:nth-child(3) {
         margin-right: 12.5%;
     }
-    &:nth-child(4){
-        margin-left:22.5%;
+    &:nth-child(4) {
+        margin-left: 22.5%;
     }
-    &:nth-child(5){
+    &:nth-child(5) {
         margin-right: 22.5%;
     }
 }
@@ -921,7 +946,9 @@ img {
     }
 }
 
-#block-detail-4,#block-detail-5,#block-detail-6 {
+#block-detail-4,
+#block-detail-5,
+#block-detail-6 {
     width: 60%;
     left: 10%;
 }

@@ -146,10 +146,12 @@ span {
         opacity: 1;
     }
 }
-.slide{
+
+.slide {
     overflow: hidden;
     position: relative;
 }
+
 
 /* 覆寫bootstrap結尾 */
 
@@ -166,21 +168,21 @@ span {
 
 .block-container {
     margin-top: 30px;
-    width:70%;
+    width: 70%;
     position: absolute;
     top: 0;
-    left:15%;
-    right:15%;
+    left: 15%;
+    right: 15%;
     @include transition(top,
     1s,
     ease-in);
     @include transition(blur,
     0.3s,
     liner);
-    @media screen and (max-width:1280px){
-        width:80%;
-        left:10%;
-        right:10%;
+    @media screen and (max-width: 1280px) {
+        width: 80%;
+        left: 10%;
+        right: 10%;
     }
     &.gotop {
         top: 300%;
@@ -298,38 +300,40 @@ span {
 .block-user {
     width: 100%;
     height: 100%;
-    padding: 15px;
+    padding: 6px;
 }
 
 .block-user-info {
     width: 100%;
-    height: 40%;
+    height: 140px;
 }
 
 .block-user-photo {
-    width: 80px;
-    height: 100%;
-    float: left;
+    width: 100%;
+    height: 80px;
 }
 
 .user-photo {
     width: 80px;
     height: 80px;
     border-radius: 50%;
+    left: calc(50% - 40px);
+    position: relative;
 }
 
 .block-user-name {
-    width: calc(100% - 80px);
-    height: 60%;
-    line-height: 55px;
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
     text-align: center;
     font-size: 20px;
     float: left;
 }
 
-.block-user-update {
-    width: calc(100% - 80px);
-    height: 40%;
+.block-user-edit {
+    width: 100%;
+    height: 20px;
+    line-height: 20px;
     text-align: center;
     font-size: 14px;
     float: left;
@@ -337,28 +341,34 @@ span {
 
 .block-user-group {
     width: 100%;
-    height: 40%;
-    >div {
-        height: 50%;
-        float: left;
-        line-height: 30px;
-    }
+    height: 50px;
 }
 
-.block-user-count,
-.block-user-achieve {
+.block-user-message,
+.block-user-album {
+    height: 100%;
+    float: left;
+    line-height: 50px;
+    width: 50%;
+    text-align: center;
+    text-decoration: underline;
+    @include border-radius(1.5%);
+    cursor: pointer;
+}
+
+.block-user-count {
     width: 60%;
 }
 
-.block-user-countDetail,
-.block-user-achieveDetail {
+.block-user-countDetail {
     width: 40%;
     text-align: center;
+    text-decoration: underline;
 }
 
 .block-user-index {
     width: 100%;
-    height: 20%;
+    height: 45px;
 }
 
 #btn-index,
@@ -777,11 +787,13 @@ span {
     width: 100%;
     height: 100%;
     position: absolute;
-    left:-100%;
-    top:0;
-    @include transition(all,0.3s,ease-in);
-    &.active{
-        left:0;
+    left: -100%;
+    top: 0;
+    @include transition(all,
+    0.3s,
+    ease-in);
+    &.active {
+        left: 0;
     }
 }
 
@@ -792,11 +804,13 @@ span {
     text-align: center;
     padding-top: 22px;
     position: absolute;
-    left:100%;
-    top:0;
-    @include transition(all,0.3s,ease-in);
-    &.active{
-        left:0;
+    left: 100%;
+    top: 0;
+    @include transition(all,
+    0.3s,
+    ease-in);
+    &.active {
+        left: 0;
     }
 }
 

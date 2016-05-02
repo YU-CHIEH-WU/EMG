@@ -447,7 +447,7 @@ app.controller('blockController', ['$scope', '$http', '$timeout', '$location', '
             'weekday': ' 星期日'
         }];
         $scope.courseList = [];
-        $scope.isHaveCourse = true;
+        $scope.isHaveCourse = false;
         // 課程選項格式
         var courseOptions = { 'goal': '', 'complex': '', 'chest': '', 'back': '', 'shoulder': '', 'belly': '', 'foot': '', 'two': '', 'three': '', 'TBar': '', 'WBarbell': '', 'Barbell': '', 'Dumbbell': '', 'Smith': '', 'LegPress': '', 'Butterfly': '', 'PullBack': '', 'LegExtension': '', 'PullUp': '', 'Squat': '', 'Pulley': '', 'Boating': '', 'PulleyChest': '', 'WeightBench': '', 'ParallelBars': '', 'Cross': '' };
         // 目標選項格式
