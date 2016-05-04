@@ -27,7 +27,7 @@
                             <div class="block-login-input form-group text-center" ng-if="!isLogin">
                                 <input type="text" id="input-account" class="form-control" placeholder="Account" ng-model="loginAccount" ng-disabled="loginLoading">
                                 <input type="password" id="input-password" class="form-control" placeholder="Password" ng-model="loginPassword" ng-disabled="loginLoading">
-                                <button type="button" class="btn btn-normal" id="btn-login" ng-class="{active:loginLoading}" ng-click="login()" ng-disabled="loginLoading">{{loginMessage}}</button>
+                                <button type="button" class="btn btn-normal" id="btn-login" ng-class="{active:loginLoading}" ng-click="loginTest()" ng-disabled="loginLoading">{{loginMessage}}</button>
                             </div>
                             <div class="block-register-input text-center" ng-if="!isLogin">
                                 <button type="button" class="btn btn-normal" id="btn-register" ng-click="register()" ng-disabled="loginLoading">還沒有帳號嗎？點我註冊</button>
@@ -35,13 +35,14 @@
                             <!-- 登入 -->
                             <div class="block-user text-center" ng-if="isLogin">
                                 <div class="user-photo">
-                                    <img ng-src="{{userPhoto}}">
+                                    <img ng-src="{{loginUser.photo}}">
                                 </div>
                                 <div class="user-name">
-                                    <p>{{userName}}</p>
+                                    <p>{{loginUser.name}}</p>
                                 </div>
                                 <div class="user-board">
-                                    <button class="btn btn-default" id="btn-board" ng-submit="toBoard()">前往個人首頁</button>
+                                    <button class="btn btn-flat" id="btn-board" ng-click="toBoard()">前往個人首頁</button>
+                                    <button class="btn btn-flat" id="btn-logout" ng-click="logout()">登出</button>
                                 </div>
                             </div>
                         </div>
@@ -54,9 +55,9 @@
                             <button class="pull-right btn btn-default" ng-click="showDetail5()">編輯</button>
                         </div>
                         <div class="block-body">
-                            <div class="news-scroller">
-                                <div class="block-news-list" ng-click="showDetail4(news)" ng-repeat="news in newsList">
-                                    <div class="block-news-title">{{news.title}}</div>
+                            <div class="scroller news-scroller">
+                                <div class="block-title-list" ng-click="showDetail4(news)" ng-repeat="news in newsList">
+                                    <div class="block-title-news">{{news.title}}</div>
                                 </div>
                             </div>
                         </div>
@@ -193,7 +194,7 @@
                                             <label class="col-sm-4 control-label">
                                                 姓名
                                             </label>
-                                            <input type="text" class="form-control" required ng-focus="inputFocus('name')" ng-blur="inputBlur('name')" ng-model="registerUser.name" name="name">
+                                            <input type="text" id="name" class="form-control" required ng-focus="inputFocus('name')" ng-blur="inputBlur('name')" ng-model="registerUser.name" name="name">
                                         </div>
                                         <div class="form-valid">
                                             <span class="valid-error" ng-if="form.registerForm.name.$error.required && registerBlur.name">請輸入姓名!</span>
@@ -220,6 +221,8 @@
                                         <div class="form-valid">
                                             <span class="valid-error" ng-if="form.registerForm.birth.$error.required && registerBlur.birth">請輸入生日!</span>
                                         </div>
+                                    </div>
+                                    <div class="register-right">
                                         <div class="form-group">
                                             <label class="col-sm-4 control-label">
                                                 血型
@@ -235,8 +238,6 @@
                                         <div class="form-valid">
                                             <span class="valid-error" ng-if="form.registerForm.blood.$error.required && registerBlur.blood">請輸入血型!</span>
                                         </div>
-                                    </div>
-                                    <div class="register-right">
                                         <div class="form-group">
                                             <label class="col-sm-4 control-label">
                                                 身高
@@ -254,26 +255,6 @@
                                         </div>
                                         <div class="form-valid">
                                             <span class="valid-error" ng-if="form.registerForm.weight.$error.required && registerBlur.weight">請輸入體重!</span>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-sm-4 control-label">
-                                                體脂率
-                                            </label>
-                                            <input type="number" step="any" class="form-control" required ng-focus="inputFocus('bodyfat')" ng-blur="inputBlur('bodyfat')" ng-model="registerUser.bodyfat" name="bodyfat">
-                                        </div>
-                                        <div class="form-valid">
-                                            <input type="checkbox" ng-click="autoSet('bodyfat')" ng-if="!form.registerForm.birth.$error.required && !form.registerForm.sex.$error.required && !form.registerForm.height.$error.required && !form.registerForm.weight.$error.required"><span ng-if="!form.registerForm.birth.$error.required && !form.registerForm.sex.$error.required && !form.registerForm.height.$error.required && !form.registerForm.weight.$error.required" style="color:white;">使用公式計算</span>
-                                            <span class="valid-error" ng-if="form.registerForm.bodyfat.$error.required && registerBlur.bodyfat">請輸入體脂率!</span>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-sm-4 control-label">
-                                                基礎代謝率
-                                            </label>
-                                            <input type="number" step="any" class="form-control" required ng-focus="inputFocus('bmr')" ng-blur="inputBlur('bmr')" ng-model="registerUser.bmr" name="bmr">
-                                        </div>
-                                        <div class="form-valid">
-                                            <input type="checkbox" ng-click="autoSet('bmr')" ng-if="!form.registerForm.birth.$error.required && !form.registerForm.sex.$error.required && !form.registerForm.height.$error.required && !form.registerForm.weight.$error.required"><span ng-if="!form.registerForm.birth.$error.required && !form.registerForm.sex.$error.required && !form.registerForm.height.$error.required && !form.registerForm.weight.$error.required" style="color:white;">使用公式計算</span>
-                                            <span class="valid-error" ng-if="form.registerForm.bmr.$error.required && registerBlur.bmr">請輸入基礎代謝率!</span>
                                         </div>
                                         <div class="form-group">
                                             <label class="col-sm-4 control-label">
@@ -817,45 +798,22 @@
                 <div class="block-body slide">
                     <div class="detail-album-list" ng-class="{active:isAlbumListShow}">
                         <div class="detail-album-outer" ng-repeat="album in albumList">
-                            <div class="detail-album-inner" ng-click="showPhotoList(album.title)">
-                                <div class="album-title">{{album.title}}</div>
-                                <div class="album-thumb"><img ng-src="{{album.thumb}}"></div>
+                            <div class="detail-album-inner" ng-click="showPhotoList(album)">
+                                <div class="album-title">{{album.name}}</div>
+                                <div class="album-thumb"><img ng-src="{{album.photoList[0]}}"></div>
                             </div>
                         </div>
-                        <!-- <div class="detail-album-outer">
-                            <div class="detail-album-inner album-upload">
-                                <div class="album-upload-upload">
-                                    <input type="file" name="file" fileread="uploadPreview">
-                                </div>
-                                <div class="album-upload-preview">
-                                    <img ng-src="{{uploadPreview}}">
-                                </div>
-                                <div class="album-upload-option">
-                                    <select class="form-control pull-left" data-val="true" data-val-required="請輸入上傳相簿" id="Blood" name="Blood">
-                                        <option selected="selected" value=""></option>
-                                        <option value="肱二頭肌">肱二頭肌</option>
-                                        <option value="肱三頭肌">肱三頭肌</option>
-                                        <option value="胸肌">胸肌</option>
-                                        <option value="腹肌">腹肌</option>
-                                        <option value="背肌">背肌</option>
-                                        <option value="肩膀">肩膀</option>
-                                        <option value="腿部">腿部</option>
-                                    </select>
-                                    <button class="btn btn-flat pull-right">確認</button>
-                                </div>
-                            </div>
-                        </div> -->
                     </div>
                     <div class="detail-photo-list" ng-class="{active:isPhotoListShow}">
                         <div class="photo-bar" ng-if="isPhotoListShow">
                             <div class="photo-back">
                                 <button class="btn btn-flat" ng-click="showAlbumList()">返回相簿列表</button>
                             </div>
-                            <div class="photo-title" ng-if="isPhotoListShow">{{photoTitle}}</div>
+                            <div class="photo-title" ng-if="isPhotoListShow">{{photo.title}}</div>
                         </div>
                         <div class="scroller">
                             <div class="photo-list">
-                                <div class="photo-outer" ng-repeat="photo in photoList">
+                                <div class="photo-outer" ng-repeat="photo in photo.list">
                                     <div class="photo-inner" ng-click="showPhoto(photo)"><img ng-src="{{photo.src}}"></div>
                                 </div>
                             </div>
@@ -889,9 +847,9 @@
             <div class="detail-list" ng-class="{active:detail4Active}">
                 <div class="block-header">最新消息列表</div>
                 <div class="block-body">
-                    <div class="news-scroller">
+                    <div class="scroller title-scroller">
                         <div class="block-news-list" ng-click="showNews(news)" ng-repeat="news in newsList | filter:search">
-                            <div class="block-news-title">{{news.title}}</div>
+                            <div class="block-title-list">{{news.title}}</div>
                         </div>
                     </div>
                 </div>
@@ -925,9 +883,9 @@
             <div class="detail-list" ng-class="{active:detail5Active}">
                 <div class="block-header">最新消息列表</div>
                 <div class="block-body">
-                    <div class="news-scroller">
-                        <div class="block-edit-list" ng-click="editNews(news)" ng-repeat="news in newsList | filter:search">
-                            <div class="block-edit-title">{{news.title}}</div>
+                    <div class="scroller title-scroller">
+                        <div class="block-title-list" ng-click="editNews(news)" ng-repeat="news in newsList | filter:search">
+                            <div class="block-title-edit">{{news.title}}</div>
                         </div>
                     </div>
                 </div>
@@ -937,19 +895,45 @@
                 <div class="prev"></div>
                 <div class="next"></div>
                 <div class="block-header">
-                    <sapn class="title">{{messageTitle}}</sapn><span class="back" ng-click="showIndex()"><i class="fa fa-times icon-back"></i></span></div>
+                    <sapn class="title">{{message.title}}</sapn><span class="back" ng-click="showIndex()"><i class="fa fa-times icon-back"></i></span></div>
                 <div class="block-body">
                     <div class="detail-content">
-                        <div class="scroller content-scroller">
+                        <div class="detail-message" ng-if="!isMessageShow">
+                            <p>{{message.placeholder}}</p>
+                        </div>
+                        <div class="scroller message-scroller" ng-if="isMessageShow">
                             <div class="detail-message">
-                                <p ng-bind-html="messageContent"></p>
-                                <p>{{messageAuthor}}</p>
-                                <p>{{messageTime}}</p>
+                                <div class="message-info">
+                                    <img ng-src="{{message.photo}}" class="message-photo">
+                                    <p class="message-author">{{message.author}}</p>
+                                    <p class="message-title">{{message.title}}</p>
+                                    <p class="message-time">{{message.time}}</p>
+                                </div>
+                                <div class="message-content">
+                                    <p ng-bind-html="message.content"></p>
+                                </div>
+                                <div class="message-bar">
+                                    <button class="btn btn-flat">修改留言</button>
+                                    <button class="btn btn-flat">刪除留言</button>
+                                </div>
                             </div>
-                            <div class="detail-reply" ng-repeat="reply in replyList">
-                                <p ng-bind-html="trustHtml(reply.content)"></p>
-                                <p>{{reply.author}}</p>
-                                <p>{{reply.time}}</p>
+                            <div class="detail-reply">
+                                <div ng-repeat="reply in replyList">
+                                    <div class="reply-info">
+                                        <img ng-src="{{reply.photo}}" class="reply-photo">
+                                        <p class="reply-author">{{reply.author}}</p>
+                                        <p class="reply-time">{{reply.time}}</p>
+                                    </div>
+                                    <div class="reply-content">
+                                        <p ng-bind-html="trustHtml(reply.content)"></p>
+                                    </div>
+                                </div>
+                                <div class="detail-reply" ng-if="isLogin">
+                                    <img ng-src="{{loginUser.photo}}" class="reply-photo">
+                                    <p class="reply-author">{{loginUser.name}}</p>
+                                    <input type="text" placeholder="留言" ng-model="newReply" class="form-control reply-input">
+                                    <button class="btn btn-flat" ng-click="createReply(messageId)">送出</button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -964,9 +948,9 @@
             <div class="detail-list" ng-class="{active:detail6Active}">
                 <div class="block-header">肌友交流列表</div>
                 <div class="block-body">
-                    <div class="message-scroller">
-                        <div class="block-message-list" ng-click="showMessage(message)" ng-repeat="message in messageList | filter:search">
-                            <div class="block-message-title">{{message.title}}</div>
+                    <div class="scroller title-scroller">
+                        <div class="block-title-list" ng-click="showMessage(message)" ng-repeat="message in messageList | filter:search">
+                            <div class="block-title">{{message.title}}</div>
                         </div>
                     </div>
                 </div>

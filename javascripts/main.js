@@ -1,15 +1,23 @@
 $(function() {
-    $('#input-account,#birth').datepicker({
+    $('#birth').datepicker({
         language: "zh-TW",
         autoclose: true
     });
 })
 var app = angular.module('mainApp', ['mainApp']);
 app.controller('blockController', ['$scope', '$sce', '$http', '$timeout', '$interval', function($scope, $sce, $http, $timeout, $interval) {
-    // 首頁
+    // 轉html標籤方法
     $scope.trustHtml = function(string) {
         return $sce.trustAsHtml(string);
     };
+    // 首頁
+    // 首頁-最新消息 接api 
+    $scope.newsList = [{ 'id': '1', 'title': '健身與精神疾病小知識', 'content': '患有精神分裂症（schizophrenia）的患者通常會被要求服用抗精神病藥物（antipsuchotics）以緩和病情，但抗精神病藥物通常只能改善精神的狀況，像是妄想與幻覺等，卻不能改善其它大腦的症狀，讓許多醫生相當困擾。而根據最新的研究顯示，若患者搭配健身的話，將能更加改善精神分裂症的症狀。\n\n精神分裂症，又稱為思覺失調症，患有此病的人有著相當多的病徵，其中大家最了解的徵狀就是出現幻覺與幻想。然而，其他像是影響記憶力、處理接收資訊的速度、注意力、解決問題的技巧等病徵雖看似不起眼，影響程度卻比出現幻覺還來的深遠。加州大學洛杉磯分校神經科學與人類行為研究所的 Keith Nuechterlein 教授表示，這些不起眼的病徵，都是導致他們患有殘疾與遭社會孤立的原因。\n\n世界上大約 1% 的人口深受精神分裂之苦，除了服用抗精神病藥物外，有的專家也會使用電腦遊戲來治療精神分裂症，大約能改善病患在記憶、思考能力、與社會認知中，四分之一到三分之一的病徵。但 Nuechterlein 教授的團隊發現，若在這個療程中搭配有氧運動的話，將可以大大改善精神病患者的症狀。\n在第一項進行大約 10 周的研究中，Nuechterlein 的團隊對 16 名患有早期精神分裂症的青壯年進行實驗，其中 9 名在這幾周中分別進行神經認知以及社會認知訓練的電腦程式操作，而剩下的 7 名除了進行相同的訓練外，更加上了每周 150 分鐘的有氧運動，看看其成果是否會有所不同。10 周過後，研究團隊發現，有搭配有氧運動的認知表現有著兩倍左右的差距，相當的驚人。\n\n而在第二項進行六個月的實驗中，共有 32 個患有早期精神分裂的患者參與實驗，其中一半的實驗者除了每周進行 4 小時的電腦遊戲訓練外，也搭配定期的有氧運動。六個月過後，研究學者更發現，有在運動的實驗者比沒運動的實驗者的症狀改善程度還好上三倍，顯示定期運動的時間若拉長，將會對患者有著更好的效果。\n\n然而，為什麼運動會有著這樣的成果呢？研究學者表示，這是因為在有氧運動的過程中，大腦會釋放出一種叫做腦源性神經營養生長因子（BDNF）的蛋白質，BDNF 能夠刺激在大腦中的學習與長期記憶中心—海馬迴，讓它能生長出新的神經，並且增加神經之間的連結，除了一般人以外，對於患有精神病的患者來說，更是能增長他們的記憶力以及學習力。\n\n團隊成員之一的心理學家研究助理 Sarah McEwen 表示，在第二項實驗裡，有運動的患者腦部裡的 BDNF 含量增加了 35%，其中過半的 BDNF 是在實驗剛進行的前兩個禮拜就已增加。此外，他們也測量了其他沒有運動的人大腦中的 BDNF 含量，在這六個月的過程中，則是一點也沒有增加。而研究學者也表示，這項研究對於患有早期精神分裂的人來說是較有效的，因為他們的病情比較具有長期的改善。\n\nNuechterlein 最後表示，他們做此研究希望的是，能夠避免慢性殘疾在精神分裂患者中出現，並且讓他們盡可能的在社會上繼續生活，有著規律的上學生活或者是正常的朋友關係。他們也認為，在未來，服用抗精神病藥物和電腦遊戲訓練只是基本能緩和精神病病徵的治療方式，搭配有氧運動的療程才能使患者更能讓患者大幅改善。' },
+        { 'id': '1', 'title': '健身消息標題', 'content': '健身消息內文' }, { 'id': '1', 'title': '健身消息標題', 'content': '健身消息內文' },
+        { 'id': '1', 'title': '健身消息標題', 'content': '健身消息內文' }, { 'id': '1', 'title': '健身消息標題', 'content': '健身消息內文' }, { 'id': '1', 'title': '健身消息標題', 'content': '健身消息內文' }, { 'id': '1', 'title': '健身消息標題', 'content': '健身消息內文' },
+        { 'id': '1', 'title': '健身消息標題', 'content': '健身消息內文' }, { 'id': '1', 'title': '健身消息標題', 'content': '健身消息內文' }, { 'id': '1', 'title': '健身消息標題', 'content': '健身消息內文' }, { 'id': '1', 'title': '健身消息標題', 'content': '健身消息內文' },
+        { 'id': '1', 'title': '健身消息標題', 'content': '健身消息內文' }, { 'id': '1', 'title': '健身消息標題', 'content': '健身消息內文' }, { 'id': '1', 'title': '健身消息標題', 'content': '健身消息內文' }, { 'id': '1', 'title': '健身消息標題', 'content': '健身消息內文' }
+    ];
     // true時隱藏首頁block
     $scope.isDetailActive = false;
     // true時顯示對應detail
@@ -32,11 +40,55 @@ app.controller('blockController', ['$scope', '$sce', '$http', '$timeout', '$inte
         $scope.detail6Active = false;
         $scope.isOntop = false;
         $timeout(function() { $scope.isDetailActive = false }, 50);
+        $scope.isMessageShow = false;
+        $scope.message = {};
     };
+    // 訓練成果相簿
     $scope.showDetail3 = function() {
-        $scope.isDetailActive = true;
-        $scope.detail3Active = true;
+        // 相簿API 取得相簿列表 放進$scope.albumList
+        $scope.albumList = [];
+        var getRankApi = 'http://163.17.136.197:8080/EMG/Api/AlbumApi/GetRank';
+        $http.get(getRankApi).then(function(response) {
+            var i = 0;
+            angular.forEach(response.data, function(value, key) {
+                $scope.albumList.push({ 'name': value.Name, 'Rank': value.Rank, 'photoList': [] });
+                angular.forEach(value.photoList, function(value, key) {
+                    console.log(value);
+                    $scope.albumList[i].photoList.push({ 'id': value.P_Id, 'src': value.Url });
+                })
+                i++;
+            });
+            $scope.isDetailActive = true;
+            $scope.detail3Active = true;
+            $scope.isAlbumListShow = true;
+            $scope.isPhotoListShow = false;
+        });
     };
+
+    $scope.showPhotoList = function(album) {
+        $scope.photo = { 'title': album.name, list: [] };
+        $scope.photo.list = album.photoList;
+        $scope.isPhotoListShow = true;
+        $scope.isAlbumListShow = false;
+    };
+    $scope.showAlbumList = function() {
+        $scope.isAlbumListShow = true;
+        $scope.isPhotoListShow = false;
+    };
+    $scope.showPhoto = function(photo) {
+        $scope.detailPhoto = photo;
+        $scope.isPhotoClick = true;
+        $timeout(function() {
+            $scope.isPhotoShow = true;
+        }, 250);
+    }
+    $scope.backPhotoList = function() {
+        $scope.isPhotoShow = false;
+        $timeout(function() {
+            $scope.isPhotoClick = false;
+        }, 250);
+    };
+    // 最新消息
     $scope.showDetail4 = function(news) {
         $scope.detailTitle = news.title;
         $scope.detailContent = $sce.trustAsHtml(news.content.replace(new RegExp('\r?\n', 'g'), '<br />'));
@@ -48,12 +100,28 @@ app.controller('blockController', ['$scope', '$sce', '$http', '$timeout', '$inte
         $scope.detail5Active = true;
         $scope.isDetailActive = true;
     };
+    // 肌友交流
     $scope.showDetail6 = function() {
-        $scope.messageTitle = '肌友交流';
-        $scope.messageContent = $sce.trustAsHtml("請點選列表中的肌友交流標題");
+        var messageApi = 'http://163.17.136.197:8080/EMG/Api/MessageApi/getAll';
+        $http.get(messageApi).then(function(response){
+            console.log(response)
+        });
+        $scope.message = { 'placeholder': $sce.trustAsHtml('請點選列表中的肌友交流標題') };
         $scope.detail6Active = true;
         $scope.isDetailActive = true;
-    }
+    };
+    $scope.showMessage = function(message) {
+        $scope.isMessageShow = true;
+        $scope.message = angular.copy(message);
+        $scope.message.content = $sce.trustAsHtml(message.content.replace(new RegExp('\r?\rn', 'g'), '<br />'));
+        $scope.replyList = [{ 'title': '回覆標題', 'content': '回覆內文\n', 'author': '使用者', 'photo': 'images/profile.jpg', 'time': '2016/04/23 上午08:42:13' },
+            { 'title': '回覆標題', 'content': '回覆內文\n', 'author': '使用者', 'photo': 'images/profile.jpg', 'time': '2016/04/23 上午08:42:13' },
+            { 'title': '回覆標題', 'content': '回覆內文\n', 'author': '使用者', 'photo': 'images/profile.jpg', 'time': '2016/04/23 上午08:42:13' }
+        ]
+        angular.forEach($scope.replyList, function(value, key) {
+            $scope.replyList[key].content = $sce.valueOf($sce.trustAsHtml(value.content.replace(new RegExp('\r?\n', 'g'), '<br />')));
+        });
+    };
     $scope.showNews = function(news) {
         $scope.detailTitle = news.title;
         $scope.detailContent = $sce.trustAsHtml(news.content.replace(new RegExp('\r?\n', 'g'), '<br />'));
@@ -67,25 +135,8 @@ app.controller('blockController', ['$scope', '$sce', '$http', '$timeout', '$inte
         $scope.editContent = '';
         $scope.editHolder = '請輸入消息內文';
     };
-    $scope.showMessage = function(message) {
-        $scope.messageTitle = message.title;
-        $scope.messageContent = $sce.trustAsHtml(message.content.replace(new RegExp('\r?\n', 'g'), '<br />'));
-        $scope.messageAuthor = message.author;
-        $scope.messageTime = message.time;
-        $scope.replyList = [{ 'title': '回覆標題', 'content': '回覆內文\n', 'author': '使用者', 'time': '2016/04/23 上午08:42:13' },
-            { 'title': '回覆標題', 'content': '回覆內文\n', 'author': '使用者', 'time': '2016/04/23 上午08:42:13' },
-            { 'title': '回覆標題', 'content': '回覆內文\n', 'author': '使用者', 'time': '2016/04/23 上午08:42:13' }
-        ];
-        angular.forEach($scope.replyList, function(value, key) {
-            $scope.replyList[key].content = $sce.valueOf($sce.trustAsHtml(value.content.replace(new RegExp('\r?\n', 'g'), '<br />')));
-        });
-    };
-    $scope.createMessage = function() {
-            $scope.isCreateMessage = true;
-            $
-        }
-        // 取得問卷資料
-        // categories 放運動項目 series name放健身部位 data放各個部位的值
+    // 取得問卷資料
+    // categories 放運動項目 series name放健身部位 data放各個部位的值
     var questList = [];
     var femaleCount = 0;
     var maleCount = 0;
@@ -283,12 +334,14 @@ app.controller('blockController', ['$scope', '$sce', '$http', '$timeout', '$inte
         });
     };
     $scope.loginTest = function() {
-            $scope.loginLoading = true;
-            $timeout(function() {
-                $scope.loginLoading = false;
-            }, 1000);
-        }
-        // 註冊
+        $scope.loginUser = { 'account': 's1410131021', 'name': '林明禎', 'photo': 'images/T52.jpg' }
+        $scope.isLogin = true;
+    };
+    $scope.logout = function() {
+        $scope.loginUser = {};
+        $scope.isLogin = false;
+    };
+    // 註冊
     $scope.form = {};
     $scope.register = function() {
         $scope.registerUser = {
@@ -483,29 +536,21 @@ app.controller('blockController', ['$scope', '$sce', '$http', '$timeout', '$inte
         'request': ''
     };
     $scope.regsiterSubmit = function(event) {
-            event.preventDefault();
-            angular.forEach($scope.otherValue, function(value, key) {
-                    if (value != '') {
-                        $scope.registerHabit[key] = value;
-                    }
-                })
-                // if ($scope.form.habitForm.$invalid) {
-                //     alert('請確實填寫問卷問項');
-                //     return false;
-                // }
-            var data = [];
-            data.push($scope.registerUser);
-            data.push($scope.registerHabit);
-            console.log(data);
-        }
-        // 登入後
-        //最新消息
-    $scope.newsList = [{ 'id': '1', 'title': '健身與精神疾病小知識', 'content': '患有精神分裂症（schizophrenia）的患者通常會被要求服用抗精神病藥物（antipsuchotics）以緩和病情，但抗精神病藥物通常只能改善精神的狀況，像是妄想與幻覺等，卻不能改善其它大腦的症狀，讓許多醫生相當困擾。而根據最新的研究顯示，若患者搭配健身的話，將能更加改善精神分裂症的症狀。\n\n精神分裂症，又稱為思覺失調症，患有此病的人有著相當多的病徵，其中大家最了解的徵狀就是出現幻覺與幻想。然而，其他像是影響記憶力、處理接收資訊的速度、注意力、解決問題的技巧等病徵雖看似不起眼，影響程度卻比出現幻覺還來的深遠。加州大學洛杉磯分校神經科學與人類行為研究所的 Keith Nuechterlein 教授表示，這些不起眼的病徵，都是導致他們患有殘疾與遭社會孤立的原因。\n\n世界上大約 1% 的人口深受精神分裂之苦，除了服用抗精神病藥物外，有的專家也會使用電腦遊戲來治療精神分裂症，大約能改善病患在記憶、思考能力、與社會認知中，四分之一到三分之一的病徵。但 Nuechterlein 教授的團隊發現，若在這個療程中搭配有氧運動的話，將可以大大改善精神病患者的症狀。\n在第一項進行大約 10 周的研究中，Nuechterlein 的團隊對 16 名患有早期精神分裂症的青壯年進行實驗，其中 9 名在這幾周中分別進行神經認知以及社會認知訓練的電腦程式操作，而剩下的 7 名除了進行相同的訓練外，更加上了每周 150 分鐘的有氧運動，看看其成果是否會有所不同。10 周過後，研究團隊發現，有搭配有氧運動的認知表現有著兩倍左右的差距，相當的驚人。\n\n而在第二項進行六個月的實驗中，共有 32 個患有早期精神分裂的患者參與實驗，其中一半的實驗者除了每周進行 4 小時的電腦遊戲訓練外，也搭配定期的有氧運動。六個月過後，研究學者更發現，有在運動的實驗者比沒運動的實驗者的症狀改善程度還好上三倍，顯示定期運動的時間若拉長，將會對患者有著更好的效果。\n\n然而，為什麼運動會有著這樣的成果呢？研究學者表示，這是因為在有氧運動的過程中，大腦會釋放出一種叫做腦源性神經營養生長因子（BDNF）的蛋白質，BDNF 能夠刺激在大腦中的學習與長期記憶中心—海馬迴，讓它能生長出新的神經，並且增加神經之間的連結，除了一般人以外，對於患有精神病的患者來說，更是能增長他們的記憶力以及學習力。\n\n團隊成員之一的心理學家研究助理 Sarah McEwen 表示，在第二項實驗裡，有運動的患者腦部裡的 BDNF 含量增加了 35%，其中過半的 BDNF 是在實驗剛進行的前兩個禮拜就已增加。此外，他們也測量了其他沒有運動的人大腦中的 BDNF 含量，在這六個月的過程中，則是一點也沒有增加。而研究學者也表示，這項研究對於患有早期精神分裂的人來說是較有效的，因為他們的病情比較具有長期的改善。\n\nNuechterlein 最後表示，他們做此研究希望的是，能夠避免慢性殘疾在精神分裂患者中出現，並且讓他們盡可能的在社會上繼續生活，有著規律的上學生活或者是正常的朋友關係。他們也認為，在未來，服用抗精神病藥物和電腦遊戲訓練只是基本能緩和精神病病徵的治療方式，搭配有氧運動的療程才能使患者更能讓患者大幅改善。' },
-        { 'id': '1', 'title': '健身消息標題', 'content': '健身消息內文' }, { 'id': '1', 'title': '健身消息標題', 'content': '健身消息內文' },
-        { 'id': '1', 'title': '健身消息標題', 'content': '健身消息內文' }, { 'id': '1', 'title': '健身消息標題', 'content': '健身消息內文' }, { 'id': '1', 'title': '健身消息標題', 'content': '健身消息內文' }, { 'id': '1', 'title': '健身消息標題', 'content': '健身消息內文' },
-        { 'id': '1', 'title': '健身消息標題', 'content': '健身消息內文' }, { 'id': '1', 'title': '健身消息標題', 'content': '健身消息內文' }, { 'id': '1', 'title': '健身消息標題', 'content': '健身消息內文' }, { 'id': '1', 'title': '健身消息標題', 'content': '健身消息內文' },
-        { 'id': '1', 'title': '健身消息標題', 'content': '健身消息內文' }, { 'id': '1', 'title': '健身消息標題', 'content': '健身消息內文' }, { 'id': '1', 'title': '健身消息標題', 'content': '健身消息內文' }, { 'id': '1', 'title': '健身消息標題', 'content': '健身消息內文' }
-    ];
+        event.preventDefault();
+        angular.forEach($scope.otherValue, function(value, key) {
+                if (value != '') {
+                    $scope.registerHabit[key] = value;
+                }
+            })
+            // if ($scope.form.habitForm.$invalid) {
+            //     alert('請確實填寫問卷問項');
+            //     return false;
+            // }
+        var data = [];
+        data.push($scope.registerUser);
+        data.push($scope.registerHabit);
+        console.log(data);
+    };
     // 名人榜
     var fameList = [{ 'title': '第一名', 'thumb': 'images/profile.jpg', 'name': '姜琇森', 'slide': 'active', opacity: 'opacity' },
         { 'title': '第二名', 'thumb': 'images/profile.jpg', 'name': '王麒瑞', 'slide': 'right', opacity: 'opacity' },
@@ -556,46 +601,6 @@ app.controller('blockController', ['$scope', '$sce', '$http', '$timeout', '$inte
             fameCount = 0;
         }
     }, 2000);
-    // 訓練成果相片
-    $scope.isAlbumListShow = true;
-    $scope.isPhotoListShow = false;
-    $scope.photoTitle = '';
-    $scope.albumList = [{ 'title': '第一名', 'thumb': 'images/T51.jpg' },
-        { 'title': '第二名', 'thumb': 'images/T51.jpg' }, { 'title': '第三名', 'thumb': 'images/T51.jpg' },
-        { 'title': '第四名', 'thumb': 'images/T51.jpg' }, { 'title': '第五名', 'thumb': 'images/T51.jpg' }
-    ];
-    $scope.showPhotoList = function(title) {
-        $scope.photoTitle = title;
-        $scope.photoList = [{ 'src': 'images/T51.jpg' }, { 'src': 'images/T51.jpg' }, { 'src': 'images/T51.jpg' },
-            { 'src': 'images/T51.jpg' }, { 'src': 'images/T51.jpg' }, { 'src': 'images/T51.jpg' }, { 'src': 'images/T51.jpg' },
-            { 'src': 'images/T51.jpg' }, { 'src': 'images/T51.jpg' }, { 'src': 'images/T51.jpg' }, { 'src': 'images/T51.jpg' }
-        ]
-        $scope.isPhotoListShow = true;
-        $scope.isAlbumListShow = false;
-    };
-    $scope.showAlbumList = function() {
-        $scope.isAlbumListShow = true;
-        $scope.isPhotoListShow = false;
-    };
-    $scope.showPhoto = function(photo) {
-        $scope.detailPhoto = photo;
-        $scope.isPhotoClick = true;
-        $timeout(function() {
-            $scope.isPhotoShow = true;
-        }, 250);
-    }
-    $scope.backPhotoList = function() {
-        $scope.isPhotoShow = false;
-        $timeout(function() {
-            $scope.isPhotoClick = false;
-        }, 250);
-    };
-    // 肌友交流
-    $scope.messageList = [{ 'title': '肌友交流標題', 'content': '肌友交流內文', 'author': '使用者', 'time': '2016/04/23 上午06:42:23' },
-        { 'title': '肌友交流標題', 'content': '肌友交流內文', 'author': '使用者', 'time': '2016/04/23 上午06:42:23' },
-        { 'title': '肌友交流標題', 'content': '肌友交流內文', 'author': '使用者', 'time': '2016/04/23 上午06:42:23' },
-        { 'title': '肌友交流標題', 'content': '肌友交流內文', 'author': '使用者', 'time': '2016/04/23 上午06:42:23' }
-    ];
     // 推薦課程 接入api
     var popularCourse = {
         title: '熱門課程',

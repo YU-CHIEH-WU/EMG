@@ -57,6 +57,7 @@ app.controller('blockController', ['$scope', '$http', '$timeout', '$location', '
         $scope.deatil3Options = { 'title': '', 'src': '' };
         $scope.detail4Active = false;
         $scope.detail4Options = { 'title': '', 'startDay': '' };
+        $scope.detail5Active = false;
         // 以動畫差隱藏首頁block
         $scope.isOntop = false;
         this.prevType = '';
@@ -333,17 +334,18 @@ app.controller('blockController', ['$scope', '$http', '$timeout', '$location', '
             $scope.detail2Active = false;
             $scope.detail3Active = false;
             $scope.detail4Active = false;
+            $scope.detail5Active = false;
             $scope.isOntop = false;
             $timeout(function() { $scope.isDetailActive = false }, 50);
         };
 
         // 會員
-        $scope.userName = '使用者';
-        $scope.userPhoto = 'images/profile.jpg';
         // 延遲載入使用者帳號並取得使用者資料 
         $timeout(function() {
             console.log($scope.userAccount);
-            // TODO:API取得使用者資料
+            // 接Api 用帳號取得會員資料 帳號用$scope.userAccount 回傳資料放$scope.loginUser
+            // 修改個人資料 姓名 大頭貼 密碼 身高體重體脂基礎代謝率病歷
+            $scope.loginUser = { 'account': $scope.userAccount, 'name': '林明禎', 'photo': 'images/T52.jpg' };
         }, 10);
         // 登入後使用者個人資料
         var status = getChartOption('status');

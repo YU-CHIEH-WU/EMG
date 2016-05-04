@@ -25,10 +25,10 @@
                             <div class="block-user">
                                 <div class="block-user-info">
                                     <div class="block-user-photo">
-                                        <img class="user-photo" ng-src="{{userPhoto}}">
+                                        <img class="user-photo" ng-src="{{loginUser.photo}}">
                                     </div>
                                     <div class="block-user-name">
-                                        <p class="user-name">{{userName}}</p>
+                                        <p class="user-name">{{loginUser.name}}</p>
                                     </div>
                                     <div class="block-user-edit">
                                         <p class="user-edit">修改個人資料</p>
@@ -271,6 +271,7 @@
             </div>
             <!-- 詳細block -->
             <div class="block-detail-outer" ng-class="{active:isDetailActive}" ng-click="showIndex()"></div>
+            <!-- 詳細block1 -->
             <div class="block-detail" id="block-detail-1" ng-class="{active:detail1Active}">
                 <div class="prev"></div>
                 <div class="next"></div>
@@ -284,6 +285,7 @@
                     <div id="detail1-right-chart"></div>
                 </div>
             </div>
+            <!-- 詳細block2 -->
             <div class="block-detail" id="block-detail-2" ng-class="{active:detail2Active}">
                 <div class="prev"></div>
                 <div class="next"></div>
@@ -297,6 +299,7 @@
                     <div id="detail2-bottomright-chart"></div>
                 </div>
             </div>
+            <!-- 詳細block3 -->
             <div class="block-detail" id="block-detail-3" ng-class="{active:detail3Active}">
                 <div class="prev"></div>
                 <div class="next"></div>
@@ -306,6 +309,7 @@
                     <iframe ng-src="{{detail3Options.src}}" frameborder="0" id="detail3-main-iframe"></iframe>
                 </div>
             </div>
+            <!-- 詳細block4 -->
             <div class="block-detail" id="block-detail-4" ng-class="{active:detail4Active}">
                 <div class="block-header"><span class="title">{{detail4Options.title}}</span><span class="back" ng-click="showIndex()"><i class="fa fa-times icon-back"></i></span></div>
                 <div class="block-body">
@@ -337,6 +341,43 @@
                     </div>
                 </div>
             </div>
+            <!-- 詳細block5 -->
+            <div class="block-detail" id="block-detail-5" ng-class="{active:detail5Active}">
+                <div class="prev"></div>
+                <div class="next"></div>
+                <div class="block-header">
+                    <input type="text" class="input-title" placeholder="新增最新消息標題" ng-model="editTitle">
+                    <span class="back" ng-click="showIndex()"><i class="fa fa-times icon-back"></i></span></div>
+                <div class="block-body">
+                    <div class="detail-edit">
+                        <div class="scroller edit-scroller text-center">
+                            <textarea type="text" class="form-control" id="edit-area" placeholder="{{editHolder}}" ng-model="editContent"></textarea>
+                            <button class="btn btn-danger btn-lg btn-gap">刪除</button>
+                            <button class="btn btn-flat btn-lg">修改</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="detail-bar" ng-class="{active:detail5Active}">
+                <div class="bar-create">
+                    <span ng-click="createNews()"><i class="fa fa-plus fa-lg"></i></span>
+                </div>
+                <div class="bar-search">
+                    <i class="fa fa-search inline-search"></i>
+                    <input type="text" class="input-search" ng-model="search.title">
+                </div>
+            </div>
+            <div class="detail-list" ng-class="{active:detail5Active}">
+                <div class="block-header">最新消息列表</div>
+                <div class="block-body">
+                    <div class="scroller title-scroller">
+                        <div class="block-title-list" ng-click="editNews(news)" ng-repeat="news in newsList | filter:search">
+                            <div class="block-title-edit">{{news.title}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
         </div>
     </div>
     <script src="javascripts/jquery-2.2.1.min.js"></script>
