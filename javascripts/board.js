@@ -45,8 +45,9 @@ $(function() {
     });
 })
 var app = angular.module('mainApp', ['mainApp']);
-app.controller('blockController', ['$scope', '$http', '$timeout', '$location', '$anchorScroll',
-    function($scope, $http, $timeout, $location, $anchorScroll) {
+app.controller('blockController', ['$scope', '$sce', '$http', '$timeout', '$location', '$anchorScroll',
+    function($scope, $sce, $http, $timeout, $location, $anchorScroll) {
+        var apiUrl = 'http://163.17.136.197:8080/EMG/Api/';
         // 首頁
         // true時隱藏首頁block
         $scope.isDetailActive = false;
@@ -58,6 +59,7 @@ app.controller('blockController', ['$scope', '$http', '$timeout', '$location', '
         $scope.detail4Active = false;
         $scope.detail4Options = { 'title': '', 'startDay': '' };
         $scope.detail5Active = false;
+        $scope.detail6Active = false;
         // 以動畫差隱藏首頁block
         $scope.isOntop = false;
         this.prevType = '';
@@ -90,70 +92,51 @@ app.controller('blockController', ['$scope', '$http', '$timeout', '$location', '
             $scope.isDetailActive = true;
         };
         // 切換公斤與百分比圖表
-        $scope.switchType = function(type) {
-                if (type != this.prevType) {
-                    if (type == 'kg') {
-                        var chart1 = $scope.detail1Options.chart1;
-                        var chart2 = $scope.detail1Options.chart2;
-                        var chart3 = $scope.detail1Options.chart3;
-                        if (chart1 == '1rmGrow') {
-                            chart1 = '1rm';
-                        }
-                        if (chart1 == '15rmGrow') {
-                            chart1 = '15rm';
-                        }
-                        if (chart2 == '1rmGrow') {
-                            chart2 = '1rm';
-                        }
-                        if (chart2 == '15rmGrow') {
-                            chart2 = '15rm';
-                        }
-                        if (chart3 == '1rmGrow') {
-                            chart3 = '1rm';
-                        }
-                        if (chart3 == '15rmGrow') {
-                            chart3 = '15rm';
-                        }
-                    }
-                    if (type == 'precent') {
-                        if (chart1 == '1rm') {
-                            chart1 = '1rmGrow';
-                        }
-                        if (chart1 == '15rm') {
-                            chart1 = '15rmGrow';
-                        }
-                        if (chart2 == '1rm') {
-                            chart2 = '1rmGrow';
-                        }
-                        if (chart2 == '15rm') {
-                            chart2 = '15rmGrow';
-                        }
-                        if (chart3 == '1rm') {
-                            chart3 = '1rmGrow';
-                        }
-                        if (chart3 == '15rm') {
-                            chart3 = '15rmGrow';
-                        }
-                    }
-                    setChart(chart1, 'detail1-main-chart');
-                    setChart(chart2, 'detail1-left-chart');
-                    setChart(chart3, 'detail1-right-chart');
-                }
-
-            }
-            // 顯示detail3Block
-        $scope.showDetail3 = function(setting) {
-            var title = '';
-            var src = '';
-            if (setting == 'cog') {
-                title = 'TEST';
-                src = 'test.html';
-            };
-            $scope.detail3Options.title = title;
-            $scope.detail3Options.src = src;
-            $scope.detail3Active = true;
-            $scope.isDetailActive = true;
+        $scope.switchType = function(type) {};
+        // 顯示detail3Block
+        $scope.showDetail3 = function() {
+            var photoApi = apiUrl + 'AlbumApi/GetPersonPhoto';
+            $http.post(photoApi, { 'account': $scope.loginUser.account }).then(function(response) {
+                $scope.photoList = [];
+                angular.forEach(response.data, function(value, key) {
+                    $scope.photoList.push(value);
+                })
+                $scope.detail3Active = true;
+                $scope.isDetailActive = true;
+                $scope.isphotoUpload = false;
+            })
         };
+        $scope.showPhoto = function(photo) {
+            $scope.detailPhoto = photo;
+            $scope.isPhotoClick = true;
+            $timeout(function() {
+                $scope.isPhotoShow = true;
+            }, 250);
+        }
+        $scope.backPhotoList = function() {
+            $scope.isPhotoShow = false;
+            $timeout(function() {
+                $scope.isPhotoClick = false;
+            }, 250);
+        };
+        $scope.uploadPhoto = function() {
+            $scope.isphotoUpload = true;
+            var uploadPhotoApi = apiUrl + 'AlbumApi/UploadPhoto';
+            var data = document.getElementById('photo-upload').files[0];
+            $http.post(uploadPhotoApi,data).then(function(response){
+                $scope.showDetail3();
+            })
+
+        };
+        $scope.deletePhoto = function(photo) {
+            console.log(photo);
+            var deletePhotoApi = apiUrl + 'AlbumApi/DeletePhoto';
+            var data = { 'account': $scope.loginUser.account, 'p_Id': photo.P_Id };
+            console.log(data);
+            $http.post(deletePhotoApi, data).then(function(response) {
+                $scope.showDetail3();
+            })
+        }
         $scope.showDetail4 = function(nowDate) {
             var title = '課程行事曆';
             var date = new Date(nowDate);
@@ -259,6 +242,14 @@ app.controller('blockController', ['$scope', '$http', '$timeout', '$location', '
             $scope.detail4Active = true;
             $scope.isDetailActive = true;
         };
+        $scope.showDetail5 = function() {
+            $scope.isDetailActive = true;
+            $scope.detail5Active = true;
+        }
+        $scope.showDetail6 = function() {
+            $scope.detail6Active = true;
+            $scope.isDetailActive = true;
+        }
         $scope.showCalendarPosture = function(day, posture, complete) {
             angular.forEach($scope.calendar, function(value, key) {
                 if (value.day1Thumb == 'images/gym-c.png') {
@@ -309,12 +300,11 @@ app.controller('blockController', ['$scope', '$http', '$timeout', '$location', '
         $scope.isPostureListShow = true;
         $scope.isPostureDetailShow = false;
         $scope.showPosture = function(pos) {
-            var posDataApi = 'http://163.17.136.197/EMG/api/PostureApi/getPosData';
+            var posDataApi = apiUrl + 'PostureApi/getPosData';
             $scope.postureName = pos;
-            $http.post(posDataApi, pos, function(data) {
-                console.log(data);
-            })
-            $scope.postureSrc = 'https://www.youtube.com/embed/vGbPbo0VH14';
+            $http.post(posDataApi, pos).then(function(response) {
+                console.log(response.data);
+            });
             $scope.isPostureDetailShow = true;
             $scope.isPostureListShow = false;
         };
@@ -335,6 +325,7 @@ app.controller('blockController', ['$scope', '$http', '$timeout', '$location', '
             $scope.detail3Active = false;
             $scope.detail4Active = false;
             $scope.detail5Active = false;
+            $scope.detail6Active = false;
             $scope.isOntop = false;
             $timeout(function() { $scope.isDetailActive = false }, 50);
         };
@@ -344,8 +335,17 @@ app.controller('blockController', ['$scope', '$http', '$timeout', '$location', '
         $timeout(function() {
             console.log($scope.userAccount);
             // 接Api 用帳號取得會員資料 帳號用$scope.userAccount 回傳資料放$scope.loginUser
-            // 修改個人資料 姓名 大頭貼 密碼 身高體重體脂基礎代謝率病歷
-            $scope.loginUser = { 'account': $scope.userAccount, 'name': '林明禎', 'photo': 'images/T52.jpg' };
+            // 修改個人資料 姓名 大頭貼 密碼 身高 體重 體脂 基礎代謝率 病歷
+            $scope.loginUser = {
+                'account': $scope.userAccount,
+                'name': '林明禎',
+                'photo': 'images/T52.jpg',
+                'height': 160,
+                'weight': 49,
+                'bodyfat': 21,
+                'bmr': 1295.9,
+                'disease': ''
+            };
         }, 10);
         // 登入後使用者個人資料
         var status = getChartOption('status');
@@ -356,6 +356,8 @@ app.controller('blockController', ['$scope', '$http', '$timeout', '$location', '
         setChart('block-bodyfat-thumb', bodyfatThumb);
         setChart('block-training-thumb', training);
         setChart('block-grow-thumb', grow);
+        // 修改個人資料
+        $scope.form = {};
         // 行事曆控制項與預設
         $scope.courseData = [{
             'thumb': 'images/dumbbell.png',
@@ -795,7 +797,10 @@ app.controller('blockController', ['$scope', '$http', '$timeout', '$location', '
         };
         // 顯示姿勢詳細教學
         $scope.showPostureDetail = function(pos) {
-            var posDataApi = 'http://163.17.136.197/EMG/api/PostureApi/getPosData';
+            var posDataApi = apiUrl + 'CourseApi/getPosData';
+            $http.get(posDataApi, pos).then(function(response) {
+                console.log(response.data);
+            })
             $scope.postureName = pos;
             $scope.postureSrc = 'https://www.youtube.com/embed/vGbPbo0VH14';
             $scope.courseStatus['posture'] = 'active';
@@ -884,3 +889,21 @@ app.directive('whenTransitionEnd', [
         };
     }
 ]);
+app.directive("fileread", [function() {
+    return {
+        scope: {
+            fileread: "="
+        },
+        link: function(scope, element, attributes) {
+            element.bind("change", function(changeEvent) {
+                var reader = new FileReader();
+                reader.onload = function(loadEvent) {
+                    scope.$apply(function() {
+                        scope.fileread = loadEvent.target.result;
+                    });
+                }
+                reader.readAsDataURL(changeEvent.target.files[0]);
+            });
+        }
+    }
+}]);

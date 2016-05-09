@@ -54,6 +54,11 @@ body {
     background: $backgroundColor;
 }
 
+img {
+    width: 100%;
+    height: 100%;
+}
+
 div,
 p,
 a,
@@ -158,6 +163,29 @@ span {
 .slide {
     overflow: hidden;
     position: relative;
+}
+
+.fileUpload {
+    position: relative;
+    overflow: hidden;
+    height: 20%;
+    width: 55%;
+    float: left;
+    margin-right: 5%;
+}
+
+.fileUpload input.upload {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+    cursor: pointer;
+    opacity: 0;
+    filter: alpha(opacity=0);
 }
 
 
@@ -347,6 +375,11 @@ span {
     float: left;
 }
 
+.user-edit {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
 .block-user-group {
     width: 100%;
     height: 50px;
@@ -362,6 +395,156 @@ span {
     text-decoration: underline;
     @include border-radius(1.5%);
     cursor: pointer;
+}
+
+.userEdit-editAll {
+    width: 80%;
+    left: 10%;
+    top: 0;
+    text-align: center;
+    position: relative;
+    @include transition(all,
+    0.3s,
+    ease-in);
+    &.active {
+        left: 10%;
+    }
+    section {
+        margin: 6px;
+        margin-bottom: 12px;
+    }
+    .form-control {
+        width: 60%;
+        margin: 5px;
+    }
+    .form-group {
+        margin-top: 4px;
+    }
+    .control-label {
+        line-height: 28px;
+        padding-left: 0;
+        padding-right: 0;
+        text-align: right;
+        margin-right: 12px;
+    }
+    .form-valid {
+        height: 16px;
+        color: red;
+    }
+}
+.info-photo-upload{
+    width:30%;
+    margin:0 auto;
+    margin-top: 16px;
+    margin-bottom: 16px;
+    position: relative;
+}
+.info-name{
+    width:50%;
+    left:30%;
+    position: relative;
+}
+.block-userEdit-profile {
+    margin-top: 12px;
+}
+
+#input-profile {
+    margin-left: 35%;
+}
+
+.userEdit-fixright {
+    padding-right: 10%;
+}
+
+.userEdit-left,
+.userEdit-right {
+    width: 50%;
+    float: left;
+}
+
+.detail-photo-list {
+    width: 100%;
+    height: 100%;
+    left: 100%;
+    position: absolute;
+    @include transition(all,
+    0.3s,
+    ease-in);
+    &.active {
+        left: 0;
+    }
+}
+
+.photo-back {
+    top: 6px;
+    left: 15px;
+    position: absolute;
+}
+
+.photo-title {
+    top: 15px;
+    left: 47.5%;
+    font-size: 20px;
+    position: absolute;
+}
+
+.photo-list {
+    margin-top: 5%;
+}
+
+.photo-outer {
+    width: 20%;
+    height: 208px;
+    float: left;
+    position: relative;
+    margin-top: 1%;
+}
+
+.photo-outer:first-child:nth-last-child(5),
+.photo-outer:first-child:nth-last-child(5) ~ .photo-outer {
+    margin-top: 7.5%;
+}
+
+.photo-inner {
+    height: calc(100% - 30px);
+    margin: 15px;
+    cursor: pointer;
+}
+
+.photo-detail {
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    position: fixed;
+    text-align: center;
+    display: table-cell;
+    vertical-align: middle;
+    opacity: 0;
+    @include transition(all,
+    0.3s,
+    ease-in);
+    &.active {
+        opacity: 1;
+    }
+}
+
+.detail-image {
+    width: 80%;
+    height: 90%;
+    left: 10%;
+    top: 5%;
+    position: absolute;
+}
+
+.photo-preview {
+    height: 70%;
+    margin-bottom: 12px;
+}
+
+.upload-confirm {
+    width: 40%;
+    float: left;
 }
 
 .block-user-count {

@@ -25,9 +25,9 @@
                             <!-- 未登入 -->
                             <div style="height: 62px;"><img src="images/LOGO.png"></div>
                             <div class="block-login-input form-group text-center" ng-if="!isLogin">
-                                <input type="text" id="input-account" class="form-control" placeholder="Account" ng-model="loginAccount" ng-disabled="loginLoading">
-                                <input type="password" id="input-password" class="form-control" placeholder="Password" ng-model="loginPassword" ng-disabled="loginLoading">
-                                <button type="button" class="btn btn-normal" id="btn-login" ng-class="{active:loginLoading}" ng-click="loginTest()" ng-disabled="loginLoading">{{loginMessage}}</button>
+                                <input type="text" id="input-account" class="form-control" placeholder="Account" ng-model="login.account" ng-disabled="loginLoading">
+                                <input type="password" id="input-password" class="form-control" placeholder="Password" ng-model="login.password" ng-disabled="loginLoading">
+                                <button type="button" class="btn btn-normal" id="btn-login" ng-class="{active:loginLoading}" ng-click="login()" ng-disabled="loginLoading">{{loginMessage}}</button>
                             </div>
                             <div class="block-register-input text-center" ng-if="!isLogin">
                                 <button type="button" class="btn btn-normal" id="btn-register" ng-click="register()" ng-disabled="loginLoading">還沒有帳號嗎？點我註冊</button>
@@ -800,7 +800,7 @@
                         <div class="detail-album-outer" ng-repeat="album in albumList">
                             <div class="detail-album-inner" ng-click="showPhotoList(album)">
                                 <div class="album-title">{{album.name}}</div>
-                                <div class="album-thumb"><img ng-src="{{album.photoList[0]}}"></div>
+                                <div class="album-thumb"><img ng-src="{{album.photoList[0].src}}"></div>
                             </div>
                         </div>
                     </div>

@@ -13,7 +13,7 @@
 <body ng-class="{unscroll:isDetailActive,unscroll:isCourseShow}">
     <div id="fb-root"></div>
     <!-- init放入使用者帳號 -->
-    <div class="container" ng-init="userAccount='123456'">
+    <div class="container" ng-init="userAccount='et599y'">
         <div class="row">
             <!-- 主頁面 -->
             <div class="block-container" ng-class="{gotop:isDetailActive,ontop:isOntop,filter:isCourseShow}" when-transition-end="setOntop()">
@@ -31,12 +31,12 @@
                                         <p class="user-name">{{loginUser.name}}</p>
                                     </div>
                                     <div class="block-user-edit">
-                                        <p class="user-edit">修改個人資料</p>
+                                        <p class="user-edit" ng-click="showDetail6()">修改個人資料</p>
                                     </div>
                                 </div>
                                 <div class="block-user-group">
-                                    <div class="block-user-album">個人相簿</div>
-                                    <div class="block-user-message">肌友交流</div>
+                                    <div class="block-user-album" ng-click="showDetail3()">個人相簿</div>
+                                    <div class="block-user-message" ng-click="showDetail5()">肌友交流</div>
                                 </div>
                                 <div class="block-user-index">
                                     <button type="button" class="btn btn-flat" id="btn-index">返回總覽首頁</button>
@@ -261,7 +261,7 @@
                             {{postureName}}
                         </div>
                         <div class="posture-video">
-                            <iframe class="posture-iframe" src="https://www.youtube.com/embed/paQczLIrDMI"></iframe>
+                            <iframe class="posture-iframe"></iframe>
                         </div>
                         <div class="posture-back">
                             <button class="btn btn-options" ng-click="backPreviewList()">返回課程預覽</button>
@@ -299,15 +299,40 @@
                     <div id="detail2-bottomright-chart"></div>
                 </div>
             </div>
-            <!-- 詳細block3 -->
+            <!-- 相簿 -->
             <div class="block-detail" id="block-detail-3" ng-class="{active:detail3Active}">
-                <div class="prev"></div>
-                <div class="next"></div>
-                <div class="block-header">
-                    <sapn class="title">{{detail3Options.title}}</sapn><span class="back" ng-click="showIndex()"><i class="fa fa-times icon-back"></i></span></div>
-                <div class="block-body">
-                    <iframe ng-src="{{detail3Options.src}}" frameborder="0" id="detail3-main-iframe"></iframe>
+                <div class="block-header"><span class="title">個人相簿</span><span class="back" ng-click="showIndex()"><i class="fa fa-times icon-back"></i></span></div>
+                <div class="block-body slide">
+                    <div class="detail-photo-list active">
+                        <div class="scroller">
+                            <div class="photo-list">
+                                <div class="photo-outer" ng-repeat="photo in photoList">
+                                    <div class="photo-inner">
+                                        <img ng-src="{{photo.Url}}" ng-click="showPhoto(photo)">
+                                        <button class="btn btn-danger" ng-click="deletePhoto(photo)">刪除照片</button>
+                                    </div>
+                                </div>
+                                <div class="photo-outer">
+                                    <div class="photo-inner">
+                                        <div class="photo-preview">
+                                            <img ng-src="{{photo.upload}}">
+                                        </div>
+                                        <div class="fileUpload btn btn-warning">
+                                            <span>上傳</span>
+                                            <input type="file" id="photo-upload" class="upload" fileread="photo.upload" />
+                                        </div>
+                                        <div class="upload-confirm">
+                                            <button class="btn btn-success" style="width:100%" ng-click="uploadPhoto()">確定</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+            </div>
+            <div class="photo-detail" ng-click="backPhotoList()" ng-if="isPhotoClick" ng-class="{active:isPhotoShow}">
+                <img class="detail-image" ng-src="{{detailPhoto.Url}}">
             </div>
             <!-- 詳細block4 -->
             <div class="block-detail" id="block-detail-4" ng-class="{active:detail4Active}">
@@ -332,9 +357,9 @@
                                     </div>
                                 </div>
                                 <div class="posture-detail" ng-class="{active:isPostureDetailShow}">
-                                {{postureName}}
-                                <iframe class="posture-video" src="https://www.youtube.com/embed/paQczLIrDMI" frameborder="0" class="posture-video"></iframe>
-                                <button class="btn btn-flat btn-lg" ng-click="showPostureList()">返回</button>
+                                    {{postureName}}
+                                    <iframe class="posture-video" src="https://www.youtube.com/embed/paQczLIrDMI" frameborder="0" class="posture-video"></iframe>
+                                    <button class="btn btn-flat btn-lg" ng-click="showPostureList()">返回</button>
                                 </div>
                             </div>
                         </div>
@@ -346,7 +371,7 @@
                 <div class="prev"></div>
                 <div class="next"></div>
                 <div class="block-header">
-                    <input type="text" class="input-title" placeholder="新增最新消息標題" ng-model="editTitle">
+                    <input type="text" class="input-title" placeholder="新增肌友交流標題" ng-model="editTitle">
                     <span class="back" ng-click="showIndex()"><i class="fa fa-times icon-back"></i></span></div>
                 <div class="block-body">
                     <div class="detail-edit">
@@ -360,7 +385,7 @@
             </div>
             <div class="detail-bar" ng-class="{active:detail5Active}">
                 <div class="bar-create">
-                    <span ng-click="createNews()"><i class="fa fa-plus fa-lg"></i></span>
+                    <span ng-click="createMessage()"><i class="fa fa-plus fa-lg"></i></span>
                 </div>
                 <div class="bar-search">
                     <i class="fa fa-search inline-search"></i>
@@ -368,16 +393,104 @@
                 </div>
             </div>
             <div class="detail-list" ng-class="{active:detail5Active}">
-                <div class="block-header">最新消息列表</div>
+                <div class="block-header">肌友交流列表</div>
                 <div class="block-body">
                     <div class="scroller title-scroller">
-                        <div class="block-title-list" ng-click="editNews(news)" ng-repeat="news in newsList | filter:search">
+                        <div class="block-title-list" ng-click="editMessage(message)" ng-repeat="message in messageList | filter:search">
                             <div class="block-title-edit">{{news.title}}</div>
                         </div>
                     </div>
                 </div>
             </div>
-            
+            <!-- 修改個人資料 -->
+            <div class="block-detail" id="block-detail6" ng-class="{active:detail6Active}">
+                <div class="block-header">
+                    <span class="title">修改個人資料</span>
+                    <span class="back" ng-click="showIndex()"><i class="fa fa-times icon-back"></i></span></div>
+                <div class="block-body">
+                    <div class="userEdit-editAll">
+                        <section class="clearfix block-userEdit-info">
+                            <div class="info-photo-preview">
+                                <img id="output" style="width:126px; height:126px;" ng-src={{loginUser.photo}}>
+                            </div>
+                            <div class="info-photo-upload">
+                                <div class="fileUpload btn btn-warning">
+                                    <span>上傳</span>
+                                    <input type="file" class="upload" fileread="loginUser.photo" />
+                                </div>
+                                <div class="upload-confirm">
+                                    <button class="btn btn-success" style="width:100%" ng-click="uploadPhoto()">確定</button>
+                                </div>
+                            </div>
+                            <div class="info-name clearfix">
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">
+                                        姓名
+                                    </label>
+                                    <input type="text" class="form-control" ng-model="loginUser.name" name="name">
+                                </div>
+                            </div>
+                            <div class="info-password"></div>
+                        </section>
+                        <section class="clearfix block-userEdit-status">
+                            <div class="userEdit-left">
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label">
+                                        身高
+                                    </label>
+                                    <input type="text" class="form-control" ng-model="loginUser.height" name="height">
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label">
+                                        體重
+                                    </label>
+                                    <input type="text" class="form-control" ng-model="loginUser.weight" name="weight">
+                                </div>
+                            </div>
+                            <div class="userEdit-right">
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label">
+                                        體脂
+                                    </label>
+                                    <input type="text" class="form-control" ng-model="loginUser.bodyfat" name="bodyfat">
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label">
+                                        基礎代謝率
+                                    </label>
+                                    <input type="text" class="form-control" ng-model="loginUser.bmr" name="bmr">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">
+                                    病歷
+                                </label>
+                                <input type="text" class="form-control" ng-model="loginUser.disease" name="disease">
+                            </div>
+                        </section>
+                    </div>
+                    <div class="userEdit-editPassword">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">
+                                舊密碼
+                            </label>
+                            <input type="text" class="form-control" ng-model="editPassword.oldPassword" name="disease">
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">
+                                新密碼
+                            </label>
+                            <input type="text" class="form-control" ng-model="editPassword.newPassword" name="disease">
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">
+                                密碼確認
+                            </label>
+                            <input type="text" class="form-control" ng-model="editPassword.passwordConfirm" name="disease">
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <script src="javascripts/jquery-2.2.1.min.js"></script>
