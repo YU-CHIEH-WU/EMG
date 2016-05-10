@@ -13,7 +13,7 @@
 <body ng-class="{unscroll:isDetailActive,unscroll:isCourseShow}">
     <div id="fb-root"></div>
     <!-- init放入使用者帳號 -->
-    <div class="container" ng-init="userAccount='et599y'">
+    <div class="container" ng-init="userAccount='s1410131021'">
         <div class="row">
             <!-- 主頁面 -->
             <div class="block-container" ng-class="{gotop:isDetailActive,ontop:isOntop,filter:isCourseShow}" when-transition-end="setOntop()">
@@ -47,15 +47,15 @@
                     </div>
                 </div>
                 <div class="col-md-3 col-xs-6 block-outer">
-                    <!-- 課程行事曆&完成率 -->
+                    <!-- 課程行事曆-->
                     <div class="block-inner block-inner-1" id="block-course">
                         <div class="block-header">課程行事曆</div>
                         <div class="block-body">
                             <div class="scroller" ng-show="isHaveCourse">
-                                <div class="block-course-list" ng-repeat="course in courseData" ng-click="showDetail4(course.time)">
+                                <div class="block-course-list" ng-repeat="course in courseList" ng-click="showDetail4(course.Date)">
                                     <div class="block-course-thumb"><img ng-src="{{course.thumb}}" class="course-thumb"></div>
-                                    <div class="block-course-title">{{course.title}}</div>
-                                    <div class="block-course-time">{{course.time}}{{course.weekday}}</div>
+                                    <div class="block-course-title">{{course.P_Name}}</div>
+                                    <div class="block-course-time">{{course.Date|date:'yyyy-MM-dd'}}{{course.weekday}}</div>
                                 </div>
                             </div>
                             <div class="block-course-start">
@@ -258,10 +258,10 @@
                     <!-- 動作詳細 -->
                     <div class="course-posture" ng-class="courseStatus['posture']">
                         <div class="course-title posture-title">
-                            {{postureName}}
+                            {{posture.name}}
                         </div>
                         <div class="posture-video">
-                            <iframe class="posture-iframe"></iframe>
+                            <iframe class="posture-iframe" ng-src="{{posture.src}}"></iframe>
                         </div>
                         <div class="posture-back">
                             <button class="btn btn-options" ng-click="backPreviewList()">返回課程預覽</button>
@@ -357,8 +357,8 @@
                                     </div>
                                 </div>
                                 <div class="posture-detail" ng-class="{active:isPostureDetailShow}">
-                                    {{postureName}}
-                                    <iframe class="posture-video" src="https://www.youtube.com/embed/paQczLIrDMI" frameborder="0" class="posture-video"></iframe>
+                                    {{posture.name}}
+                                    <iframe class="posture-video" ng-src="{{posture.src}}" frameborder="0" class="posture-video"></iframe>
                                     <button class="btn btn-flat btn-lg" ng-click="showPostureList()">返回</button>
                                 </div>
                             </div>

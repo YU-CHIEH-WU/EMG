@@ -123,7 +123,8 @@ app.controller('blockController', ['$scope', '$sce', '$http', '$timeout', '$loca
             $scope.isphotoUpload = true;
             var uploadPhotoApi = apiUrl + 'AlbumApi/UploadPhoto';
             var data = document.getElementById('photo-upload').files[0];
-            $http.post(uploadPhotoApi,data).then(function(response){
+            console.log(data);
+            $http.post(uploadPhotoApi, data).then(function(response) {
                 $scope.showDetail3();
             })
 
@@ -144,6 +145,9 @@ app.controller('blockController', ['$scope', '$sce', '$http', '$timeout', '$loca
             var first = new Date('2016-' + month + '-01');
             var newDay = new Date(first);
             var weekday = first.getDay();
+            if(weekday==0){
+                weekday=7;
+            }
             $scope.calendar = [{ 'weekday': 1, 'weekdayTW': '一', 'day1': '', 'day1Posture': [], day1Thumb: 'images/null.png', 'day1Complete': false, 'day2': '', 'day2Posture': [], 'day2Thumb': 'images/null.png', 'day2Complete': false, 'day3': '', 'day3Posture': [], day3Thumb: 'images/null.png', 'day3Complete': false, 'day4': '', 'day4Posture': [], day4Thumb: 'images/null.png', 'day4Complete': false, 'day5': '', 'day5Posture': [], day5Thumb: 'images/null.png', 'day5Complete': false },
                 { 'weekday': 2, 'weekdayTW': '二', 'day1': '', 'day1Posture': [], day1Thumb: 'images/null.png', 'day1Complete': false, 'day2': '', 'day2Posture': [], 'day2Thumb': 'images/null.png', 'day2Complete': false, 'day3': '', 'day3Posture': [], day3Thumb: 'images/null.png', 'day3Complete': false, 'day4': '', 'day4Posture': [], day4Thumb: 'images/null.png', 'day4Complete': false, 'day5': '', 'day5Posture': [], day5Thumb: 'images/null.png', 'day5Complete': false },
                 { 'weekday': 3, 'weekdayTW': '三', 'day1': '', 'day1Posture': [], day1Thumb: 'images/null.png', 'day1Complete': false, 'day2': '', 'day2Posture': [], 'day2Thumb': 'images/null.png', 'day2Complete': false, 'day3': '', 'day3Posture': [], day3Thumb: 'images/null.png', 'day3Complete': false, 'day4': '', 'day4Posture': [], day4Thumb: 'images/null.png', 'day4Complete': false, 'day5': '', 'day5Posture': [], day5Thumb: 'images/null.png', 'day5Complete': false },
@@ -184,22 +188,23 @@ app.controller('blockController', ['$scope', '$sce', '$http', '$timeout', '$loca
                     }
                 })
             }
-            angular.forEach($scope.courseData, function(value, key) {
+            angular.forEach($scope.courseList, function(value, key) {
                 var today = new Date().getTime();
-                var date = new Date($scope.courseData[key].time);
-                var posture = $scope.courseData[key].title;
-                var thumb = $scope.courseData[key].thumb;
+                var date = new Date($scope.courseList[key].Date);
+                var posture = $scope.courseList[key].P_Name;
+                var thumb = $scope.courseList[key].thumb;
                 angular.forEach($scope.calendar, function(value, key) {
                     var dateTime = date.getTime();
                     if (value.day1 != "") {
-                        var day1Time = value.day1.getTime();
+                        var day1Time = value.day1.getTime()+28800000;
                     }
-                    var day2Time = value.day2.getTime();
-                    var day3Time = value.day3.getTime();
-                    var day4Time = value.day4.getTime();
+                    var day2Time = value.day2.getTime()+28800000;
+                    var day3Time = value.day3.getTime()+28800000;
+                    var day4Time = value.day4.getTime()+28800000;
                     if (value.day5 != "") {
-                        var day5Time = value.day5.getTime();
+                        var day5Time = value.day5.getTime()+28800000;
                     }
+                    console.log(date,value.day3,dateTime,day3Time);
                     if (day1Time == dateTime) {
                         $scope.calendar[key].day1Posture.push({ 'thumb': thumb, 'posture': posture });
                         $scope.calendar[key].day1Thumb = 'images/gym.png';
@@ -229,6 +234,7 @@ app.controller('blockController', ['$scope', '$sce', '$http', '$timeout', '$loca
                         }
                     }
                     if (day5Time == dateTime) {
+                        console.log(posture);
                         $scope.calendar[key].day5Posture.push({ 'thumb': thumb, 'posture': posture });
                         $scope.calendar[key].day5Thumb = 'images/gym.png';
                         if (today > dateTime) {
@@ -284,7 +290,6 @@ app.controller('blockController', ['$scope', '$sce', '$http', '$timeout', '$loca
                 }
             })
             $scope.postureDate = day;
-            console.log(posture[0] == undefined);
             if (posture[0] == undefined) {
                 $scope.postureTitle = '本日沒有課程';
                 $scope.postureList = [];
@@ -300,10 +305,10 @@ app.controller('blockController', ['$scope', '$sce', '$http', '$timeout', '$loca
         $scope.isPostureListShow = true;
         $scope.isPostureDetailShow = false;
         $scope.showPosture = function(pos) {
-            var posDataApi = apiUrl + 'PostureApi/getPosData';
-            $scope.postureName = pos;
-            $http.post(posDataApi, pos).then(function(response) {
-                console.log(response.data);
+            var posDataApi = apiUrl + 'CourseApi/GetPosData';
+            var data = {'name':pos};
+            $http.post(posDataApi, data).then(function(response) {
+                $scope.posture={'name':response.data.Name,'src':$sce.trustAsResourceUrl(response.data.Iframe)};
             });
             $scope.isPostureDetailShow = true;
             $scope.isPostureListShow = false;
@@ -334,18 +339,37 @@ app.controller('blockController', ['$scope', '$sce', '$http', '$timeout', '$loca
         // 延遲載入使用者帳號並取得使用者資料 
         $timeout(function() {
             console.log($scope.userAccount);
-            // 接Api 用帳號取得會員資料 帳號用$scope.userAccount 回傳資料放$scope.loginUser
-            // 修改個人資料 姓名 大頭貼 密碼 身高 體重 體脂 基礎代謝率 病歷
-            $scope.loginUser = {
-                'account': $scope.userAccount,
-                'name': '林明禎',
-                'photo': 'images/T52.jpg',
-                'height': 160,
-                'weight': 49,
-                'bodyfat': 21,
-                'bmr': 1295.9,
-                'disease': ''
-            };
+            var profileApi = apiUrl+'UserApi/getProfile';
+            var apiData = {'account':$scope.userAccount};
+            $http.post(profileApi,apiData).then(function(response){
+                $scope.loginUser={
+                    'account':response.data.Account,
+                    'name':response.data.Name,
+                    'height':response.data.Height,
+                    'weight':response.data.Weight,
+                    'bodyfat':response.data.Bodyfat,
+                    'bmr':response.data.BMR,
+                    'disease':response.data.Disease,
+                    'age':response.data.Age,
+                    'sex':response.data.Sex
+                }
+                var apiData = {'account':$scope.userAccount};
+                var habitApi = apiUrl + 'UserApi/getUserHabit';
+                $http.post(habitApi,apiData).then(function(response){
+                    console.log(response);
+                })
+                var hasCourseApi = apiUrl+'CourseApi/hasCourseApp';
+                $http.post(hasCourseApi,apiData).then(function(response){
+                    if(response.data.length>0){
+                        $scope.isHaveCourse=true;
+                        $scope.courseList=[];
+                        angular.forEach(response.data,function(value,key){
+                            $scope.courseList.push(value);
+                        })
+                        console.log($scope.courseList);
+                    }
+                })
+            })
         }, 10);
         // 登入後使用者個人資料
         var status = getChartOption('status');
@@ -696,7 +720,6 @@ app.controller('blockController', ['$scope', '$sce', '$http', '$timeout', '$loca
                 })
                 // 產生個人化課表
                 // 產生課程api網址
-                //var createCourseApi = 'http://localhost:55546/api/CourseApi/CreateCourse'; //本機測試用網址
             var createCourseApi = 'http://163.17.136.197:8080/EMG/api/CourseApi/CreateCourse';
             // 產生課程選項
             var courseData = $scope.courseOptions;
@@ -708,16 +731,15 @@ app.controller('blockController', ['$scope', '$sce', '$http', '$timeout', '$loca
                     $scope.course = data;
                     // 接API回傳課程放入previewTitle跟previewList
                     angular.forEach(data, function(value, key) {
-                        var preview = {
-                            'day': 'Day' + value.Days,
-                            'posture': [{ 'pos': value.Pos1 }, { 'pos': value.Pos2 },
-                                { 'pos': value.Pos3 }, { 'pos': value.Pos4 }, { 'pos': value.Pos5 }, { 'pos': value.Pos6 }
-                            ]
-                        };
-                        $scope.previewList.push(preview);
-                    })
-                    console.log($scope.previewList);
-                    //顯示一週日期
+                            var preview = {
+                                'day': 'Day' + value.Days,
+                                'posture': [{ 'pos': value.Pos1 }, { 'pos': value.Pos2 },
+                                    { 'pos': value.Pos3 }, { 'pos': value.Pos4 }, { 'pos': value.Pos5 }, { 'pos': value.Pos6 }
+                                ]
+                            };
+                            $scope.previewList.push(preview);
+                        })
+                        //顯示一週日期
                     $scope.activeDate = ['', '', '', '', '', '', ''];
                     $scope.previewDate = [];
                     var week = ['禮拜天', '禮拜一', '禮拜二', '禮拜三', '禮拜四', '禮拜五', '禮拜六'];
@@ -797,12 +819,11 @@ app.controller('blockController', ['$scope', '$sce', '$http', '$timeout', '$loca
         };
         // 顯示姿勢詳細教學
         $scope.showPostureDetail = function(pos) {
-            var posDataApi = apiUrl + 'CourseApi/getPosData';
-            $http.get(posDataApi, pos).then(function(response) {
-                console.log(response.data);
-            })
-            $scope.postureName = pos;
-            $scope.postureSrc = 'https://www.youtube.com/embed/vGbPbo0VH14';
+            var posDataApi = apiUrl + 'CourseApi/GetPosData';
+            var data = { 'name': pos };
+            $http.post(posDataApi, data).then(function(response) {
+            $scope.posture={'name':response.data.Name,'src':$sce.trustAsResourceUrl(response.data.Iframe)}
+            });
             $scope.courseStatus['posture'] = 'active';
             $scope.courseStatus['preview'] = 'left';
         };
