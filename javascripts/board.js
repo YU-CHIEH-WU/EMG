@@ -145,8 +145,8 @@ app.controller('blockController', ['$scope', '$sce', '$http', '$timeout', '$loca
             var first = new Date('2016-' + month + '-01');
             var newDay = new Date(first);
             var weekday = first.getDay();
-            if(weekday==0){
-                weekday=7;
+            if (weekday == 0) {
+                weekday = 7;
             }
             $scope.calendar = [{ 'weekday': 1, 'weekdayTW': '一', 'day1': '', 'day1Posture': [], day1Thumb: 'images/null.png', 'day1Complete': false, 'day2': '', 'day2Posture': [], 'day2Thumb': 'images/null.png', 'day2Complete': false, 'day3': '', 'day3Posture': [], day3Thumb: 'images/null.png', 'day3Complete': false, 'day4': '', 'day4Posture': [], day4Thumb: 'images/null.png', 'day4Complete': false, 'day5': '', 'day5Posture': [], day5Thumb: 'images/null.png', 'day5Complete': false },
                 { 'weekday': 2, 'weekdayTW': '二', 'day1': '', 'day1Posture': [], day1Thumb: 'images/null.png', 'day1Complete': false, 'day2': '', 'day2Posture': [], 'day2Thumb': 'images/null.png', 'day2Complete': false, 'day3': '', 'day3Posture': [], day3Thumb: 'images/null.png', 'day3Complete': false, 'day4': '', 'day4Posture': [], day4Thumb: 'images/null.png', 'day4Complete': false, 'day5': '', 'day5Posture': [], day5Thumb: 'images/null.png', 'day5Complete': false },
@@ -196,15 +196,15 @@ app.controller('blockController', ['$scope', '$sce', '$http', '$timeout', '$loca
                 angular.forEach($scope.calendar, function(value, key) {
                     var dateTime = date.getTime();
                     if (value.day1 != "") {
-                        var day1Time = value.day1.getTime()+28800000;
+                        var day1Time = value.day1.getTime() + 28800000;
                     }
-                    var day2Time = value.day2.getTime()+28800000;
-                    var day3Time = value.day3.getTime()+28800000;
-                    var day4Time = value.day4.getTime()+28800000;
+                    var day2Time = value.day2.getTime() + 28800000;
+                    var day3Time = value.day3.getTime() + 28800000;
+                    var day4Time = value.day4.getTime() + 28800000;
                     if (value.day5 != "") {
-                        var day5Time = value.day5.getTime()+28800000;
+                        var day5Time = value.day5.getTime() + 28800000;
                     }
-                    console.log(date,value.day3,dateTime,day3Time);
+                    console.log(date, value.day3, dateTime, day3Time);
                     if (day1Time == dateTime) {
                         $scope.calendar[key].day1Posture.push({ 'thumb': thumb, 'posture': posture });
                         $scope.calendar[key].day1Thumb = 'images/gym.png';
@@ -249,8 +249,24 @@ app.controller('blockController', ['$scope', '$sce', '$http', '$timeout', '$loca
             $scope.isDetailActive = true;
         };
         $scope.showDetail5 = function() {
+            var getMessageApi = apiUrl + 'MessageApi/GetAllByAccount';
+            var data = { 'account': $scope.userAccount };
+            $http.post(getMessageApi, data).then(function(response) {
+                console.log(response);
+            })
             $scope.isDetailActive = true;
             $scope.detail5Active = true;
+            $scope.edit = { 'title': '', 'content': '', holder: '請點選新增按鈕或列表中的標題' };
+        }
+        $scope.newMessage = function() {
+            $scope.isCreateMessage = true;
+        }
+        $scope.createMessage = function() {
+            var createMessageApi = apiUrl + 'MessageApi/Create';
+            var data = { 'Title': $scope.edit.title, 'Messages': $scope.edit.content, 'Account': $scope.loginUser.account, 'UserName': $scope.loginUser.name };
+            $http.post(createMessageApi, $scope.edit).then(function(response) {
+                console.log(response);
+            })
         }
         $scope.showDetail6 = function() {
             $scope.detail6Active = true;
@@ -306,9 +322,9 @@ app.controller('blockController', ['$scope', '$sce', '$http', '$timeout', '$loca
         $scope.isPostureDetailShow = false;
         $scope.showPosture = function(pos) {
             var posDataApi = apiUrl + 'CourseApi/GetPosData';
-            var data = {'name':pos};
+            var data = { 'name': pos };
             $http.post(posDataApi, data).then(function(response) {
-                $scope.posture={'name':response.data.Name,'src':$sce.trustAsResourceUrl(response.data.Iframe)};
+                $scope.posture = { 'name': response.data.Name, 'src': $sce.trustAsResourceUrl(response.data.Iframe) };
             });
             $scope.isPostureDetailShow = true;
             $scope.isPostureListShow = false;
@@ -338,32 +354,107 @@ app.controller('blockController', ['$scope', '$sce', '$http', '$timeout', '$loca
         // 會員
         // 延遲載入使用者帳號並取得使用者資料 
         $timeout(function() {
-            console.log($scope.userAccount);
-            var profileApi = apiUrl+'UserApi/getProfile';
-            var apiData = {'account':$scope.userAccount};
-            $http.post(profileApi,apiData).then(function(response){
-                $scope.loginUser={
-                    'account':response.data.Account,
-                    'name':response.data.Name,
-                    'height':response.data.Height,
-                    'weight':response.data.Weight,
-                    'bodyfat':response.data.Bodyfat,
-                    'bmr':response.data.BMR,
-                    'disease':response.data.Disease,
-                    'age':response.data.Age,
-                    'sex':response.data.Sex
+            $scope.loginUser = {
+                'account': $scope.userAccount,
+                'name': '',
+                'height': '',
+                'weight': '',
+                'bodyfat': '',
+                'bmr': '',
+                'disease': '',
+                'age': '',
+                'sex': '',
+                'sports': '',
+                'place': ''
+
+            }
+            var profileApi = apiUrl + 'UserApi/getUser';
+            var apiData = { 'account': $scope.userAccount };
+            $http.post(profileApi, apiData).then(function(response) {
+                $scope.loginUser = {
+                    'account': response.data.Account,
+                    'name': response.data.Name,
+                    'height': response.data.Height,
+                    'weight': response.data.Weight,
+                    'bodyfat': response.data.Bodyfat,
+                    'bmr': response.data.BMR,
+                    'disease': response.data.Disease,
+                    'age': response.data.Age,
+                    'sex': response.data.Sex
                 }
-                var apiData = {'account':$scope.userAccount};
-                var habitApi = apiUrl + 'UserApi/getUserHabit';
-                $http.post(habitApi,apiData).then(function(response){
-                    console.log(response);
+                var apiData = { 'account': $scope.userAccount };
+                var ageApi = apiUrl + 'CourseApi/getAge';
+                $scope.ageCourseList = [];
+                $scope.isHaveAgeCourse = false;
+                $http.post(ageApi, apiData).then(function(response) {
+                    if (response.data.length > 0) {
+                        $scope.isHaveAgeCourse = true;
+                        angular.forEach(response.data, function(value, key) {
+                            $scope.ageCourseList.push(value);
+                        })
+                    }
                 })
-                var hasCourseApi = apiUrl+'CourseApi/hasCourseApp';
-                $http.post(hasCourseApi,apiData).then(function(response){
-                    if(response.data.length>0){
-                        $scope.isHaveCourse=true;
-                        $scope.courseList=[];
-                        angular.forEach(response.data,function(value,key){
+                var sportApi = apiUrl + 'CourseApi/getSports';
+                $scope.sportCourseList = [];
+                $scope.isHaveSportCourse = false;
+                $http.post(sportApi, apiData).then(function(response) {
+                    if (response.data.length > 0) {
+                        $scope.isHaveSportCourse = true;
+                        angular.forEach(response.data, function(value, key) {
+                            $scope.sportCourseList.push(value);
+                        })
+                    }
+                })
+                var placeApi = apiUrl + 'CourseApi/getPlace';
+                $scope.placeCourseList = [];
+                $scope.isHavePlaceCourse = false;
+                $http.post(placeApi, apiData).then(function(response) {
+                    if (response.data.length > 0) {
+                        $scope.isHavePlaceCourse = true;
+                        angular.forEach(response.data, function(value, key) {
+                            $scope.placeCourseList.push(value);
+                        })
+                    }
+                })
+                var motivationApi = apiUrl + 'CourseApi/getMotivation';
+                $scope.motivationCourseList = [];
+                $scope.isHaveMotivationCourse = false;
+                $http.post(motivationApi, apiData).then(function(response) {
+                    if (response.data.length > 0) {
+                        $scope.isHaveMotivationCourse = true;
+                        angular.forEach(response.data, function(value, key) {
+                            $scope.motivationCourseList.push(value);
+                        })
+                    }
+                })
+                var sameApi = apiUrl + 'CourseApi/getSame';
+                $scope.sameCourseList = [];
+                $scope.isHaveSameCourse = false;
+                $http.post(sameApi, apiData).then(function(response) {
+                    if (response.data.length > 0) {
+                        $scope.isHaveSameCourse = true;
+                        angular.forEach(response.data, function(value, key) {
+                            $scope.sameCourseList.push(value);
+                        })
+                    }
+                })
+                var watchApi = apiUrl + 'CourseApi/getWatch';
+                $scope.watchCourseList = [];
+                $scope.isHaveWatchCourse = false;
+                $http.post(watchApi, apiData).then(function(response) {
+                    if (response.data.length > 0) {
+                        $scope.isHaveWatchCourse = true;
+                        angular.forEach(response.data, function(value, key) {
+                            $scope.watchCourseList.push(value);
+                        })
+                    }
+                })
+                var hasCourseApi = apiUrl + 'CourseApi/hasCourseApp';
+                $http.post(hasCourseApi, apiData).then(function(response) {
+                    if (response.data.length > 0) {
+                        $scope.isHaveCourse = true;
+                        $scope.courseList = [];
+                        angular.forEach(response.data, function(value, key) {
                             $scope.courseList.push(value);
                         })
                         console.log($scope.courseList);
@@ -822,7 +913,7 @@ app.controller('blockController', ['$scope', '$sce', '$http', '$timeout', '$loca
             var posDataApi = apiUrl + 'CourseApi/GetPosData';
             var data = { 'name': pos };
             $http.post(posDataApi, data).then(function(response) {
-            $scope.posture={'name':response.data.Name,'src':$sce.trustAsResourceUrl(response.data.Iframe)}
+                $scope.posture = { 'name': response.data.Name, 'src': $sce.trustAsResourceUrl(response.data.Iframe) }
             });
             $scope.courseStatus['posture'] = 'active';
             $scope.courseStatus['preview'] = 'left';
@@ -832,6 +923,50 @@ app.controller('blockController', ['$scope', '$sce', '$http', '$timeout', '$loca
             $scope.courseStatus['preview'] = 'active';
             $scope.courseStatus['posture'] = '';
         };
+        $scope.showRecommend = function(filter) {
+            $scope.recommendList = [];
+            if (filter == 'age') {
+                $scope.recommendList = $scope.ageCourseList;
+            }
+            if (filter == 'sport') {
+                $scope.recommendList = $scope.sportCourseList;
+            }
+            if (filter == 'place') {
+                $scope.recommendList = $scope.placeCourseList;
+            }
+            if (filter == 'motivation') {
+                $scope.recommendList = $scope.motivationCourseList;
+            }
+            if (filter == 'same') {
+                $scope.recommendList = $scope.sameCourseList;
+            }
+            if (filter == 'watch') {
+                $scope.recommendList = $scope.watchCourseList;
+            }
+            $scope.isRecommendClick = true;
+            $timeout(function() {
+                $scope.isRecommendShow = true;
+            }, 30);
+            console.log($scope.recommendList);
+        }
+        $scope.hideRecommend = function() {
+            $scope.isRecommendShow = false;
+            $timeout(function() {
+                $scope.isRecommendClick = false;
+            }, 250);
+        }
+        $scope.showPositionDetail = function(pos) {
+            //接入姿勢api
+            var posDataApi = apiUrl + 'CourseApi/GetPosData';
+            var data = { 'name': pos };
+            $http.post(posDataApi, data).then(function(response) {
+                $scope.posture = { 'name': response.data.Name, 'src': $sce.trustAsResourceUrl(response.data.Iframe) };
+            });
+            $scope.isPositionShow = true;
+        }
+        $scope.backCourseList = function() {
+            $scope.isPositionShow = false;
+        }
 
         // 訓練成效與肌肉成長
         // true時顯示說明block

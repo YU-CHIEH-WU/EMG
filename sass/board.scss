@@ -432,18 +432,21 @@ span {
         color: red;
     }
 }
-.info-photo-upload{
-    width:30%;
-    margin:0 auto;
+
+.info-photo-upload {
+    width: 30%;
+    margin: 0 auto;
     margin-top: 16px;
     margin-bottom: 16px;
     position: relative;
 }
-.info-name{
-    width:50%;
-    left:30%;
+
+.info-name {
+    width: 50%;
+    left: 30%;
     position: relative;
 }
+
 .block-userEdit-profile {
     margin-top: 12px;
 }
@@ -791,6 +794,83 @@ span {
 
 
 /* 行事曆結尾 */
+
+
+/* 推薦課程 */
+
+.block-recommend-outer {
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    position: fixed;
+    background: rgba(0, 0, 0, 0.5);
+    @include transition(all,
+    0.3s,
+    ease-in);
+}
+
+.block-recommend-inner {
+    width: 50%;
+    height: 80%;
+    left: 25%;
+    top: 10%;
+    position: fixed;
+    color: $fontColor;
+    box-shadow: $shadow3;
+    opacity: 0;
+    @include transition(all,
+    0.3s,
+    ease-in);
+    &.active {
+        opacity: 1;
+    }
+}
+
+.recommend-scroller {
+    overflow: auto;
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    @include transition(all,
+    0.3s,
+    ease-in);
+    &.active {
+        left: -100%;
+    }
+}
+
+.recommend-list {
+    padding: 10px;
+}
+
+.recommend-position {
+    height: 30px;
+    padding: 12px;
+    &:hover {
+        background: $blockHoverColor;
+        cursor: pointer;
+    }
+}
+
+.position-detail {
+    width: 100%;
+    height: 100%;
+    left: 120%;
+    top: 0;
+    position: relative;
+    @include transition(all,
+    0.3s,
+    ease-in);
+    &.active {
+        left: 0;
+    }
+}
+
+
+/* 推薦課程結尾 */
 
 
 /* 詳細block */

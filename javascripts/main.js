@@ -256,7 +256,6 @@ app.controller('blockController', ['$scope', '$sce', '$http', '$timeout', '$inte
             return a.y - b.y;
         });
         sportCount.reverse();
-        console.log(sportList, sportCount);
         angular.forEach(motiveList, function(value, key) {
             motiveList[key].y = parseFloat((motiveCount[value.name] / questList.length * 100).toFixed(2));
         })

@@ -13,7 +13,7 @@
 <body ng-class="{unscroll:isDetailActive,unscroll:isCourseShow}">
     <div id="fb-root"></div>
     <!-- init放入使用者帳號 -->
-    <div class="container" ng-init="userAccount='s1410131021'">
+    <div class="container" ng-init="userAccount='et599y'">
         <div class="row">
             <!-- 主頁面 -->
             <div class="block-container" ng-class="{gotop:isDetailActive,ontop:isOntop,filter:isCourseShow}" when-transition-end="setOntop()">
@@ -125,45 +125,88 @@
                 <div class="col-md-4 col-xs-6 block-outer">
                     <div class="block-inner block-inner-4">
                         <div class="block-header">18至23歲的男性也選擇了</div>
-                        <div class="block-body"></div>
+                        <div class="block-body" ng-click="showRecommend('age')">
+                            
+                        </div>
                     </div>
                 </div>
                 <!-- 運動項目  -->
                 <div class="col-md-4 col-xs-6 block-outer">
                     <div class="block-inner block-inner-4">
                         <div class="block-header">喜歡排球的人也選擇了</div>
-                        <div class="block-body"></div>
+                        <div class="block-body" ng-click="showRecommend('sport')"></div>
                     </div>
                 </div>
                 <!-- 訓練部位 -->
                 <div class="col-md-4 col-xs-6 block-outer">
                     <div class="block-inner block-inner-4">
                         <div class="block-header">注重二頭肌的人也選擇了</div>
-                        <div class="block-body"></div>
+                        <div class="block-body" ng-click="showRecommend('place')"></div>
                     </div>
                 </div>
                 <!-- 訓練目標 -->
                 <div class="col-md-4 col-xs-6 block-outer">
                     <div class="block-inner block-inner-4">
                         <div class="block-header">重視肌肉強度的人也選擇了</div>
-                        <div class="block-body"></div>
+                        <div class="block-body" ng-click="showRecommend('motivation')"></div>
                     </div>
                 </div>
                 <!-- 已完成課程 -->
                 <div class="col-md-4 col-xs-6 block-outer">
                     <div class="block-inner block-inner-4">
-                        <div class="block-header">完成了初學者均衡鍛鍊的人也選擇了</div>
-                        <div class="block-body"></div>
+                        <div class="block-header">完成了相同課程的人也選擇了</div>
+                        <div class="block-body" ng-click="showRecommend('same')"></div>
                     </div>
                 </div>
                 <!-- 關注課程 -->
                 <div class="col-md-4 col-xs-6 block-outer">
                     <div class="block-inner block-inner-4">
-                        <div class="block-header">你曾經關注了以下課程</div>
-                        <div class="block-body"></div>
+                        <div class="block-header">你曾經關注的課程</div>
+                        <div class="block-body" ng-click="showRecommend('watch')"></div>
                     </div>
                 </div>
             </div>
+            <!-- 推薦課程詳細 -->
+            <div class="block-recommend-outer" ng-if="isRecommendClick" ng-click="hideRecommend()" ng-class="{active:isRecommendShow}">
+            </div>
+            <div class="block-inner block-recommend-inner" ng-if="isRecommendClick" ng-class="{active:isRecommendShow}">
+                <div class="block-header"><span class="title">{{courseTitle}}</span><span class="back" ng-click="hideRecommend()"><i class="fa fa-times icon-back"></i></span></div>
+                <div class="block-body slide">
+                    <div class="recommend-scroller" ng-class="{active:isPositionShow}">
+                        <div class="recommend-list" ng-repeat="course in recommendList">
+                            <p>{{course.Days}}</p>
+                            <div class="recommend-position" ng-click="showPositionDetail(course.Pos1)">
+                                <p>{{course.Pos1}}</p>
+                            </div>
+                            <div class="recommend-position" ng-click="showPositionDetail(course.Pos2)">
+                                <p>{{course.Pos2}}</p>
+                            </div>
+                            <div class="recommend-position" ng-click="showPositionDetail(course.Pos3)">
+                                <p>{{course.Pos3}}</p>
+                            </div>
+                            <div class="recommend-position" ng-click="showPositionDetail(course.Pos4)">
+                                <p>{{course.Pos4}}</p>
+                            </div>
+                            <div class="recommend-position" ng-click="showPositionDetail(course.Pos5)">
+                                <p>{{course.Pos5}}</p>
+                            </div>
+                            <div class="recommend-position" ng-click="showPositionDetail(course.Pos6)">
+                                <p>{{course.Pos6}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 動作詳細 -->
+                    <div class="position-detail" ng-class="{active:isPositionShow}">
+                        <p>{{posture.name}}</p>
+                        <p>動作詳細說明（圖解或影片）</p>
+                        <br>
+                        <br>
+                        <iframe ng-src="{{posture.src}}" frameborder="0"></iframe>
+                        <button class="btn btn-flat" ng-click="backCourseList()">返回課程預覽</button>
+                    </div>
+                </div>
+            </div>
+            
             <div class="block-course-outer" ng-show="isCourseShow" ng-click="hideCourse('continue')">
             </div>
             <div class="block-inner block-course-inner" ng-show="isCourseShow" ng-class="{active:isCourseShow}">
@@ -371,21 +414,22 @@
                 <div class="prev"></div>
                 <div class="next"></div>
                 <div class="block-header">
-                    <input type="text" class="input-title" placeholder="新增肌友交流標題" ng-model="editTitle">
+                    <input type="text" class="input-title" placeholder="肌友交流標題" ng-model="edit.title">
                     <span class="back" ng-click="showIndex()"><i class="fa fa-times icon-back"></i></span></div>
                 <div class="block-body">
                     <div class="detail-edit">
                         <div class="scroller edit-scroller text-center">
-                            <textarea type="text" class="form-control" id="edit-area" placeholder="{{editHolder}}" ng-model="editContent"></textarea>
-                            <button class="btn btn-danger btn-lg btn-gap">刪除</button>
-                            <button class="btn btn-flat btn-lg">修改</button>
+                            <textarea type="text" class="form-control" id="edit-area" placeholder="{{edit.holder}}" ng-model="edit.content"></textarea>
+                            <button ng-if="!isCreateMessage" class="btn btn-danger btn-lg btn-gap">刪除</button>
+                            <button ng-if="!isCreateMessage" class="btn btn-flat btn-lg">修改</button>
+                            <button ng-if="isCreateMessage" ng-click="createMessage()" class="btn btn-success btn-lg">新增</button>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="detail-bar" ng-class="{active:detail5Active}">
                 <div class="bar-create">
-                    <span ng-click="createMessage()"><i class="fa fa-plus fa-lg"></i></span>
+                    <span ng-click="newMessage()"><i class="fa fa-plus fa-lg"></i></span>
                 </div>
                 <div class="bar-search">
                     <i class="fa fa-search inline-search"></i>

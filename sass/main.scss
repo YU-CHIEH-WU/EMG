@@ -966,7 +966,7 @@ img {
 
 /* 推薦課程 */
 
-.block-course-outer {
+.block-recommend-outer {
     width: 100%;
     height: 100%;
     left: 0;
@@ -978,7 +978,7 @@ img {
     ease-in);
 }
 
-.block-course-inner {
+.block-recommend-inner {
     width: 50%;
     height: 80%;
     left: 25%;
@@ -995,7 +995,7 @@ img {
     }
 }
 
-.course-scroller {
+.recommend-scroller {
     overflow: auto;
     position: absolute;
     left: 0;
@@ -1010,11 +1010,11 @@ img {
     }
 }
 
-.course-list {
+.recommend-list {
     padding: 10px;
 }
 
-.course-position {
+.recommend-position {
     height: 30px;
     padding: 12px;
     &:hover {

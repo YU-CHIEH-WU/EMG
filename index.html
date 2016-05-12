@@ -768,15 +768,15 @@
                 </div>
             </div>
             <!-- 推薦課程詳細 -->
-            <div class="block-course-outer" ng-if="isCourseClick" ng-click="hideCourse()" ng-class="{active:isCourseShow}">
+            <div class="block-recommend-outer" ng-if="isCourseClick" ng-click="hideCourse()" ng-class="{active:isCourseShow}">
             </div>
-            <div class="block-inner block-course-inner" ng-if="isCourseClick" ng-class="{active:isCourseShow}">
+            <div class="block-inner block-recommend-inner" ng-if="isCourseClick" ng-class="{active:isCourseShow}">
                 <div class="block-header"><span class="title">{{courseTitle}}</span><span class="back" ng-click="hideCourse()"><i class="fa fa-times icon-back"></i></span></div>
                 <div class="block-body slide">
-                    <div class="course-scroller" ng-class="{active:isPositionShow}">
-                        <div class="course-list" ng-repeat="course in courseList">
+                    <div class="recommend-scroller" ng-class="{active:isPositionShow}">
+                        <div class="recommend-list" ng-repeat="course in courseList">
                             <p>{{course.day}}</p>
-                            <div class="course-position" ng-repeat="position in course.position" ng-click="showPositionDetail(position.pos)">
+                            <div class="recommend-position" ng-repeat="position in course.position" ng-click="showPositionDetail(position.pos)">
                                 <p>{{position.pos}}</p>
                             </div>
                         </div>

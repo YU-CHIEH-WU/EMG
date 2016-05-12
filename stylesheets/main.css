@@ -1101,7 +1101,7 @@ img {
 /* 肌友交流結尾 */
 /* 推薦課程 */
 /* line 969, ../sass/main.scss */
-.block-course-outer {
+.block-recommend-outer {
   width: 100%;
   height: 100%;
   left: 0;
@@ -1115,7 +1115,7 @@ img {
 }
 
 /* line 981, ../sass/main.scss */
-.block-course-inner {
+.block-recommend-inner {
   width: 50%;
   height: 80%;
   left: 25%;
@@ -1130,12 +1130,12 @@ img {
   transition: all, 0.3s, ease-in;
 }
 /* line 993, ../sass/main.scss */
-.block-course-inner.active {
+.block-recommend-inner.active {
   opacity: 1;
 }
 
 /* line 998, ../sass/main.scss */
-.course-scroller {
+.recommend-scroller {
   overflow: auto;
   position: absolute;
   left: 0;
@@ -1148,22 +1148,22 @@ img {
   transition: all, 0.3s, ease-in;
 }
 /* line 1008, ../sass/main.scss */
-.course-scroller.active {
+.recommend-scroller.active {
   left: -100%;
 }
 
 /* line 1013, ../sass/main.scss */
-.course-list {
+.recommend-list {
   padding: 10px;
 }
 
 /* line 1017, ../sass/main.scss */
-.course-position {
+.recommend-position {
   height: 30px;
   padding: 12px;
 }
 /* line 1020, ../sass/main.scss */
-.course-position:hover {
+.recommend-position:hover {
   background: #4f4f4f;
   cursor: pointer;
 }
