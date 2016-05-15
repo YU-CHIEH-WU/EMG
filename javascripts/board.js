@@ -133,7 +133,6 @@ app.controller('blockController', ['$scope', '$sce', '$http', '$timeout', '$loca
             console.log(photo);
             var deletePhotoApi = apiUrl + 'AlbumApi/DeletePhoto';
             var data = { 'account': $scope.loginUser.account, 'p_Id': photo.P_Id };
-            console.log(data);
             $http.post(deletePhotoApi, data).then(function(response) {
                 $scope.showDetail3();
             })
@@ -251,20 +250,41 @@ app.controller('blockController', ['$scope', '$sce', '$http', '$timeout', '$loca
         $scope.showDetail5 = function() {
             var getMessageApi = apiUrl + 'MessageApi/GetAllByAccount';
             var data = { 'account': $scope.userAccount };
+            $scope.messageList = [];
             $http.post(getMessageApi, data).then(function(response) {
                 console.log(response);
+                angular.forEach(response.data, function(value, key) {
+                    $scope.messageList.push({ 'MId': value.MId, 'title': value.Title, 'content': value.Messages })
+                })
             })
             $scope.isDetailActive = true;
             $scope.detail5Active = true;
-            $scope.edit = { 'title': '', 'content': '', holder: '請點選新增按鈕或列表中的標題' };
+            $scope.edit = { 'MId': 0, 'title': '', 'content': '', holder: '請點選新增按鈕或列表中的標題' };
         }
         $scope.newMessage = function() {
             $scope.isCreateMessage = true;
         }
         $scope.createMessage = function() {
             var createMessageApi = apiUrl + 'MessageApi/Create';
-            var data = { 'Title': $scope.edit.title, 'Messages': $scope.edit.content, 'Account': $scope.loginUser.account, 'UserName': $scope.loginUser.name };
-            $http.post(createMessageApi, $scope.edit).then(function(response) {
+            var data = {
+                'Title': $scope.edit.title,
+                'Messages': $scope.edit.content,
+                'Account': $scope.loginUser.account,
+                'UserName': $scope.loginUser.name,
+                'Photo': $scope.loginUser.photo
+            };
+            console.log(data);
+            $http.post(createMessageApi, data).then(function(response) {
+                console.log(response);
+            })
+        }
+        $scope.editMessage = function(message) {
+            $scope.edit = { 'MId': message.MId, 'title': message.title, 'content': message.content }
+        }
+        $scope.submitMessage = function() {
+            var editMessageApi = apiUrl + 'MessageApi/Edit';
+            var data = { 'MId': $scope.edit.MId, 'Title': $scope.edit.title, 'Messages': $scope.edit.content };
+            $http.post(editMessageApi, $scope.edit).then(function(response) {
                 console.log(response);
             })
         }
@@ -371,9 +391,11 @@ app.controller('blockController', ['$scope', '$sce', '$http', '$timeout', '$loca
             var profileApi = apiUrl + 'UserApi/getUser';
             var apiData = { 'account': $scope.userAccount };
             $http.post(profileApi, apiData).then(function(response) {
+                console.log(response.data);
                 $scope.loginUser = {
                     'account': response.data.Account,
                     'name': response.data.Name,
+                    'photo': response.data.Url,
                     'height': response.data.Height,
                     'weight': response.data.Weight,
                     'bodyfat': response.data.Bodyfat,

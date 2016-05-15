@@ -13,7 +13,7 @@
 <body ng-class="{unscroll:isDetailActive,unscroll:isCourseShow}">
     <div id="fb-root"></div>
     <!-- init放入使用者帳號 -->
-    <div class="container" ng-init="userAccount='et599y'">
+    <div class="container" ng-init="userAccount='administrator'">
         <div class="row">
             <!-- 主頁面 -->
             <div class="block-container" ng-class="{gotop:isDetailActive,ontop:isOntop,filter:isCourseShow}" when-transition-end="setOntop()">
@@ -421,7 +421,7 @@
                         <div class="scroller edit-scroller text-center">
                             <textarea type="text" class="form-control" id="edit-area" placeholder="{{edit.holder}}" ng-model="edit.content"></textarea>
                             <button ng-if="!isCreateMessage" class="btn btn-danger btn-lg btn-gap">刪除</button>
-                            <button ng-if="!isCreateMessage" class="btn btn-flat btn-lg">修改</button>
+                            <button ng-if="!isCreateMessage" ng-click="submitMessage()" class="btn btn-flat btn-lg">修改</button>
                             <button ng-if="isCreateMessage" ng-click="createMessage()" class="btn btn-success btn-lg">新增</button>
                         </div>
                     </div>
@@ -441,7 +441,7 @@
                 <div class="block-body">
                     <div class="scroller title-scroller">
                         <div class="block-title-list" ng-click="editMessage(message)" ng-repeat="message in messageList | filter:search">
-                            <div class="block-title-edit">{{news.title}}</div>
+                            <div class="block-title-edit">{{message.title}}</div>
                         </div>
                     </div>
                 </div>
