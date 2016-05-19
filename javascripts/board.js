@@ -64,22 +64,18 @@ app.controller('blockController', ['$scope', '$sce', '$http', '$timeout', '$loca
         $scope.isOntop = false;
         this.prevType = '';
         // 顯示detail1BLock
-        $scope.showDetail1 = function(setting) {
-            var title = '';
-            var chart1 = '';
-            var chart2 = '';
-            var chart3 = '';
-            if (setting == 'training') {
-                title = '訓練成效詳細資訊';
-                chart1 = 'result';
-                chart2 = 'fatigue';
-                chart3 = 'pmvc';
-            };
-            if (setting == 'grow') {
-                title = '肌肉成長詳細資訊';
-                chart1 = 'growPart';
-                chart2 = '1rm';
-                chart3 = '15rm';
+        $scope.showDetail1 = function() {
+            title = '訓練成效詳細資訊';
+            chart1 = 'result';
+            chart2 = 'fatigue';
+            chart3 = 'pmvc';
+            $scope.chartPosture = {
+                'pos1': '伏地挺身',
+                'pos2': '啞鈴單手後曲伸',
+                'pos3': '啞鈴跨步蹲舉',
+                'pos4': '立姿側平舉',
+                'pos5': '仰臥腿上舉',
+                'pos6': 'V型仰臥起坐'
             };
             // 設定detail1圖表
             var chart1Option = getChartOption(chart1);
@@ -91,7 +87,23 @@ app.controller('blockController', ['$scope', '$sce', '$http', '$timeout', '$loca
             $scope.detail1Active = true;
             $scope.isDetailActive = true;
         };
-        // 切換公斤與百分比圖表
+        $scope.showDetail2 = function() {
+                title = '肌肉成長詳細資訊';
+                chart1 = 'growPart';
+                chart2 = '1rm';
+                chart3 = '15rm';
+                // 設定detail2圖表
+                var chart1Option = getChartOption(chart1);
+                var chart2Option = getChartOption(chart2);
+                var chart3Option = getChartOption(chart3);
+                setChart('detail2-main-chart', chart1Option);
+                setChart('detail2-left-chart', chart2Option);
+                setChart('detail2-right-chart', chart3Option);
+                $scope.detail2Active = true;
+                $scope.isDetailActive = true;
+
+            }
+            // 切換公斤與百分比圖表
         $scope.switchType = function(type) {};
         // 顯示detail3Block
         $scope.showDetail3 = function() {
@@ -259,9 +271,10 @@ app.controller('blockController', ['$scope', '$sce', '$http', '$timeout', '$loca
             })
             $scope.isDetailActive = true;
             $scope.detail5Active = true;
-            $scope.edit = { 'MId': 0, 'title': '', 'content': '', holder: '請點選新增按鈕或列表中的標題' };
+            $scope.edit = { 'MId': 0, 'title': '', 'content': '', 'holder': '請點選新增按鈕或列表中的標題' };
         }
         $scope.newMessage = function() {
+            $scope.edit = { 'MId': 0, 'title': '', 'content': '', 'holder': '請新增內文' }
             $scope.isCreateMessage = true;
         }
         $scope.createMessage = function() {
@@ -273,19 +286,30 @@ app.controller('blockController', ['$scope', '$sce', '$http', '$timeout', '$loca
                 'UserName': $scope.loginUser.name,
                 'Photo': $scope.loginUser.photo
             };
-            console.log(data);
             $http.post(createMessageApi, data).then(function(response) {
-                console.log(response);
+                alert('done!');
+                $scope.isCreateMessage = false;
+                $scope.showDetail5();
             })
         }
         $scope.editMessage = function(message) {
+            $scope.isCreateMessage = false;
             $scope.edit = { 'MId': message.MId, 'title': message.title, 'content': message.content }
         }
         $scope.submitMessage = function() {
             var editMessageApi = apiUrl + 'MessageApi/Edit';
             var data = { 'MId': $scope.edit.MId, 'Title': $scope.edit.title, 'Messages': $scope.edit.content };
-            $http.post(editMessageApi, $scope.edit).then(function(response) {
-                console.log(response);
+            $http.post(editMessageApi, data).then(function(response) {
+                alert('done!');
+                $scope.showDetail5();
+            })
+        }
+        $scope.deleteMessage = function() {
+            var deleteMessageApi = apiUrl + 'MessageApi/Delete';
+            var data = { 'MId': $scope.edit.MId };
+            $http.post(deleteMessageApi, data).then(function(response) {
+                alert('done!');
+                $scope.showDetail5();
             })
         }
         $scope.showDetail6 = function() {
@@ -949,21 +973,32 @@ app.controller('blockController', ['$scope', '$sce', '$http', '$timeout', '$loca
             $scope.recommendList = [];
             if (filter == 'age') {
                 $scope.recommendList = $scope.ageCourseList;
+                $scope.recommendList.title = '依據年齡與性別推薦給你/妳';
             }
             if (filter == 'sport') {
                 $scope.recommendList = $scope.sportCourseList;
+                $scope.recommendList.title = '依據運動項目推薦給你/妳';
             }
             if (filter == 'place') {
                 $scope.recommendList = $scope.placeCourseList;
+                $scope.recommendList.title = '依據注重肌肉部位推薦給你/妳';
             }
             if (filter == 'motivation') {
                 $scope.recommendList = $scope.motivationCourseList;
+                $scope.recommendList.title = '依據健身動力推薦給你/妳';
             }
             if (filter == 'same') {
                 $scope.recommendList = $scope.sameCourseList;
+                $scope.recommendList.title = '依據完成課程推薦給你/妳';
             }
             if (filter == 'watch') {
                 $scope.recommendList = $scope.watchCourseList;
+                $scope.recommendList.title = '依據關注課程推薦給你/妳';
+            }
+            $scope.recommendList.isHaveCourse = true;
+            if ($scope.recommendList.length == 0) {
+                $scope.recommendList.isHaveCourse = false;
+                $scope.recommendList.message = '目前暫無推薦課程';
             }
             $scope.isRecommendClick = true;
             $timeout(function() {

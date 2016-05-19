@@ -96,7 +96,7 @@
                             <button class="btn btn-saveSVG pull-right" data-chartname="training" id="btn-trainingSVG">分享圖表</button>
                         </div>
                         <div class="block-body">
-                            <div class="block-thumb" id="block-training-thumb" ng-click="showDetail1('training')"></div>
+                            <div class="block-thumb" id="block-training-thumb" ng-click="showDetail1()"></div>
                             <input type="hidden" id="trainingSVG" ng-model="trainingSVG">
                         </div>
                         <div class="block-message" id="training-message" ng-class="{active:hoverTraining}">
@@ -113,7 +113,7 @@
                             <button class="btn btn-saveSVG pull-right" data-chartname="grow" id="btn-trainingSVG">分享圖表</button>
                         </div>
                         <div class="block-body">
-                            <div class="block-thumb" id="block-grow-thumb" ng-click="showDetail1('grow')"></div>
+                            <div class="block-thumb" id="block-grow-thumb" ng-click="showDetail2()"></div>
                         </div>
                         <div class="block-message" id="grow-message" ng-class="{active:hoverGrow}">
                             <p>這張圖表將你各項肌肉指標加權計算，並以此評估你的肌肉成長比例。</p>
@@ -124,44 +124,43 @@
                 <!-- 年齡與性別 -->
                 <div class="col-md-4 col-xs-6 block-outer">
                     <div class="block-inner block-inner-4">
-                        <div class="block-header">18至23歲的男性也選擇了</div>
+                        <div class="block-header">依據年齡與性別推薦給你/妳</div>
                         <div class="block-body" ng-click="showRecommend('age')">
-                            
                         </div>
                     </div>
                 </div>
                 <!-- 運動項目  -->
                 <div class="col-md-4 col-xs-6 block-outer">
                     <div class="block-inner block-inner-4">
-                        <div class="block-header">喜歡排球的人也選擇了</div>
+                        <div class="block-header">依據運動項目推薦給你/妳</div>
                         <div class="block-body" ng-click="showRecommend('sport')"></div>
                     </div>
                 </div>
                 <!-- 訓練部位 -->
                 <div class="col-md-4 col-xs-6 block-outer">
                     <div class="block-inner block-inner-4">
-                        <div class="block-header">注重二頭肌的人也選擇了</div>
+                        <div class="block-header">依據注重肌肉部位推薦給你/妳</div>
                         <div class="block-body" ng-click="showRecommend('place')"></div>
                     </div>
                 </div>
                 <!-- 訓練目標 -->
                 <div class="col-md-4 col-xs-6 block-outer">
                     <div class="block-inner block-inner-4">
-                        <div class="block-header">重視肌肉強度的人也選擇了</div>
+                        <div class="block-header">依據健身動力推薦給你/妳</div>
                         <div class="block-body" ng-click="showRecommend('motivation')"></div>
                     </div>
                 </div>
                 <!-- 已完成課程 -->
                 <div class="col-md-4 col-xs-6 block-outer">
                     <div class="block-inner block-inner-4">
-                        <div class="block-header">完成了相同課程的人也選擇了</div>
+                        <div class="block-header">依據完成課程推薦給你/妳</div>
                         <div class="block-body" ng-click="showRecommend('same')"></div>
                     </div>
                 </div>
                 <!-- 關注課程 -->
                 <div class="col-md-4 col-xs-6 block-outer">
                     <div class="block-inner block-inner-4">
-                        <div class="block-header">你曾經關注的課程</div>
+                        <div class="block-header">依據關注課程推薦給你/妳</div>
                         <div class="block-body" ng-click="showRecommend('watch')"></div>
                     </div>
                 </div>
@@ -170,10 +169,10 @@
             <div class="block-recommend-outer" ng-if="isRecommendClick" ng-click="hideRecommend()" ng-class="{active:isRecommendShow}">
             </div>
             <div class="block-inner block-recommend-inner" ng-if="isRecommendClick" ng-class="{active:isRecommendShow}">
-                <div class="block-header"><span class="title">{{courseTitle}}</span><span class="back" ng-click="hideRecommend()"><i class="fa fa-times icon-back"></i></span></div>
+                <div class="block-header"><span class="title">{{recommendList.title}}</span><span class="back" ng-click="hideRecommend()"><i class="fa fa-times icon-back"></i></span></div>
                 <div class="block-body slide">
                     <div class="recommend-scroller" ng-class="{active:isPositionShow}">
-                        <div class="recommend-list" ng-repeat="course in recommendList">
+                        <div class="recommend-list col-sm-4" ng-repeat="course in recommendList" ng-if="recommendList.isHaveCourse">
                             <p>{{course.Days}}</p>
                             <div class="recommend-position" ng-click="showPositionDetail(course.Pos1)">
                                 <p>{{course.Pos1}}</p>
@@ -194,6 +193,9 @@
                                 <p>{{course.Pos6}}</p>
                             </div>
                         </div>
+                        <div class="recommend-list col-sm-4" ng-if="!recommendList.isHaveCourse">
+                            {{recommendList.message}}
+                        </div>
                     </div>
                     <!-- 動作詳細 -->
                     <div class="position-detail" ng-class="{active:isPositionShow}">
@@ -206,7 +208,6 @@
                     </div>
                 </div>
             </div>
-            
             <div class="block-course-outer" ng-show="isCourseShow" ng-click="hideCourse('continue')">
             </div>
             <div class="block-inner block-course-inner" ng-show="isCourseShow" ng-class="{active:isCourseShow}">
@@ -323,6 +324,24 @@
                 <div class="block-body">
                     <div id="detail1-main-chart"></div>
                     <div id="detail1-right-tabs">
+                        <div class="options-chart">
+                            <button class="btn btn-options" ng-class="{active:chartPos['pos1']}" ng-click="setChartPos('pos1')">{{chartPosture.pos1}}</button>
+                        </div>
+                        <div class="options-chart">
+                            <button class="btn btn-options" ng-class="{active:chartPos['pos2']}" ng-click="setChartPos('pos2')">{{chartPosture.pos2}}</button>
+                        </div>
+                        <div class="options-chart">
+                            <button class="btn btn-options" ng-class="{active:chartPos['pos3']}" ng-click="setChartPos('pos3')">{{chartPosture.pos3}}</button>
+                        </div>
+                        <div class="options-chart">
+                            <button class="btn btn-options" ng-class="{active:chartPos['pos4']}" ng-click="setChartPos('pos4')">{{chartPosture.pos4}}</button>
+                        </div>
+                        <div class="options-chart">
+                            <button class="btn btn-options" ng-class="{active:chartPos['pos5']}" ng-click="setChartPos('pos5')">{{chartPosture.pos5}}</button>
+                        </div>
+                        <div class="options-chart">
+                            <button class="btn btn-options" ng-class="{active:chartPos['pos6']}" ng-click="setChartPos('pos6')">{{chartPosture.pos6}}</button>
+                        </div>
                     </div>
                     <div id="detail1-left-chart"></div>
                     <div id="detail1-right-chart"></div>
@@ -336,10 +355,32 @@
                     <sapn class="title">{{detail2Options.title}}</sapn><span class="back" ng-click="showIndex()"><i class="fa fa-times icon-back"></i></span>
                 </div>
                 <div class="block-body">
-                    <div id="detail2-topleft-chart"></div>
-                    <div id="detail2-topright-chart"></div>
-                    <div id="detail2-bottomleft-chart"></div>
-                    <div id="detail2-bottomright-chart"></div>
+                    <div id="detail2-main-chart"></div>
+                    <div id="detail2-right-tabs">
+                        <div class="options-chart">
+                            <button class="btn btn-options" ng-class="{active:chartPart['胸肌']}" ng-click="setChartPart('胸肌')">胸肌</button>
+                        </div>
+                        <div class="options-chart">
+                            <button class="btn btn-options" ng-class="{active:chartPart['背肌']}" ng-click="setChartPart('背肌')">背肌</button>
+                        </div>
+                        <div class="options-chart">
+                            <button class="btn btn-options" ng-class="{active:chartPart['肩膀']}" ng-click="setChartPart('肩膀')">肩膀</button>
+                        </div>
+                        <div class="options-chart">
+                            <button class="btn btn-options" ng-class="{active:chartPart['腹肌']}" ng-click="setChartPart('腹肌')">腹肌</button>
+                        </div>
+                        <div class="options-chart">
+                            <button class="btn btn-options" ng-class="{active:chartPart['腿部']}" ng-click="setChartPart('腿部')">腿部</button>
+                        </div>
+                        <div class="options-chart">
+                            <button class="btn btn-options" ng-class="{active:chartPart['二頭肌']}" ng-click="setChartPart('二頭肌')">二頭肌</button>
+                        </div>
+                        <div class="options-chart">
+                            <button class="btn btn-options" ng-class="{active:chartPart['三頭肌']}" ng-click="setChartPart('三頭肌')">三頭肌</button>
+                        </div>
+                    </div>
+                    <div id="detail2-left-chart"></div>
+                    <div id="detail2-right-chart"></div>
                 </div>
             </div>
             <!-- 相簿 -->
@@ -420,7 +461,7 @@
                     <div class="detail-edit">
                         <div class="scroller edit-scroller text-center">
                             <textarea type="text" class="form-control" id="edit-area" placeholder="{{edit.holder}}" ng-model="edit.content"></textarea>
-                            <button ng-if="!isCreateMessage" class="btn btn-danger btn-lg btn-gap">刪除</button>
+                            <button ng-if="!isCreateMessage" ng-click="deleteMessage()" class="btn btn-danger btn-lg btn-gap">刪除</button>
                             <button ng-if="!isCreateMessage" ng-click="submitMessage()" class="btn btn-flat btn-lg">修改</button>
                             <button ng-if="isCreateMessage" ng-click="createMessage()" class="btn btn-success btn-lg">新增</button>
                         </div>

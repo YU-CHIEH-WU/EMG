@@ -115,19 +115,20 @@ span {
 }
 
 .btn-options {
-    background: #f0ad4e;
-    border-color: #eea236;
+    width:100%;
+    background: #5c98a2;
+    border-color: #1d9399;
     color: $fontColor;
     box-shadow: $shadow1;
     &.active,
     &.active:hover {
-        background: #d58512;
-        border-color: #985f0d;
+        background: #29747c;
+        border-color: #1d9399;
         color: $fontColor;
     }
     &:hover {
-        background: #ec971f;
-        border-color: #d58512;
+        background: #1d9399;
+        border-color: #1d9399;
         color: $fontColor;
     }
 }
@@ -330,7 +331,7 @@ span {
 /* 會員 */
 
 #block-user {
-    background: #006C4C;
+    background: #5c98a2;
 }
 
 .block-user {
@@ -572,7 +573,9 @@ span {
 }
 
 #btn-index {
-    width: 65%;
+  width: 65%;
+  border:1px #ef2231 solid;
+  background: #f45b5b;
 }
 
 #btn-logout {
@@ -934,10 +937,13 @@ span {
 }
 
 #detail1-right-tabs {
-    width: 10%;
+    width: 15%;
     height: 50%;
     right: 0;
     position: absolute;
+    >.options-chart{
+        width:120px;
+    }
 }
 
 #detail1-left-chart,
@@ -956,30 +962,35 @@ span {
     right: 0;
     top: 50%;
 }
-
+.options-chart{
+    width:72px;
+    margin-bottom:6px;
+}
 
 /* detail1結尾 */
 
 
 /* detail2 */
 
-#detail2-topleft-chart,
-#detail2-topright-chart,
-#detail2-bottomleft-chart,
-#detail2-bottomright-chart {
-    width: 50%;
+#detail2-main-chart {
+    width: 85%;
     height: 50%;
+    left: 0;
     position: absolute;
 }
 
-#detail2-topleft-chart {
-    left: 0;
-    top: 0;
+#detail2-right-tabs {
+    width: 15%;
+    height: 50%;
+    right: 0;
+    position: absolute;
 }
 
+#detail2-left-chart,
 #detail2-right-chart {
-    right: 0;
-    top: 0;
+    width: 50%;
+    height: 50%;
+    position: absolute;
 }
 
 #detail2-left-chart {

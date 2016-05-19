@@ -92,12 +92,17 @@
                 <!-- 大數據分析 -->
                 <div class="col-md-6 col-xs-6 block-outer">
                     <div class="block-inner" id="block-bigdata1">
-                        <div class="block-header">大數據分析一</div>
+                        <div class="block-header">大數據分析</div>
                         <div class="block-body">
                             <div class="block-thumb" id="block-bigdata1-thumb"></div>
+                            <div class="block-slide">
+                                <span><i class="fa" ng-click="showBigdata('want')" ng-class="{fa-circle:bigdata.want,fa-circle-o:!bigdata.want}"></i></span>
+                                <span><i class="fa" ng-click="shwoBigdata('focus')" ng-class="{fa-circle:bigdata.focus,fa-circle-o:!bigdata.focus}"></i></span>
+                                <span><i class="fa" ng-click="shwoBigdata('motivation')" ng-class="{fa-circle:bigdata.motivation,fa-circle-o:!bigdata.motivation}"></i></span>
+                            </div>
                             <div class="block-sex">
-                                <button type=button class="btn btn-sex" ng-class="{active:isMaleWant}" ng-click="changeSex('want','male')"><i class="fa fa-mars fa-lg icon-show" ng-class="{active:isMaleWant}"></i></button>
-                                <button type=button class="btn btn-sex" ng-class="{active:isFemaleWant}" ng-click="changeSex('want','female')"><i class="fa fa-venus fa-lg icon-show" ng-class="{active:isFemaleWant}"></i></button>
+                                <button type=button class="btn btn-sex" ng-class="{active:isMaleWant}" ng-click="changeSex('male')"><i class="fa fa-mars fa-lg icon-show" ng-class="{active:isMaleWant}"></i></button>
+                                <button type=button class="btn btn-sex" ng-class="{active:isFemaleWant}" ng-click="changeSex('female')"><i class="fa fa-venus fa-lg icon-show" ng-class="{active:isFemaleWant}"></i></button>
                             </div>
                         </div>
                     </div>

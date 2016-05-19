@@ -801,7 +801,10 @@ function getChartOption(ChartName, title, data1, data2) {
                         enabled: true,
                         format: '{point.y}%'
                     }
-                }
+                    },
+                series:{
+                        pointPadding:0.15
+                    }
             },
             credits: {
                 enabled: false
@@ -875,7 +878,7 @@ function getChartOption(ChartName, title, data1, data2) {
             chart: {
                 tpye: 'spline'
             },
-            colors: ['#FF9A00', '#08C3C9'],
+            colors: ['#FF9A00', '#249400'],
             title: {
                 text: '肌肉出力百分比'
             },
@@ -927,19 +930,18 @@ function getChartOption(ChartName, title, data1, data2) {
             }
         }
     }
-    //訓練成效-訓練姿勢
     if (ChartName == "result") {
         //$('#'+targetId).html('<div class="progress-title"><p>本次訓練成效</p></div><div class="block-progress"><div class="progress progress-striped active"><div class="progress-bar progress-bar-theme" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 82%"><span class="pull-right">82%</span></div></div></div>')
         chartOption = {
             chart: {
                 type: 'bar'
             },
-            colors: ['#FF9A00', '#08C3C9'],
+            colors: ['#FF9A00', '#249400'],
             title: {
-                text: '訓練姿勢之相對訓練成效'
+                text: '訓練姿勢之訓練成效'
             },
             xAxis: {
-                categories: ['槓鈴彎舉', '槓鈴斜板彎舉', '坐姿啞鈴交替彎舉'],
+                categories: ['伏地挺身', '啞鈴單手後屈伸', '啞鈴跨步蹲舉', '立姿側平舉', '仰臥腿上舉', 'V型仰臥起坐'],
                 title: {
                     text: null
                 }
@@ -973,10 +975,10 @@ function getChartOption(ChartName, title, data1, data2) {
             },
             series: [{
                 name: '肌肉疲勞',
-                data: [72, 62, 85]
+                data: [72, 62, 85, 92, 68, 79]
             }, {
                 name: '肌肉出力',
-                data: [90, 82, 87]
+                data: [90, 82, 87, 90, 85, 78]
             }]
         };
     }
@@ -999,7 +1001,7 @@ function getChartOption(ChartName, title, data1, data2) {
                 enabled: false
             },
             xAxis: {
-                categories: ['肌群均衡', '肌力', '肌耐力', '訓練成效', '體脂率', '超負荷'],
+                categories: ['肌群均衡', '肌力', '肌耐力', '訓練成效', '體脂率'],
                 tickmarkPlacement: 'on',
                 lineWidth: 0,
             },
@@ -1015,7 +1017,7 @@ function getChartOption(ChartName, title, data1, data2) {
             series: [{
                 name: 'SELF',
                 type: 'area',
-                data: [15, 70, 42, 90, 72, 65],
+                data: [15, 70, 42, 90, 72],
                 pointPlacement: 'on'
             }],
             credits: {
