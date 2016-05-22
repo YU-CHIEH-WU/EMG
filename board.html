@@ -172,30 +172,36 @@
                 <div class="block-header"><span class="title">{{recommendList.title}}</span><span class="back" ng-click="hideRecommend()"><i class="fa fa-times icon-back"></i></span></div>
                 <div class="block-body slide">
                     <div class="recommend-scroller" ng-class="{active:isPositionShow}">
-                        <div class="recommend-list col-sm-4" ng-repeat="course in recommendList" ng-if="recommendList.isHaveCourse">
-                            <p>{{course.Days}}</p>
-                            <div class="recommend-position" ng-click="showPositionDetail(course.Pos1)">
-                                <p>{{course.Pos1}}</p>
-                            </div>
-                            <div class="recommend-position" ng-click="showPositionDetail(course.Pos2)">
-                                <p>{{course.Pos2}}</p>
-                            </div>
-                            <div class="recommend-position" ng-click="showPositionDetail(course.Pos3)">
-                                <p>{{course.Pos3}}</p>
-                            </div>
-                            <div class="recommend-position" ng-click="showPositionDetail(course.Pos4)">
-                                <p>{{course.Pos4}}</p>
-                            </div>
-                            <div class="recommend-position" ng-click="showPositionDetail(course.Pos5)">
-                                <p>{{course.Pos5}}</p>
-                            </div>
-                            <div class="recommend-position" ng-click="showPositionDetail(course.Pos6)">
-                                <p>{{course.Pos6}}</p>
+                        <div class="recommend-list-outer col-sm-4" ng-repeat="course in recommendList" ng-if="recommendList.isHaveCourse">
+                            <div class="recommend-list-inner">
+                                <p>{{course.Days}}</p>
+                                <div class="recommend-position" ng-click="showPositionDetail(course.Pos1)">
+                                    <p>{{course.Pos1}}</p>
+                                </div>
+                                <div class="recommend-position" ng-click="showPositionDetail(course.Pos2)">
+                                    <p>{{course.Pos2}}</p>
+                                </div>
+                                <div class="recommend-position" ng-click="showPositionDetail(course.Pos3)">
+                                    <p>{{course.Pos3}}</p>
+                                </div>
+                                <div class="recommend-position" ng-click="showPositionDetail(course.Pos4)">
+                                    <p>{{course.Pos4}}</p>
+                                </div>
+                                <div class="recommend-position" ng-click="showPositionDetail(course.Pos5)">
+                                    <p>{{course.Pos5}}</p>
+                                </div>
+                                <div class="recommend-position" ng-click="showPositionDetail(course.Pos6)">
+                                    <p>{{course.Pos6}}</p>
+                                </div>
                             </div>
                         </div>
-                        <div class="recommend-list col-sm-4" ng-if="!recommendList.isHaveCourse">
+                        <div class="recommend-list-inner col-sm-4" ng-if="!recommendList.isHaveCourse">
                             {{recommendList.message}}
                         </div>
+                    </div>
+                    <div class="recommend-option">
+                        <button class="btn btn-flat">關注課程</button>
+                        <button class="btn btn-flat">加入課程</button>
                     </div>
                     <!-- 動作詳細 -->
                     <div class="position-detail" ng-class="{active:isPositionShow}">

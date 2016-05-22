@@ -115,7 +115,7 @@ span {
 }
 
 .btn-options {
-    width:100%;
+    width: 100%;
     background: #5c98a2;
     border-color: #1d9399;
     color: $fontColor;
@@ -573,9 +573,9 @@ span {
 }
 
 #btn-index {
-  width: 65%;
-  border:1px #ef2231 solid;
-  background: #f45b5b;
+    width: 65%;
+    border: 1px #ef2231 solid;
+    background: #f45b5b;
 }
 
 #btn-logout {
@@ -837,6 +837,7 @@ span {
     top: 0;
     bottom: 0;
     width: 100%;
+    padding: 12px;
     @include transition(all,
     0.3s,
     ease-in);
@@ -845,8 +846,17 @@ span {
     }
 }
 
-.recommend-list {
-    padding: 10px;
+.recommend-list-outer {
+    margin-bottom: 15px;
+    padding-left: 7.5px;
+    padding-right: 7.5px;
+}
+
+.recommend-list-inner {
+    width: 100%;
+    height: 100%;
+    padding: 6px;
+    border: 2px #5A929C solid;
 }
 
 .recommend-position {
@@ -870,6 +880,12 @@ span {
     &.active {
         left: 0;
     }
+}
+
+.recommend-option {
+    position: absolute;
+    bottom: 24px;
+    left: 35%;
 }
 
 
@@ -941,8 +957,8 @@ span {
     height: 50%;
     right: 0;
     position: absolute;
-    >.options-chart{
-        width:120px;
+    >.options-chart {
+        width: 120px;
     }
 }
 
@@ -962,10 +978,12 @@ span {
     right: 0;
     top: 50%;
 }
-.options-chart{
-    width:72px;
-    margin-bottom:6px;
+
+.options-chart {
+    width: 72px;
+    margin-bottom: 6px;
 }
+
 
 /* detail1結尾 */
 

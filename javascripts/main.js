@@ -165,10 +165,8 @@ app.controller('blockController', ['$scope', '$sce', '$http', '$timeout', '$inte
     var maleFocusCount = angular.copy(focusCount);
     var femaleFocus = angular.copy(focusList);
     var femaleFocusCount = angular.copy(focusCount);
-    $scope.isMaleWant = false;
-    $scope.isMaleFocus = true;
-    $scope.isFemaleWant = true;
-    $scope.isFemaleFocus = false;
+    $scope.isMale = false;
+    $scope.isFemale = true;
     var motiveList = [];
     var motiveCount = {};
     var sportList = ['其他'];
@@ -273,47 +271,53 @@ app.controller('blockController', ['$scope', '$sce', '$http', '$timeout', '$inte
         $scope.showBigdata('want');
     })
     $scope.showBigdata = function(type) {
-        $scope.bigdataType = type;
+        $scope.type = type;
         var bigdataOption = {};
         if (type == 'want') {
             bigdataOption = getChartOption('tippie', '女生最想看異性哪個肌肉部位', femaleWant);
             $scope.bigdata = { 'want': true, 'focus': false, 'motivation': false };
+            $scope.isFemale = true;
+            $scope.isMale = false;
         }
         if (type == 'focus') {
             bigdataOption = getChartOption('tippie', '男生最注重自己哪個肌肉部位', maleFocus);
             $scope.bigdata = { 'want': false, 'focus': true, 'motivation': false };
+            $scope.isFemale = false;
+            $scope.isMale = true;
         }
         if (type == 'motivation') {
             bigdataOption = getChartOption('pie', '大家健身最大的動機為何', motiveList);
             $scope.bigdata = { 'want': false, 'focus': false, 'motivation': true };
+            $scope.isFemale = true;
+            $scope.isMale = true;
         }
         setChart('block-bigdata1-thumb', bigdataOption);
-        console.log($scope.bigdata,$scope.bigdata.want);
     }
     $scope.changeSex = function(sex) {
+            console.log(sex, $scope.type)
             var chartOption = {};
             if ($scope.type == 'want') {
                 if (sex == 'female') {
-                    $scope.isFemaleWant = true;
-                    $scope.isMaleWant = false;
+                    $scope.isFemale = true;
+                    $scope.isMale = false;
                     chartOption = getChartOption('tippie', '女生最想看異性哪個肌肉部位', femaleWant);
                     setChart('block-bigdata1-thumb', chartOption);
                 } else {
-                    $scope.isMaleWant = true;
-                    $scope.isFemaleWant = false
+                    $scope.isMale = true;
+                    $scope.isFemale = false
                     chartOption = getChartOption('tippie', '男生最想看異性哪個肌肉部位', maleWant);
                     setChart('block-bigdata1-thumb', chartOption);
                 }
             }
             if ($scope.type == 'focus') {
                 if (sex == 'female') {
-                    $scope.isFemaleFocus = true;
-                    $scope.isMaleFocus = false;
+                    $scope.isFemale = true;
+                    $scope.isMale = false;
                     chartOption = getChartOption('tippie', '女生最注重自己哪個肌肉部位', femaleFocus);
                     setChart('block-bigdata1-thumb', chartOption);
                 } else {
-                    $scope.isMaleFocus = true;
-                    $scope.isFemaleFocus = false;
+                    $scope.isMale = true;
+                    $scope.isFemale = false;
                     chartOption = getChartOption('tippie', '男生最注重自己哪個肌肉部位', maleFocus);
                     setChart('block-bigdata1-thumb', chartOption);
                 }
@@ -629,54 +633,62 @@ app.controller('blockController', ['$scope', '$sce', '$http', '$timeout', '$inte
     // 推薦課程 接入api
     var popularCourse = {
         title: '熱門課程',
-        'courseList': [{ 'day': 'Day1', 'position': [{ 'pos': '姿勢一' }, { 'pos': '姿勢二' }, { 'pos': '姿勢三' }] },
-            { 'day': 'Day3', 'position': [{ 'pos': '姿勢四' }, { 'pos': '姿勢五' }, { 'pos': '姿勢六' }] },
-            { 'day': 'Day6', 'position': [{ 'pos': '姿勢一' }, { 'pos': '姿勢二' }, { 'pos': '姿勢三' }] },
-            { 'day': 'Day8', 'position': [{ 'pos': '姿勢四' }, { 'pos': '姿勢五' }, { 'pos': '姿勢六' }] },
-            { 'day': 'Day11', 'position': [{ 'pos': '姿勢一' }, { 'pos': '姿勢二' }, { 'pos': '姿勢三' }] },
-            { 'day': 'Day13', 'position': [{ 'pos': '姿勢四' }, { 'pos': '姿勢五' }, { 'pos': '姿勢六' }] },
-            { 'day': 'Day16', 'position': [{ 'pos': '姿勢一' }, { 'pos': '姿勢二' }, { 'pos': '姿勢三' }] },
-            { 'day': 'Day18', 'position': [{ 'pos': '姿勢四' }, { 'pos': '姿勢五' }, { 'pos': '姿勢六' }] },
-            { 'day': 'Day21', 'position': [{ 'pos': '姿勢一' }, { 'pos': '姿勢二' }, { 'pos': '姿勢三' }] },
-            { 'day': 'Day23', 'position': [{ 'pos': '姿勢四' }, { 'pos': '姿勢五' }, { 'pos': '姿勢六' }] },
-            { 'day': 'Day26', 'position': [{ 'pos': '姿勢一' }, { 'pos': '姿勢二' }, { 'pos': '姿勢三' }] },
-            { 'day': 'Day28', 'position': [{ 'pos': '姿勢四' }, { 'pos': '姿勢五' }, { 'pos': '姿勢六' }] },
-            { 'day': 'Day31', 'position': [{ 'pos': '姿勢一' }, { 'pos': '姿勢二' }, { 'pos': '姿勢三' }] }
+        'courseList': [{
+                'day': 'Day1',
+                'position': [{ 'pos': '集中彎舉' }, { 'pos': '坐姿啞鈴交替彎舉' }, { 'pos': '站姿啞鈴錘式彎舉' },
+                    { 'pos': '槓鈴彎舉' }, { 'pos': '槓鈴斜板彎舉' }, { 'pos': '槓鈴彎舉' }
+                ]
+            }, {
+                'day': 'Day2',
+                'position': [{ 'pos': '槓鈴斜板彎舉' }, { 'pos': '槓鈴斜板彎舉' }, { 'pos': '集中彎舉' },
+                    { 'pos': '集中彎舉' }, { 'pos': '站姿啞鈴錘式彎舉' }, { 'pos': '槓鈴斜板彎舉' }
+                ]
+            }
+
         ]
     };
     var partCourse = {
         title: '部位課程',
-        'courseList': [{ 'day': 'Day1', 'position': [{ 'pos': '姿勢一' }, { 'pos': '姿勢二' }, { 'pos': '姿勢三' }] },
-            { 'day': 'Day3', 'position': [{ 'pos': '姿勢四' }, { 'pos': '姿勢五' }, { 'pos': '姿勢六' }] },
-            { 'day': 'Day6', 'position': [{ 'pos': '姿勢一' }, { 'pos': '姿勢二' }, { 'pos': '姿勢三' }] },
-            { 'day': 'Day8', 'position': [{ 'pos': '姿勢四' }, { 'pos': '姿勢五' }, { 'pos': '姿勢六' }] },
-            { 'day': 'Day11', 'position': [{ 'pos': '姿勢一' }, { 'pos': '姿勢二' }, { 'pos': '姿勢三' }] },
-            { 'day': 'Day13', 'position': [{ 'pos': '姿勢四' }, { 'pos': '姿勢五' }, { 'pos': '姿勢六' }] },
-            { 'day': 'Day16', 'position': [{ 'pos': '姿勢一' }, { 'pos': '姿勢二' }, { 'pos': '姿勢三' }] },
-            { 'day': 'Day18', 'position': [{ 'pos': '姿勢四' }, { 'pos': '姿勢五' }, { 'pos': '姿勢六' }] },
-            { 'day': 'Day21', 'position': [{ 'pos': '姿勢一' }, { 'pos': '姿勢二' }, { 'pos': '姿勢三' }] },
-            { 'day': 'Day23', 'position': [{ 'pos': '姿勢四' }, { 'pos': '姿勢五' }, { 'pos': '姿勢六' }] },
-            { 'day': 'Day26', 'position': [{ 'pos': '姿勢一' }, { 'pos': '姿勢二' }, { 'pos': '姿勢三' }] },
-            { 'day': 'Day28', 'position': [{ 'pos': '姿勢四' }, { 'pos': '姿勢五' }, { 'pos': '姿勢六' }] },
-            { 'day': 'Day31', 'position': [{ 'pos': '姿勢一' }, { 'pos': '姿勢二' }, { 'pos': '姿勢三' }] }
-        ]
+        'courseList': [{
+            'day': 'Day1',
+            'position': [{ 'pos': '硬舉' }, { 'pos': '俯身挺背' }, { 'pos': '俯身挺背' },
+                { 'pos': '槓鈴曲體划船' }, { 'pos': '啞鈴單臂划船' }, { 'pos': '啞鈴單臂划船' }
+            ]
+        }, {
+            'day': 'Day2',
+            'position': [{ 'pos': '槓鈴曲體划船' }, { 'pos': '硬舉' }, { 'pos': '站姿負重俯身挺背' },
+                { 'pos': '俯身挺背' }, { 'pos': '啞鈴單臂划船' }, { 'pos': '啞鈴單臂划船' }
+            ]
+        }]
     };
     var bodyfatCourse = {
         title: '減脂課程',
-        'courseList': [{ 'day': 'Day1', 'position': [{ 'pos': '姿勢一' }, { 'pos': '姿勢二' }, { 'pos': '姿勢三' }] },
-            { 'day': 'Day3', 'position': [{ 'pos': '姿勢四' }, { 'pos': '姿勢五' }, { 'pos': '姿勢六' }] },
-            { 'day': 'Day6', 'position': [{ 'pos': '姿勢一' }, { 'pos': '姿勢二' }, { 'pos': '姿勢三' }] },
-            { 'day': 'Day8', 'position': [{ 'pos': '姿勢四' }, { 'pos': '姿勢五' }, { 'pos': '姿勢六' }] },
-            { 'day': 'Day11', 'position': [{ 'pos': '姿勢一' }, { 'pos': '姿勢二' }, { 'pos': '姿勢三' }] },
-            { 'day': 'Day13', 'position': [{ 'pos': '姿勢四' }, { 'pos': '姿勢五' }, { 'pos': '姿勢六' }] },
-            { 'day': 'Day16', 'position': [{ 'pos': '姿勢一' }, { 'pos': '姿勢二' }, { 'pos': '姿勢三' }] },
-            { 'day': 'Day18', 'position': [{ 'pos': '姿勢四' }, { 'pos': '姿勢五' }, { 'pos': '姿勢六' }] },
-            { 'day': 'Day21', 'position': [{ 'pos': '姿勢一' }, { 'pos': '姿勢二' }, { 'pos': '姿勢三' }] },
-            { 'day': 'Day23', 'position': [{ 'pos': '姿勢四' }, { 'pos': '姿勢五' }, { 'pos': '姿勢六' }] },
-            { 'day': 'Day26', 'position': [{ 'pos': '姿勢一' }, { 'pos': '姿勢二' }, { 'pos': '姿勢三' }] },
-            { 'day': 'Day28', 'position': [{ 'pos': '姿勢四' }, { 'pos': '姿勢五' }, { 'pos': '姿勢六' }] },
-            { 'day': 'Day31', 'position': [{ 'pos': '姿勢一' }, { 'pos': '姿勢二' }, { 'pos': '姿勢三' }] }
-        ]
+        'courseList': [{
+            'day': 'Day1',
+            'position': [{ 'pos': '伏地挺身' }, { 'pos': '啞鈴仰臥推舉' }, { 'pos': '上斜槓鈴臥推' },
+                { 'pos': '槓鈴窄臥推舉' }, { 'pos': '坐姿啞鈴三頭肌伸展' }, { 'pos': '槓鈴窄臥推舉' }
+            ]
+        }, {
+            'day': 'Day2',
+            'position': [{ 'pos': '硬舉' }, { 'pos': '硬舉' }, { 'pos': '啞鈴單臂划船' },
+                { 'pos': '站姿啞鈴錘式彎舉' }, { 'pos': '站姿啞鈴錘式彎舉' }, { 'pos': '站姿啞鈴錘式彎舉' }
+            ]
+        }, {
+            'day': 'Day3',
+            'position': [{ 'pos': '直膝硬舉' }, { 'pos': '直膝硬舉' }, { 'pos': '啞鈴跨步深蹲' },
+                { 'pos': '槓鈴深蹲' }, { 'pos': '直膝硬舉' }, { 'pos': '直膝硬舉' }
+            ]
+        }, {
+            'day': 'Day4',
+            'position': [{ 'pos': '槓鈴頸後推舉' }, { 'pos': '坐姿啞鈴推舉' }, { 'pos': '啞鈴聳肩' },
+                { 'pos': '立姿啞鈴前抬舉' }, { 'pos': '立正划船' }, { 'pos': '坐姿啞鈴推舉' }
+            ]
+        }, {
+            'day': 'Day5',
+            'position': [{ 'pos': '交換碰跟捲腹' }, { 'pos': '側身仰臥起坐' }, { 'pos': '側身仰臥起坐' },
+                { 'pos': '上背平躺抬腿' }, { 'pos': '上背平躺抬腿' }, { 'pos': '俄羅斯扭轉' }
+            ]
+        }]
     };
     $scope.isCourseClick = false;
     $scope.isCourseShow = false;
