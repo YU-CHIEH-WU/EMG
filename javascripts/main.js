@@ -333,6 +333,7 @@ app.controller('blockController', ['$scope', '$sce', '$http', '$timeout', '$inte
             $scope.isFemale = true;
             $scope.isMale = true;
         }
+        console.log(maleCount,femaleCount);
         setChart('block-bigdata1-thumb', bigdataOption);
     }
     $scope.changeSex = function(sex) {
