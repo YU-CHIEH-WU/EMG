@@ -157,6 +157,8 @@ app.controller('blockController', ['$scope', '$sce', '$http', '$timeout', '$inte
     var focusList = [{ 'name': '均衡發展', 'y': 0 }, { 'name': '腿部', 'y': 0 }, { 'name': '胸部', 'y': 0 }, { 'name': '背部', 'y': 0 }, { 'name': '腹部', 'y': 0 }, { 'name': '肩部', 'y': 0 }, { 'name': '肱二頭肌', 'y': 0 }, { 'name': '肱三頭肌', 'y': 0 }]
     var wantCount = { '腿部': 0, '胸部': 0, '背部': 0, '腹部': 0, '肩部': 0, '肱二頭肌': 0, '肱三頭肌': 0 };
     var focusCount = { '均衡發展': 0, '腿部': 0, '胸部': 0, '背部': 0, '腹部': 0, '肩部': 0, '肱二頭肌': 0, '肱三頭肌': 0 };
+    var ageList = [{ 'name': '15~20', 'y': 0 }, { 'name': '21~25', 'y': 0 }, { 'name': '26~30', 'y': 0 }, { 'name': '30~35', 'y': 0 }, { 'name': '35~40', 'y': 0 }, { 'name': '40歲以上', 'y': 0 }];
+    var ageCount = { '15~20': 0, '21~25': 0, '26~30': 0, '30~35': 0, '35~40': 0, '40歲以上': 0 };
     var maleWant = angular.copy(wantList);
     var maleWantCount = angular.copy(wantCount);
     var femaleWant = angular.copy(wantList);
@@ -165,6 +167,10 @@ app.controller('blockController', ['$scope', '$sce', '$http', '$timeout', '$inte
     var maleFocusCount = angular.copy(focusCount);
     var femaleFocus = angular.copy(focusList);
     var femaleFocusCount = angular.copy(focusCount);
+    var maleAge = angular.copy(ageList);
+    var maleAgeCount = angular.copy(ageCount);
+    var femaleAge = angular.copy(ageList);
+    var femaleAgeCount = angular.copy(ageCount);
     $scope.isMale = false;
     $scope.isFemale = true;
     var motiveList = [];
@@ -233,11 +239,13 @@ app.controller('blockController', ['$scope', '$sce', '$http', '$timeout', '$inte
             if (sex == '男生') {
                 maleWantCount[want]++;
                 maleFocusCount[focus]++;
+                maleAgeCount[age]++;
                 maleCount++;
             }
             if (sex == '女生') {
                 femaleWantCount[want]++;
                 femaleFocusCount[focus]++;
+                femaleAgeCount[age]++;
                 femaleCount++;
             }
         })
@@ -268,6 +276,28 @@ app.controller('blockController', ['$scope', '$sce', '$http', '$timeout', '$inte
         angular.forEach(femaleFocus, function(value, key) {
             femaleFocus[key].y = parseFloat((femaleFocusCount[value.name] / femaleCount * 100).toFixed(2));
         })
+        angular.forEach(maleAge, function(value, key) {
+            maleAge[key].y = parseFloat((maleAgeCount[value.name] / maleCount * 100).toFixed(2));
+        })
+        angular.forEach(femaleAge, function(value, key) {
+            femaleAge[key].y = parseFloat((femaleAgeCount[value.name] / femaleCount * 100).toFixed(2));
+        })
+        maleWant.sort(function(a, b) {
+            return a.y - b.y;
+        })
+        maleWant.reverse();
+        femaleWant.sort(function(a, b) {
+            return a.y - b.y;
+        })
+        femaleWant.reverse();
+        maleFocus.sort(function(a, b) {
+            return a.y - b.y;
+        })
+        maleFocus.reverse();
+        femaleFocus.sort(function(a, b) {
+            return a.y - b.y;
+        })
+        femaleFocus.reverse();
         $scope.showBigdata('want');
     })
     $scope.showBigdata = function(type) {
@@ -275,26 +305,37 @@ app.controller('blockController', ['$scope', '$sce', '$http', '$timeout', '$inte
         var bigdataOption = {};
         if (type == 'want') {
             bigdataOption = getChartOption('tippie', '女生最想看異性哪個肌肉部位', femaleWant);
-            $scope.bigdata = { 'want': true, 'focus': false, 'motivation': false };
+            $scope.bigdata = { 'want': true, 'focus': false, 'motivation': false, 'age': false, 'dot': false };
             $scope.isFemale = true;
             $scope.isMale = false;
         }
         if (type == 'focus') {
             bigdataOption = getChartOption('tippie', '男生最注重自己哪個肌肉部位', maleFocus);
-            $scope.bigdata = { 'want': false, 'focus': true, 'motivation': false };
+            $scope.bigdata = { 'want': false, 'focus': true, 'motivation': false, 'age': false, 'dot': false };
             $scope.isFemale = false;
             $scope.isMale = true;
         }
         if (type == 'motivation') {
             bigdataOption = getChartOption('pie', '大家健身最大的動機為何', motiveList);
-            $scope.bigdata = { 'want': false, 'focus': false, 'motivation': true };
+            $scope.bigdata = { 'want': false, 'focus': false, 'motivation': true, 'age': false, 'dot': false };
+            $scope.isFemale = true;
+            $scope.isMale = true;
+        }
+        if (type == 'age') {
+            bigdataOption = getChartOption('age', '會員年齡分佈狀況', maleAge, femaleAge);
+            $scope.bigdata = { 'want': false, 'focus': false, 'motivation': false, 'age': true, 'dot': false };
+            $scope.isFemale = true;
+            $scope.isMale = true;
+        }
+        if (type == 'dot') {
+            bigdataOption = getChartOption('dotThumb');
+            $scope.bigdata = { 'want': false, 'focus': false, 'motivation': false, 'age': false, 'dot': true };
             $scope.isFemale = true;
             $scope.isMale = true;
         }
         setChart('block-bigdata1-thumb', bigdataOption);
     }
     $scope.changeSex = function(sex) {
-            console.log(sex, $scope.type)
             var chartOption = {};
             if ($scope.type == 'want') {
                 if (sex == 'female') {
