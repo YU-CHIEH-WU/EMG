@@ -69,9 +69,12 @@
                     <div class="block-inner block-inner-1" id="block-status">
                         <div class="block-header">
                             <p class="pull-left">個人素質</p>
-                            <button class="btn btn-saveSVG pull-right" data-chartname="status" id="btn-trainingSVG">分享圖表</button>
+                            <button ng-if="isAdmin" class="btn btn-saveSVG pull-right" data-chartname="status" id="btn-trainingSVG">分享圖表</button>
                         </div>
                         <div class="block-body">
+                            <div ng-if="!isAdmin" class="block-alert">
+                                請先完成兩週以上的課程。
+                            </div>
                             <div class="block-thumb" id="block-chart-status"></div>
                         </div>
                     </div>
@@ -81,21 +84,27 @@
                     <div class="block-inner block-inner-1" id="block-bodyfat">
                         <div class="block-header">
                             <p class="pull-left">體脂</p>
-                            <button class="btn btn-saveSVG pull-right" data-chartname="bodyfatThumb" id="btn-trainingSVG">分享圖表</button>
+                            <button ng-if="isAdmin" class="btn btn-saveSVG pull-right" data-chartname="bodyfatThumb" id="btn-trainingSVG">分享圖表</button>
                         </div>
                         <div class="block-body">
+                            <div ng-if="!isAdmin" class="block-alert">
+                                請先完成兩週以上的課程。
+                            </div>
                             <div class="block-thumb" id="block-bodyfat-thumb"></div>
                         </div>
                     </div>
                 </div>
                 <!-- 訓練成效 -->
                 <div class="col-md-6 col-xs-12 block-outer">
-                    <div class="block-inner block-inner-2 clickable" id="block-training" ng-mouseenter="showMessage('training')" ng-mouseleave="hideMessage('training')">
+                    <div class="block-inner block-inner-2" ng-class="{clickable:isAdmin}" id="block-training" ng-mouseenter="showMessage('training')" ng-mouseleave="hideMessage('training')">
                         <div class="block-header">
                             <p class="pull-left">訓練成效</p>
-                            <button class="btn btn-saveSVG pull-right" data-chartname="training" id="btn-trainingSVG">分享圖表</button>
+                            <button ng-if="isAdmin" class="btn btn-saveSVG pull-right" data-chartname="training" id="btn-trainingSVG">分享圖表</button>
                         </div>
                         <div class="block-body">
+                            <div ng-if="!isAdmin" class="block-alert">
+                                請先完成兩週以上的課程。
+                            </div>
                             <div class="block-thumb" id="block-training-thumb" ng-click="showDetail1()"></div>
                             <input type="hidden" id="trainingSVG" ng-model="trainingSVG">
                         </div>
@@ -107,12 +116,15 @@
                 </div>
                 <!-- 肌肉成長 -->
                 <div class="col-md-6 col-xs-12 block-outer">
-                    <div class="block-inner block-inner-2 clickable" id="block-grow" ng-mouseenter="showMessage('grow')" ng-mouseleave="hideMessage('grow')">
+                    <div class="block-inner block-inner-2" ng-class="{clickable:isAdmin}" id="block-grow" ng-mouseenter="showMessage('grow')" ng-mouseleave="hideMessage('grow')">
                         <div class="block-header">
                             <p class="pull-left">肌肉成長</p>
-                            <button class="btn btn-saveSVG pull-right" data-chartname="grow" id="btn-trainingSVG">分享圖表</button>
+                            <button ng-if="isAdmin" class="btn btn-saveSVG pull-right" data-chartname="grow" id="btn-trainingSVG">分享圖表</button>
                         </div>
                         <div class="block-body">
+                            <div ng-if="!isAdmin" class="block-alert">
+                                請先完成兩週以上的課程。
+                            </div>
                             <div class="block-thumb" id="block-grow-thumb" ng-click="showDetail2()"></div>
                         </div>
                         <div class="block-message" id="grow-message" ng-class="{active:hoverGrow}">
@@ -126,6 +138,7 @@
                     <div class="block-inner block-inner-4">
                         <div class="block-header">依據年齡與性別推薦給你/妳</div>
                         <div class="block-body" ng-click="showRecommend('age')">
+                        <img src="images/age.png" alt="">
                         </div>
                     </div>
                 </div>
@@ -133,14 +146,18 @@
                 <div class="col-md-4 col-xs-6 block-outer">
                     <div class="block-inner block-inner-4">
                         <div class="block-header">依據運動項目推薦給你/妳</div>
-                        <div class="block-body" ng-click="showRecommend('sport')"></div>
+                        <div class="block-body" ng-click="showRecommend('sport')">
+                            <img src="images/sport.png" alt="">
+                        </div>
                     </div>
                 </div>
                 <!-- 訓練部位 -->
                 <div class="col-md-4 col-xs-6 block-outer">
                     <div class="block-inner block-inner-4">
                         <div class="block-header">依據注重肌肉部位推薦給你/妳</div>
-                        <div class="block-body" ng-click="showRecommend('place')"></div>
+                        <div class="block-body" ng-click="showRecommend('place')">
+                            <img src="images/part.png" alt="">
+                        </div>
                     </div>
                 </div>
                 <!-- 訓練目標 -->

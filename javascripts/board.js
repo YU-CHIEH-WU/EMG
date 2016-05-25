@@ -428,6 +428,13 @@ app.controller('blockController', ['$scope', '$sce', '$http', '$timeout', '$loca
                     'age': response.data.Age,
                     'sex': response.data.Sex
                 }
+                console.log($scope.loginUser.account);
+                if ($scope.loginUser.account == "administrator") {
+                    $scope.isAdmin = true;
+                } else {
+                    $scope.isAdmin = false;
+                }
+                console.log($scope.isAdmin)
                 var apiData = { 'account': $scope.userAccount };
                 var ageApi = apiUrl + 'CourseApi/getAge';
                 $scope.ageCourseList = [];
@@ -509,15 +516,17 @@ app.controller('blockController', ['$scope', '$sce', '$http', '$timeout', '$loca
             })
         }, 10);
         // 登入後使用者個人資料
-        var status = getChartOption('status');
-        var bodyfatThumb = getChartOption('bodyfatThumb');
-        var training = getChartOption('training');
-        var grow = getChartOption('grow');
-        setChart('block-chart-status', status);
-        setChart('block-bodyfat-thumb', bodyfatThumb);
-        setChart('block-training-thumb', training);
-        setChart('block-grow-thumb', grow);
-        // 修改個人資料
+        $(setTimeout(function() {
+                var status = getChartOption('status');
+                var bodyfatThumb = getChartOption('bodyfatThumb');
+                var training = getChartOption('training');
+                var grow = getChartOption('grow');
+                setChart('block-chart-status', status);
+                setChart('block-bodyfat-thumb', bodyfatThumb);
+                setChart('block-training-thumb', training);
+                setChart('block-grow-thumb', grow);
+            }, 100));
+            // 修改個人資料
         $scope.form = {};
         // 行事曆控制項與預設
         $scope.courseData = [{
@@ -976,164 +985,179 @@ app.controller('blockController', ['$scope', '$sce', '$http', '$timeout', '$loca
                 $scope.recommendList.title = '依據年齡與性別推薦給你/妳';
             }
             if (filter == 'sport') {
-                // $scope.recommendList = $scope.sportCourseList;
-                $scope.recommendList = [{
-                    'Days': 'Days1',
-                    'Pos1': '仰臥三頭肌伸展',
-                    'Pos2': '槓鈴窄臥推舉',
-                    'Pos3': '槓鈴窄臥推舉',
-                    'Pos4': '槓鈴窄臥推舉',
-                    'Pos5': '槓鈴窄臥推舉',
-                    'Pos6': '槓鈴窄臥推舉'
-                }, {
-                    'Days': 'Days2',
-                    'Pos1': '槓鈴彎舉',
-                    'Pos2': '槓鈴斜板彎舉',
-                    'Pos3': '站姿啞鈴錘式彎舉',
-                    'Pos4': '槓鈴斜板彎舉',
-                    'Pos5': '槓鈴彎舉',
-                    'Pos6': '集中彎舉'
-                }, {
-                    'Days': 'Days3',
-                    'Pos1': '啞鈴聳肩',
-                    'Pos2': '立正划船',
-                    'Pos3': '立正划船',
-                    'Pos4': '立姿啞鈴前抬舉',
-                    'Pos5': '立姿啞鈴前抬舉',
-                    'Pos6': '槓鈴頸後推舉'
-                }, {
-                    'Days': 'Day4',
-                    'Pos1': '仰臥三頭肌伸展',
-                    'Pos2': '槓鈴窄臥推舉',
-                    'Pos3': '坐姿啞鈴三頭肌伸展',
-                    'Pos4': '仰臥三頭肌伸展',
-                    'Pos5': '仰臥三頭肌伸展',
-                    'Pos6': '啞鈴單手後屈伸'
-                }, {
-                    'Days': 'Days5',
-                    'Pos1': '坐姿啞鈴交替彎舉',
-                    'Pos2': '站姿啞鈴錘式彎舉',
-                    'Pos3': '集中彎舉',
-                    'Pos4': '站姿啞鈴錘式彎舉',
-                    'Pos5': '站姿啞鈴錘式彎舉',
-                    'Pos6': '坐姿啞鈴交替彎舉'
-                }, {
-                    'Days': 'Days6',
-                    'Pos1': '坐姿啞鈴推舉',
-                    'Pos2': '立姿側平舉',
-                    'Pos3': '立姿側平舉',
-                    'Pos4': '立姿側平舉',
-                    'Pos5': '啞鈴聳肩',
-                    'Pos6': '坐姿啞鈴推舉'
-                }]
+                if ($scope.isAdmin) {
+                    $scope.recommendList = [{
+                        'Days': 'Days1',
+                        'Pos1': '仰臥三頭肌伸展',
+                        'Pos2': '槓鈴窄臥推舉',
+                        'Pos3': '槓鈴窄臥推舉',
+                        'Pos4': '槓鈴窄臥推舉',
+                        'Pos5': '槓鈴窄臥推舉',
+                        'Pos6': '槓鈴窄臥推舉'
+                    }, {
+                        'Days': 'Days2',
+                        'Pos1': '槓鈴彎舉',
+                        'Pos2': '槓鈴斜板彎舉',
+                        'Pos3': '站姿啞鈴錘式彎舉',
+                        'Pos4': '槓鈴斜板彎舉',
+                        'Pos5': '槓鈴彎舉',
+                        'Pos6': '集中彎舉'
+                    }, {
+                        'Days': 'Days3',
+                        'Pos1': '啞鈴聳肩',
+                        'Pos2': '立正划船',
+                        'Pos3': '立正划船',
+                        'Pos4': '立姿啞鈴前抬舉',
+                        'Pos5': '立姿啞鈴前抬舉',
+                        'Pos6': '槓鈴頸後推舉'
+                    }, {
+                        'Days': 'Day4',
+                        'Pos1': '仰臥三頭肌伸展',
+                        'Pos2': '槓鈴窄臥推舉',
+                        'Pos3': '坐姿啞鈴三頭肌伸展',
+                        'Pos4': '仰臥三頭肌伸展',
+                        'Pos5': '仰臥三頭肌伸展',
+                        'Pos6': '啞鈴單手後屈伸'
+                    }, {
+                        'Days': 'Days5',
+                        'Pos1': '坐姿啞鈴交替彎舉',
+                        'Pos2': '站姿啞鈴錘式彎舉',
+                        'Pos3': '集中彎舉',
+                        'Pos4': '站姿啞鈴錘式彎舉',
+                        'Pos5': '站姿啞鈴錘式彎舉',
+                        'Pos6': '坐姿啞鈴交替彎舉'
+                    }, {
+                        'Days': 'Days6',
+                        'Pos1': '坐姿啞鈴推舉',
+                        'Pos2': '立姿側平舉',
+                        'Pos3': '立姿側平舉',
+                        'Pos4': '立姿側平舉',
+                        'Pos5': '啞鈴聳肩',
+                        'Pos6': '坐姿啞鈴推舉'
+                    }]
+                } else {
+                    $scope.recommendList = $scope.sportCourseList;
+                }
                 $scope.recommendList.title = '依據運動項目推薦給你/妳';
             }
             if (filter == 'place') {
-                // $scope.recommendList = $scope.placeCourseList;
-                $scope.recommendList = [{
-                    'Days': 'Days1',
-                    'Pos1': '側向捲腹',
-                    'Pos2': '交換碰跟捲腹',
-                    'Pos3': '側身仰臥起坐',
-                    'Pos4': '上臥捲腹',
-                    'Pos5': '雙手摸膝捲腹',
-                    'Pos6': '仰臥起坐'
-                }, {
-                    'Days': 'Days2',
-                    'Pos1': '側向捲腹',
-                    'Pos2': '雙手摸膝捲腹',
-                    'Pos3': '雙腳合併畫鐘',
-                    'Pos4': '上臥捲腹',
-                    'Pos5': '上臥捲腹',
-                    'Pos6': '上背平躺抬腿'
-                }]
+                if ($scope.isAdmin) {
+                    $scope.recommendList = [{
+                        'Days': 'Days1',
+                        'Pos1': '側向捲腹',
+                        'Pos2': '交換碰跟捲腹',
+                        'Pos3': '側身仰臥起坐',
+                        'Pos4': '上臥捲腹',
+                        'Pos5': '雙手摸膝捲腹',
+                        'Pos6': '仰臥起坐'
+                    }, {
+                        'Days': 'Days2',
+                        'Pos1': '側向捲腹',
+                        'Pos2': '雙手摸膝捲腹',
+                        'Pos3': '雙腳合併畫鐘',
+                        'Pos4': '上臥捲腹',
+                        'Pos5': '上臥捲腹',
+                        'Pos6': '上背平躺抬腿'
+                    }]
+                } else {
+                    $scope.recommendList = $scope.placeCourseList;
+                }
                 $scope.recommendList.title = '依據注重肌肉部位推薦給你/妳';
             }
             if (filter == 'motivation') {
-                // $scope.recommendList = $scope.motivationCourseList;
-                $scope.recommendList = [{
-                    'Days': 'Days1',
-                    'Pos1': '寬版伏地挺身',
-                    'Pos2': '坐式機械飛鳥',
-                    'Pos3': '寬版伏地挺身',
-                    'Pos4': '滑輪三頭肌下壓',
-                    'Pos5': '滑輪三頭肌下壓',
-                    'Pos6': '滑輪三頭肌下壓'
-                }, {
-                    'Days': 'Days2',
-                    'Pos1': '坐姿滑輪頸前下拉',
-                    'Pos2': '坐姿滑輪頸前下拉',
-                    'Pos3': '頸後引體向上',
-                    'Pos4': '滑輪二頭肌彎舉',
-                    'Pos5': '滑輪二頭肌彎舉',
-                    'Pos6': '滑輪二頭肌彎舉'
-                }, {
-                    'Days': 'Days3',
-                    'Pos1': '腿後勾',
-                    'Pos2': '前抬腿',
-                    'Pos3': '前抬腿',
-                    'Pos4': '前抬腿',
-                    'Pos5': '前抬腿',
-                    'Pos6': '前抬腿'
-                }, {
-                    'Days': 'Days4',
-                    'Pos1': '滑輪單手前胸側平舉',
-                    'Pos2': '滑輪單手前胸側平舉',
-                    'Pos3': '滑輪單手前胸側平舉',
-                    'Pos4': '滑輪單手前胸側平舉',
-                    'Pos5': '滑輪單手前胸側平舉',
-                    'Pos6': '滑輪單手前胸側平舉'
-                }, {
-                    'Days': 'Days5',
-                    'Pos1': '交換碰跟捲腹',
-                    'Pos2': '仰臥起坐',
-                    'Pos3': '上臥捲腹',
-                    'Pos4': '仰臥腿上舉',
-                    'Pos5': '交換碰跟捲腹',
-                    'Pos6': 'V型仰臥起坐'
-                }, ]
+                if ($scope.isAdmin) {
+                    $scope.recommendList = $scope.motivationCourseList;
+                } else {
+                    $scope.recommendList = [{
+                        'Days': 'Days1',
+                        'Pos1': '寬版伏地挺身',
+                        'Pos2': '坐式機械飛鳥',
+                        'Pos3': '寬版伏地挺身',
+                        'Pos4': '滑輪三頭肌下壓',
+                        'Pos5': '滑輪三頭肌下壓',
+                        'Pos6': '滑輪三頭肌下壓'
+                    }, {
+                        'Days': 'Days2',
+                        'Pos1': '坐姿滑輪頸前下拉',
+                        'Pos2': '坐姿滑輪頸前下拉',
+                        'Pos3': '頸後引體向上',
+                        'Pos4': '滑輪二頭肌彎舉',
+                        'Pos5': '滑輪二頭肌彎舉',
+                        'Pos6': '滑輪二頭肌彎舉'
+                    }, {
+                        'Days': 'Days3',
+                        'Pos1': '腿後勾',
+                        'Pos2': '前抬腿',
+                        'Pos3': '前抬腿',
+                        'Pos4': '前抬腿',
+                        'Pos5': '前抬腿',
+                        'Pos6': '前抬腿'
+                    }, {
+                        'Days': 'Days4',
+                        'Pos1': '滑輪單手前胸側平舉',
+                        'Pos2': '滑輪單手前胸側平舉',
+                        'Pos3': '滑輪單手前胸側平舉',
+                        'Pos4': '滑輪單手前胸側平舉',
+                        'Pos5': '滑輪單手前胸側平舉',
+                        'Pos6': '滑輪單手前胸側平舉'
+                    }, {
+                        'Days': 'Days5',
+                        'Pos1': '交換碰跟捲腹',
+                        'Pos2': '仰臥起坐',
+                        'Pos3': '上臥捲腹',
+                        'Pos4': '仰臥腿上舉',
+                        'Pos5': '交換碰跟捲腹',
+                        'Pos6': 'V型仰臥起坐'
+                    }]
+                }
                 $scope.recommendList.title = '依據健身動力推薦給你/妳';
             }
             if (filter == 'same') {
-                // $scope.recommendList = $scope.sameCourseList;
-                $scope.recommendList = [{
-                    'Days': 'Days1',
-                    'Pos1': '站姿啞鈴錘式彎舉',
-                    'Pos2': '槓鈴彎舉',
-                    'Pos3': '槓鈴斜板彎舉',
-                    'Pos4': '站姿啞鈴錘式彎舉',
-                    'Pos5': '滑輪二頭肌彎舉',
-                    'Pos6': '槓鈴斜板彎舉'
-                }, {
-                    'Days': 'Days2',
-                    'Pos1': '坐姿啞鈴交替彎舉',
-                    'Pos2': '槓鈴斜板彎舉',
-                    'Pos3': '坐姿啞鈴交替彎舉',
-                    'Pos4': '坐姿啞鈴交替彎舉',
-                    'Pos5': '站姿啞鈴錘式彎舉',
-                    'Pos6': '站姿啞鈴錘式彎舉'
-                }]
+                if ($scope.isAdmin) {
+                    $scope.recommendList = $scope.sameCourseList;
+                } else {
+                    $scope.recommendList = [{
+                        'Days': 'Days1',
+                        'Pos1': '站姿啞鈴錘式彎舉',
+                        'Pos2': '槓鈴彎舉',
+                        'Pos3': '槓鈴斜板彎舉',
+                        'Pos4': '站姿啞鈴錘式彎舉',
+                        'Pos5': '滑輪二頭肌彎舉',
+                        'Pos6': '槓鈴斜板彎舉'
+                    }, {
+                        'Days': 'Days2',
+                        'Pos1': '坐姿啞鈴交替彎舉',
+                        'Pos2': '槓鈴斜板彎舉',
+                        'Pos3': '坐姿啞鈴交替彎舉',
+                        'Pos4': '坐姿啞鈴交替彎舉',
+                        'Pos5': '站姿啞鈴錘式彎舉',
+                        'Pos6': '站姿啞鈴錘式彎舉'
+                    }]
+                }
                 $scope.recommendList.title = '依據完成課程推薦給你/妳';
             }
             if (filter == 'watch') {
-                // $scope.recommendList = $scope.watchCourseList;
-                $scope.recommendList = [{
-                    'Days': 'Days1',
-                    'Pos1': '硬舉',
-                    'Pos2': '俯身挺背',
-                    'Pos3': '俯身挺背',
-                    'Pos4': '槓鈴曲體划船',
-                    'Pos5': '啞鈴單臂划船',
-                    'Pos6': '啞鈴單臂划船'
-                }, {
-                    'Days': 'Days2',
-                    'Pos1': '槓鈴曲體划船',
-                    'Pos2': '硬舉',
-                    'Pos3': '站姿負重俯身挺背',
-                    'Pos4': '俯身挺背',
-                    'Pos5': '啞鈴單臂划船',
-                    'Pos6': '啞鈴單臂划船'
-                }]
+                if ($scope.isAdmin) {
+                    $scope.recommendList = $scope.watchCourseList;
+                } else {
+                    $scope.recommendList = [{
+                        'Days': 'Days1',
+                        'Pos1': '硬舉',
+                        'Pos2': '俯身挺背',
+                        'Pos3': '俯身挺背',
+                        'Pos4': '槓鈴曲體划船',
+                        'Pos5': '啞鈴單臂划船',
+                        'Pos6': '啞鈴單臂划船'
+                    }, {
+                        'Days': 'Days2',
+                        'Pos1': '槓鈴曲體划船',
+                        'Pos2': '硬舉',
+                        'Pos3': '站姿負重俯身挺背',
+                        'Pos4': '俯身挺背',
+                        'Pos5': '啞鈴單臂划船',
+                        'Pos6': '啞鈴單臂划船'
+                    }]
+                }
                 $scope.recommendList.title = '依據關注課程推薦給你/妳';
             }
             $scope.recommendList.isHaveCourse = true;
@@ -1172,6 +1196,7 @@ app.controller('blockController', ['$scope', '$sce', '$http', '$timeout', '$loca
         $scope.hoverTraining = false;
         // 顯示說明block
         $scope.showMessage = function(target) {
+            if($scope.isAdmin){
             if (target == 'training') {
                 this.trainingMoving = true;
                 $scope.hoverTraining = true;
@@ -1179,7 +1204,8 @@ app.controller('blockController', ['$scope', '$sce', '$http', '$timeout', '$loca
             if (target == 'grow') {
                 this.growMoving = true;
                 $scope.hoverGrow = true;
-            };
+            };    
+            }
         };
         // 隱藏說明block
         $scope.hideMessage = function(target) {

@@ -582,6 +582,16 @@ span {
     width: 30%
 }
 
+.block-alert {
+    width: 100%;
+    height: calc(100% - 30px);
+    padding: 16px;
+    line-height: 230px;
+    position: absolute;
+    z-index:50;
+    background:$blockColor;
+}
+
 
 /* 會員結尾 */
 
