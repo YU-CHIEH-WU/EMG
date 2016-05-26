@@ -13,7 +13,7 @@
 <body ng-class="{unscroll:isDetailActive,unscroll:isCourseShow}">
     <div id="fb-root"></div>
     <!-- init放入使用者帳號 -->
-    <div class="container" ng-init="userAccount='administrator'">
+    <div class="container" ng-init="userAccount='123456'">
         <div class="row">
             <!-- 主頁面 -->
             <div class="block-container" ng-class="{gotop:isDetailActive,ontop:isOntop,filter:isCourseShow}" when-transition-end="setOntop()">
@@ -579,28 +579,28 @@
                                 <label class="col-sm-2 control-label">
                                     病歷
                                 </label>
-                                <input type="text" class="form-control" ng-model="loginUser.disease" name="disease">
+                                <input type="text" class="form-control form-disease" ng-model="loginUser.disease" name="disease">
                             </div>
                         </section>
                     </div>
                     <div class="userEdit-editPassword">
-                        <div class="form-group">
-                            <label class="col-sm-2 control-label">
+                        <div class="form-group col-sm-4">
+                            <label class="col-sm-5 control-label">
                                 舊密碼
                             </label>
-                            <input type="text" class="form-control" ng-model="editPassword.oldPassword" name="disease">
+                            <input type="text" class="form-control edit-input" ng-model="editPassword.oldPassword" name="disease">
                         </div>
-                        <div class="form-group">
-                            <label class="col-sm-2 control-label">
+                        <div class="form-group col-sm-4">
+                            <label class="col-sm-5 control-label">
                                 新密碼
                             </label>
-                            <input type="text" class="form-control" ng-model="editPassword.newPassword" name="disease">
+                            <input type="text" class="form-control edit-input" ng-model="editPassword.newPassword" name="disease">
                         </div>
-                        <div class="form-group">
-                            <label class="col-sm-2 control-label">
+                        <div class="form-group col-sm-4">
+                            <label class="col-sm-5 control-label">
                                 密碼確認
                             </label>
-                            <input type="text" class="form-control" ng-model="editPassword.passwordConfirm" name="disease">
+                            <input type="text" class="form-control edit-input" ng-model="editPassword.passwordConfirm" name="disease">
                         </div>
                     </div>
                 </div>

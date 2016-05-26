@@ -410,10 +410,6 @@ span {
     &.active {
         left: 10%;
     }
-    section {
-        margin: 6px;
-        margin-bottom: 12px;
-    }
     .form-control {
         width: 60%;
         margin: 5px;
@@ -432,10 +428,32 @@ span {
         height: 16px;
         color: red;
     }
+    .form-disease {
+        width: 80%;
+    }
+}
+
+.block-userEdit-info,
+.block-userEdit-status {
+    margin: 6px;
+    margin-bottom: 12px;
+}
+
+.userEdit-editPassword {
+    width:80%;
+    margin:0 auto;
+    font-size: 16px;
+    line-height: 34px;
+    text-align: right;
+}
+
+.edit-input {
+    width: 55%;
+    float: left;
 }
 
 .info-photo-upload {
-    width: 30%;
+    width: 35%;
     margin: 0 auto;
     margin-top: 16px;
     margin-bottom: 16px;
@@ -443,8 +461,8 @@ span {
 }
 
 .info-name {
-    width: 50%;
-    left: 30%;
+    width: 58%;
+    left: 21.4%;
     position: relative;
 }
 
@@ -555,6 +573,10 @@ span {
     width: 60%;
 }
 
+.block-userEdit-status {
+    margin-left: -10%;
+}
+
 .block-user-countDetail {
     width: 40%;
     text-align: center;
@@ -588,8 +610,8 @@ span {
     padding: 16px;
     line-height: 230px;
     position: absolute;
-    z-index:50;
-    background:$blockColor;
+    z-index: 30;
+    background: $blockColor;
 }
 
 
@@ -817,6 +839,7 @@ span {
     left: 0;
     top: 0;
     position: fixed;
+    z-index:50;
     background: rgba(0, 0, 0, 0.5);
     @include transition(all,
     0.3s,
@@ -828,6 +851,7 @@ span {
     height: 80%;
     left: 25%;
     top: 10%;
+    z-index:51;
     position: fixed;
     color: $fontColor;
     box-shadow: $shadow3;
