@@ -47,7 +47,7 @@ $(function() {
 var app = angular.module('mainApp', ['mainApp']);
 app.controller('blockController', ['$scope', '$sce', '$http', '$timeout', '$location', '$anchorScroll',
     function($scope, $sce, $http, $timeout, $location, $anchorScroll) {
-        var apiUrl = 'http://163.17.136.197:8080/EMG/Api/';
+        var apiUrl = 'http://163.17.135.185/EMG/Api/';
         // 首頁
         // true時隱藏首頁block
         $scope.isDetailActive = false;
@@ -398,122 +398,123 @@ app.controller('blockController', ['$scope', '$sce', '$http', '$timeout', '$loca
         // 會員
         // 延遲載入使用者帳號並取得使用者資料 
         $timeout(function() {
-            $scope.loginUser = {
-                'account': $scope.userAccount,
-                'name': '',
-                'height': '',
-                'weight': '',
-                'bodyfat': '',
-                'bmr': '',
-                'disease': '',
-                'age': '',
-                'sex': '',
-                'sports': '',
-                'place': ''
+            $scope.isAdmin = true;
+            // $scope.loginUser = {
+            //     'account': $scope.userAccount,
+            //     'name': '',
+            //     'height': '',
+            //     'weight': '',
+            //     'bodyfat': '',
+            //     'bmr': '',
+            //     'disease': '',
+            //     'age': '',
+            //     'sex': '',
+            //     'sports': '',
+            //     'place': ''
 
-            }
-            var profileApi = apiUrl + 'UserApi/getUser';
-            var apiData = { 'account': $scope.userAccount };
-            $http.post(profileApi, apiData).then(function(response) {
-                console.log(response.data);
-                $scope.loginUser = {
-                    'account': response.data.Account,
-                    'name': response.data.Name,
-                    'photo': response.data.Url,
-                    'height': response.data.Height,
-                    'weight': response.data.Weight,
-                    'bodyfat': response.data.Bodyfat,
-                    'bmr': response.data.BMR,
-                    'disease': response.data.Disease,
-                    'age': response.data.Age,
-                    'sex': response.data.Sex
-                }
-                console.log($scope.loginUser.account);
-                if ($scope.loginUser.account == "administrator") {
-                    $scope.isAdmin = true;
-                } else {
-                    $scope.isAdmin = false;
-                }
-                console.log($scope.isAdmin)
-                var apiData = { 'account': $scope.userAccount };
-                var ageApi = apiUrl + 'CourseApi/getAge';
-                $scope.ageCourseList = [];
-                $scope.isHaveAgeCourse = false;
-                $http.post(ageApi, apiData).then(function(response) {
-                    if (response.data.length > 0) {
-                        $scope.isHaveAgeCourse = true;
-                        angular.forEach(response.data, function(value, key) {
-                            $scope.ageCourseList.push(value);
-                        })
-                    }
-                })
-                var sportApi = apiUrl + 'CourseApi/getSports';
-                $scope.sportCourseList = [];
-                $scope.isHaveSportCourse = false;
-                $http.post(sportApi, apiData).then(function(response) {
-                    if (response.data.length > 0) {
-                        $scope.isHaveSportCourse = true;
-                        angular.forEach(response.data, function(value, key) {
-                            $scope.sportCourseList.push(value);
-                        })
-                    }
-                })
-                var placeApi = apiUrl + 'CourseApi/getPlace';
-                $scope.placeCourseList = [];
-                $scope.isHavePlaceCourse = false;
-                $http.post(placeApi, apiData).then(function(response) {
-                    if (response.data.length > 0) {
-                        $scope.isHavePlaceCourse = true;
-                        angular.forEach(response.data, function(value, key) {
-                            $scope.placeCourseList.push(value);
-                        })
-                    }
-                })
-                var motivationApi = apiUrl + 'CourseApi/getMotivation';
-                $scope.motivationCourseList = [];
-                $scope.isHaveMotivationCourse = false;
-                $http.post(motivationApi, apiData).then(function(response) {
-                    if (response.data.length > 0) {
-                        $scope.isHaveMotivationCourse = true;
-                        angular.forEach(response.data, function(value, key) {
-                            $scope.motivationCourseList.push(value);
-                        })
-                    }
-                })
-                var sameApi = apiUrl + 'CourseApi/getSame';
-                $scope.sameCourseList = [];
-                $scope.isHaveSameCourse = false;
-                $http.post(sameApi, apiData).then(function(response) {
-                    if (response.data.length > 0) {
-                        $scope.isHaveSameCourse = true;
-                        angular.forEach(response.data, function(value, key) {
-                            $scope.sameCourseList.push(value);
-                        })
-                    }
-                })
-                var watchApi = apiUrl + 'CourseApi/getWatch';
-                $scope.watchCourseList = [];
-                $scope.isHaveWatchCourse = false;
-                $http.post(watchApi, apiData).then(function(response) {
-                    if (response.data.length > 0) {
-                        $scope.isHaveWatchCourse = true;
-                        angular.forEach(response.data, function(value, key) {
-                            $scope.watchCourseList.push(value);
-                        })
-                    }
-                })
-                var hasCourseApi = apiUrl + 'CourseApi/hasCourseApp';
-                $http.post(hasCourseApi, apiData).then(function(response) {
-                    if (response.data.length > 0) {
-                        $scope.isHaveCourse = true;
-                        $scope.courseList = [];
-                        angular.forEach(response.data, function(value, key) {
-                            $scope.courseList.push(value);
-                        })
-                        console.log($scope.courseList);
-                    }
-                })
-            })
+            // }
+            // var profileApi = apiUrl + 'UserApi/getUser';
+            // var apiData = { 'account': $scope.userAccount };
+            // $http.post(profileApi, apiData).then(function(response) {
+            //     console.log(response.data);
+            //     $scope.loginUser = {
+            //         'account': response.data.Account,
+            //         'name': response.data.Name,
+            //         'photo': response.data.Url,
+            //         'height': response.data.Height,
+            //         'weight': response.data.Weight,
+            //         'bodyfat': response.data.Bodyfat,
+            //         'bmr': response.data.BMR,
+            //         'disease': response.data.Disease,
+            //         'age': response.data.Age,
+            //         'sex': response.data.Sex
+            //     }
+            //     console.log($scope.loginUser.account);
+            //     if ($scope.loginUser.account == "administrator") {
+            //         $scope.isAdmin = true;
+            //     } else {
+            //         $scope.isAdmin = false;
+            //     }
+                // console.log($scope.isAdmin)
+                // var apiData = { 'account': $scope.userAccount };
+                // var ageApi = apiUrl + 'CourseApi/getAge';
+                // $scope.ageCourseList = [];
+                // $scope.isHaveAgeCourse = false;
+                // $http.post(ageApi, apiData).then(function(response) {
+                //     if (response.data.length > 0) {
+                //         $scope.isHaveAgeCourse = true;
+                //         angular.forEach(response.data, function(value, key) {
+                //             $scope.ageCourseList.push(value);
+                //         })
+                //     }
+                // })
+                // var sportApi = apiUrl + 'CourseApi/getSports';
+                // $scope.sportCourseList = [];
+                // $scope.isHaveSportCourse = false;
+                // $http.post(sportApi, apiData).then(function(response) {
+                //     if (response.data.length > 0) {
+                //         $scope.isHaveSportCourse = true;
+                //         angular.forEach(response.data, function(value, key) {
+                //             $scope.sportCourseList.push(value);
+                //         })
+                //     }
+                // })
+                // var placeApi = apiUrl + 'CourseApi/getPlace';
+                // $scope.placeCourseList = [];
+                // $scope.isHavePlaceCourse = false;
+                // $http.post(placeApi, apiData).then(function(response) {
+                //     if (response.data.length > 0) {
+                //         $scope.isHavePlaceCourse = true;
+                //         angular.forEach(response.data, function(value, key) {
+                //             $scope.placeCourseList.push(value);
+                //         })
+                //     }
+                // })
+                // var motivationApi = apiUrl + 'CourseApi/getMotivation';
+                // $scope.motivationCourseList = [];
+                // $scope.isHaveMotivationCourse = false;
+                // $http.post(motivationApi, apiData).then(function(response) {
+                //     if (response.data.length > 0) {
+                //         $scope.isHaveMotivationCourse = true;
+                //         angular.forEach(response.data, function(value, key) {
+                //             $scope.motivationCourseList.push(value);
+                //         })
+                //     }
+                // })
+                // var sameApi = apiUrl + 'CourseApi/getSame';
+                // $scope.sameCourseList = [];
+                // $scope.isHaveSameCourse = false;
+                // $http.post(sameApi, apiData).then(function(response) {
+                //     if (response.data.length > 0) {
+                //         $scope.isHaveSameCourse = true;
+                //         angular.forEach(response.data, function(value, key) {
+                //             $scope.sameCourseList.push(value);
+                //         })
+                //     }
+                // })
+                // var watchApi = apiUrl + 'CourseApi/getWatch';
+                // $scope.watchCourseList = [];
+                // $scope.isHaveWatchCourse = false;
+                // $http.post(watchApi, apiData).then(function(response) {
+                //     if (response.data.length > 0) {
+                //         $scope.isHaveWatchCourse = true;
+                //         angular.forEach(response.data, function(value, key) {
+                //             $scope.watchCourseList.push(value);
+                //         })
+            //         }
+            //     })
+            //     var hasCourseApi = apiUrl + 'CourseApi/hasCourseApp';
+            //     $http.post(hasCourseApi, apiData).then(function(response) {
+            //         if (response.data.length > 0) {
+            //             $scope.isHaveCourse = true;
+            //             $scope.courseList = [];
+            //             angular.forEach(response.data, function(value, key) {
+            //                 $scope.courseList.push(value);
+            //             })
+            //             console.log($scope.courseList);
+            //         }
+            //     })
+            // })
         }, 10);
         // 登入後使用者個人資料
         $(setTimeout(function() {

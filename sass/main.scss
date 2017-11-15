@@ -566,7 +566,9 @@ img {
         top: calc(5% + 40px);
     }
 }
-
+.detail-content{
+    line-height: 24px;
+}
 .block-title-create,
 .block-edit-create {
     width: 100%;
@@ -903,7 +905,7 @@ img {
 .message-content {
     margin-bottom: 12px;
     font-size: 16px;
-    line-height: 22px;
+    line-height: 28px;
     position: relative;
     border-radius: 4px;
     padding: 16px;
